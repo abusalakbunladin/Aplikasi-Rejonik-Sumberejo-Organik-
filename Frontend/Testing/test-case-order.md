@@ -21,6 +21,3 @@
 | 11 | Order dengan format data tidak valid | 1. Isi field dengan format salah (misal nomor HP huruf, email tanpa "@") | Data format salah | Sistem menolak dan menampilkan pesan validasi format | Belum dites |
 | 12 | Riwayat order tampil dengan benar di dashboard admin | 1. Buat beberapa order<br>2. Cek list order di admin dashboard | Beberapa order dengan status berbeda | Semua order tampil lengkap dengan status & detail yang akurat | Belum dites |
 | 13 | Order tidak bisa diubah/dihapus sembarangan setelah selesai | 1. Selesaikan sebuah order<br>2. Coba edit/hapus order tsb | Order status selesai | Sistem membatasi perubahan pada order yang sudah selesai | Belum dites |
-
----
-**Catatan:** Test case ini akan disesuaikan lagi setelah API/endpoint order dari backend tersedia (menambahkan test untuk response API, error handling, dsb).
