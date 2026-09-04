@@ -48,7 +48,7 @@ class Order(Base):
     id = Column(Integer, primary_key=True, index=True)
     nama_pembeli = Column(String(100), nullable=False)
     tanggal = Column(DateTime, default=lambda: datetime.now(UTC))
-    total = Column(int, default=0)
+    total = Column(Integer, default=0)
 
     items = relationship("OrderItem", back_populates="order", cascade="all, delete-orphan")
 
