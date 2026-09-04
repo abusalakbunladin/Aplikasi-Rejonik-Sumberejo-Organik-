@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function App() {
   return (
     <div className='app'>
       <Hero />
       <Product />
+      <Advantages />
     </div>
   )
 }
@@ -12,7 +13,7 @@ export default function App() {
 function Hero() {
   return (
     <div className='hero'>
-      <section id='home' className='pt-36 pb-20 bg-green-900 relative overflow-hidden'>
+      <section id='home' className='pt-40 pb-20 bg-green-900 relative overflow-hidden'>
         <div className='container mx-auto relative z-2'>
           <div className='w-full px-4'>
             <div className='flex flex-col lg:flex-row lg:gap-10 xl:gap-20 lg:items-end lg:justify-center md:mt-35 lg:mt-40'>
@@ -69,40 +70,76 @@ function Hero() {
   )
 }
 
-
 function Product() {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  const proCard = 'max-w-sm mx-auto lg:mx-0 bg-tertiary border-accentThrd border-2 rounded-xl shadow-xl p-4 relative z-6 transition-all duration-800 ease-in-out lg:max-w-none'
+  const proBgEffct = 'w-full h-100 lg:h-120 xl:h-130 lg:max-w-3xl xl:max-w-4xl bg-linear-to-tr from-primary to-side rounded-4xl absolute -translate-y-15 transition-all duration-600 hidden lg:block' 
+
+  const deco1 = 'w-50 h-30 rounded-xl lg:left-10 xl:left-30 lg:top-10 xl:top-25 absolute z-5 transition-all duration-1000 ease-out hidden xl:block'
+  const deco2 = 'w-50 h-40 rounded-xl lg:right-4 xl:right-12 lg:-bottom-10 xl:-bottom-27 absolute z-5 transition-all duration-1000 ease-out hidden xl:block'
+  const deco3 = 'w-25 h-25 rounded-xl lg:left-60 xl:left-100 lg:-bottom-20 xl:-bottom-50 absolute z-5 -translate-y-15 transition-all duration-500 delay-300 ease-out hidden xl:block'
+  const deco4 = 'w-30 h-30 rounded-xl lg:right-20 xl:right-40 lg:top-10 xl:top-25 absolute z-5 transition-all duration-500 delay-300 ease-out hidden xl:block'
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if(window.innerWidth < 1024) return
+
+      const trigger = document.getElementById('produk')
+
+      if (trigger) {
+        const rect = trigger.getBoundingClientRect()
+
+        setIsScrolled(rect.top < window.innerHeight - 900)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <div className="product">
-      <section id="produk" className="pt-36 pb-32">
+      <section id="produk" className="pt-36 pb-50">
         <div className="container mx-auto">
           <div className="w-full px-4 relative">
-            <div className="mx-auto mb-30 select-none">
+            <div className="mx-auto mb-15 lg:mb-30 select-none">
               <div className="flex gap-3 items-center justify-center mb-3">
                 <div className='w-5 h-0.5 bg-side rounded-lg'></div>
-                <h3 className='font-light text-side text-lg uppercase'>Product</h3>
+                <h3 className='font-light text-side text-sm lg:text-lg uppercase'>Product</h3>
                 <div className='w-5 h-0.5 bg-side rounded-lg'></div>
               </div>
 
               <div className="flex gap-7 items-center justify-center">
-                <div className="flex gap-2">
-                  <div className='w-2.5 h-1 bg-side rounded-lg'></div>
-                  <div className='w-5 h-1 bg-side rounded-lg'></div>
-                  <div className='w-10 h-1 bg-side rounded-lg'></div>
+                <div className="hidden md:block">
+                  <div className="flex gap-2">
+                    <div className='w-2.5 h-1 bg-side rounded-lg'></div>
+                    <div className='w-5 h-1 bg-side rounded-lg'></div>
+                    <div className='w-10 h-1 bg-side rounded-lg'></div>
+                  </div>
                 </div>
 
-                <h2 className='max-w-lg font-extrabold text-quaternary text-5xl'>Produk dari Rejonik</h2>
+                <h2 className='max-w-lg font-extrabold text-quaternary text-4xl lg:text-5xl'>Produk dari Rejonik</h2>
 
-                <div className="flex gap-2">
-                  <div className='w-10 h-1 bg-side rounded-lg'></div>
-                  <div className='w-5 h-1 bg-side rounded-lg'></div>
-                  <div className='w-2.5 h-1 bg-side rounded-lg'></div>
+                <div className="hidden md:block">
+                  <div className="flex gap-2">
+                    <div className='w-10 h-1 bg-side rounded-lg'></div>
+                    <div className='w-5 h-1 bg-side rounded-lg'></div>
+                    <div className='w-2.5 h-1 bg-side rounded-lg'></div>
+                  </div>
                 </div>
+                
               </div>
             </div>
 
-            <div className="flex gap-5 justify-center mx-auto">
-              <div className="bg-tertiary border-accentThrd border-2 rounded-xl shadow-xl p-4 relative z-2 -rotate-5 translate-x-20">
-                <img src="/product/beras.jpg" alt="Beras Original" className='w-70 h-70 object-cover rounded-lg outline-accentThrd outline-2 mb-5 select-none' />
+            <div className="flex flex-col lg:flex-row gap-8 lg:gap-5 justify-center mx-auto">
+              <div className={`${deco1} ${!isScrolled ? '-translate-x-10' : 'bg-side/50 translate-x-10'}`} ></div>
+
+              <div className={`${deco4} ${!isScrolled ? 'scale-0' : 'bg-primary/50 scale-150'}`} ></div>
+
+              <div id='pro1' className={`${proCard} ${!isScrolled ? 'lg:-rotate-5 lg:translate-x-20' : ''}`} >
+                <img src="/product/beras.jpg" alt="Beras Original" className='w-full h-60 lg:w-56 lg:h-56 xl:w-70 xl:h-70 object-cover rounded-lg outline-accentThrd outline-2 mb-5 select-none' />
 
                 <h3 className='font-extrabold text-xl text-side mb-1'>Beras Original</h3>
 
@@ -119,8 +156,8 @@ function Product() {
                 </div>
               </div>
 
-              <div className="bg-tertiary border-accentThrd border-2 rounded-xl shadow-xl p-4 relative z-2 -translate-y-3">
-                <img src="/product/beras.jpg" alt="Beras Original" className='w-70 h-70 object-cover rounded-lg outline-accentThrd outline-2 mb-5 select-none' />
+              <div id='pro1' className={`${proCard} ${!isScrolled ? 'lg:-translate-y-3' : ''}`} >
+                <img src="/product/beras.jpg" alt="Beras Original" className='w-full h-60 lg:w-56 lg:h-56 xl:w-70 xl:h-70 object-cover rounded-lg outline-accentThrd outline-2 mb-5 select-none' />
 
                 <h3 className='font-extrabold text-xl text-side mb-1'>Beras Original</h3>
 
@@ -137,8 +174,8 @@ function Product() {
                 </div>
               </div>
 
-              <div className="bg-tertiary border-accentThrd border-2 rounded-xl shadow-xl p-4 relative z-2 rotate-5 -translate-x-20">
-                <img src="/product/beras.jpg" alt="Beras Original" className='w-70 h-70 object-cover rounded-lg outline-accentThrd outline-2 mb-5 select-none' />
+              <div id='pro1' className={`${proCard} ${!isScrolled ? 'lg:rotate-5 lg:-translate-x-20' : ''}`} >
+                <img src="/product/beras.jpg" alt="Beras Original" className='w-full h-60 lg:w-56 lg:h-56 xl:w-70 xl:h-70 object-cover rounded-lg outline-accentThrd outline-2 mb-5 select-none' />
 
                 <h3 className='font-extrabold text-xl text-side mb-1'>Beras Original</h3>
 
@@ -155,7 +192,11 @@ function Product() {
                 </div>
               </div>
 
-              <div className="w-full h-130 max-w-5xl bg-linear-to-tr from-primary to-side rounded-4xl absolute -translate-y-15 -rotate-5"></div>
+              <div className={`${deco2} ${!isScrolled ? 'translate-x-10' : 'bg-side/50 -translate-x-10'}`} ></div>
+
+              <div className={`${deco3} ${!isScrolled ? 'scale-0' : 'bg-primary/50 scale-150'}`} ></div>
+
+              <div className={`${proBgEffct} ${!isScrolled ? '' : '-rotate-5'}`} ></div>
             </div>
           </div>
         </div>
@@ -164,3 +205,11 @@ function Product() {
   )
 }
 
+function Advantages() {
+  return (
+    <div className="advantages">
+      <section id="keunggulan" className="pt-36 pb-32 bg-side/30" />
+      
+    </div>
+  )
+}
