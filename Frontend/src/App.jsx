@@ -10,6 +10,7 @@ export default function App() {
   )
 }
 
+// Hero //
 function Hero() {
   return (
     <div className='hero'>
@@ -69,7 +70,9 @@ function Hero() {
     </div>
   )
 }
+// Hero //
 
+// Product //
 function Product() {
   const [isScrolled, setIsScrolled] = useState(false)
 
@@ -141,7 +144,8 @@ function Product() {
               <div id='pro1' className={`${proCard} ${!isScrolled ? 'lg:-rotate-5 lg:translate-x-20' : ''}`} >
                 <img src="/product/beras.jpg" alt="Beras Original" className='w-full h-60 lg:w-56 lg:h-56 xl:w-70 xl:h-70 object-cover rounded-lg outline-accentThrd outline-2 mb-5 select-none' />
 
-                <h3 className='font-extrabold text-xl text-side mb-1'>Beras Original</h3>
+                <h3 className='font-extrabold text-xl text-side text-shadow-lg'>Beras Original</h3>
+                <p className='font-medium text-xs text-accentThrd mb-1'>1 kg</p>
 
                 <div className="flex justify-between">
                   <p className='font-bold text-accentThrd text-xl'>Rp 20.000</p>
@@ -156,10 +160,11 @@ function Product() {
                 </div>
               </div>
 
-              <div id='pro1' className={`${proCard} ${!isScrolled ? 'lg:-translate-y-3' : ''}`} >
-                <img src="/product/beras.jpg" alt="Beras Original" className='w-full h-60 lg:w-56 lg:h-56 xl:w-70 xl:h-70 object-cover rounded-lg outline-accentThrd outline-2 mb-5 select-none' />
+              <div id='pro2' className={`${proCard} ${!isScrolled ? 'lg:-translate-y-3' : ''}`} >
+                <img src="/product/beras-aromatik.jpg" alt="Beras Aromatik" className='w-full h-60 lg:w-56 lg:h-56 xl:w-70 xl:h-70 object-cover rounded-lg outline-accentThrd outline-2 mb-5 select-none' />
 
-                <h3 className='font-extrabold text-xl text-side mb-1'>Beras Original</h3>
+                <h3 className='font-extrabold text-xl text-fuchsia-400 text-shadow-lg'>Beras Aromatik</h3>
+                <p className='font-medium text-xs text-accentThrd mb-1'>1 kg</p>
 
                 <div className="flex justify-between">
                   <p className='font-bold text-accentThrd text-xl'>Rp 20.000</p>
@@ -174,10 +179,11 @@ function Product() {
                 </div>
               </div>
 
-              <div id='pro1' className={`${proCard} ${!isScrolled ? 'lg:rotate-5 lg:-translate-x-20' : ''}`} >
-                <img src="/product/beras.jpg" alt="Beras Original" className='w-full h-60 lg:w-56 lg:h-56 xl:w-70 xl:h-70 object-cover rounded-lg outline-accentThrd outline-2 mb-5 select-none' />
+              <div id='pro3' className={`${proCard} ${!isScrolled ? 'lg:rotate-5 lg:-translate-x-20' : ''}`} >
+                <img src="/product/beras-merah.jpg" alt="Beras Merah" className='w-full h-60 lg:w-56 lg:h-56 xl:w-70 xl:h-70 object-cover rounded-lg outline-accentThrd outline-2 mb-5 select-none' />
 
-                <h3 className='font-extrabold text-xl text-side mb-1'>Beras Original</h3>
+                <h3 className='font-extrabold text-xl text-[#691500] text-shadow-lg'>Beras Merah</h3>
+                <p className='font-medium text-xs text-accentThrd mb-1'>1 kg</p>
 
                 <div className="flex justify-between">
                   <p className='font-bold text-accentThrd text-xl'>Rp 20.000</p>
@@ -204,12 +210,20 @@ function Product() {
     </div>
   )
 }
+// Product //
 
+// Advantages //
 function Advantages() {
   return (
     <div className="advantages">
-      <section id="keunggulan" className="pt-36 pb-32 bg-side/30" />
-      
+      <section id="keunggulan" className="pt-36 pb-32 bg-side/40">
+        <div className="container mx-auto">
+          <div className="w-full px-4">
+
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
+// Advantages //
