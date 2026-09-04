@@ -5,7 +5,7 @@ from app.deps import get_db, get_current_user
 from app.models import Kategori
 from app.schemas import KategoriCreate, KategoriResponse
 
-router = APIRouter(prefix="/kategori", tags=["katalog - kategori"])
+router = APIRouter(prefix="/kategori", tags=["katalog - Kategori"])
 
 @router.get("", response_model=list[KategoriResponse])
 def list_kategori(db: Session = Depends(get_db)):
