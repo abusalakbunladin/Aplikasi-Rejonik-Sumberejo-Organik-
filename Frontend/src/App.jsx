@@ -76,7 +76,7 @@ function Product() {
       <section id="produk" className="pt-36 pb-32">
         <div className="container mx-auto">
           <div className="w-full px-4 relative">
-            <div className="mx-auto mb-20">
+            <div className="mx-auto mb-30 select-none">
               <div className="flex gap-3 items-center justify-center mb-3">
                 <div className='w-5 h-0.5 bg-side rounded-lg'></div>
                 <h3 className='font-light text-side text-lg uppercase'>Product</h3>
@@ -100,15 +100,62 @@ function Product() {
               </div>
             </div>
 
-            <div className="flex justify-center mx-auto">
-              <div className="bg-tertiary border-accentThrd border-2 rounded-xl shadow-xl p-4 relative z-2">
+            <div className="flex gap-5 justify-center mx-auto">
+              <div className="bg-tertiary border-accentThrd border-2 rounded-xl shadow-xl p-4 relative z-2 -rotate-5 translate-x-20">
                 <img src="/product/beras.jpg" alt="Beras Original" className='w-70 h-70 object-cover rounded-lg outline-accentThrd outline-2 mb-5 select-none' />
 
-                <h3 className='font-bold text-xl text-side'>Beras Original</h3>
-              </div>
-            
+                <h3 className='font-extrabold text-xl text-side mb-1'>Beras Original</h3>
 
-              <div className="w-full h-130 max-w-5xl bg-linear-to-tr from-primary to-side rounded-4xl absolute -rotate-5"></div>
+                <div className="flex justify-between">
+                  <p className='font-bold text-accentThrd text-xl'>Rp 20.000</p>
+
+                  <a href="#" target='_blank' className='group'>
+                    <button className='font-medium text-accentThrd bg-white ring-accentThrd ring-2 rounded-full group-hover:text-white group-active:text-side group-active:ring-side px-4 p-1 relative transition-all duration-300 overflow-hidden cursor-pointer select-none'>
+                      <span className='relative z-1'>Pesan</span>
+                      
+                      <div className="w-8 h-8 bg-accentThrd rounded-full absolute -translate-y-7 translate-x-2 scale-0 group-hover:scale-250 group-active:scale-0 transition-all duration-100"></div>
+                    </button>
+                  </a>
+                </div>
+              </div>
+
+              <div className="bg-tertiary border-accentThrd border-2 rounded-xl shadow-xl p-4 relative z-2 -translate-y-3">
+                <img src="/product/beras.jpg" alt="Beras Original" className='w-70 h-70 object-cover rounded-lg outline-accentThrd outline-2 mb-5 select-none' />
+
+                <h3 className='font-extrabold text-xl text-side mb-1'>Beras Original</h3>
+
+                <div className="flex justify-between">
+                  <p className='font-bold text-accentThrd text-xl'>Rp 20.000</p>
+
+                  <a href="#" target='_blank' className='group'>
+                    <button className='font-medium text-accentThrd bg-white ring-accentThrd ring-2 rounded-full group-hover:text-white group-active:text-side group-active:ring-side px-4 p-1 relative transition-all duration-300 overflow-hidden cursor-pointer select-none'>
+                      <span className='relative z-1'>Pesan</span>
+                      
+                      <div className="w-8 h-8 bg-accentThrd rounded-full absolute -translate-y-7 translate-x-2 scale-0 group-hover:scale-250 group-active:scale-0 transition-all duration-100"></div>
+                    </button>
+                  </a>
+                </div>
+              </div>
+
+              <div className="bg-tertiary border-accentThrd border-2 rounded-xl shadow-xl p-4 relative z-2 rotate-5 -translate-x-20">
+                <img src="/product/beras.jpg" alt="Beras Original" className='w-70 h-70 object-cover rounded-lg outline-accentThrd outline-2 mb-5 select-none' />
+
+                <h3 className='font-extrabold text-xl text-side mb-1'>Beras Original</h3>
+
+                <div className="flex justify-between">
+                  <p className='font-bold text-accentThrd text-xl'>Rp 20.000</p>
+
+                  <a href="#" target='_blank' className='group'>
+                    <button className='font-medium text-accentThrd bg-white ring-accentThrd ring-2 rounded-full group-hover:text-white group-active:text-side group-active:ring-side px-4 p-1 relative transition-all duration-300 overflow-hidden cursor-pointer select-none'>
+                      <span className='relative z-1'>Pesan</span>
+                      
+                      <div className="w-8 h-8 bg-accentThrd rounded-full absolute -translate-y-7 translate-x-2 scale-0 group-hover:scale-250 group-active:scale-0 transition-all duration-100"></div>
+                    </button>
+                  </a>
+                </div>
+              </div>
+
+              <div className="w-full h-130 max-w-5xl bg-linear-to-tr from-primary to-side rounded-4xl absolute -translate-y-15 -rotate-5"></div>
             </div>
           </div>
         </div>
