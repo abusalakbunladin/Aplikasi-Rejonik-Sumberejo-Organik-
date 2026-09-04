@@ -11,5 +11,17 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
+  web:
+    build: .
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: "mysql+pymysql://root:@db/rejonik"
+      SECRET_KEY: "${SECRET_KEY}"
+    depends_on:
+      - db
+
+
 volumes:
   mysql_data:
