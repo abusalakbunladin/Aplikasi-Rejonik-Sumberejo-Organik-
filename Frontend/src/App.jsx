@@ -10,6 +10,35 @@ export default function App() {
   )
 }
 
+function useScrollTrigger(elementId, offset = 500) {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerWidth < 1024) return
+
+      const trigger = document.getElementById(elementId)
+
+      if (trigger) {
+        const rect = trigger.getBoundingClientRect()
+        setIsScrolled(rect.top < window.innerHeight - offset)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('resize', handleScroll)
+
+    handleScroll()
+
+    return () => {
+      window.addEventListener('scroll', handleScroll)
+      window.addEventListener('resize', handleScroll)
+    }
+  }, [elementId, offset])
+
+  return isScrolled
+}
+
 // Hero //
 function Hero() {
   return (
@@ -74,7 +103,7 @@ function Hero() {
 
 // Product //
 function Product() {
-  const [isScrolled, setIsScrolled] = useState(false)
+  const isScrolled = useScrollTrigger('produk', 900)
 
   const proCard = 'max-w-sm mx-auto lg:mx-0 bg-tertiary border-accentThrd border-2 rounded-xl shadow-xl p-4 relative z-6 transition-all duration-800 ease-in-out lg:max-w-none'
   const proBgEffct = 'w-full h-100 lg:h-120 xl:h-130 lg:max-w-3xl xl:max-w-4xl bg-linear-to-tr from-primary to-side rounded-4xl absolute -translate-y-15 transition-all duration-600 hidden lg:block' 
@@ -83,24 +112,6 @@ function Product() {
   const deco2 = 'w-50 h-40 rounded-xl lg:right-4 xl:right-12 lg:-bottom-10 xl:-bottom-27 absolute z-5 transition-all duration-1000 ease-out hidden xl:block'
   const deco3 = 'w-25 h-25 rounded-xl lg:left-60 xl:left-100 lg:-bottom-20 xl:-bottom-50 absolute z-5 -translate-y-15 transition-all duration-500 delay-300 ease-out hidden xl:block'
   const deco4 = 'w-30 h-30 rounded-xl lg:right-20 xl:right-40 lg:top-10 xl:top-25 absolute z-5 transition-all duration-500 delay-300 ease-out hidden xl:block'
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if(window.innerWidth < 1024) return
-
-      const trigger = document.getElementById('produk')
-
-      if (trigger) {
-        const rect = trigger.getBoundingClientRect()
-
-        setIsScrolled(rect.top < window.innerHeight - 900)
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   return (
     <div className="product">
@@ -213,6 +224,8 @@ function Product() {
 
 // Advantages //
 function Advantages() {
+  const isScrolled = useScrollTrigger('keunggulan', 800)
+
   return (
     <div className="advantages">
       <section id="keunggulan" className='pt-36 pb-32 bg-side/40'>
@@ -246,7 +259,11 @@ function Advantages() {
               </div>
             </div>
 
-            
+            <div className='flex gap-5 justify-center mx-auto'>
+              <div className='w-100 h-50 bg-primary rounded-xl'></div>
+              <div className='w-100 h-50 bg-primary rounded-xl'></div>
+              <div className='w-100 h-50 bg-primary rounded-xl'></div>
+            </div>
           </div>
         </div>
       </section>
