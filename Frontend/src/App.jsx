@@ -132,7 +132,6 @@ function Product() {
                     <div className='w-2.5 h-1 bg-side rounded-lg'></div>
                   </div>
                 </div>
-                
               </div>
             </div>
 
@@ -216,10 +215,38 @@ function Product() {
 function Advantages() {
   return (
     <div className="advantages">
-      <section id="keunggulan" className="pt-36 pb-32 bg-side/40">
-        <div className="container mx-auto">
-          <div className="w-full px-4">
+      <section id="keunggulan" className='pt-36 pb-32 bg-side/40'>
+        <div className='container mx-auto'>
+          <div className='w-full px-4'>
+            <div className='mx-auto mb-30 select-none'>
+              <div className="flex gap-3 items-center justify-center mb-3">
+                <div className='w-5 h-0.5 bg-side rounded-lg'></div>
+                <h3 className='font-light text-side text-sm lg:text-lg uppercase'>Advantages</h3>
+                <div className='w-5 h-0.5 bg-side rounded-lg'></div>
+              </div>
 
+              <div className="flex gap-7 items-center justify-center">
+                <div className="hidden md:block">
+                  <div className="flex gap-2">
+                    <div className='w-2.5 h-1 bg-side rounded-lg'></div>
+                    <div className='w-5 h-1 bg-side rounded-lg'></div>
+                    <div className='w-10 h-1 bg-side rounded-lg'></div>
+                  </div>
+                </div>
+
+                <h2 className='max-w-lg font-extrabold text-quaternary text-4xl lg:text-5xl'>Keunggulan Rejonik</h2>
+
+                <div className="hidden md:block">
+                  <div className="flex gap-2">
+                    <div className='w-10 h-1 bg-side rounded-lg'></div>
+                    <div className='w-5 h-1 bg-side rounded-lg'></div>
+                    <div className='w-2.5 h-1 bg-side rounded-lg'></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
           </div>
         </div>
       </section>
