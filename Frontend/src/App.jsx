@@ -224,7 +224,9 @@ function Product() {
 
 // Advantages //
 function Advantages() {
-  const isScrolled = useScrollTrigger('keunggulan', 800)
+  const isScrolled = useScrollTrigger('keunggulan', 500)
+
+  const advanCard = 'w-full max-w-sm h-50 bg-white rounded-xl border-primary border-2 mx-auto relative overflow-hidden hover:border-side transition-all duration-500 group'
 
   return (
     <div className="advantages">
@@ -259,10 +261,132 @@ function Advantages() {
               </div>
             </div>
 
-            <div className='flex gap-5 justify-center mx-auto'>
-              <div className='w-100 h-50 bg-primary rounded-xl'></div>
-              <div className='w-100 h-50 bg-primary rounded-xl'></div>
-              <div className='w-100 h-50 bg-primary rounded-xl'></div>
+            <div className='grid grid-cols-3 gap-5 justify-center mx-auto'>
+              <div className={`${advanCard} ${!isScrolled ? 'scale-0 opacity-0' : 'scale-100 opacity-100 delay-100'}`} >
+
+                <div className='w-49 h-49 bg-primary rounded-full flex items-center justify-center absolute z-2 translate-x-23.5 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
+                  <img src="/img/hinabobok2.png" alt="Organik" width='50' />
+                </div>
+
+                <div className='w-full h-full p-5'>
+                  <div className='flex items-center gap-5 mb-5 -translate-x-50 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                    <div className='w-15 h-15 bg-primary rounded-full flex justify-center items-center'>
+                      <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                    </div>
+
+                    <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
+                  </div>
+
+                  <div className='translate-x-95 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                    <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className={`${advanCard} ${!isScrolled ? 'scale-0 opacity-0' : 'scale-100 opacity-100 delay-100'}`} >
+
+                <div className='w-49 h-49 bg-primary rounded-full flex items-center justify-center absolute z-2 translate-x-23.5 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
+                  <img src="/img/hinabobok2.png" alt="Organik" width='50' />
+                </div>
+
+                <div className='w-full h-full p-5'>
+                  <div className='flex items-center gap-5 mb-5 -translate-x-50 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                    <div className='w-15 h-15 bg-primary rounded-full flex justify-center items-center'>
+                      <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                    </div>
+
+                    <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
+                  </div>
+
+                  <div className='translate-x-95 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                    <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className={`${advanCard} ${!isScrolled ? 'scale-0 opacity-0' : 'scale-100 opacity-100 delay-100'}`} >
+
+                <div className='w-49 h-49 bg-primary rounded-full flex items-center justify-center absolute z-2 translate-x-23.5 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
+                  <img src="/img/hinabobok2.png" alt="Organik" width='50' />
+                </div>
+
+                <div className='w-full h-full p-5'>
+                  <div className='flex items-center gap-5 mb-5 -translate-x-50 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                    <div className='w-15 h-15 bg-primary rounded-full flex justify-center items-center'>
+                      <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                    </div>
+
+                    <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
+                  </div>
+
+                  <div className='translate-x-95 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                    <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className={`${advanCard} ${!isScrolled ? 'scale-0 opacity-0' : 'scale-100 opacity-100 delay-100'}`} >
+
+                <div className='w-49 h-49 bg-primary rounded-full flex items-center justify-center absolute z-2 translate-x-23.5 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
+                  <img src="/img/hinabobok2.png" alt="Organik" width='50' />
+                </div>
+
+                <div className='w-full h-full p-5'>
+                  <div className='flex items-center gap-5 mb-5 -translate-x-50 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                    <div className='w-15 h-15 bg-primary rounded-full flex justify-center items-center'>
+                      <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                    </div>
+
+                    <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
+                  </div>
+
+                  <div className='translate-x-95 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                    <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className={`${advanCard} ${!isScrolled ? 'scale-0 opacity-0' : 'scale-100 opacity-100 delay-100'}`} >
+
+                <div className='w-49 h-49 bg-primary rounded-full flex items-center justify-center absolute z-2 translate-x-23.5 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
+                  <img src="/img/hinabobok2.png" alt="Organik" width='50' />
+                </div>
+
+                <div className='w-full h-full p-5'>
+                  <div className='flex items-center gap-5 mb-5 -translate-x-50 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                    <div className='w-15 h-15 bg-primary rounded-full flex justify-center items-center'>
+                      <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                    </div>
+
+                    <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
+                  </div>
+
+                  <div className='translate-x-95 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                    <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className={`${advanCard} ${!isScrolled ? 'scale-0 opacity-0' : 'scale-100 opacity-100 delay-100'}`} >
+
+                <div className='w-49 h-49 bg-primary rounded-full flex items-center justify-center absolute z-2 translate-x-23.5 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
+                  <img src="/img/hinabobok2.png" alt="Organik" width='50' />
+                </div>
+
+                <div className='w-full h-full p-5'>
+                  <div className='flex items-center gap-5 mb-5 -translate-x-50 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                    <div className='w-15 h-15 bg-primary rounded-full flex justify-center items-center'>
+                      <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                    </div>
+
+                    <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
+                  </div>
+
+                  <div className='translate-x-95 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                    <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
