@@ -16,7 +16,7 @@ def create_pasokan(data: PasokanCreate, db: Session = Depends(get_db), current_u
     produk = db.query(Produk).filter(Produk.id == data.produk_id).first()
     if not produk:
         raise HTTPException(status_code=404, detail="Produk tidak ditemukan")
-    pasokan = Pasokan(**data.model_dump)
+    pasokan = Pasokan(**data.model_dump())
     produk.stok += data.jumlah
     db.add(pasokan)
     db.commit()

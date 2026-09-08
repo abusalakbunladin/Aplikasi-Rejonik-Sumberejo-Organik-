@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.routers import auth, kategori, produk, pemasok, pasokan, order, laporan
+from app.routers import auth, kategori, produk, pemasok, pasokan, order, laporan, penyesuaian_stok
 
 app = FastAPI(title="Rejonik - Main")
 
@@ -11,3 +11,4 @@ app.include_router(pemasok.router)
 app.include_router(pasokan.router)
 app.include_router(order.router)
 app.include_router(laporan.router)
+app.include_router(penyesuaian_stok.router)

@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class KategoriCreate(BaseModel):
@@ -15,8 +15,8 @@ class KategoriResponse(BaseModel):
 
 class ProdukCreate(BaseModel):
     nama: str
-    harga: int
-    stok: int = 0
+    harga: int = Field(..., gt=0, description="Harga harus lebih dari 0")
+    stok: int = Field(0, ge=0, description="Stok tidak boleh negatif")
     kategori_id: Optional[int] = None
 
 class ProdukResponse(BaseModel):
@@ -44,7 +44,7 @@ class PemasokResponse(BaseModel):
 class PasokanCreate(BaseModel):
     produk_id: int
     pemasok_id: int
-    jumlah: int
+    jumlah: int = Field(..., gt=0, description="Jumlah pasokan harus lebih dari 0")
 
 class PasokanResponse(BaseModel):
     id: int
@@ -58,7 +58,7 @@ class PasokanResponse(BaseModel):
 
 class OrderItemCreate(BaseModel):
     produk_id: int
-    jumlah: int
+    jumlah: int = Field(..., gt=0, description="Jumlah order harus lebih dari 0")
 
 class OrderItemResponse(BaseModel):
     id: int
@@ -78,6 +78,23 @@ class OrderResponse(BaseModel):
     tanggal: datetime
     total: int
     items: list[OrderItemResponse]
+    class Config:
+        from_attributes = True
+
+
+class PenyesuaianStokCreate(BaseModel):
+    produk_id: int
+    jumlah: int = Field(..., gt=0, description="Jumlah barang yang dikurangi dari stok")
+    alasan: str = Field(..., description="Contoh: rusak, expired, hilang, lainnya")
+    keterangan: Optional[str] = None
+
+class PenyesuaianStokResponse(BaseModel):
+    id: int
+    produk_id: int
+    jumlah: int
+    alasan: str
+    keterangan: Optional[str]
+    tanggal: datetime
     class Config:
         from_attributes = True
 
