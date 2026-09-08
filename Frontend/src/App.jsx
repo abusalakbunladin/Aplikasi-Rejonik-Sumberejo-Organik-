@@ -6,6 +6,7 @@ export default function App() {
       <Hero />
       <Product />
       <Advantages />
+      <About />
     </div>
   )
 }
@@ -134,7 +135,7 @@ function Product() {
                   </div>
                 </div>
 
-                <h2 className='max-w-lg font-extrabold text-quaternary text-4xl lg:text-5xl'>Produk dari Rejonik</h2>
+                <h2 className='max-w-lg font-extrabold text-quaternary text-3xl lg:text-5xl'>Produk dari Rejonik</h2>
 
                 <div className="hidden md:block">
                   <div className="flex gap-2">
@@ -224,15 +225,15 @@ function Product() {
 
 // Advantages //
 function Advantages() {
-  const isScrolled = useScrollTrigger('keunggulan', 500)
+  const isScrolled = useScrollTrigger('keunggulan', 800)
 
-  const advanCard = 'w-full max-w-sm h-50 bg-white rounded-xl border-primary border-2 mx-auto relative overflow-hidden hover:border-side transition-all duration-500 group'
+  const advanCard = 'w-full max-w-sm h-50 bg-tertiary rounded-xl border-side border-2 shadow-lg relative overflow-hidden lg:hover:border-accentThrd transition-all duration-500'
 
   return (
     <div className="advantages">
-      <section id="keunggulan" className='pt-36 pb-32 bg-side/40'>
-        <div className='container mx-auto'>
-          <div className='w-full px-4'>
+      <section id="keunggulan" className='pt-36 pb-20 bg-side/40 relative'>
+        <div className='container mx-auto mb-20'>
+          <div className='w-full px-10'>
             <div className='mx-auto mb-30 select-none'>
               <div className="flex gap-3 items-center justify-center mb-3">
                 <div className='w-5 h-0.5 bg-side rounded-lg'></div>
@@ -242,14 +243,14 @@ function Advantages() {
 
               <div className="flex gap-7 items-center justify-center">
                 <div className="hidden md:block">
-                  <div className="flex gap-2">
+                  <div className="flex gap-2" >
                     <div className='w-2.5 h-1 bg-side rounded-lg'></div>
                     <div className='w-5 h-1 bg-side rounded-lg'></div>
                     <div className='w-10 h-1 bg-side rounded-lg'></div>
                   </div>
                 </div>
 
-                <h2 className='max-w-lg font-extrabold text-quaternary text-4xl lg:text-5xl'>Keunggulan Rejonik</h2>
+                <h2 className='max-w-lg font-extrabold text-quaternary text-3xl lg:text-5xl'>Keunggulan Rejonik</h2>
 
                 <div className="hidden md:block">
                   <div className="flex gap-2">
@@ -261,137 +262,221 @@ function Advantages() {
               </div>
             </div>
 
-            <div className='grid grid-cols-3 gap-5 justify-center mx-auto'>
-              <div className={`${advanCard} ${!isScrolled ? 'scale-0 opacity-0' : 'scale-100 opacity-100 delay-100'}`} >
-
-                <div className='w-49 h-49 bg-primary rounded-full flex items-center justify-center absolute z-2 translate-x-23.5 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
-                  <img src="/img/hinabobok2.png" alt="Organik" width='50' />
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center select-none'>
+              <div className={`relative transition-all duration-500 group ${!isScrolled ? 'lg:scale-0 lg:opacity-0' : 'lg:scale-100lg: opacity-100 delay-100'}`} >
+                <div className='w-30 h-30 bg-side/0 rounded-lg right-0 hidden lg:flex items-center justify-center absolute z-2 group-hover:bg-side/50 group-hover:translate-x-12 group-hover:-translate-y-12 xl:group-hover:translate-x-9 xl:group-hover:-translate-y-9 lg:scale-70 xl:scale-100 transition-all duration-500 ease-out'>
+                  <img src="/img/hinabobok2.png" alt="Organik" className='opacity-0 group-hover:opacity-100 transition duration-300' />
                 </div>
 
-                <div className='w-full h-full p-5'>
-                  <div className='flex items-center gap-5 mb-5 -translate-x-50 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
-                    <div className='w-15 h-15 bg-primary rounded-full flex justify-center items-center'>
-                      <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                <div className={`lg:hover:translate-x-3 lg:hover:-translate-y-3 ${advanCard}`} >
+
+                  <div className='w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
+                    <img src="/img/hinabobok2.png" alt="Organik" width='50' />
+                  </div>
+
+                  <div className='w-full h-full p-5'>
+                    <div className='flex items-center gap-5 mb-5 lg:-translate-x-50 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                      <div className='w-15 h-15 bg-side rounded-full flex justify-center items-center'>
+                        <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                      </div>
+
+                      <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
                     </div>
 
-                    <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
-                  </div>
-
-                  <div className='translate-x-95 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
-                    <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className={`${advanCard} ${!isScrolled ? 'scale-0 opacity-0' : 'scale-100 opacity-100 delay-100'}`} >
-
-                <div className='w-49 h-49 bg-primary rounded-full flex items-center justify-center absolute z-2 translate-x-23.5 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
-                  <img src="/img/hinabobok2.png" alt="Organik" width='50' />
-                </div>
-
-                <div className='w-full h-full p-5'>
-                  <div className='flex items-center gap-5 mb-5 -translate-x-50 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
-                    <div className='w-15 h-15 bg-primary rounded-full flex justify-center items-center'>
-                      <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                    <div className='lg:translate-x-95 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                      <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
                     </div>
-
-                    <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
-                  </div>
-
-                  <div className='translate-x-95 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
-                    <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
                   </div>
                 </div>
+
+                <div className='w-40 h-10 bg-side/0 rounded-lg absolute z-2 -translate-y-10 group-hover:bg-side/50 group-hover:-translate-x-5 group-hover:-translate-y-7 hidden lg:block transition-all duration-500 ease-out'></div>
+
+                <div className='w-full max-w-sm h-50 bg-primary rounded-xl absolute -z-1 -translate-y-50 transition-all duration-400'></div>
               </div>
 
-              <div className={`${advanCard} ${!isScrolled ? 'scale-0 opacity-0' : 'scale-100 opacity-100 delay-100'}`} >
-
-                <div className='w-49 h-49 bg-primary rounded-full flex items-center justify-center absolute z-2 translate-x-23.5 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
-                  <img src="/img/hinabobok2.png" alt="Organik" width='50' />
+              <div className={`relative transition-all duration-500 group ${!isScrolled ? 'lg:scale-0 lg:opacity-0' : 'lg:scale-100 lg:opacity-100 delay-200'}`} >
+                <div className='w-30 h-30 bg-side/0 rounded-lg right-0 hidden lg:flex items-center justify-center absolute z-2 group-hover:bg-side/50 group-hover:translate-x-12 group-hover:-translate-y-12 xl:group-hover:translate-x-9 xl:group-hover:-translate-y-9 lg:scale-70 xl:scale-100 transition-all duration-500 ease-out'>
+                  <img src="/img/hinabobok2.png" alt="Organik" className='opacity-0 group-hover:opacity-100 transition duration-300' />
                 </div>
 
-                <div className='w-full h-full p-5'>
-                  <div className='flex items-center gap-5 mb-5 -translate-x-50 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
-                    <div className='w-15 h-15 bg-primary rounded-full flex justify-center items-center'>
-                      <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                <div className={`lg:hover:translate-x-3 lg:hover:-translate-y-3 ${advanCard}`} >
+
+                  <div className='w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
+                    <img src="/img/hinabobok2.png" alt="Organik" width='50' />
+                  </div>
+
+                  <div className='w-full h-full p-5'>
+                    <div className='flex items-center gap-5 mb-5 lg:-translate-x-50 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                      <div className='w-15 h-15 bg-side rounded-full flex justify-center items-center'>
+                        <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                      </div>
+
+                      <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
                     </div>
 
-                    <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
-                  </div>
-
-                  <div className='translate-x-95 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
-                    <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
+                    <div className='lg:translate-x-95 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                      <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
+                    </div>
                   </div>
                 </div>
+
+                <div className='w-40 h-10 bg-side/0 rounded-lg absolute z-2 -translate-y-10 group-hover:bg-side/50 group-hover:-translate-x-5 group-hover:-translate-y-7 hidden lg:block transition-all duration-500 ease-out'></div>
+
+                <div className='w-full max-w-sm h-50 bg-primary rounded-xl absolute -z-1 -translate-y-50 transition-all duration-400'></div>
               </div>
 
-              <div className={`${advanCard} ${!isScrolled ? 'scale-0 opacity-0' : 'scale-100 opacity-100 delay-100'}`} >
-
-                <div className='w-49 h-49 bg-primary rounded-full flex items-center justify-center absolute z-2 translate-x-23.5 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
-                  <img src="/img/hinabobok2.png" alt="Organik" width='50' />
+              <div className={`relative transition-all duration-500 group ${!isScrolled ? 'lg:scale-0 lg:opacity-0' : 'lg:scale-100 lg:opacity-100 delay-300'}`} >
+                <div className='w-30 h-30 bg-side/0 rounded-lg right-0 hidden lg:flex items-center justify-center absolute z-2 group-hover:bg-side/50 group-hover:translate-x-12 group-hover:-translate-y-12 xl:group-hover:translate-x-9 xl:group-hover:-translate-y-9 lg:scale-70 xl:scale-100 transition-all duration-500 ease-out'>
+                  <img src="/img/hinabobok2.png" alt="Organik" className='opacity-0 group-hover:opacity-100 transition duration-300' />
                 </div>
 
-                <div className='w-full h-full p-5'>
-                  <div className='flex items-center gap-5 mb-5 -translate-x-50 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
-                    <div className='w-15 h-15 bg-primary rounded-full flex justify-center items-center'>
-                      <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                <div className={`lg:hover:translate-x-3 lg:hover:-translate-y-3 ${advanCard}`} >
+
+                  <div className='w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
+                    <img src="/img/hinabobok2.png" alt="Organik" width='50' />
+                  </div>
+
+                  <div className='w-full h-full p-5'>
+                    <div className='flex items-center gap-5 mb-5 lg:-translate-x-50 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                      <div className='w-15 h-15 bg-side rounded-full flex justify-center items-center'>
+                        <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                      </div>
+
+                      <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
                     </div>
 
-                    <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
-                  </div>
-
-                  <div className='translate-x-95 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
-                    <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
+                    <div className='lg:translate-x-95 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                      <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
+                    </div>
                   </div>
                 </div>
+
+                <div className='w-40 h-10 bg-side/0 rounded-lg absolute z-2 -translate-y-10 group-hover:bg-side/50 group-hover:-translate-x-5 group-hover:-translate-y-7 hidden lg:block transition-all duration-500 ease-out'></div>
+
+                <div className='w-full max-w-sm h-50 bg-primary rounded-xl absolute -z-1 -translate-y-50 transition-all duration-400'></div>
               </div>
 
-              <div className={`${advanCard} ${!isScrolled ? 'scale-0 opacity-0' : 'scale-100 opacity-100 delay-100'}`} >
-
-                <div className='w-49 h-49 bg-primary rounded-full flex items-center justify-center absolute z-2 translate-x-23.5 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
-                  <img src="/img/hinabobok2.png" alt="Organik" width='50' />
+              <div className={`relative transition-all duration-500 group ${!isScrolled ? 'lg:scale-0 lg:opacity-0' : 'lg:scale-100 lg:opacity-100 delay-400'}`} >
+                <div className='w-30 h-30 bg-side/0 rounded-lg right-0 hidden lg:flex items-center justify-center absolute z-2 group-hover:bg-side/50 group-hover:translate-x-12 group-hover:-translate-y-12 xl:group-hover:translate-x-9 xl:group-hover:-translate-y-9 lg:scale-70 xl:scale-100 transition-all duration-500 ease-out'>
+                  <img src="/img/hinabobok2.png" alt="Organik" className='opacity-0 group-hover:opacity-100 transition duration-300' />
                 </div>
 
-                <div className='w-full h-full p-5'>
-                  <div className='flex items-center gap-5 mb-5 -translate-x-50 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
-                    <div className='w-15 h-15 bg-primary rounded-full flex justify-center items-center'>
-                      <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                <div className={`lg:hover:translate-x-3 lg:hover:-translate-y-3 ${advanCard}`} >
+
+                  <div className='w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
+                    <img src="/img/hinabobok2.png" alt="Organik" width='50' />
+                  </div>
+
+                  <div className='w-full h-full p-5'>
+                    <div className='flex items-center gap-5 mb-5 lg:-translate-x-50 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                      <div className='w-15 h-15 bg-side rounded-full flex justify-center items-center'>
+                        <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                      </div>
+
+                      <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
                     </div>
 
-                    <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
-                  </div>
-
-                  <div className='translate-x-95 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
-                    <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
+                    <div className='lg:translate-x-95 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                      <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
+                    </div>
                   </div>
                 </div>
+
+                <div className='w-40 h-10 bg-side/0 rounded-lg absolute z-2 -translate-y-10 group-hover:bg-side/50 group-hover:-translate-x-5 group-hover:-translate-y-7 hidden lg:block transition-all duration-500 ease-out'></div>
+
+                <div className='w-full max-w-sm h-50 bg-primary rounded-xl absolute -z-1 -translate-y-50 transition-all duration-400'></div>
               </div>
 
-              <div className={`${advanCard} ${!isScrolled ? 'scale-0 opacity-0' : 'scale-100 opacity-100 delay-100'}`} >
-
-                <div className='w-49 h-49 bg-primary rounded-full flex items-center justify-center absolute z-2 translate-x-23.5 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
-                  <img src="/img/hinabobok2.png" alt="Organik" width='50' />
+              <div className={`relative transition-all duration-500 group ${!isScrolled ? 'lg:scale-0 lg:opacity-0' : 'lg:scale-100 lg:opacity-100 delay-500'}`} >
+                <div className='w-30 h-30 bg-side/0 rounded-lg right-0 hidden lg:flex items-center justify-center absolute z-2 group-hover:bg-side/50 group-hover:translate-x-12 group-hover:-translate-y-12 xl:group-hover:translate-x-9 xl:group-hover:-translate-y-9 lg:scale-70 xl:scale-100 transition-all duration-500 ease-out'>
+                  <img src="/img/hinabobok2.png" alt="Organik" className='opacity-0 group-hover:opacity-100 transition duration-300' />
                 </div>
 
-                <div className='w-full h-full p-5'>
-                  <div className='flex items-center gap-5 mb-5 -translate-x-50 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
-                    <div className='w-15 h-15 bg-primary rounded-full flex justify-center items-center'>
-                      <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                <div className={`lg:hover:translate-x-3 lg:hover:-translate-y-3 ${advanCard}`} >
+
+                  <div className='w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
+                    <img src="/img/hinabobok2.png" alt="Organik" width='50' />
+                  </div>
+
+                  <div className='w-full h-full p-5'>
+                    <div className='flex items-center gap-5 mb-5 lg:-translate-x-50 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                      <div className='w-15 h-15 bg-side rounded-full flex justify-center items-center'>
+                        <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                      </div>
+
+                      <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
                     </div>
 
-                    <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
-                  </div>
-
-                  <div className='translate-x-95 group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
-                    <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
+                    <div className='lg:translate-x-95 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                      <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
+                    </div>
                   </div>
                 </div>
+
+                <div className='w-40 h-10 bg-side/0 rounded-lg absolute z-2 -translate-y-10 group-hover:bg-side/50 group-hover:-translate-x-5 group-hover:-translate-y-7 hidden lg:block transition-all duration-500 ease-out'></div>
+
+                <div className='w-full max-w-sm h-50 bg-primary rounded-xl absolute -z-1 -translate-y-50 transition-all duration-400'></div>
+              </div>
+
+              <div className={`relative transition-all duration-500 group ${!isScrolled ? 'lg:scale-0 lg:opacity-0' : 'lg:scale-100 lg:opacity-100 delay-600'}`} >
+                <div className='w-30 h-30 bg-side/0 rounded-lg right-0 hidden lg:flex items-center justify-center absolute z-2 group-hover:bg-side/50 group-hover:translate-x-12 group-hover:-translate-y-12 xl:group-hover:translate-x-9 xl:group-hover:-translate-y-9 lg:scale-70 xl:scale-100 transition-all duration-500 ease-out'>
+                  <img src="/img/hinabobok2.png" alt="Organik" className='opacity-0 group-hover:opacity-100 transition duration-300' />
+                </div>
+
+                <div className={`lg:hover:translate-x-3 lg:hover:-translate-y-3 ${advanCard}`} >
+
+                  <div className='w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-230 group-hover:scale-0 transition-all duration-400 ease-in'>
+                    <img src="/img/hinabobok2.png" alt="Organik" width='50' />
+                  </div>
+
+                  <div className='w-full h-full p-5'>
+                    <div className='flex items-center gap-5 mb-5 lg:-translate-x-50 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                      <div className='w-15 h-15 bg-side rounded-full flex justify-center items-center'>
+                        <img src="/img/hinabobok2.png" alt="Organik" width='40' />
+                      </div>
+
+                      <h3 className='font-extrabold text-accentThrd'>Hina Bobok</h3>
+                    </div>
+
+                    <div className='lg:translate-x-95 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out'>
+                      <p className='font-medium text-slate-500 text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vitae deserunt beatae soluta quo autem natus odio ipsum ut expedita error labore corporis pariatur vel nemo, ab necessitatibus iste modi.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='w-40 h-10 bg-side/0 rounded-lg absolute z-2 -translate-y-10 group-hover:bg-side/50 group-hover:-translate-x-5 group-hover:-translate-y-7 hidden lg:block transition-all duration-500 ease-out'></div>
+
+                <div className='w-full max-w-sm h-50 bg-primary rounded-xl absolute -z-1 -translate-y-50 transition-all duration-400'></div>
               </div>
             </div>
           </div>
+        </div>
+
+        <div className='hidden lg:flex gap-3 items-center justify-center'>
+          <div className={`h-1 bg-primary rounded-full transition-all duration-700 ${!isScrolled ? 'w-0' : 'w-15'}`} ></div>
+          <div className={`h-2 bg-linear-to-r from-primary to-side rounded-full transition-all duration-700 ${!isScrolled ? 'w-0' : 'w-30'}`} ></div>
+          
+          <div className={`w-3 h-3 bg-side rounded-full brightness-110 transition-all duration-700 ${!isScrolled ? 'scale-0' : 'scale-100'}`} ></div>
+
+          <div className={`h-2 bg-linear-to-l from-primary to-side rounded-full transition-all duration-700 ${!isScrolled ? 'w-0' : 'w-30'}`} ></div>
+          <div className={`h-1 bg-primary rounded-full transition-all duration-700 ${!isScrolled ? 'w-0' : 'w-15'}`} ></div>
         </div>
       </section>
     </div>
   )
 }
 // Advantages //
+
+// About //
+function About() {
+  return (
+    <div className='about'>
+      <section id='tentang' className='pt-36 pb-32'>
+        <div className='container mx-auto'>
+
+        </div>
+      </section>
+    </div>
+  )
+}
+// About //
