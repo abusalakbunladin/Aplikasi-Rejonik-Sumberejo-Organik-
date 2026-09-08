@@ -1,10 +1,18 @@
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class KategoriCreate(BaseModel):
-    nama: str
+    nama: str = Field(..., min_length=1, description="Nama kategori tidak boleh kosong")
+
+    @field_validator("nama")
+    @classmethod
+    def nama_tidak_boleh_kosong(cls, v: str) -> str:
+        v = v.strip()
+        if not v:
+            raise ValueError("Nama kategori tidak boleh kosong atau hanya berisi spasi")
+        return v
 
 class KategoriResponse(BaseModel):
     id: int
@@ -14,10 +22,18 @@ class KategoriResponse(BaseModel):
 
 
 class ProdukCreate(BaseModel):
-    nama: str
+    nama: str = Field(..., min_length=1, description="Nama produk tidak boleh kosong")
     harga: int = Field(..., gt=0, description="Harga harus lebih dari 0")
     stok: int = Field(0, ge=0, description="Stok tidak boleh negatif")
     kategori_id: Optional[int] = None
+
+    @field_validator("nama")
+    @classmethod
+    def nama_tidak_boleh_kosong(cls, v: str) -> str:
+        v = v.strip()
+        if not v:
+            raise ValueError("Nama produk tidak boleh kosong atau hanya berisi spasi")
+        return v
 
 class ProdukResponse(BaseModel):
     id: int
@@ -30,8 +46,16 @@ class ProdukResponse(BaseModel):
 
 
 class PemasokCreate(BaseModel):
-    nama: str
-    kontak: str
+    nama: str = Field(..., min_length=1, description="Nama pemasok tidak boleh kosong")
+    kontak: str = Field(..., min_length=1, description="Kontak tidak boleh kosong")
+
+    @field_validator("nama")
+    @classmethod
+    def nama_tidak_boleh_kosong(cls, v: str) -> str:
+        v = v.strip()
+        if not v:
+            raise ValueError("Nama pemasok tidak boleh kosong atau hanya berisi spasi")
+        return v
 
 class PemasokResponse(BaseModel):
     id: int
@@ -69,8 +93,16 @@ class OrderItemResponse(BaseModel):
         from_attributes = True
 
 class OrderCreate(BaseModel):
-    nama_pembeli: str
-    items: list[OrderItemCreate]
+    nama_pembeli: str = Field(..., min_length=1, description="Nama pembeli tidak boleh kosong")
+    items: list[OrderItemCreate] = Field(..., min_length=1, description="Order harus punya minimal 1 item")
+
+    @field_validator("nama_pembeli")
+    @classmethod
+    def nama_pembeli_tidak_boleh_kosong(cls, v: str) -> str:
+        v = v.strip()
+        if not v:
+            raise ValueError("Nama pembeli tidak boleh kosong atau hanya berisi spasi")
+        return v
 
 class OrderResponse(BaseModel):
     id: int
@@ -85,8 +117,16 @@ class OrderResponse(BaseModel):
 class PenyesuaianStokCreate(BaseModel):
     produk_id: int
     jumlah: int = Field(..., gt=0, description="Jumlah barang yang dikurangi dari stok")
-    alasan: str = Field(..., description="Contoh: rusak, expired, hilang, lainnya")
+    alasan: str = Field(..., min_length=1, description="Contoh: rusak, expired, hilang, lainnya")
     keterangan: Optional[str] = None
+
+    @field_validator("alasan")
+    @classmethod
+    def alasan_tidak_boleh_kosong(cls, v: str) -> str:
+        v = v.strip()
+        if not v:
+            raise ValueError("Alasan tidak boleh kosong atau hanya berisi spasi")
+        return v
 
 class PenyesuaianStokResponse(BaseModel):
     id: int
