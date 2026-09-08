@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { motion } from 'motion/react'
 
 export default function App() {
   return (
@@ -109,10 +110,10 @@ function Product() {
   const proCard = 'max-w-sm mx-auto lg:mx-0 bg-tertiary border-accentThrd border-2 rounded-xl shadow-xl p-4 relative z-6 transition-all duration-800 ease-in-out lg:max-w-none'
   const proBgEffct = 'w-full h-100 lg:h-120 xl:h-130 lg:max-w-3xl xl:max-w-4xl bg-linear-to-tr from-primary to-side rounded-4xl absolute -translate-y-15 transition-all duration-600 hidden lg:block' 
 
-  const deco1 = 'w-50 h-30 rounded-xl lg:left-10 xl:left-30 lg:top-10 xl:top-25 absolute z-5 transition-all duration-1000 ease-out hidden xl:block'
-  const deco2 = 'w-50 h-40 rounded-xl lg:right-4 xl:right-12 lg:-bottom-10 xl:-bottom-27 absolute z-5 transition-all duration-1000 ease-out hidden xl:block'
-  const deco3 = 'w-25 h-25 rounded-xl lg:left-60 xl:left-100 lg:-bottom-20 xl:-bottom-50 absolute z-5 -translate-y-15 transition-all duration-500 delay-300 ease-out hidden xl:block'
-  const deco4 = 'w-30 h-30 rounded-xl lg:right-20 xl:right-40 lg:top-10 xl:top-25 absolute z-5 transition-all duration-500 delay-300 ease-out hidden xl:block'
+  const deco1 = 'w-50 h-30 rounded-xl xl:left-40 xl:top-25 absolute z-5 transition-all duration-1000 ease-out hidden xl:block'
+  const deco2 = 'w-50 h-40 rounded-xl xl:right-30 xl:-bottom-27 absolute z-5 transition-all duration-1000 ease-out hidden xl:block'
+  const deco3 = 'w-25 h-25 rounded-xl xl:left-100 xl:-bottom-50 absolute z-5 -translate-y-15 transition-all duration-500 delay-300 ease-out hidden xl:block'
+  const deco4 = 'w-30 h-30 rounded-xl xl:right-65 xl:top-25 absolute z-5 transition-all duration-500 delay-300 ease-out hidden xl:block'
 
   return (
     <div className="product">
@@ -148,9 +149,9 @@ function Product() {
             </div>
 
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-5 justify-center mx-auto">
-              <div className={`${deco1} ${!isScrolled ? '-translate-x-10' : 'bg-side/50 translate-x-10'}`} ></div>
+              <div className={`${deco1} ${!isScrolled ? '-translate-x-10' : 'bg-side/50 translate-x-10 backdrop-blur-sm'}`} ></div>
 
-              <div className={`${deco4} ${!isScrolled ? 'scale-0' : 'bg-primary/50 scale-150'}`} ></div>
+              <div className={`${deco4} ${!isScrolled ? 'scale-0' : 'bg-primary/50 scale-150 backdrop-blur-sm'}`} ></div>
 
               <div id='pro1' className={`${proCard} ${!isScrolled ? 'lg:-rotate-5 lg:translate-x-20' : ''}`} >
                 <img src="/product/beras.jpg" alt="Beras Original" className='w-full h-60 lg:w-56 lg:h-56 xl:w-70 xl:h-70 object-cover rounded-lg outline-accentThrd outline-2 mb-5 select-none' />
@@ -209,9 +210,9 @@ function Product() {
                 </div>
               </div>
 
-              <div className={`${deco2} ${!isScrolled ? 'translate-x-10' : 'bg-side/50 -translate-x-10'}`} ></div>
+              <div className={`${deco2} ${!isScrolled ? 'translate-x-10' : 'bg-side/50 -translate-x-10 backdrop-blur-sm'}`} ></div>
 
-              <div className={`${deco3} ${!isScrolled ? 'scale-0' : 'bg-primary/50 scale-150'}`} ></div>
+              <div className={`${deco3} ${!isScrolled ? 'scale-0' : 'bg-primary/50 scale-150 backdrop-blur-sm'}`} ></div>
 
               <div className={`${proBgEffct} ${!isScrolled ? '' : '-rotate-5'}`} ></div>
             </div>
@@ -469,11 +470,76 @@ function Advantages() {
 
 // About //
 function About() {
+  const isScrolled = useScrollTrigger('tentang', 700)
+
   return (
     <div className='about'>
       <section id='tentang' className='pt-36 pb-32'>
         <div className='container mx-auto'>
+          <div className='w-full px-4'>
+            <div className='mx-auto mb-30 select-none'>
+              <div className="flex gap-3 items-center justify-center mb-3">
+                <div className='w-5 h-0.5 bg-side rounded-lg'></div>
+                <h3 className='font-light text-side text-sm lg:text-lg uppercase'>About Us</h3>
+                <div className='w-5 h-0.5 bg-side rounded-lg'></div>
+              </div>
 
+              <div className="flex gap-7 items-center justify-center">
+                <div className="hidden md:block">
+                  <div className="flex gap-2" >
+                    <div className='w-2.5 h-1 bg-side rounded-lg'></div>
+                    <div className='w-5 h-1 bg-side rounded-lg'></div>
+                    <div className='w-10 h-1 bg-side rounded-lg'></div>
+                  </div>
+                </div>
+
+                <h2 className='text-center max-w-lg lg:max-w-xl font-extrabold text-quaternary text-3xl lg:text-5xl'>Kelompok Tani Bahagia</h2>
+
+                <div className="hidden md:block">
+                  <div className="flex gap-2">
+                    <div className='w-10 h-1 bg-side rounded-lg'></div>
+                    <div className='w-5 h-1 bg-side rounded-lg'></div>
+                    <div className='w-2.5 h-1 bg-side rounded-lg'></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className='flex flex-row gap-5 items-center justify-center'>
+              <div className='mx-auto' >
+                <div>
+                  <h2 className='font-extrabold text-accentThrd text-3xl uppercase' >Sejarah</h2>
+                </div>
+
+                <div className='max-w-2xl' >
+                  <p className='font-medium text-slate-500 text-sm' >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, nemo incidunt qui reprehenderit atque quia accusantium animi ipsam consequuntur voluptatem fuga dolorum hic quibusdam? Omnis enim praesentium assumenda sit. Eaque cum voluptatum consequatur nemo aliquam quibusdam tempora! Delectus eum, nihil, ipsa explicabo suscipit exercitationem, fuga veniam possimus natus magni vel voluptatum quis commodi ducimus. Officia, deleniti amet. Ad temporibus iusto est pariatur magnam nihil, quod, recusandae obcaecati optio laboriosam veniam, consectetur dicta aspernatur ducimus eaque magni praesentium et consequatur? Dolorum unde maxime eveniet neque vel, itaque tempore eaque ab ex ipsam cupiditate natus quam animi vero modi est at labore!</p>
+                </div>
+                
+              </div>
+
+              <div className='mx-auto' >
+                <div className='relative'>
+                  <div className='grid grid-cols-4 grid-rows-4 gap-4 h-90' >
+                    <div className='bg-white rounded-xl overflow-hidden row-span-4 col-span-2' >
+                      <img src="/img/imagetest.jpg.jpeg" alt="" className='w-full h-full object-cover object-center' />
+                    </div>
+                    <div className='bg-white rounded-xl overflow-hidden row-span-2 col-span-2' >
+                      <img src="/img/imagetest.jpg.jpeg" alt="" className='w-full h-full object-cover object-center' />
+                    </div>
+                    <div className='bg-white rounded-xl overflow-hidden row-span-2' >
+                      <img src="/img/imagetest.jpg.jpeg" alt="" className='w-full h-full object-cover object-center' />
+                    </div>
+                    <div className='bg-white rounded-xl overflow-hidden row-span-2' >
+                      <img src="/img/imagetest.jpg.jpeg" alt="" className='w-full h-full object-cover object-center' />
+                    </div>
+                  </div>
+
+                  <div className='w-full h-90 bg-linear-to-tr from-primary to-side rounded-xl absolute -z-1 top-0 scale-105 -rotate-3' ></div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
