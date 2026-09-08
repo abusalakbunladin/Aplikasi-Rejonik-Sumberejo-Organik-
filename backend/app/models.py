@@ -63,3 +63,13 @@ class OrderItem(Base):
     order = relationship("Order", back_populates="items")
     produk = relationship("Produk")
 
+class PenyesuaianStok(Base):
+    __tablename__ = "penyesuaian_stok"
+    id = Column(Integer, primary_key=True, index=True)
+    produk_id = Column(Integer, ForeignKey("produk.id"), nullable=False)
+    jumlah = Column(Integer, nullable=False)          
+    alasan = Column(String(50), nullable=False)        
+    keterangan = Column(String(255), nullable=True)    
+    tanggal = Column(DateTime, default=lambda: datetime.now(UTC))
+
+    produk = relationship("Produk")
