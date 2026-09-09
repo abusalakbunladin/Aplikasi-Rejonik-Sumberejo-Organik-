@@ -31,7 +31,7 @@ class ProdukVarian(Base):
     __tablename__ = "produk_varian"
     id = Column(Integer, primary_key=True, index=True)
     produk_id = Column(Integer, ForeignKey("produk.id"), nullable=False)
-    berat = Column(Float, nullable=False)      # dalam kg, misal 1.0, 2.5, 5.0
+    berat = Column(Float, nullable=False)  
     harga = Column(Integer, nullable=False)
     stok = Column(Integer, default=0)
 
