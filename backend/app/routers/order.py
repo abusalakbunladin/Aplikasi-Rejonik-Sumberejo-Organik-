@@ -26,10 +26,16 @@ def create_order(data: OrderCreate, db: Session = Depends(get_db), current_user 
             raise HTTPException(status_code=400, detail=f"Stok {varian.produk.nama} ({varian.berat}kg) tidak cukup (sisa {varian.stok})")
         varian.stok -= item.jumlah
         total += varian.harga * item.jumlah
-        db.add(OrderItem(order_id=order.id, produk_varian_id=varian.id,
-                          jumlah=item.jumlah, harga_saat_itu=varian.harga))
+        db.add(OrderItem(order_id=order.id, produk_varian_id=varian.id, jumlah=item.jumlah, harga_saat_itu=varian.harga))
+
+    if data.uang_dibayar is not None and data.uang_dibayar < total:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Uang yang dibayarkan kurang. Total belanja Rp{total}, dibayar Rp{data.uang_dibayar}, kurang Rp{total - data.uang_dibayar}"
+        )
 
     order.total = total
+    order.uang_dibayar = data.uang_dibayar
     db.commit()
     db.refresh(order)
     return order

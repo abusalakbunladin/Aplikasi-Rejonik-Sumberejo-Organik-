@@ -17,7 +17,7 @@ class Kategori(Base):
     produk = relationship("Produk", back_populates="kategori")
 
 class Produk(Base):
-    """Produk induk, misal 'Kopi Original'. Harga & stok sekarang ada di ProdukVarian."""
+    """Produk induk, misal 'Kopi Original'. Harga & stok ada di ProdukVarian."""
     __tablename__ = "produk"
     id = Column(Integer, primary_key=True, index=True)
     nama = Column(String(150), nullable=False)
@@ -31,7 +31,7 @@ class ProdukVarian(Base):
     __tablename__ = "produk_varian"
     id = Column(Integer, primary_key=True, index=True)
     produk_id = Column(Integer, ForeignKey("produk.id"), nullable=False)
-    berat = Column(Float, nullable=False)  
+    berat = Column(Float, nullable=False)
     harga = Column(Integer, nullable=False)
     stok = Column(Integer, default=0)
 
@@ -60,8 +60,15 @@ class Order(Base):
     nama_pembeli = Column(String(100), nullable=False)
     tanggal = Column(DateTime, default=lambda: datetime.now(UTC))
     total = Column(Integer, default=0)
+    uang_dibayar = Column(Integer, nullable=True)   # opsional, buat hitung kembalian
 
     items = relationship("OrderItem", back_populates="order", cascade="all, delete-orphan")
+
+    @property
+    def kembalian(self):
+        if self.uang_dibayar is None:
+            return None
+        return self.uang_dibayar - self.total
 
 class OrderItem(Base):
     __tablename__ = "order_items"
