@@ -21,7 +21,7 @@ def create_kategori(data: KategoriCreate, db: Session = Depends(get_db), current
 
 @router.delete("/{kategori_id}")
 def delete_kategori(kategori_id: int, db: Session = Depends(get_db), current_user: str = Depends(get_current_user)):
-    kategori = db.query(Kategori).filter(kategori.id == kategori_id).first()
+    kategori = db.query(Kategori).filter(Kategori.id == kategori_id).first()
     if not kategori:
         raise HTTPException(status_code=404, detail="Kategori tidak ditemukan")
     db.delete(kategori)
