@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.deps import get_db, get_current_user
-from app.models import Produk
+from app.models import Produk, Kategori
 from app.schemas import ProdukCreate, ProdukResponse
 
 router = APIRouter(prefix="/produk", tags=["Katalog - Produk"])
@@ -23,6 +23,10 @@ def get_produk(produk_id: int, db: Session = Depends(get_db)):
 
 @router.post("", response_model=ProdukResponse)
 def create_produk(data: ProdukCreate, db: Session = Depends(get_db), current_user: str = Depends(get_current_user)):
+    if data.kategori_id is not None:
+        kategori = db.query(Kategori).filter(Kategori.id == data.kategori_id).first()
+        if not kategori:
+            raise HTTPException(status_code=404, detail=f"Kategori id {data.kategori_id} tidak ditemukan")
     produk = Produk(**data.model_dump())
     db.add(produk)
     db.commit()
@@ -34,6 +38,10 @@ def update_produk(produk_id: int, data: ProdukCreate, db: Session = Depends(get_
     produk = db.query(Produk).filter(Produk.id == produk_id).first()
     if not produk:
         raise HTTPException(status_code=404, detail="Produk tidak ditemukan")
+    if data.kategori_id is not None:
+        kategori = db.query(Kategori).filter(Kategori.id == data.kategori_id).first()
+        if not kategori:
+            raise HTTPException(status_code=404, detail=f"Kategori id {data.kategori_id} tidak ditemukan")
     for field, value in data.model_dump().items():
         setattr(produk, field, value)
     db.commit()

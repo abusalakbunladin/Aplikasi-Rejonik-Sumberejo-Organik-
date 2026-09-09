@@ -108,6 +108,7 @@ class OrderItemResponse(BaseModel):
 class OrderCreate(BaseModel):
     nama_pembeli: str = Field(..., min_length=1, description="Nama pembeli tidak boleh kosong")
     items: list[OrderItemCreate] = Field(..., min_length=1, description="Order harus punya minimal 1 item")
+    uang_dibayar: Optional[int] = Field(None, ge=0, description="Uang yang diberikan pelanggan, opsional (buat hitung kembalian)")
 
     @field_validator("nama_pembeli")
     @classmethod
@@ -122,6 +123,8 @@ class OrderResponse(BaseModel):
     nama_pembeli: str
     tanggal: datetime
     total: int
+    uang_dibayar: Optional[int]
+    kembalian: Optional[int]
     items: list[OrderItemResponse]
     class Config:
         from_attributes = True
