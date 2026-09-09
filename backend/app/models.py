@@ -12,19 +12,30 @@ class User(Base):
 class Kategori(Base):
     __tablename__ = "kategori"
     id = Column(Integer, primary_key=True, index=True)
-    nama = Column(String(100), unique=True, nullable=False) 
+    nama = Column(String(100), unique=True, nullable=False)
 
     produk = relationship("Produk", back_populates="kategori")
 
 class Produk(Base):
+    """Produk induk, misal 'Kopi Original'. Harga & stok sekarang ada di ProdukVarian."""
     __tablename__ = "produk"
     id = Column(Integer, primary_key=True, index=True)
     nama = Column(String(150), nullable=False)
-    harga = Column(Integer, nullable=False)
-    stok = Column(Integer, default=0)
     kategori_id = Column(Integer, ForeignKey("kategori.id"), nullable=True)
 
     kategori = relationship("Kategori", back_populates="produk")
+    varian = relationship("ProdukVarian", back_populates="produk", cascade="all, delete-orphan")
+
+class ProdukVarian(Base):
+    """Satu baris per kombinasi produk + berat, misal 'Kopi Original 1kg'."""
+    __tablename__ = "produk_varian"
+    id = Column(Integer, primary_key=True, index=True)
+    produk_id = Column(Integer, ForeignKey("produk.id"), nullable=False)
+    berat = Column(Float, nullable=False)      # dalam kg, misal 1.0, 2.5, 5.0
+    harga = Column(Integer, nullable=False)
+    stok = Column(Integer, default=0)
+
+    produk = relationship("Produk", back_populates="varian")
 
 class Pemasok(Base):
     __tablename__ = "pemasuk"
@@ -35,12 +46,12 @@ class Pemasok(Base):
 class Pasokan(Base):
     __tablename__ = "pasokan"
     id = Column(Integer, primary_key=True, index=True)
-    produk_id = Column(Integer, ForeignKey("produk.id"), nullable=False)
+    produk_varian_id = Column(Integer, ForeignKey("produk_varian.id"), nullable=False)
     pemasok_id = Column(Integer, ForeignKey("pemasuk.id"), nullable=False)
     jumlah = Column(Integer, nullable=False)
     tanggal = Column(DateTime, default=lambda: datetime.now(UTC))
 
-    produk = relationship("Produk")
+    varian = relationship("ProdukVarian")
     pemasok = relationship("Pemasok")
 
 class Order(Base):
@@ -56,20 +67,20 @@ class OrderItem(Base):
     __tablename__ = "order_items"
     id = Column(Integer, primary_key=True, index=True)
     order_id = Column(Integer, ForeignKey("orders.id"), nullable=False)
-    produk_id = Column(Integer, ForeignKey("produk.id"), nullable=False)
+    produk_varian_id = Column(Integer, ForeignKey("produk_varian.id"), nullable=False)
     jumlah = Column(Integer, nullable=False)
     harga_saat_itu = Column(Integer, nullable=False)
 
     order = relationship("Order", back_populates="items")
-    produk = relationship("Produk")
+    varian = relationship("ProdukVarian")
 
 class PenyesuaianStok(Base):
     __tablename__ = "penyesuaian_stok"
     id = Column(Integer, primary_key=True, index=True)
-    produk_id = Column(Integer, ForeignKey("produk.id"), nullable=False)
-    jumlah = Column(Integer, nullable=False)          
-    alasan = Column(String(50), nullable=False)        
-    keterangan = Column(String(255), nullable=True)    
+    produk_varian_id = Column(Integer, ForeignKey("produk_varian.id"), nullable=False)
+    jumlah = Column(Integer, nullable=False)
+    alasan = Column(String(50), nullable=False)
+    keterangan = Column(String(255), nullable=True)
     tanggal = Column(DateTime, default=lambda: datetime.now(UTC))
 
-    produk = relationship("Produk")
+    varian = relationship("ProdukVarian")

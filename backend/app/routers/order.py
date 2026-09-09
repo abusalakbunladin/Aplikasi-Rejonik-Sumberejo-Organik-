@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session, joinedload
 
 from app.deps import get_db, get_current_user
-from app.models import Produk, Order, OrderItem
+from app.models import ProdukVarian, Order, OrderItem
 from app.schemas import OrderCreate, OrderResponse
 
 router = APIRouter(prefix="/order", tags=["Order"])
@@ -19,15 +19,15 @@ def create_order(data: OrderCreate, db: Session = Depends(get_db), current_user 
 
     total = 0
     for item in data.items:
-        produk = db.query(Produk).filter(Produk.id == item.produk_id).first()
-        if not produk:
-            raise HTTPException(status_code=404, detail=f"Produk id {item.produk_id} tidak ditemukan")
-        if produk.stok < item.jumlah:
-            raise HTTPException(status_code=400, detail=f"Stok {produk.nama} tidak cukup (sisa {produk.stok})")
-        produk.stok -= item.jumlah
-        total += produk.harga * item.jumlah
-        db.add(OrderItem(order_id=order.id, produk_id=produk.id,
-                          jumlah=item.jumlah, harga_saat_itu=produk.harga))
+        varian = db.query(ProdukVarian).filter(ProdukVarian.id == item.produk_varian_id).first()
+        if not varian:
+            raise HTTPException(status_code=404, detail=f"Varian produk id {item.produk_varian_id} tidak ditemukan")
+        if varian.stok < item.jumlah:
+            raise HTTPException(status_code=400, detail=f"Stok {varian.produk.nama} ({varian.berat}kg) tidak cukup (sisa {varian.stok})")
+        varian.stok -= item.jumlah
+        total += varian.harga * item.jumlah
+        db.add(OrderItem(order_id=order.id, produk_varian_id=varian.id,
+                          jumlah=item.jumlah, harga_saat_itu=varian.harga))
 
     order.total = total
     db.commit()

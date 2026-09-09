@@ -21,10 +21,24 @@ class KategoriResponse(BaseModel):
         from_attributes = True
 
 
-class ProdukCreate(BaseModel):
-    nama: str = Field(..., min_length=1, description="Nama produk tidak boleh kosong")
+class ProdukVarianCreate(BaseModel):
+    produk_id: int
+    berat: float = Field(..., gt=0, description="Berat dalam kg, misal 1.0, 2.5, 5.0")
     harga: int = Field(..., gt=0, description="Harga harus lebih dari 0")
     stok: int = Field(0, ge=0, description="Stok tidak boleh negatif")
+
+class ProdukVarianResponse(BaseModel):
+    id: int
+    produk_id: int
+    berat: float
+    harga: int
+    stok: int
+    class Config:
+        from_attributes = True
+
+
+class ProdukCreate(BaseModel):
+    nama: str = Field(..., min_length=1, description="Nama produk tidak boleh kosong")
     kategori_id: Optional[int] = None
 
     @field_validator("nama")
@@ -38,9 +52,8 @@ class ProdukCreate(BaseModel):
 class ProdukResponse(BaseModel):
     id: int
     nama: str
-    harga: int
-    stok: int
     kategori_id: Optional[int]
+    varian: list[ProdukVarianResponse] = []
     class Config:
         from_attributes = True
 
@@ -66,13 +79,13 @@ class PemasokResponse(BaseModel):
 
 
 class PasokanCreate(BaseModel):
-    produk_id: int
+    produk_varian_id: int
     pemasok_id: int
     jumlah: int = Field(..., gt=0, description="Jumlah pasokan harus lebih dari 0")
 
 class PasokanResponse(BaseModel):
     id: int
-    produk_id: int
+    produk_varian_id: int
     pemasok_id: int
     jumlah: int
     tanggal: datetime
@@ -81,12 +94,12 @@ class PasokanResponse(BaseModel):
 
 
 class OrderItemCreate(BaseModel):
-    produk_id: int
+    produk_varian_id: int
     jumlah: int = Field(..., gt=0, description="Jumlah order harus lebih dari 0")
 
 class OrderItemResponse(BaseModel):
     id: int
-    produk_id: int
+    produk_varian_id: int
     jumlah: int
     harga_saat_itu: int
     class Config:
@@ -115,7 +128,7 @@ class OrderResponse(BaseModel):
 
 
 class PenyesuaianStokCreate(BaseModel):
-    produk_id: int
+    produk_varian_id: int
     jumlah: int = Field(..., gt=0, description="Jumlah barang yang dikurangi dari stok")
     alasan: str = Field(..., min_length=1, description="Contoh: rusak, expired, hilang, lainnya")
     keterangan: Optional[str] = None
@@ -130,7 +143,7 @@ class PenyesuaianStokCreate(BaseModel):
 
 class PenyesuaianStokResponse(BaseModel):
     id: int
-    produk_id: int
+    produk_varian_id: int
     jumlah: int
     alasan: str
     keterangan: Optional[str]
@@ -140,8 +153,9 @@ class PenyesuaianStokResponse(BaseModel):
 
 
 class LaporanPenjualanItem(BaseModel):
-    produk_id: int
+    produk_varian_id: int
     nama_produk: str
+    berat: float
     total_terjual: int
     total_pendapatan: int
     class Config:
@@ -150,6 +164,7 @@ class LaporanPenjualanItem(BaseModel):
 class LaporanStokRendah(BaseModel):
     id: int
     nama: str
+    berat: float
     stok: int
     class Config:
         from_attributes = True
