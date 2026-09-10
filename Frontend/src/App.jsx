@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
-import { motion } from "motion/react";
+import { useState, useEffect, useRef } from "react";
+import { hover, motion } from "motion/react";
+import { animate, stagger, waapi, spring } from "animejs";
+
 
 export default function App() {
   return (
@@ -43,8 +45,110 @@ function useScrollTrigger(elementId, offset = 500) {
 
 // Hero //
 function Hero() {
+  const heroRef = useRef(null)
+
+  useEffect(() => {
+    if(!heroRef.current) return
+
+    if(window.innerWidth < 1024) {
+      animate
+    }
+
+    // Title //
+    animate(heroRef.current.querySelector('.h-t-deco'), {
+      scaleY: [0, 1],
+      delay: 1100,
+      duration: 500,
+      ease: 'outBounce',
+    })
+
+    animate(heroRef.current.querySelectorAll('.hero-title'), {
+      translateX: [-700, 0],
+      scaleX: [0.2, 0.8, 1],
+      delay: stagger(650),
+      duration: 1200,
+      ease: 'outElastic(1,1)'
+    })
+
+    animate(heroRef.current.querySelector('.h-main-deco'), {
+      scaleY: [0, 1],
+      scaleX: [2, 1],
+      delay: 1000,
+      duration:650,
+      ease: 'outElastic(1,1)'
+    })
+
+    animate(heroRef.current.querySelectorAll('.h-t-deco2'), {
+      scaleY: [0, 1],
+      scaleX: [0, 1.2, 1],
+      delay: 1300,
+      duration: 700,
+      ease: 'outElastic(1.21,0.66)'
+    })
+
+    animate(heroRef.current.querySelector('.h-text'), {
+      scaleY: [0, 1],
+      delay: 1100,
+      duration: 600,
+      ease: 'outElastic(1,1)'
+    })
+
+    animate(heroRef.current.querySelector('.order-btn'), {
+      scaleY: [0, 1],
+      scaleX: [2, 1],
+      delay: 1500,
+      duration: 600,
+      ease: 'outElastic(1,1)'
+    })
+    // Title //
+
+    // Achievment //
+    animate(heroRef.current.querySelector('.acv-title'), {
+      y: [-75, 0],
+      scaleY: {
+        from: 0,
+        to: 1,
+        delay:1600
+      },
+      scaleX: {
+        from: 1.5,
+        to: 1,
+        delay: 1600
+      },
+      delay:1500,
+      duration: 700,
+      ease: 'outElastic(1,1)'
+    })
+
+    animate(heroRef.current.querySelectorAll('.acv-deco'), {
+      scaleY: [0, 1],
+      delay: 1800,
+      duration: 500,
+      ease: 'outBounce'
+    })
+
+    animate(heroRef.current.querySelector('.acv-content'), {
+      scaleX: [0, 1],
+      delay: 1700,
+      duration: 700,
+      ease: 'outElastic(1.04,0.66)'
+    })
+
+    animate(heroRef.current.querySelectorAll('.acv-t-content'), {
+      scale: {
+        from: 0,
+        to: 1,
+        delay: stagger(300, {start: 1900})
+      },
+      duration: 700,
+      ease: 'outElastic(1.04,0.66)'
+    })
+    // Achievment //
+    
+  }, [])
+
   return (
-    <div className="hero">
+    <div className="hero" ref={heroRef}>
       <section id="home" className="pt-90 pb-30 bg-green-900 relative overflow-hidden">
         <div className="container mx-auto relative z-2">
           <div className="w-full px-4">
@@ -52,24 +156,28 @@ function Hero() {
               <div className="mb-10 xl:mb-0">
                 <div className="flex flex-col">
                   <div className="relative">
-                    <div className="w-40 h-60 bg-white/20 rounded-sm absolute top-0 -translate-x-30 -translate-y-20 -skew-x-10"></div>
+                    <div className="h-t-deco2 w-40 h-60 bg-white/20 rounded-sm absolute -z-2 top-0 -translate-x-30 -translate-y-20 scale-70 xl:scale-100 hidden lg:block"></div>
 
-                    <div className="flex flex-col mb-4">
-                      <h2 className="font-semibold text-side text-sm lg:text-lg">
-                        Beras Organik Bersertifikat
-                      </h2>
+                    <div className="flex gap-3 items-center mb-4">
+                      <div className="h-t-deco w-1 h-13 lg:h-15 xl:h-20 bg-side rounded-lg"></div>
 
-                      <h1 className="font-black text-white text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl uppercase inline-block">
-                        Sumberejo Organik
-                      </h1>
+                      <div className="flex flex-col overflow-hidden">
+                        <h2 className="hero-title font-semibold text-side text-sm lg:text-lg">
+                          Beras Organik Bersertifikat
+                        </h2>
+
+                        <h1 className="hero-title font-black text-white text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl uppercase inline-block">
+                          Sumberejo Organik
+                        </h1>
+                      </div>
                     </div>
 
-                    <div className="w-150 h-55 bg-linear-to-tr from-primary/30 to-side/30 rounded-sm absolute -z-1 top-0 -translate-y-10 -translate-x-10 -skew-x-10"></div>
+                    <div className="h-main-deco w-150 h-55 bg-linear-to-tr from-primary/30 to-side/30 rounded-sm absolute -z-1 top-0 -translate-y-14 -translate-x-30 xl:-translate-y-10 xl:-translate-x-10 scale-70 xl:scale-100 hidden lg:block"></div>
 
-                    <div className="w-50 h-30 bg-white/20 rounded-sm absolute right-0 -skew-x-10"></div>
+                    <div className="h-t-deco2 w-50 h-30 bg-white/20 rounded-sm absolute -z-2 right-0 scale-70 xl:scale-100 hidden lg:block"></div>
                   </div>
                 
-                  <p className="max-w-md font-medium text-white text-xs mb-7 xl:text-base">
+                  <p className="h-text max-w-md font-medium text-white text-xs mb-7 xl:text-base">
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                     Voluptates itaque veniam dolorem eius atque ipsum in aut
                     consectetur amet eligendi.
@@ -80,7 +188,7 @@ function Hero() {
                 <a href="#">
                   <motion.button
                     whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileTap={{ scaleX: 0.8, scaleY: 1.5 }}
                     transition={{
                       duration: 0.5,
                       ease: "easeOut",
@@ -88,7 +196,7 @@ function Hero() {
                       stiffness: 200,
                       damping: 10,
                     }}
-                    className="h-8 px-4 font-semibold text-primary bg-tertiary rounded-lg shadow-lg ring-side hover:text-side hover:bg-white hover:ring-1 active:opacity-70 select-none group"
+                    className="order-btn h-8 px-4 font-semibold text-primary bg-tertiary rounded-lg shadow-lg ring-side hover:text-side hover:bg-white hover:ring-1 active:opacity-70 select-none cursor-pointer group"
                   >
                     <span>Pesan Sekarang</span>
 
@@ -114,71 +222,73 @@ function Hero() {
                 </a>
               </div>
 
-                <div className="absolute xl:flex xl:flex-row xl:items-center xl:gap-2 right-0 -translate-y-20 -skew-x-10">
-                  <div className="w-3 h-15 bg-white/50 rounded-sm"></div>
-                  
-                  <div className="font-bold text-white text-3xl uppercase text-center bg-side/50 rounded-sm p-4 select-none">
-                      <p>Pencapaian</p>
+              <div className="flex flex-col gap-2">
+                <div className="block xl:flex xl:flex-row items-center gap-2 justify-end overflow-hidden">
+                  <div className="acv-deco w-1 h-15 bg-white/50 rounded-sm hidden xl:block"></div>
+                    
+                  <div className="acv-title font-bold text-white xl:text-3xl uppercase text-center bg-side/50 rounded-sm p-2 xl:p-4 select-none">
+                        <p>Pencapaian</p>
                   </div>
 
-                  <div className="w-3 h-15 bg-white/50 rounded-sm"></div>
+                  <div className="acv-deco w-1 h-15 bg-white/50 rounded-sm hidden xl:block"></div>
                 </div>
-                
 
-              <div className="flex flex-col gap-3 sm:gap-5 relative">
-                <div className="sm:bg-white/15 rounded-sm sm:p-3 xl:px-8 select-none md:-skew-x-10">
-                  <div className="flex flex-col gap-2 sm:gap-5 xl:gap-10 sm:flex-row sm:items-center sm:justify-center cursor-default">
-                    <div className="flex flex-col xl:gap-1 px-2 bg-white/15 rounded-lg outline-white outline-1 sm:bg-white/0 sm:outline-0 p-2 sm:p-0">
-                      <p className="font-extrabold text-white text-lg sm:text-2xl md:text-3xl xl:text-4xl">
-                        1.300.000
-                      </p>
-                      <p className="font-semibold text-white text-xs sm:text-sm xl:hidden">
+                <div className="flex flex-col gap-3 sm:gap-5 relative select-none">
+                  <div className="acv-content sm:bg-white/15 rounded-sm sm:p-3 xl:px-8">
+                    <div className="flex flex-col gap-2 sm:gap-5 xl:gap-10 sm:flex-row sm:items-center sm:justify-center cursor-default">
+                      <div className="flex flex-col xl:gap-1 px-2 bg-white/15 rounded-lg outline-white outline-1 sm:bg-white/0 sm:outline-0 p-2 sm:p-0">
+                        <p className="font-extrabold text-white text-lg sm:text-2xl md:text-3xl xl:text-4xl">
+                          1.300.000
+                        </p>
+                        <p className="font-semibold text-white text-xs sm:text-sm xl:hidden">
+                          Karung Terjual
+                        </p>
+                      </div>
+
+                      <div className="w-1 h-15 bg-white rounded-xl hidden sm:block"></div>
+
+                      <div className="flex flex-col xl:gap-1 px-2 bg-white/15 rounded-lg outline-white outline-1 sm:bg-white/0 sm:outline-0 p-2 sm:p-0">
+                        <p className="font-extrabold text-white text-lg sm:text-2xl md:text-3xl xl:text-4xl">
+                          90%
+                        </p>
+                        <p className="font-semibold text-white text-xs sm:text-sm xl:hidden">
+                          Kepuasan Pelanggan
+                        </p>
+                      </div>
+
+                      <div className="w-1 h-15 bg-white rounded-xl hidden sm:block"></div>
+
+                      <div className="flex flex-col xl:gap-1 px-2 bg-white/15 rounded-lg outline-white outline-1 sm:bg-white/0 sm:outline-0 p-2 sm:p-0">
+                        <p className="font-extrabold text-white text-lg sm:text-2xl md:text-3xl xl:text-4xl">
+                          50+
+                        </p>
+                        <p className="font-semibold text-white text-xs sm:text-sm xl:hidden">
+                          Petani Mitra
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="acv-t-content hidden xl:block xl:bg-side xl:p-1 xl:px-2 rounded-sm xl:absolute xl:bottom-0 xl:-translate-x-10 xl:translate-y-7">
+                    <p className="font-semibold text-white text-xs sm:text-sm xl:text-lg">
                         Karung Terjual
-                      </p>
-                    </div>
-
-                    <div className="w-1 h-15 bg-white rounded-xl hidden sm:block"></div>
-
-                    <div className="flex flex-col xl:gap-1 px-2 bg-white/15 rounded-lg outline-white outline-1 sm:bg-white/0 sm:outline-0 p-2 sm:p-0">
-                      <p className="font-extrabold text-white text-lg sm:text-2xl md:text-3xl xl:text-4xl">
-                        90%
-                      </p>
-                      <p className="font-semibold text-white text-xs sm:text-sm xl:hidden">
-                        Kepuasan Pelanggan
-                      </p>
-                    </div>
-
-                    <div className="w-1 h-15 bg-white rounded-xl hidden sm:block"></div>
-
-                    <div className="flex flex-col xl:gap-1 px-2 bg-white/15 rounded-lg outline-white outline-1 sm:bg-white/0 sm:outline-0 p-2 sm:p-0">
-                      <p className="font-extrabold text-white text-lg sm:text-2xl md:text-3xl xl:text-4xl">
-                        50+
-                      </p>
-                      <p className="font-semibold text-white text-xs sm:text-sm xl:hidden">
-                        Petani Mitra
-                      </p>
-                    </div>
+                    </p>
                   </div>
-                </div>
 
-                <div className="hidden xl:block xl:bg-side xl:p-1 xl:px-2 rounded-sm xl:-skew-x-10 xl:absolute xl:bottom-0 xl:-translate-x-10 xl:translate-y-7">
-                  <p className="font-semibold text-white text-xs sm:text-sm xl:text-lg">
-                      Karung Terjual
-                  </p>
-                </div>
+                  <div className="acv-t-content hidden xl:block xl:bg-side xl:p-1 xl:px-2 rounded-sm xl:absolute xl:bottom-0 xl:right-1/4 xl:-translate-x-13 xl:translate-y-7">
+                    <p className="font-semibold text-white text-xs sm:text-sm xl:text-lg">
+                      Kepuasan Pelanggan
+                    </p>
+                  </div>
 
-                <div className="hidden xl:block xl:bg-side xl:p-1 xl:px-2 rounded-sm xl:-skew-x-10 xl:absolute xl:bottom-0 xl:right-1/4 xl:-translate-x-13 xl:translate-y-7">
-                  <p className="font-semibold text-white text-xs sm:text-sm xl:text-lg">
-                    Kepuasan Pelanggan
-                  </p>
-                </div>
-
-                <div className="hidden xl:block xl:bg-side xl:p-1 xl:px-2 rounded-sm xl:-skew-x-10 xl:absolute xl:bottom-0 xl:right-0 xl:-translate-x-8 xl:translate-y-7">
-                  <p className="font-semibold text-white text-xs sm:text-sm xl:text-lg">
-                    Petani Mitra
-                  </p>
+                  <div className="acv-t-content hidden xl:block xl:bg-side xl:p-1 xl:px-2 rounded-sm xl:absolute xl:bottom-0 xl:right-0 xl:-translate-x-8 xl:translate-y-7">
+                    <p className="font-semibold text-white text-xs sm:text-sm xl:text-lg">
+                      Petani Mitra
+                    </p>
+                  </div>
                 </div>
               </div>
+              
             </div>
           </div>
         </div>
