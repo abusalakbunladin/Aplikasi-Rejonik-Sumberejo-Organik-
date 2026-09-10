@@ -50,9 +50,7 @@ function Hero() {
   useEffect(() => {
     if(!heroRef.current) return
 
-    if(window.innerWidth < 1024) {
-      animate
-    }
+    if(window.innerWidth < 1024) return
 
     // Title //
     animate(heroRef.current.querySelector('.h-t-deco'), {
@@ -236,7 +234,7 @@ function Hero() {
                 <div className="flex flex-col gap-3 sm:gap-5 relative select-none">
                   <div className="acv-content sm:bg-white/15 rounded-sm sm:p-3 xl:px-8">
                     <div className="flex flex-col gap-2 sm:gap-5 xl:gap-10 sm:flex-row sm:items-center sm:justify-center cursor-default">
-                      <div className="flex flex-col xl:gap-1 px-2 bg-white/15 rounded-lg outline-white outline-1 sm:bg-white/0 sm:outline-0 p-2 sm:p-0">
+                      <div className="flex flex-col xl:gap-1 px-2 bg-white/15 rounded-sm sm:bg-white/0 sm:outline-0 p-2 sm:p-0">
                         <p className="font-extrabold text-white text-lg sm:text-2xl md:text-3xl xl:text-4xl">
                           1.300.000
                         </p>
@@ -247,7 +245,7 @@ function Hero() {
 
                       <div className="w-1 h-15 bg-white rounded-xl hidden sm:block"></div>
 
-                      <div className="flex flex-col xl:gap-1 px-2 bg-white/15 rounded-lg outline-white outline-1 sm:bg-white/0 sm:outline-0 p-2 sm:p-0">
+                      <div className="flex flex-col xl:gap-1 px-2 bg-white/15 rounded-sm sm:bg-white/0 sm:outline-0 p-2 sm:p-0">
                         <p className="font-extrabold text-white text-lg sm:text-2xl md:text-3xl xl:text-4xl">
                           90%
                         </p>
@@ -258,7 +256,7 @@ function Hero() {
 
                       <div className="w-1 h-15 bg-white rounded-xl hidden sm:block"></div>
 
-                      <div className="flex flex-col xl:gap-1 px-2 bg-white/15 rounded-lg outline-white outline-1 sm:bg-white/0 sm:outline-0 p-2 sm:p-0">
+                      <div className="flex flex-col xl:gap-1 px-2 bg-white/15 rounded-sm sm:bg-white/0 sm:outline-0 p-2 sm:p-0">
                         <p className="font-extrabold text-white text-lg sm:text-2xl md:text-3xl xl:text-4xl">
                           50+
                         </p>
