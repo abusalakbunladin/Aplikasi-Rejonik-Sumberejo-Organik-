@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func
 
 from app.deps import get_db, get_current_user
-from app.models import Produk, ProdukVarian, OrderItem
+from app.models import Produk, ProdukVarian, Order, OrderItem
 from app.schemas import LaporanPenjualanItem, LaporanStokRendah
 
 router = APIRouter(prefix="/laporan", tags=["Laporan"])
@@ -20,6 +20,8 @@ def laporan_penjualan(db: Session = Depends(get_db), current_user: str = Depends
         )
         .join(OrderItem, OrderItem.produk_varian_id == ProdukVarian.id)
         .join(Produk, Produk.id == ProdukVarian.produk_id)
+        .join(Order, Order.id == OrderItem.order_id)
+        .filter(Order.status_konfirmasi == "dikonfirmasi")
         .group_by(ProdukVarian.id, Produk.nama, ProdukVarian.berat)
         .all()
     )
