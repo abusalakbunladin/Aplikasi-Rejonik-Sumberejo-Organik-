@@ -15,15 +15,25 @@
 | 3 | Field nama dikosongkan (string kosong) | 1. Login sebagai admin<br>2. POST /produk dengan nama diisi string kosong "" | `{"nama": "", "harga": 50000, "stok": 30, "kategori_id": 1}` | Sistem menolak (nama tidak boleh kosong) | Sistem menerima (200 OK), produk tersimpan dengan nama: "" (id: 7, id: 8) | **BUG** | Sudah di fix |
 | 4 | kategori_id yang tidak ada di database (sebelum perbaikan) | 1. Login sebagai admin<br>2. POST /produk dengan kategori_id yang tidak pernah dibuat (misal 9999) | `{"nama": "Test Kategori Invalid", "harga": 50000, "stok": 10, "kategori_id": 9999}` | Sistem menolak dengan pesan jelas (misal 404/422 "kategori tidak ditemukan") | 500 Internal Server Error — pesan generik "InternalServerError", tidak ada penjelasan penyebab | **BUG** | Sudah di fix |
 | 5 | Harga = 0 dan stok = 0 (batas minimum) | 1. Login sebagai admin<br>2. POST /produk dengan harga = 0 dan stok = 0 | `{"nama": "Test Harga Stok Nol", "harga": 0, "stok": 0, "kategori_id": 1}` | harga ditolak (harus > 0, tidak masuk akal produk gratis), stok diterima (boleh = 0, artinya stok habis) | 422 Unprocessable Entity — hanya field harga yang ditolak ("Input should be greater than 0"), stok = 0 tidak muncul sebagai error (diterima) | **Pass** | - |
-| 6 | kategori_id yang tidak ada di database (setelah perbaikan/regression test) | 1. Backend melakukan perbaikan<br>2. `git pull` update terbaru<br>3. `python -m alembic upgrade head` (ada tabel baru: produk_varian)<br>4. Restart server<br>5. Ulangi POST /produk dengan kategori_id: 9999 | `{"nama": "Test Kategori Id Satu Normal", "harga": 50000, "stok": 10, "kategori_id": 9999}` | Sistem menolak dengan pesan jelas | 404 Not Found — pesan: "Kategori id 9999 tidak ditemukan" | **Pass** | Sudah di fix |
+| 6 | kategori_id yang tidak ada di database (setelah perbaikan/regression test) | 1. Backend melakukan perbaikan<br>2. `git pull` update terbaru<br>3. `python -m alembic upgrade head` (ada tabel baru: produk_varian)<br>4. Restart server<br>5. Ulangi POST /produk dengan kategori_id: 9999 | `{"nama": "Test Kategori Id Satu Normal", "harga": 50000, "stok": 10, "kategori_id": 9999}` | Sistem menolak dengan pesan jelas | 404 Not Found — pesan: "Kategori id 9999 tidak ditemukan" | **Pass** | - 
 | 7 | Field nama dihapus total (tidak dikirim sama sekali) | 1. Login sebagai admin<br>2. POST /produk tanpa field nama sama sekali | `{"harga": 50000, "stok": 10, "kategori_id": 4}` | Sistem menolak (field wajib) | 422 Unprocessable Entity — pesan: "Field required" untuk field nama | **Pass** | - |
 | 8 | Hapus produk yang ada (by ID) | 1. Login sebagai admin<br>2. DELETE /produk/{id} dengan id yang valid<br>3. Verifikasi dengan GET /produk | DELETE /produk/15 | Produk terhapus dari database, tidak muncul lagi di GET /produk | 200 OK — pesan: "Produk berhasil dihapus". Terverifikasi via GET /produk, id 15 sudah tidak ada di daftar | **Pass** | - |
+
+---
+
+## B. Validasi Stok melalui Varian Produk, Pasokan, dan Penyesuaian Stok
+
+**Catatan struktur:** Sejak migrasi "produk sekarang punya varian berat", field `harga` dan `stok` dipindahkan dari `/produk` ke endpoint `/produk-varian`. Stok bertambah lewat `/pasokan` (dari pemasok) dan berkurang lewat `/penyesuaian-stok` (misal karena rusak/hilang).
+
+| No | Test Case | Langkah Pengujian | Data Uji | Expected Result | Actual Result | Status | Keterangan |
+|----|-----------|--------------------|----------|------------------|----------------|--------|------------|
 | 9 | Alur normal: buat varian → tambah stok via pasokan → kurangi stok via penyesuaian | 1. POST /produk-varian (buat varian dengan stok awal)<br>2. POST /pemasok (buat data pemasok)<br>3. POST /pasokan (tambah stok dari pemasok)<br>4. POST /penyesuaian-stok (kurangi stok dengan alasan) | Varian: `{"produk_id": 4, "berat": 5.0, "harga": 75000, "stok": 50}`<br>Pasokan: `{"produk_varian_id": 1, "pemasok_id": 1, "jumlah": 20}` | Varian berhasil dibuat (stok awal 50), pasokan menambah stok jadi 70 | Semua berhasil (200 OK). Varian id: 1 dibuat, stok bertambah dari 50 menjadi 70 setelah pasokan (terverifikasi lewat percobaan pengurangan berikutnya) | **Pass** | - |
 | 10 | Penyesuaian stok dengan jumlah melebihi stok tersedia | 1. Cek stok varian saat ini (70)<br>2. POST /penyesuaian-stok dengan jumlah lebih besar dari stok tersedia | `{"produk_varian_id": 1, "jumlah": 9999, "alasan": "rusak", "keterangan": "Test kurangi stok berlebihan"}` | Sistem menolak (stok tidak cukup) | 400 Bad Request — pesan: "Stok tidak cukup untuk dikurangi (sisa 70)" | **Pass** | - |
-
+| 11 | Pasokan dengan jumlah negatif | 1. Login sebagai admin<br>2. POST /pasokan dengan jumlah bernilai negatif | `{"produk_varian_id": 1, "pemasok_id": 1, "jumlah": -20}` | Sistem menolak (pasokan seharusnya hanya menambah stok, tidak boleh negatif) | 422 Unprocessable Entity | **Pass** | - |
+| 12 | Pasokan dengan produk_varian_id yang tidak ada | 1. Login sebagai admin<br>2. POST /pasokan dengan produk_varian_id yang tidak pernah dibuat | `{"produk_varian_id": 9999, "pemasok_id": 1, "jumlah": 10}` | Sistem menolak dengan pesan jelas (varian tidak ditemukan) | 404 Not Found | **Pass** | - |
 
 ---
 **Catatan kolom Keterangan:**
 - **Sudah di fix** — bug ditemukan, dilaporkan, dan sudah diverifikasi ulang (regression test) hasilnya sesuai harapan.
 - **Belum di fix** — bug ditemukan dan dilaporkan, tapi perbaikan dari tim backend belum tersedia/belum diverifikasi ulang.
-- **-** — bukan bug (status Pass), jadi kolom ini tidak relevan. 
+- **-** — bukan bug (status Pass), jadi kolom ini tidak relevan.
