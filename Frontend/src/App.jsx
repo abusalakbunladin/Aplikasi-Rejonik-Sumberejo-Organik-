@@ -312,31 +312,11 @@ function Product() {
 
   useEffect(() => {
     if(!sectionRef.current) return
-
     if (!isInView || window.innerWidth < 1024) return
-
-    const initialStates = [
-      // Title //
-      {target: '.s-title', props:{scaleX: 0}},
-      {target: '.s-t-deco', props:{scaleY: 0}},
-      {target: '.s-t-main', props:{scaleX: 0}},
-      {target: '.s-t-m-deco', props:{scaleX: 0}},
-      // Title //
-
-      // Product //
-      {target: '.procard', props:{scaleX: 0}},
-      {target: '.pro-bg', props:{scaleY: 0}},
-      {target: '.deco1', props:{scaleY: 0}},
-      {target: '.deco2', props:{scaleX: 0}},
-      // Product //
-    ]
-
-    initialStates.forEach(({target, props}) => {
-      set(sectionRef.current.querySelectorAll(target), props)
-    })
 
     // Title //
     animate(sectionRef.current.querySelector('.s-title'), {
+      opacity: [0, 1],
       scaleX: [0, 1],
       delay: 300,
       duration: 600,
@@ -344,6 +324,7 @@ function Product() {
     })
 
     animate(sectionRef.current.querySelectorAll('.s-t-deco'), {
+      opacity: [0, 1],
       scaleY: [0, 1],
       scaleX: [2, 1],
       delay: 600,
@@ -352,6 +333,7 @@ function Product() {
     })
 
     animate(sectionRef.current.querySelector('.s-t-main'), {
+      opacity: [0, 1],
       scaleX: [0 ,1],
       scaleY: [1.2, 1],
       delay: 800,
@@ -360,6 +342,7 @@ function Product() {
     })
 
     animate(sectionRef.current.querySelectorAll('.s-t-m-deco'), {
+      opacity: [0, 1],
       scaleX: [0, 1],
       delay: 1200,
       duration: 600,
@@ -382,6 +365,7 @@ function Product() {
     
     // Product //
     animate(sectionRef.current.querySelectorAll('.procard'), {
+      opacity: [0, 1],
       scaleX: [0, 1],
       scaleY: [1.5, 1],
       delay: stagger(300, {start: 1300, from: 'center'}),
@@ -390,6 +374,7 @@ function Product() {
     })
 
     animate(sectionRef.current.querySelectorAll('.pro-bg'), {
+      opacity: [0, 1],
       scaleY: [0, 1],
       scaleX: [1.5, 1],
       delay: stagger(100, {start: 1600}),
@@ -399,6 +384,7 @@ function Product() {
 
     // Deco 1 //
     animate(sectionRef.current.querySelectorAll('.deco1'), {
+      opacity: [0, 1],
       scaleY: [0, 1],
       scaleX: [2, 1],
       delay: 2600,
@@ -411,11 +397,11 @@ function Product() {
       duration: 5000,
       loop: true,
       ease: 'linear'
-      
     })
     // Deco 1 //
     // Deco 2 //
     animate(sectionRef.current.querySelectorAll('.deco2'), {
+      opacity: [0, 1],
       scaleX: [0, 1],
       scaleY: [2, 1],
       delay: 2700,
@@ -443,33 +429,33 @@ function Product() {
 
   return (
     <div className="product" ref={sectionRef}>
-      <section id="produk" className="pt-36 pb-50">
+      <section id="produk" className="pt-36 pb-60">
         <div className="container mx-auto">
           <div className="w-full px-4 relative">
             <div className="mx-auto mb-15 lg:mb-30 select-none">
               <div className="flex gap-3 items-center justify-center mb-3">
-                <div className="s-t-deco w-5 h-0.5 bg-side rounded-lg"></div>
-                <h3 className="s-title font-light text-side text-sm lg:text-lg uppercase">
+                <div className="s-t-deco lg:opacity-0 w-5 h-0.5 bg-side rounded-lg"></div>
+                <h3 className="s-title lg:opacity-0 font-light text-side text-sm lg:text-lg uppercase">
                   Product
                 </h3>
-                <div className="s-t-deco w-5 h-0.5 bg-side rounded-lg"></div>
+                <div className="s-t-deco lg:opacity-0 w-5 h-0.5 bg-side rounded-lg"></div>
               </div>
 
               <div className="flex gap-7 items-center justify-center">
                 <div className="hidden md:block">
-                  <div className="s-t-m-deco deco-p1 flex gap-2">
+                  <div className="s-t-m-deco lg:opacity-0 deco-p1 flex gap-2">
                     <div className=" w-2.5 h-1 bg-side rounded-lg"></div>
                     <div className=" w-5 h-1 bg-side rounded-lg"></div>
                     <div className=" w-10 h-1 bg-side rounded-lg"></div>
                   </div>
                 </div>
 
-                <h2 className="s-t-main max-w-lg font-extrabold text-quaternary text-3xl lg:text-5xl">
+                <h2 className="s-t-main lg:opacity-0 max-w-lg font-extrabold text-quaternary text-3xl lg:text-5xl">
                   Produk dari Rejonik
                 </h2>
 
                 <div className="hidden md:block">
-                  <div className="s-t-m-deco deco-p2 flex gap-2">
+                  <div className="s-t-m-deco lg:opacity-0 deco-p2 flex gap-2">
                     <div className=" w-10 h-1 bg-side rounded-lg"></div>
                     <div className=" w-5 h-1 bg-side rounded-lg"></div>
                     <div className=" w-2.5 h-1 bg-side rounded-lg"></div>
@@ -480,14 +466,14 @@ function Product() {
 
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-5 justify-center mx-auto">
               <div
-                className='deco2 w-50 h-60 bg-tertiary/70 rounded-sm left-1/9 top-1/7 absolute z-5 hidden xl:block'
+                className='deco2 lg:opacity-0 w-50 h-60 bg-tertiary/70 rounded-sm left-1/9 top-1/7 absolute z-5 hidden xl:block'
               ></div>
 
               <div
-                className='deco1 w-60 h-60 bg-primary/70 rounded-sm right-1/8 top-1/6 absolute z-5 hidden xl:block'
+                className='deco1 lg:opacity-0 w-60 h-60 bg-primary/70 rounded-sm right-1/8 top-1/6 absolute z-5 hidden xl:block'
               ></div>
 
-              <div id="pro1" className={`procard ${proCard}`}>
+              <div id="pro1" className={`procard lg:opacity-0 ${proCard}`}>
                 <img
                   src="/product/beras.jpg"
                   alt="Beras Original"
@@ -512,7 +498,7 @@ function Product() {
                 </div>
               </div>
 
-              <div id="pro2" className={`procard ${proCard}`}>
+              <div id="pro2" className={`procard lg:opacity-0 ${proCard}`}>
                 <img
                   src="/product/beras-aromatik.jpg"
                   alt="Beras Aromatik"
@@ -537,7 +523,7 @@ function Product() {
                 </div>
               </div>
 
-              <div id="pro3" className={`procard ${proCard}`}>
+              <div id="pro3" className={`procard lg:opacity-0 ${proCard}`}>
                 <img
                   src="/product/beras-merah.jpg"
                   alt="Beras Merah"
@@ -563,24 +549,24 @@ function Product() {
               </div>
 
               <div
-                className='deco2 w-50 h-50 bg-tertiary/70 rounded-sm right-1/7 -bottom-1/4 absolute z-5 hidden xl:block'
+                className='deco2 lg:opacity-0 w-50 h-50 bg-tertiary/70 rounded-sm right-1/7 -bottom-1/4 absolute z-5 hidden xl:block'
               ></div>
 
               <div
-                className='deco1 w-55 h-55 bg-primary/70 rounded-sm left-1/7 -bottom-1/3 absolute z-5 -translate-y-15 hidden xl:block'
+                className='deco1 lg:opacity-0 w-55 h-55 bg-primary/70 rounded-sm left-1/7 -bottom-1/3 absolute z-5 -translate-y-15 hidden xl:block'
               ></div>
 
               <div
-                className='pro-bg w-150 h-80 scale-80 xl:scale-100 bg-linear-to-tr from-primary/70 to-side/70 rounded-sm absolute right-1/2 top-1/5 translate-x-20 hidden lg:block'
+                className='pro-bg lg:opacity-0 w-150 h-80 scale-80 xl:scale-100 bg-linear-to-tr from-primary/70 to-side/70 rounded-sm absolute right-1/2 top-1/5 translate-x-20 hidden lg:block'
               ></div>
               <div
-                className='pro-bg w-150 h-80 scale-80 xl:scale-100 bg-linear-to-tr from-side/70 to-primary/70 rounded-sm absolute left-1/2 top-2/3 -translate-x-20 hidden lg:block'
+                className='pro-bg lg:opacity-0 w-150 h-80 scale-80 xl:scale-100 bg-linear-to-tr from-side/70 to-primary/70 rounded-sm absolute left-1/2 top-2/3 -translate-x-20 hidden lg:block'
               ></div>
               <div
-                className='pro-bg w-80 h-80 scale-80 xl:scale-100 bg-accentThrd/70 rounded-sm absolute right-1/7 -translate-y-10 hidden lg:block'
+                className='pro-bg lg:opacity-0 w-80 h-80 scale-80 xl:scale-100 bg-accentThrd/70 rounded-sm absolute right-1/7 -translate-y-10 hidden lg:block'
               ></div>
               <div
-                className='pro-bg w-80 h-80 scale-80 xl:scale-100 bg-accentThrd/70 rounded-sm absolute left-1/5 bottom-0 translate-y-20 hidden lg:block'
+                className='pro-bg lg:opacity-0 w-80 h-80 scale-80 xl:scale-100 bg-accentThrd/70 rounded-sm absolute left-1/5 bottom-0 translate-y-20 hidden lg:block'
               ></div>
             </div>
           </div>
