@@ -313,6 +313,8 @@ function Product() {
   useEffect(() => {
     if(!sectionRef.current) return
 
+    if (!isInView || window.innerWidth < 1024) return
+
     const initialStates = [
       // Title //
       {target: '.s-title', props:{scaleX: 0}},
@@ -332,8 +334,6 @@ function Product() {
     initialStates.forEach(({target, props}) => {
       set(sectionRef.current.querySelectorAll(target), props)
     })
-
-    if (!isInView || window.innerWidth < 1024) return
 
     // Title //
     animate(sectionRef.current.querySelector('.s-title'), {
