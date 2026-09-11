@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { hover, motion } from "motion/react";
-import { animate, stagger, waapi, spring } from "animejs";
+import { motion, useInView } from "motion/react";
+import { animate, stagger, set } from "animejs";
 
 
 export default function App() {
@@ -303,54 +303,176 @@ function Hero() {
 
 // Product //
 function Product() {
-  const isScrolled = useScrollTrigger("produk", 900);
-
   const proCard =
-    "max-w-sm mx-auto lg:mx-0 bg-tertiary border-accentThrd border-2 rounded-xl shadow-xl p-4 relative z-6 transition-all duration-800 ease-in-out lg:max-w-none";
-  const proBgEffct =
-    "w-full h-100 lg:h-120 xl:h-130 lg:max-w-3xl xl:max-w-4xl bg-linear-to-tr from-primary to-side rounded-4xl absolute -translate-y-15 transition-all duration-600 hidden lg:block";
+    "max-w-sm mx-auto lg:mx-0 bg-tertiary border-accentThrd border-2 rounded-xl shadow-xl p-4 relative z-6 lg:max-w-none";
 
-  const deco1 =
-    "w-50 h-30 rounded-xl xl:left-40 xl:top-25 absolute z-5 transition-all duration-1000 ease-out hidden xl:block";
-  const deco2 =
-    "w-50 h-40 rounded-xl xl:right-30 xl:-bottom-27 absolute z-5 transition-all duration-1000 ease-out hidden xl:block";
-  const deco3 =
-    "w-25 h-25 rounded-xl xl:left-100 xl:-bottom-50 absolute z-5 -translate-y-15 transition-all duration-500 delay-300 ease-out hidden xl:block";
-  const deco4 =
-    "w-30 h-30 rounded-xl xl:right-65 xl:top-25 absolute z-5 transition-all duration-500 delay-300 ease-out hidden xl:block";
+  const sectionRef = useRef(null)
+
+  const isInView = useInView(sectionRef, {once: true, amount: 0.8})
+
+  useEffect(() => {
+    if(!sectionRef.current) return
+
+    const initialStates = [
+      // Title //
+      {target: '.s-title', props:{scaleX: 0}},
+      {target: '.s-t-deco', props:{scaleY: 0}},
+      {target: '.s-t-main', props:{scaleX: 0}},
+      {target: '.s-t-m-deco', props:{scaleX: 0}},
+      // Title //
+
+      // Product //
+      {target: '.procard', props:{scaleX: 0}},
+      {target: '.pro-bg', props:{scaleY: 0}},
+      {target: '.deco1', props:{scaleY: 0}},
+      {target: '.deco2', props:{scaleX: 0}},
+      // Product //
+    ]
+
+    initialStates.forEach(({target, props}) => {
+      set(sectionRef.current.querySelectorAll(target), props)
+    })
+
+    if (!isInView || window.innerWidth < 1024) return
+
+    // Title //
+    animate(sectionRef.current.querySelector('.s-title'), {
+      scaleX: [0, 1],
+      delay: 300,
+      duration: 600,
+      ease: 'outElastic(1,1)'
+    })
+
+    animate(sectionRef.current.querySelectorAll('.s-t-deco'), {
+      scaleY: [0, 1],
+      scaleX: [2, 1],
+      delay: 600,
+      duration: 700,
+      ease: 'outElastic(1.19,0.66)'
+    })
+
+    animate(sectionRef.current.querySelector('.s-t-main'), {
+      scaleX: [0 ,1],
+      scaleY: [1.2, 1],
+      delay: 800,
+      duration: 600,
+      ease: 'outElastic(1,1)'
+    })
+
+    animate(sectionRef.current.querySelectorAll('.s-t-m-deco'), {
+      scaleX: [0, 1],
+      delay: 1200,
+      duration: 600,
+      ease: 'outElastic(1,1)'
+    })
+
+    animate(sectionRef.current.querySelector('.deco-p1'), {
+      x: [-100, 0],
+      delay: 1500,
+      duration: 600,
+      ease: 'outBounce'
+    })
+    animate(sectionRef.current.querySelector('.deco-p2'), {
+      x: [100, 0],
+      delay: 1500,
+      duration: 600,
+      ease: 'outBounce'
+    })
+    // Title //
+    
+    // Product //
+    animate(sectionRef.current.querySelectorAll('.procard'), {
+      scaleX: [0, 1],
+      scaleY: [1.5, 1],
+      delay: stagger(300, {start: 1300, from: 'center'}),
+      duration: 700,
+      ease: 'outElastic(1,1)'
+    })
+
+    animate(sectionRef.current.querySelectorAll('.pro-bg'), {
+      scaleY: [0, 1],
+      scaleX: [1.5, 1],
+      delay: stagger(100, {start: 1600}),
+      duration: 600,
+      ease: 'outElastic(1,1)'
+    })
+
+    // Deco 1 //
+    animate(sectionRef.current.querySelectorAll('.deco1'), {
+      scaleY: [0, 1],
+      scaleX: [2, 1],
+      delay: 2600,
+      duration: 700,
+      ease: 'outElastic(1,1)'
+    })
+
+    animate(sectionRef.current.querySelectorAll('.deco1'), {
+      rotate: '1turn',
+      duration: 5000,
+      loop: true,
+      ease: 'linear'
+      
+    })
+    // Deco 1 //
+    // Deco 2 //
+    animate(sectionRef.current.querySelectorAll('.deco2'), {
+      scaleX: [0, 1],
+      scaleY: [2, 1],
+      delay: 2700,
+      duration: 900,
+      ease: 'outElastic(1,1)',
+
+      onComplete: () => {
+        animate(sectionRef.current.querySelectorAll('.deco2'), {
+          scaleX: [1, 2.3, 1],
+          delay: stagger(500),
+          duration: 2000,
+          loop: true,
+          ease: 'outElastic(1,1)'
+        })
+      }
+    })
+
+    
+    // Deco 2 //
+
+    // Product //
+
+  }, [isInView])
+
 
   return (
-    <div className="product">
+    <div className="product" ref={sectionRef}>
       <section id="produk" className="pt-36 pb-50">
         <div className="container mx-auto">
           <div className="w-full px-4 relative">
             <div className="mx-auto mb-15 lg:mb-30 select-none">
               <div className="flex gap-3 items-center justify-center mb-3">
-                <div className="w-5 h-0.5 bg-side rounded-lg"></div>
-                <h3 className="font-light text-side text-sm lg:text-lg uppercase">
+                <div className="s-t-deco w-5 h-0.5 bg-side rounded-lg"></div>
+                <h3 className="s-title font-light text-side text-sm lg:text-lg uppercase">
                   Product
                 </h3>
-                <div className="w-5 h-0.5 bg-side rounded-lg"></div>
+                <div className="s-t-deco w-5 h-0.5 bg-side rounded-lg"></div>
               </div>
 
               <div className="flex gap-7 items-center justify-center">
                 <div className="hidden md:block">
-                  <div className="flex gap-2">
-                    <div className="w-2.5 h-1 bg-side rounded-lg"></div>
-                    <div className="w-5 h-1 bg-side rounded-lg"></div>
-                    <div className="w-10 h-1 bg-side rounded-lg"></div>
+                  <div className="s-t-m-deco deco-p1 flex gap-2">
+                    <div className=" w-2.5 h-1 bg-side rounded-lg"></div>
+                    <div className=" w-5 h-1 bg-side rounded-lg"></div>
+                    <div className=" w-10 h-1 bg-side rounded-lg"></div>
                   </div>
                 </div>
 
-                <h2 className="max-w-lg font-extrabold text-quaternary text-3xl lg:text-5xl">
+                <h2 className="s-t-main max-w-lg font-extrabold text-quaternary text-3xl lg:text-5xl">
                   Produk dari Rejonik
                 </h2>
 
                 <div className="hidden md:block">
-                  <div className="flex gap-2">
-                    <div className="w-10 h-1 bg-side rounded-lg"></div>
-                    <div className="w-5 h-1 bg-side rounded-lg"></div>
-                    <div className="w-2.5 h-1 bg-side rounded-lg"></div>
+                  <div className="s-t-m-deco deco-p2 flex gap-2">
+                    <div className=" w-10 h-1 bg-side rounded-lg"></div>
+                    <div className=" w-5 h-1 bg-side rounded-lg"></div>
+                    <div className=" w-2.5 h-1 bg-side rounded-lg"></div>
                   </div>
                 </div>
               </div>
@@ -358,17 +480,14 @@ function Product() {
 
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-5 justify-center mx-auto">
               <div
-                className={`${deco1} ${!isScrolled ? "-translate-x-10" : "bg-side/50 translate-x-10 backdrop-blur-sm"}`}
+                className='deco2 w-50 h-60 bg-tertiary/70 rounded-sm left-1/9 top-1/7 absolute z-5 hidden xl:block'
               ></div>
 
               <div
-                className={`${deco4} ${!isScrolled ? "scale-0" : "bg-primary/50 scale-150 backdrop-blur-sm"}`}
+                className='deco1 w-60 h-60 bg-primary/70 rounded-sm right-1/8 top-1/6 absolute z-5 hidden xl:block'
               ></div>
 
-              <div
-                id="pro1"
-                className={`${proCard} ${!isScrolled ? "lg:-rotate-5 lg:translate-x-20" : ""}`}
-              >
+              <div id="pro1" className={`procard ${proCard}`}>
                 <img
                   src="/product/beras.jpg"
                   alt="Beras Original"
@@ -381,7 +500,7 @@ function Product() {
                 <p className="font-medium text-xs text-accentThrd mb-1">1 kg</p>
 
                 <div className="flex justify-between">
-                  <p className="font-bold text-accentThrd text-xl">Rp 20.000</p>
+                  <p className="font-bold text-accentThrd text-xl">Rp 35.250</p>
 
                   <a href="#" target="_blank" className="group">
                     <button className="font-medium text-accentThrd bg-white ring-accentThrd ring-2 rounded-full group-hover:text-white group-active:text-side group-active:ring-side px-4 p-1 relative transition-all duration-300 overflow-hidden cursor-pointer select-none">
@@ -393,10 +512,7 @@ function Product() {
                 </div>
               </div>
 
-              <div
-                id="pro2"
-                className={`${proCard} ${!isScrolled ? "lg:-translate-y-3" : ""}`}
-              >
+              <div id="pro2" className={`procard ${proCard}`}>
                 <img
                   src="/product/beras-aromatik.jpg"
                   alt="Beras Aromatik"
@@ -409,7 +525,7 @@ function Product() {
                 <p className="font-medium text-xs text-accentThrd mb-1">1 kg</p>
 
                 <div className="flex justify-between">
-                  <p className="font-bold text-accentThrd text-xl">Rp 20.000</p>
+                  <p className="font-bold text-accentThrd text-xl">Rp 35.250</p>
 
                   <a href="#" target="_blank" className="group">
                     <button className="font-medium text-accentThrd bg-white ring-accentThrd ring-2 rounded-full group-hover:text-white group-active:text-side group-active:ring-side px-4 p-1 relative transition-all duration-300 overflow-hidden cursor-pointer select-none">
@@ -421,10 +537,7 @@ function Product() {
                 </div>
               </div>
 
-              <div
-                id="pro3"
-                className={`${proCard} ${!isScrolled ? "lg:rotate-5 lg:-translate-x-20" : ""}`}
-              >
+              <div id="pro3" className={`procard ${proCard}`}>
                 <img
                   src="/product/beras-merah.jpg"
                   alt="Beras Merah"
@@ -437,7 +550,7 @@ function Product() {
                 <p className="font-medium text-xs text-accentThrd mb-1">1 kg</p>
 
                 <div className="flex justify-between">
-                  <p className="font-bold text-accentThrd text-xl">Rp 20.000</p>
+                  <p className="font-bold text-accentThrd text-xl">Rp 35.250</p>
 
                   <a href="#" target="_blank" className="group">
                     <button className="font-medium text-accentThrd bg-white ring-accentThrd ring-2 rounded-full group-hover:text-white group-active:text-side group-active:ring-side px-4 p-1 relative transition-all duration-300 overflow-hidden cursor-pointer select-none">
@@ -450,15 +563,24 @@ function Product() {
               </div>
 
               <div
-                className={`${deco2} ${!isScrolled ? "translate-x-10" : "bg-side/50 -translate-x-10 backdrop-blur-sm"}`}
+                className='deco2 w-50 h-50 bg-tertiary/70 rounded-sm right-1/7 -bottom-1/4 absolute z-5 hidden xl:block'
               ></div>
 
               <div
-                className={`${deco3} ${!isScrolled ? "scale-0" : "bg-primary/50 scale-150 backdrop-blur-sm"}`}
+                className='deco1 w-55 h-55 bg-primary/70 rounded-sm left-1/7 -bottom-1/3 absolute z-5 -translate-y-15 hidden xl:block'
               ></div>
 
               <div
-                className={`${proBgEffct} ${!isScrolled ? "" : "-rotate-5"}`}
+                className='pro-bg w-150 h-80 scale-80 xl:scale-100 bg-linear-to-tr from-primary/70 to-side/70 rounded-sm absolute right-1/2 top-1/5 translate-x-20 hidden lg:block'
+              ></div>
+              <div
+                className='pro-bg w-150 h-80 scale-80 xl:scale-100 bg-linear-to-tr from-side/70 to-primary/70 rounded-sm absolute left-1/2 top-2/3 -translate-x-20 hidden lg:block'
+              ></div>
+              <div
+                className='pro-bg w-80 h-80 scale-80 xl:scale-100 bg-accentThrd/70 rounded-sm absolute right-1/7 -translate-y-10 hidden lg:block'
+              ></div>
+              <div
+                className='pro-bg w-80 h-80 scale-80 xl:scale-100 bg-accentThrd/70 rounded-sm absolute left-1/5 bottom-0 translate-y-20 hidden lg:block'
               ></div>
             </div>
           </div>
