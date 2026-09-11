@@ -1,3 +1,4 @@
+import re
 from datetime import datetime
 from typing import Literal, Optional
 from pydantic import BaseModel, Field, field_validator
@@ -124,6 +125,13 @@ class OrderCreate(BaseModel):
         v = v.strip()
         if not v:
             raise ValueError("Field ini tidak boleh kosong atau hanya berisi spasi")
+        return v
+
+    @field_validator("no_telepon")
+    @classmethod
+    def no_telepon_harus_angka(cls, v: str) -> str:
+        if not re.fullmatch(r"\+?\d{9,15}", v):
+            raise ValueError("Nomor telepon harus berupa angka (boleh diawali +), 9-15 digit, tanpa spasi atau tanda baca")
         return v
 
 class OrderKonfirmasiUpdate(BaseModel):
