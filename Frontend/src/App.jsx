@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, useInView } from "motion/react";
+import { hover, motion, useInView } from "motion/react";
 import { animate, stagger, set } from "animejs";
 
 
@@ -410,18 +410,19 @@ function Product() {
 
       onComplete: () => {
         animate(sectionRef.current.querySelectorAll('.deco2'), {
-          scaleX: [1, 2.3, 1],
+          keyframes: [
+            { scaleX: 2.3, duration: 800 },
+            { scaleX: 1, duration: 800 },
+            { scaleY: 1.5, duration: 800 },
+            { scaleY: 1, duration: 800 }
+          ],
           delay: stagger(500),
-          duration: 2000,
           loop: true,
           ease: 'outElastic(1,1)'
         })
       }
     })
-
-    
     // Deco 2 //
-
     // Product //
 
   }, [isInView])
@@ -488,13 +489,44 @@ function Product() {
                 <div className="flex justify-between">
                   <p className="font-bold text-accentThrd text-xl">Rp 35.250</p>
 
-                  <a href="#" target="_blank" className="group">
-                    <button className="font-medium text-accentThrd bg-white ring-accentThrd ring-2 rounded-full group-hover:text-white group-active:text-side group-active:ring-side px-4 p-1 relative transition-all duration-300 overflow-hidden cursor-pointer select-none">
+                  <motion.a
+                    initial='rest'
+                    whileHover='hover'
+                    whileTap='tap'
+                    animate='rest'
+                    href="#"
+                    className="group"
+                  >
+                    <motion.button
+                      variants={{
+                        rest: {scale: 1},
+                        hover: {scale:1.1}
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 10
+                      }}
+                      className="font-medium text-accentThrd bg-white ring-accentThrd ring-2 rounded-full group-hover:text-white group-active:text-side group-active:ring-side px-4 p-1 relative overflow-hidden cursor-pointer select-none"
+                    >
                       <span className="relative z-1">Pesan</span>
 
-                      <div className="w-8 h-8 bg-accentThrd rounded-full absolute -translate-y-7 translate-x-2 scale-0 group-hover:scale-250 group-active:scale-0 transition-all duration-100"></div>
-                    </button>
-                  </a>
+                      <motion.div
+                        variants={{
+                          rest: {scale: 0},
+                          hover: {scale: 2.7},
+                          tap: {scale: 0}
+                        }}
+                        transition={{
+                          duration: 0.1,
+                          ease: 'easeInOut'
+                        }}
+                        className="w-8 h-8 bg-accentThrd rounded-full absolute -translate-y-7 translate-x-2"
+                      />
+                    </motion.button>
+                  </motion.a>
                 </div>
               </div>
 
@@ -513,13 +545,44 @@ function Product() {
                 <div className="flex justify-between">
                   <p className="font-bold text-accentThrd text-xl">Rp 35.250</p>
 
-                  <a href="#" target="_blank" className="group">
-                    <button className="font-medium text-accentThrd bg-white ring-accentThrd ring-2 rounded-full group-hover:text-white group-active:text-side group-active:ring-side px-4 p-1 relative transition-all duration-300 overflow-hidden cursor-pointer select-none">
+                  <motion.a
+                    initial='rest'
+                    whileHover='hover'
+                    whileTap='tap'
+                    animate='rest'
+                    href="#"
+                    className="group"
+                  >
+                    <motion.button
+                      variants={{
+                        rest: {scale: 1},
+                        hover: {scale:1.1}
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 10
+                      }}
+                      className="font-medium text-accentThrd bg-white ring-accentThrd ring-2 rounded-full group-hover:text-white group-active:text-side group-active:ring-side px-4 p-1 relative overflow-hidden cursor-pointer select-none"
+                    >
                       <span className="relative z-1">Pesan</span>
 
-                      <div className="w-8 h-8 bg-accentThrd rounded-full absolute -translate-y-7 translate-x-2 scale-0 group-hover:scale-250 group-active:scale-0 transition-all duration-100"></div>
-                    </button>
-                  </a>
+                      <motion.div
+                        variants={{
+                          rest: {scale: 0},
+                          hover: {scale: 2.7},
+                          tap: {scale: 0}
+                        }}
+                        transition={{
+                          duration: 0.1,
+                          ease: 'easeInOut'
+                        }}
+                        className="w-8 h-8 bg-accentThrd rounded-full absolute -translate-y-7 translate-x-2"
+                      />
+                    </motion.button>
+                  </motion.a>
                 </div>
               </div>
 
@@ -538,13 +601,44 @@ function Product() {
                 <div className="flex justify-between">
                   <p className="font-bold text-accentThrd text-xl">Rp 35.250</p>
 
-                  <a href="#" target="_blank" className="group">
-                    <button className="font-medium text-accentThrd bg-white ring-accentThrd ring-2 rounded-full group-hover:text-white group-active:text-side group-active:ring-side px-4 p-1 relative transition-all duration-300 overflow-hidden cursor-pointer select-none">
+                  <motion.a
+                    initial='rest'
+                    whileHover='hover'
+                    whileTap='tap'
+                    animate='rest'
+                    href="#"
+                    className="group"
+                  >
+                    <motion.button
+                      variants={{
+                        rest: {scale: 1},
+                        hover: {scale:1.1}
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 10
+                      }}
+                      className="font-medium text-accentThrd bg-white ring-accentThrd ring-2 rounded-full group-hover:text-white group-active:text-side group-active:ring-side px-4 p-1 relative overflow-hidden cursor-pointer select-none"
+                    >
                       <span className="relative z-1">Pesan</span>
 
-                      <div className="w-8 h-8 bg-accentThrd rounded-full absolute -translate-y-7 translate-x-2 scale-0 group-hover:scale-250 group-active:scale-0 transition-all duration-100"></div>
-                    </button>
-                  </a>
+                      <motion.div
+                        variants={{
+                          rest: {scale: 0},
+                          hover: {scale: 2.7},
+                          tap: {scale: 0}
+                        }}
+                        transition={{
+                          duration: 0.1,
+                          ease: 'easeInOut'
+                        }}
+                        className="w-8 h-8 bg-accentThrd rounded-full absolute -translate-y-7 translate-x-2"
+                      />
+                    </motion.button>
+                  </motion.a>
                 </div>
               </div>
 
@@ -579,40 +673,215 @@ function Product() {
 
 // Advantages //
 function Advantages() {
-  const isScrolled = useScrollTrigger("keunggulan", 800);
-
   const advanCard =
-    "w-full max-w-sm h-50 bg-tertiary rounded-xl border-side border-2 shadow-lg relative overflow-hidden lg:hover:border-accentThrd transition-all duration-500";
+    "w-full max-w-sm h-50 bg-tertiary rounded-sm border-2 shadow-lg relative overflow-hidden";
+
+    const sectionRef = useRef(null)
+
+    const isInView = useInView(sectionRef, {once: true, amount: 0.8})
+
+    useEffect(() => {
+      if(!sectionRef.current) return
+      if(!isInView || window.innerWidth < 1024) return
+
+      // Title //
+      animate(sectionRef.current.querySelector('.s-title'), {
+        opacity: [0, 1],
+        scaleX: [0, 1],
+        delay: 300,
+        duration: 600,
+        ease: 'outElastic(1,1)'
+      })
+
+      animate(sectionRef.current.querySelectorAll('.s-t-deco'), {
+        opacity: [0, 1],
+        scaleY: [0, 1],
+        scaleX: [2, 1],
+        delay: 600,
+        duration: 700,
+        ease: 'outElastic(1.19,0.66)'
+      })
+
+      animate(sectionRef.current.querySelector('.s-t-main'), {
+        opacity: [0, 1],
+        scaleX: [0 ,1],
+        scaleY: [1.2, 1],
+        delay: 800,
+        duration: 600,
+        ease: 'outElastic(1,1)'
+      })
+
+      animate(sectionRef.current.querySelectorAll('.s-t-m-deco'), {
+        opacity: [0, 1],
+        scaleX: [0, 1],
+        delay: 1200,
+        duration: 600,
+        ease: 'outElastic(1,1)'
+      })
+
+      animate(sectionRef.current.querySelector('.deco-p1'), {
+        x: [-100, 0],
+        delay: 1500,
+        duration: 600,
+        ease: 'outBounce'
+      })
+      animate(sectionRef.current.querySelector('.deco-p2'), {
+        x: [100, 0],
+        delay: 1500,
+        duration: 600,
+        ease: 'outBounce'
+      })
+      // Title //
+
+      // Advantages //
+      animate(sectionRef.current.querySelectorAll('.advan-anim'), {
+        opacity: [0, 1],
+        scale: [0, 1],
+        delay: stagger(200, {start: 1800}),
+        duration: 1000,
+        ease: 'outElastic(1,0.55)'
+      })
+      // Advantages //
+
+      // Deco //
+      animate(sectionRef.current.querySelectorAll('.deco'), {
+        opacity: [0, 1],
+        scale: [0, 1],
+        delay: 3000,
+        duration: 600,
+        ease: 'outElastic(1,1)'
+      })
+
+      // Deco A1 //
+      animate(sectionRef.current.querySelector('.deco-a1a'), {
+        scaleX: [0, 1],
+        x: [0, -100],
+        opacity: [0, 1],
+        delay: 3000,
+        duration: 600,
+
+        onComplete: () => {
+          animate(sectionRef.current.querySelector('.deco-a1a'), {
+            x: [-100, 0],
+            duration: 400,
+            ease: 'outBounce'
+          })
+        }
+      })
+      animate(sectionRef.current.querySelector('.deco-a1b'), {
+        scaleX: [0, 1],
+        x: [0, 100],
+        opacity: [0, 1],
+        delay: 3000,
+        duration: 600,
+
+        onComplete: () => {
+          animate(sectionRef.current.querySelector('.deco-a1b'), {
+            x: [100, 0],
+            duration: 400,
+            ease: 'outBounce'
+          })
+        }
+      })
+      // Deco A1 //
+
+      // Deco A2 //
+      animate(sectionRef.current.querySelector('.deco-a2a'), {
+        scaleX: [0, 1],
+        x: [0, -200],
+        opacity: [0, 1],
+        delay: 3500,
+        duration: 600,
+
+        onComplete: () => {
+          animate(sectionRef.current.querySelector('.deco-a2a'), {
+            x: [-200, 0],
+            duration: 400,
+            ease: 'outBounce'
+          })
+        }
+      })
+      animate(sectionRef.current.querySelector('.deco-a2b'), {
+        scaleX: [0, 1],
+        x: [0, 200],
+        opacity: [0, 1],
+        delay: 3500,
+        duration: 600,
+
+        onComplete: () => {
+          animate(sectionRef.current.querySelector('.deco-a2b'), {
+            x: [200, 0],
+            duration: 400,
+            ease: 'outBounce'
+          })
+        }
+      })
+      // Deco A2 //
+
+      // Deco A3 //
+      animate(sectionRef.current.querySelector('.deco-a3a'), {
+        scaleX: [0, 1],
+        x: [0, -300],
+        opacity: [0, 1],
+        delay: 4000,
+        duration: 600,
+
+        onComplete: () => {
+          animate(sectionRef.current.querySelector('.deco-a3a'), {
+            x: [-300, 0],
+            duration: 400,
+            ease: 'outBounce'
+          })
+        }
+      })
+      animate(sectionRef.current.querySelector('.deco-a3b'), {
+        scaleX: [0, 1],
+        x: [0, 300],
+        opacity: [0, 1],
+        delay: 4000,
+        duration: 600,
+
+        onComplete: () => {
+          animate(sectionRef.current.querySelector('.deco-a3b'), {
+            x: [300, 0],
+            duration: 400,
+            ease: 'outBounce'
+          })
+        }
+      })
+      // Deco A3 //
+      // Deco //
+    })
 
   return (
-    <div className="advantages">
+    <div className="advantages" ref={sectionRef}>
       <section id="keunggulan" className="pt-36 pb-20 bg-side/40 relative">
         <div className="container mx-auto mb-20">
           <div className="w-full px-10">
             <div className="mx-auto mb-30 select-none">
               <div className="flex gap-3 items-center justify-center mb-3">
-                <div className="w-5 h-0.5 bg-side rounded-lg"></div>
-                <h3 className="font-light text-side text-sm lg:text-lg uppercase">
+                <div className="s-t-deco lg:opacity-0 w-5 h-0.5 bg-side rounded-lg"></div>
+                <h3 className="s-title lg:opacity-0 font-light text-side text-sm lg:text-lg uppercase">
                   Advantages
                 </h3>
-                <div className="w-5 h-0.5 bg-side rounded-lg"></div>
+                <div className="s-t-deco lg:opacity-0 w-5 h-0.5 bg-side rounded-lg"></div>
               </div>
 
               <div className="flex gap-7 items-center justify-center">
                 <div className="hidden md:block">
-                  <div className="flex gap-2">
+                  <div className="s-t-m-deco lg:opacity-0 deco-p1 flex gap-2">
                     <div className="w-2.5 h-1 bg-side rounded-lg"></div>
                     <div className="w-5 h-1 bg-side rounded-lg"></div>
                     <div className="w-10 h-1 bg-side rounded-lg"></div>
                   </div>
                 </div>
 
-                <h2 className="max-w-lg font-extrabold text-quaternary text-3xl lg:text-5xl">
+                <h2 className="s-t-main lg:opacity-0 max-w-lg font-extrabold text-quaternary text-3xl lg:text-5xl">
                   Keunggulan Rejonik
                 </h2>
 
                 <div className="hidden md:block">
-                  <div className="flex gap-2">
+                  <div className="s-t-m-deco lg:opacity-0 deco-p2 flex gap-2">
                     <div className="w-10 h-1 bg-side rounded-lg"></div>
                     <div className="w-5 h-1 bg-side rounded-lg"></div>
                     <div className="w-2.5 h-1 bg-side rounded-lg"></div>
@@ -622,26 +891,82 @@ function Advantages() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center select-none">
-              <div
-                className={`relative transition-all duration-500 group ${!isScrolled ? "lg:scale-0 lg:opacity-0" : "lg:scale-100lg: opacity-100 delay-100"}`}
+              <motion.div
+                initial='rest'
+                whileHover='hover'
+                animate='rest'
+                className='advan-anim lg:opacity-0 relative group'
               >
-                <div className="w-30 h-30 bg-side/0 rounded-lg right-0 hidden lg:flex items-center justify-center absolute z-2 group-hover:bg-side/50 group-hover:translate-x-12 group-hover:-translate-y-12 xl:group-hover:translate-x-9 xl:group-hover:-translate-y-9 lg:scale-70 xl:scale-100 transition-all duration-500 ease-out">
-                  <img
+                <motion.div
+                  variants={{
+                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0},
+                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className="w-30 h-30 rounded-sm right-0 hidden lg:flex items-center justify-center absolute z-2 lg:scale-70 xl:scale-100"
+                >
+                  <motion.img
+                    variants={{
+                      rest: {opacity: 0},
+                      hover: {opacity: 1}
+                    }}
                     src="/img/hinabobok2.png"
                     alt="Organik"
-                    className="opacity-0 group-hover:opacity-100 transition duration-300"
                   />
-                </div>
+                </motion.div>
 
-                <div
-                  className={`lg:hover:translate-x-3 lg:hover:-translate-y-3 ${advanCard}`}
+                <motion.div
+                  variants={{
+                    rest: {x: 0, y: 0, borderColor: 'rgba(74, 171, 0)'},
+                    hover: {x: 15, y: -15, borderColor: 'rgba(77, 46, 0)'}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className={`${advanCard}`}
                 >
-                  <div className="w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-230 group-hover:scale-0 transition-all duration-400 ease-in">
+                  <motion.div
+                    variants={{
+                      rest: {scale: 2.3},
+                      hover: {scale: 0}
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: 'easeInOut',
+                      type: 'spring',
+                      stiffness: 100,
+                      damping: 15
+                    }}
+                    className="w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  >
                     <img src="/img/hinabobok2.png" alt="Organik" width="50" />
-                  </div>
+                  </motion.div>
 
                   <div className="w-full h-full p-5">
-                    <div className="flex items-center gap-5 mb-5 lg:-translate-x-50 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out">
+                    <motion.div
+                      variants={{
+                        rest: {x: -190},
+                        hover: {x: 0}
+                      }}
+                      transition={{
+                        duration: 0.6,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 10
+                      }}
+                      className="flex items-center gap-5 mb-5"
+                    >
                       <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
                         <img
                           src="/img/hinabobok2.png"
@@ -653,44 +978,125 @@ function Advantages() {
                       <h3 className="font-extrabold text-accentThrd">
                         Hina Bobok
                       </h3>
-                    </div>
+                    </motion.div>
 
-                    <div className="lg:translate-x-95 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out">
+                    <motion.div
+                      variants={{
+                        rest: {y: 100},
+                        hover: {y: 0}
+                      }}
+                      transition={{
+                        duration: 0.7,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 12
+                      }}
+                    >
                       <p className="font-medium text-slate-500 text-xs">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Reiciendis vitae deserunt beatae soluta quo autem natus
                         odio ipsum ut expedita error labore corporis pariatur
                         vel nemo, ab necessitatibus iste modi.
                       </p>
-                    </div>
+                    </motion.div>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="w-40 h-10 bg-side/0 rounded-lg absolute z-2 -translate-y-10 group-hover:bg-side/50 group-hover:-translate-x-5 group-hover:-translate-y-7 hidden lg:block transition-all duration-500 ease-out"></div>
+                <motion.div
+                  variants={{
+                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)'},
+                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)'}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className="w-40 h-10 rounded-sm absolute z-2 hidden lg:block"
+                />
 
-                <div className="w-full max-w-sm h-50 bg-primary rounded-xl absolute -z-1 -translate-y-50 transition-all duration-400"></div>
-              </div>
+                <div className="w-full max-w-sm h-50 bg-primary rounded-sm absolute -z-1 -translate-y-50"></div>
+              </motion.div>
 
-              <div
-                className={`relative transition-all duration-500 group ${!isScrolled ? "lg:scale-0 lg:opacity-0" : "lg:scale-100 lg:opacity-100 delay-200"}`}
+              <motion.div
+                initial='rest'
+                whileHover='hover'
+                animate='rest'
+                className='advan-anim lg:opacity-0 relative group'
               >
-                <div className="w-30 h-30 bg-side/0 rounded-lg right-0 hidden lg:flex items-center justify-center absolute z-2 group-hover:bg-side/50 group-hover:translate-x-12 group-hover:-translate-y-12 xl:group-hover:translate-x-9 xl:group-hover:-translate-y-9 lg:scale-70 xl:scale-100 transition-all duration-500 ease-out">
-                  <img
+                <motion.div
+                  variants={{
+                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0},
+                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className="w-30 h-30 rounded-sm right-0 hidden lg:flex items-center justify-center absolute z-2 lg:scale-70 xl:scale-100"
+                >
+                  <motion.img
+                    variants={{
+                      rest: {opacity: 0},
+                      hover: {opacity: 1}
+                    }}
                     src="/img/hinabobok2.png"
                     alt="Organik"
-                    className="opacity-0 group-hover:opacity-100 transition duration-300"
                   />
-                </div>
+                </motion.div>
 
-                <div
-                  className={`lg:hover:translate-x-3 lg:hover:-translate-y-3 ${advanCard}`}
+                <motion.div
+                  variants={{
+                    rest: {x: 0, y: 0, borderColor: 'rgba(74, 171, 0)'},
+                    hover: {x: 15, y: -15, borderColor: 'rgba(77, 46, 0)'}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className={`${advanCard}`}
                 >
-                  <div className="w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-230 group-hover:scale-0 transition-all duration-400 ease-in">
+                  <motion.div
+                    variants={{
+                      rest: {scale: 2.3},
+                      hover: {scale: 0}
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: 'easeInOut',
+                      type: 'spring',
+                      stiffness: 100,
+                      damping: 15
+                    }}
+                    className="w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  >
                     <img src="/img/hinabobok2.png" alt="Organik" width="50" />
-                  </div>
+                  </motion.div>
 
                   <div className="w-full h-full p-5">
-                    <div className="flex items-center gap-5 mb-5 lg:-translate-x-50 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out">
+                    <motion.div
+                      variants={{
+                        rest: {x: -190},
+                        hover: {x: 0}
+                      }}
+                      transition={{
+                        duration: 0.6,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 10
+                      }}
+                      className="flex items-center gap-5 mb-5"
+                    >
                       <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
                         <img
                           src="/img/hinabobok2.png"
@@ -702,44 +1108,125 @@ function Advantages() {
                       <h3 className="font-extrabold text-accentThrd">
                         Hina Bobok
                       </h3>
-                    </div>
+                    </motion.div>
 
-                    <div className="lg:translate-x-95 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out">
+                    <motion.div
+                      variants={{
+                        rest: {y: 100},
+                        hover: {y: 0}
+                      }}
+                      transition={{
+                        duration: 0.7,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 12
+                      }}
+                    >
                       <p className="font-medium text-slate-500 text-xs">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Reiciendis vitae deserunt beatae soluta quo autem natus
                         odio ipsum ut expedita error labore corporis pariatur
                         vel nemo, ab necessitatibus iste modi.
                       </p>
-                    </div>
+                    </motion.div>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="w-40 h-10 bg-side/0 rounded-lg absolute z-2 -translate-y-10 group-hover:bg-side/50 group-hover:-translate-x-5 group-hover:-translate-y-7 hidden lg:block transition-all duration-500 ease-out"></div>
+                <motion.div
+                  variants={{
+                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)'},
+                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)'}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className="w-40 h-10 rounded-sm absolute z-2 hidden lg:block"
+                />
 
-                <div className="w-full max-w-sm h-50 bg-primary rounded-xl absolute -z-1 -translate-y-50 transition-all duration-400"></div>
-              </div>
+                <div className="w-full max-w-sm h-50 bg-primary rounded-sm absolute -z-1 -translate-y-50"></div>
+              </motion.div>
 
-              <div
-                className={`relative transition-all duration-500 group ${!isScrolled ? "lg:scale-0 lg:opacity-0" : "lg:scale-100 lg:opacity-100 delay-300"}`}
+              <motion.div
+                initial='rest'
+                whileHover='hover'
+                animate='rest'
+                className='advan-anim lg:opacity-0 relative group'
               >
-                <div className="w-30 h-30 bg-side/0 rounded-lg right-0 hidden lg:flex items-center justify-center absolute z-2 group-hover:bg-side/50 group-hover:translate-x-12 group-hover:-translate-y-12 xl:group-hover:translate-x-9 xl:group-hover:-translate-y-9 lg:scale-70 xl:scale-100 transition-all duration-500 ease-out">
-                  <img
+                <motion.div
+                  variants={{
+                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0},
+                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className="w-30 h-30 rounded-sm right-0 hidden lg:flex items-center justify-center absolute z-2 lg:scale-70 xl:scale-100"
+                >
+                  <motion.img
+                    variants={{
+                      rest: {opacity: 0},
+                      hover: {opacity: 1}
+                    }}
                     src="/img/hinabobok2.png"
                     alt="Organik"
-                    className="opacity-0 group-hover:opacity-100 transition duration-300"
                   />
-                </div>
+                </motion.div>
 
-                <div
-                  className={`lg:hover:translate-x-3 lg:hover:-translate-y-3 ${advanCard}`}
+                <motion.div
+                  variants={{
+                    rest: {x: 0, y: 0, borderColor: 'rgba(74, 171, 0)'},
+                    hover: {x: 15, y: -15, borderColor: 'rgba(77, 46, 0)'}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className={`${advanCard}`}
                 >
-                  <div className="w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-230 group-hover:scale-0 transition-all duration-400 ease-in">
+                  <motion.div
+                    variants={{
+                      rest: {scale: 2.3},
+                      hover: {scale: 0}
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: 'easeInOut',
+                      type: 'spring',
+                      stiffness: 100,
+                      damping: 15
+                    }}
+                    className="w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  >
                     <img src="/img/hinabobok2.png" alt="Organik" width="50" />
-                  </div>
+                  </motion.div>
 
                   <div className="w-full h-full p-5">
-                    <div className="flex items-center gap-5 mb-5 lg:-translate-x-50 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out">
+                    <motion.div
+                      variants={{
+                        rest: {x: -190},
+                        hover: {x: 0}
+                      }}
+                      transition={{
+                        duration: 0.6,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 10
+                      }}
+                      className="flex items-center gap-5 mb-5"
+                    >
                       <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
                         <img
                           src="/img/hinabobok2.png"
@@ -751,44 +1238,125 @@ function Advantages() {
                       <h3 className="font-extrabold text-accentThrd">
                         Hina Bobok
                       </h3>
-                    </div>
+                    </motion.div>
 
-                    <div className="lg:translate-x-95 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out">
+                    <motion.div
+                      variants={{
+                        rest: {y: 100},
+                        hover: {y: 0}
+                      }}
+                      transition={{
+                        duration: 0.7,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 12
+                      }}
+                    >
                       <p className="font-medium text-slate-500 text-xs">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Reiciendis vitae deserunt beatae soluta quo autem natus
                         odio ipsum ut expedita error labore corporis pariatur
                         vel nemo, ab necessitatibus iste modi.
                       </p>
-                    </div>
+                    </motion.div>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="w-40 h-10 bg-side/0 rounded-lg absolute z-2 -translate-y-10 group-hover:bg-side/50 group-hover:-translate-x-5 group-hover:-translate-y-7 hidden lg:block transition-all duration-500 ease-out"></div>
+                <motion.div
+                  variants={{
+                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)'},
+                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)'}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className="w-40 h-10 rounded-sm absolute z-2 hidden lg:block"
+                />
 
-                <div className="w-full max-w-sm h-50 bg-primary rounded-xl absolute -z-1 -translate-y-50 transition-all duration-400"></div>
-              </div>
+                <div className="w-full max-w-sm h-50 bg-primary rounded-sm absolute -z-1 -translate-y-50"></div>
+              </motion.div>
 
-              <div
-                className={`relative transition-all duration-500 group ${!isScrolled ? "lg:scale-0 lg:opacity-0" : "lg:scale-100 lg:opacity-100 delay-400"}`}
+              <motion.div
+                initial='rest'
+                whileHover='hover'
+                animate='rest'
+                className='advan-anim lg:opacity-0 relative group'
               >
-                <div className="w-30 h-30 bg-side/0 rounded-lg right-0 hidden lg:flex items-center justify-center absolute z-2 group-hover:bg-side/50 group-hover:translate-x-12 group-hover:-translate-y-12 xl:group-hover:translate-x-9 xl:group-hover:-translate-y-9 lg:scale-70 xl:scale-100 transition-all duration-500 ease-out">
-                  <img
+                <motion.div
+                  variants={{
+                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0},
+                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className="w-30 h-30 rounded-sm right-0 hidden lg:flex items-center justify-center absolute z-2 lg:scale-70 xl:scale-100"
+                >
+                  <motion.img
+                    variants={{
+                      rest: {opacity: 0},
+                      hover: {opacity: 1}
+                    }}
                     src="/img/hinabobok2.png"
                     alt="Organik"
-                    className="opacity-0 group-hover:opacity-100 transition duration-300"
                   />
-                </div>
+                </motion.div>
 
-                <div
-                  className={`lg:hover:translate-x-3 lg:hover:-translate-y-3 ${advanCard}`}
+                <motion.div
+                  variants={{
+                    rest: {x: 0, y: 0, borderColor: 'rgba(74, 171, 0)'},
+                    hover: {x: 15, y: -15, borderColor: 'rgba(77, 46, 0)'}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className={`${advanCard}`}
                 >
-                  <div className="w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-230 group-hover:scale-0 transition-all duration-400 ease-in">
+                  <motion.div
+                    variants={{
+                      rest: {scale: 2.3},
+                      hover: {scale: 0}
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: 'easeInOut',
+                      type: 'spring',
+                      stiffness: 100,
+                      damping: 15
+                    }}
+                    className="w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  >
                     <img src="/img/hinabobok2.png" alt="Organik" width="50" />
-                  </div>
+                  </motion.div>
 
                   <div className="w-full h-full p-5">
-                    <div className="flex items-center gap-5 mb-5 lg:-translate-x-50 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out">
+                    <motion.div
+                      variants={{
+                        rest: {x: -190},
+                        hover: {x: 0}
+                      }}
+                      transition={{
+                        duration: 0.6,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 10
+                      }}
+                      className="flex items-center gap-5 mb-5"
+                    >
                       <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
                         <img
                           src="/img/hinabobok2.png"
@@ -800,44 +1368,125 @@ function Advantages() {
                       <h3 className="font-extrabold text-accentThrd">
                         Hina Bobok
                       </h3>
-                    </div>
+                    </motion.div>
 
-                    <div className="lg:translate-x-95 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out">
+                    <motion.div
+                      variants={{
+                        rest: {y: 100},
+                        hover: {y: 0}
+                      }}
+                      transition={{
+                        duration: 0.7,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 12
+                      }}
+                    >
                       <p className="font-medium text-slate-500 text-xs">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Reiciendis vitae deserunt beatae soluta quo autem natus
                         odio ipsum ut expedita error labore corporis pariatur
                         vel nemo, ab necessitatibus iste modi.
                       </p>
-                    </div>
+                    </motion.div>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="w-40 h-10 bg-side/0 rounded-lg absolute z-2 -translate-y-10 group-hover:bg-side/50 group-hover:-translate-x-5 group-hover:-translate-y-7 hidden lg:block transition-all duration-500 ease-out"></div>
+                <motion.div
+                  variants={{
+                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)'},
+                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)'}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className="w-40 h-10 rounded-sm absolute z-2 hidden lg:block"
+                />
 
-                <div className="w-full max-w-sm h-50 bg-primary rounded-xl absolute -z-1 -translate-y-50 transition-all duration-400"></div>
-              </div>
+                <div className="w-full max-w-sm h-50 bg-primary rounded-sm absolute -z-1 -translate-y-50"></div>
+              </motion.div>
 
-              <div
-                className={`relative transition-all duration-500 group ${!isScrolled ? "lg:scale-0 lg:opacity-0" : "lg:scale-100 lg:opacity-100 delay-500"}`}
+              <motion.div
+                initial='rest'
+                whileHover='hover'
+                animate='rest'
+                className='advan-anim lg:opacity-0 relative group'
               >
-                <div className="w-30 h-30 bg-side/0 rounded-lg right-0 hidden lg:flex items-center justify-center absolute z-2 group-hover:bg-side/50 group-hover:translate-x-12 group-hover:-translate-y-12 xl:group-hover:translate-x-9 xl:group-hover:-translate-y-9 lg:scale-70 xl:scale-100 transition-all duration-500 ease-out">
-                  <img
+                <motion.div
+                  variants={{
+                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0},
+                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className="w-30 h-30 rounded-sm right-0 hidden lg:flex items-center justify-center absolute z-2 lg:scale-70 xl:scale-100"
+                >
+                  <motion.img
+                    variants={{
+                      rest: {opacity: 0},
+                      hover: {opacity: 1}
+                    }}
                     src="/img/hinabobok2.png"
                     alt="Organik"
-                    className="opacity-0 group-hover:opacity-100 transition duration-300"
                   />
-                </div>
+                </motion.div>
 
-                <div
-                  className={`lg:hover:translate-x-3 lg:hover:-translate-y-3 ${advanCard}`}
+                <motion.div
+                  variants={{
+                    rest: {x: 0, y: 0, borderColor: 'rgba(74, 171, 0)'},
+                    hover: {x: 15, y: -15, borderColor: 'rgba(77, 46, 0)'}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className={`${advanCard}`}
                 >
-                  <div className="w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-230 group-hover:scale-0 transition-all duration-400 ease-in">
+                  <motion.div
+                    variants={{
+                      rest: {scale: 2.3},
+                      hover: {scale: 0}
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: 'easeInOut',
+                      type: 'spring',
+                      stiffness: 100,
+                      damping: 15
+                    }}
+                    className="w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  >
                     <img src="/img/hinabobok2.png" alt="Organik" width="50" />
-                  </div>
+                  </motion.div>
 
                   <div className="w-full h-full p-5">
-                    <div className="flex items-center gap-5 mb-5 lg:-translate-x-50 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out">
+                    <motion.div
+                      variants={{
+                        rest: {x: -190},
+                        hover: {x: 0}
+                      }}
+                      transition={{
+                        duration: 0.6,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 10
+                      }}
+                      className="flex items-center gap-5 mb-5"
+                    >
                       <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
                         <img
                           src="/img/hinabobok2.png"
@@ -849,44 +1498,125 @@ function Advantages() {
                       <h3 className="font-extrabold text-accentThrd">
                         Hina Bobok
                       </h3>
-                    </div>
+                    </motion.div>
 
-                    <div className="lg:translate-x-95 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out">
+                    <motion.div
+                      variants={{
+                        rest: {y: 100},
+                        hover: {y: 0}
+                      }}
+                      transition={{
+                        duration: 0.7,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 12
+                      }}
+                    >
                       <p className="font-medium text-slate-500 text-xs">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Reiciendis vitae deserunt beatae soluta quo autem natus
                         odio ipsum ut expedita error labore corporis pariatur
                         vel nemo, ab necessitatibus iste modi.
                       </p>
-                    </div>
+                    </motion.div>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="w-40 h-10 bg-side/0 rounded-lg absolute z-2 -translate-y-10 group-hover:bg-side/50 group-hover:-translate-x-5 group-hover:-translate-y-7 hidden lg:block transition-all duration-500 ease-out"></div>
+                <motion.div
+                  variants={{
+                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)'},
+                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)'}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className="w-40 h-10 rounded-sm absolute z-2 hidden lg:block"
+                />
 
-                <div className="w-full max-w-sm h-50 bg-primary rounded-xl absolute -z-1 -translate-y-50 transition-all duration-400"></div>
-              </div>
+                <div className="w-full max-w-sm h-50 bg-primary rounded-sm absolute -z-1 -translate-y-50"></div>
+              </motion.div>
 
-              <div
-                className={`relative transition-all duration-500 group ${!isScrolled ? "lg:scale-0 lg:opacity-0" : "lg:scale-100 lg:opacity-100 delay-600"}`}
+              <motion.div
+                initial='rest'
+                whileHover='hover'
+                animate='rest'
+                className='advan-anim lg:opacity-0 relative group'
               >
-                <div className="w-30 h-30 bg-side/0 rounded-lg right-0 hidden lg:flex items-center justify-center absolute z-2 group-hover:bg-side/50 group-hover:translate-x-12 group-hover:-translate-y-12 xl:group-hover:translate-x-9 xl:group-hover:-translate-y-9 lg:scale-70 xl:scale-100 transition-all duration-500 ease-out">
-                  <img
+                <motion.div
+                  variants={{
+                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0},
+                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className="w-30 h-30 rounded-sm right-0 hidden lg:flex items-center justify-center absolute z-2 lg:scale-70 xl:scale-100"
+                >
+                  <motion.img
+                    variants={{
+                      rest: {opacity: 0},
+                      hover: {opacity: 1}
+                    }}
                     src="/img/hinabobok2.png"
                     alt="Organik"
-                    className="opacity-0 group-hover:opacity-100 transition duration-300"
                   />
-                </div>
+                </motion.div>
 
-                <div
-                  className={`lg:hover:translate-x-3 lg:hover:-translate-y-3 ${advanCard}`}
+                <motion.div
+                  variants={{
+                    rest: {x: 0, y: 0, borderColor: 'rgba(74, 171, 0)'},
+                    hover: {x: 15, y: -15, borderColor: 'rgba(77, 46, 0)'}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className={`${advanCard}`}
                 >
-                  <div className="w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-230 group-hover:scale-0 transition-all duration-400 ease-in">
+                  <motion.div
+                    variants={{
+                      rest: {scale: 2.3},
+                      hover: {scale: 0}
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: 'easeInOut',
+                      type: 'spring',
+                      stiffness: 100,
+                      damping: 15
+                    }}
+                    className="w-49 h-49 bg-side rounded-full hidden lg:flex items-center justify-center absolute z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  >
                     <img src="/img/hinabobok2.png" alt="Organik" width="50" />
-                  </div>
+                  </motion.div>
 
                   <div className="w-full h-full p-5">
-                    <div className="flex items-center gap-5 mb-5 lg:-translate-x-50 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out">
+                    <motion.div
+                      variants={{
+                        rest: {x: -190},
+                        hover: {x: 0}
+                      }}
+                      transition={{
+                        duration: 0.6,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 10
+                      }}
+                      className="flex items-center gap-5 mb-5"
+                    >
                       <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
                         <img
                           src="/img/hinabobok2.png"
@@ -898,45 +1628,60 @@ function Advantages() {
                       <h3 className="font-extrabold text-accentThrd">
                         Hina Bobok
                       </h3>
-                    </div>
+                    </motion.div>
 
-                    <div className="lg:translate-x-95 lg:group-hover:translate-x-0 transition-all duration-600 ease-in-out">
+                    <motion.div
+                      variants={{
+                        rest: {y: 100},
+                        hover: {y: 0}
+                      }}
+                      transition={{
+                        duration: 0.7,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 12
+                      }}
+                    >
                       <p className="font-medium text-slate-500 text-xs">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Reiciendis vitae deserunt beatae soluta quo autem natus
                         odio ipsum ut expedita error labore corporis pariatur
                         vel nemo, ab necessitatibus iste modi.
                       </p>
-                    </div>
+                    </motion.div>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="w-40 h-10 bg-side/0 rounded-lg absolute z-2 -translate-y-10 group-hover:bg-side/50 group-hover:-translate-x-5 group-hover:-translate-y-7 hidden lg:block transition-all duration-500 ease-out"></div>
+                <motion.div
+                  variants={{
+                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)'},
+                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)'}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  className="w-40 h-10 rounded-sm absolute z-2 hidden lg:block"
+                />
 
-                <div className="w-full max-w-sm h-50 bg-primary rounded-xl absolute -z-1 -translate-y-50 transition-all duration-400"></div>
-              </div>
+                <div className="w-full max-w-sm h-50 bg-primary rounded-sm absolute -z-1 -translate-y-50"></div>
+              </motion.div>
             </div>
           </div>
         </div>
 
         <div className="hidden lg:flex gap-3 items-center justify-center">
-          <div
-            className={`h-1 bg-primary rounded-full transition-all duration-700 ${!isScrolled ? "w-0" : "w-15"}`}
-          ></div>
-          <div
-            className={`h-2 bg-linear-to-r from-primary to-side rounded-full transition-all duration-700 ${!isScrolled ? "w-0" : "w-30"}`}
-          ></div>
-
-          <div
-            className={`w-3 h-3 bg-side rounded-full brightness-110 transition-all duration-700 ${!isScrolled ? "scale-0" : "scale-100"}`}
-          ></div>
-
-          <div
-            className={`h-2 bg-linear-to-l from-primary to-side rounded-full transition-all duration-700 ${!isScrolled ? "w-0" : "w-30"}`}
-          ></div>
-          <div
-            className={`h-1 bg-primary rounded-full transition-all duration-700 ${!isScrolled ? "w-0" : "w-15"}`}
-          ></div>
+          <div className="deco-a3a lg:opacity-0 hidden lg:block w-3 h-3 bg-side rounded-full" />
+          <div className="deco-a2a lg:opacity-0 hidden lg:block w-20 h-2 bg-side rounded-full" />
+          <div className="deco-a1a lg:opacity-0 hidden lg:block w-30 h-2 bg-side rounded-full" />
+          <div className="deco lg:opacity-0 hidden lg:block w-6 h-6 bg-side rounded-full" />
+          <div className="deco-a1b lg:opacity-0 hidden lg:block w-30 h-2 bg-side rounded-full" />
+          <div className="deco-a2b lg:opacity-0 hidden lg:block w-20 h-2 bg-side rounded-full" />
+          <div className="deco-a3b lg:opacity-0 hidden lg:block w-3 h-3 bg-side rounded-full" />
         </div>
       </section>
     </div>
