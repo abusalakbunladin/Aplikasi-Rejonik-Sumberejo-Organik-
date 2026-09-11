@@ -17,7 +17,6 @@ class Kategori(Base):
     produk = relationship("Produk", back_populates="kategori")
 
 class Produk(Base):
-    """Produk induk, misal 'Kopi Original'. Harga & stok ada di ProdukVarian."""
     __tablename__ = "produk"
     id = Column(Integer, primary_key=True, index=True)
     nama = Column(String(150), nullable=False)
@@ -27,7 +26,6 @@ class Produk(Base):
     varian = relationship("ProdukVarian", back_populates="produk", cascade="all, delete-orphan")
 
 class ProdukVarian(Base):
-    """Satu baris per kombinasi produk + berat, misal 'Kopi Original 1kg'."""
     __tablename__ = "produk_varian"
     id = Column(Integer, primary_key=True, index=True)
     produk_id = Column(Integer, ForeignKey("produk.id"), nullable=False)
@@ -58,17 +56,23 @@ class Order(Base):
     __tablename__ = "orders"
     id = Column(Integer, primary_key=True, index=True)
     nama_pembeli = Column(String(100), nullable=False)
+    no_telepon = Column(String(20), nullable=True)
+
+    provinsi = Column(String(100), nullable=True)
+    kota = Column(String(100), nullable=True)
+    kecamatan = Column(String(100), nullable=True)
+    kode_pos = Column(String(10), nullable=True)
+    nama_jalan = Column(String(255), nullable=True)
+    detail_lainnya = Column(String(255), nullable=True) 
+
     tanggal = Column(DateTime, default=lambda: datetime.now(UTC))
     total = Column(Integer, default=0)
-    uang_dibayar = Column(Integer, nullable=True)   # opsional, buat hitung kembalian
+
+    status_konfirmasi = Column(String(20), nullable=False, default="menunggu", server_default="menunggu")
+
+    ongkir = Column(Integer, nullable=False, default=0, server_default="0")
 
     items = relationship("OrderItem", back_populates="order", cascade="all, delete-orphan")
-
-    @property
-    def kembalian(self):
-        if self.uang_dibayar is None:
-            return None
-        return self.uang_dibayar - self.total
 
 class OrderItem(Base):
     __tablename__ = "order_items"

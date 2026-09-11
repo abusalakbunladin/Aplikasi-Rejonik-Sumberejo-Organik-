@@ -1,5 +1,6 @@
+import re
 from datetime import datetime
-from typing import Optional
+from typing import Literal, Optional
 from pydantic import BaseModel, Field, field_validator
 
 
@@ -107,24 +108,50 @@ class OrderItemResponse(BaseModel):
 
 class OrderCreate(BaseModel):
     nama_pembeli: str = Field(..., min_length=1, description="Nama pembeli tidak boleh kosong")
-    items: list[OrderItemCreate] = Field(..., min_length=1, description="Order harus punya minimal 1 item")
-    uang_dibayar: Optional[int] = Field(None, ge=0, description="Uang yang diberikan pelanggan, opsional (buat hitung kembalian)")
+    no_telepon: str = Field(..., min_length=1, description="Nomor telepon tidak boleh kosong")
 
-    @field_validator("nama_pembeli")
+    provinsi: str = Field(..., min_length=1)
+    kota: str = Field(..., min_length=1)
+    kecamatan: str = Field(..., min_length=1)
+    kode_pos: str = Field(..., min_length=1)
+    nama_jalan: str = Field(..., min_length=1)
+    detail_lainnya: Optional[str] = Field(None, description="Opsional, misal patokan/blok/no rumah")
+
+    items: list[OrderItemCreate] = Field(..., min_length=1, description="Order harus punya minimal 1 item")
+
+    @field_validator("nama_pembeli", "no_telepon", "provinsi", "kota", "kecamatan", "kode_pos", "nama_jalan")
     @classmethod
-    def nama_pembeli_tidak_boleh_kosong(cls, v: str) -> str:
+    def tidak_boleh_kosong(cls, v: str) -> str:
         v = v.strip()
         if not v:
-            raise ValueError("Nama pembeli tidak boleh kosong atau hanya berisi spasi")
+            raise ValueError("Field ini tidak boleh kosong atau hanya berisi spasi")
         return v
+
+    @field_validator("no_telepon")
+    @classmethod
+    def no_telepon_harus_angka(cls, v: str) -> str:
+        if not re.fullmatch(r"\+?\d{9,15}", v):
+            raise ValueError("Nomor telepon harus berupa angka (boleh diawali +), 9-15 digit, tanpa spasi atau tanda baca")
+        return v
+
+class OrderKonfirmasiUpdate(BaseModel):
+    status_konfirmasi: Literal["dikonfirmasi", "ditolak"]
+    ongkir: int = Field(0, ge=0, description="Ongkos kirim, isi 0 kalau pembeli ambil sendiri")
 
 class OrderResponse(BaseModel):
     id: int
     nama_pembeli: str
+    no_telepon: Optional[str]
+    provinsi: Optional[str]
+    kota: Optional[str]
+    kecamatan: Optional[str]
+    kode_pos: Optional[str]
+    nama_jalan: Optional[str]
+    detail_lainnya: Optional[str]
     tanggal: datetime
     total: int
-    uang_dibayar: Optional[int]
-    kembalian: Optional[int]
+    status_konfirmasi: str
+    ongkir: int
     items: list[OrderItemResponse]
     class Config:
         from_attributes = True
