@@ -35,4 +35,4 @@
 **Catatan kolom Keterangan:**
 - **Sudah di fix** — bug ditemukan, dilaporkan, dan sudah diverifikasi ulang (regression test) hasilnya sesuai harapan.
 - **Belum di fix** — bug ditemukan dan dilaporkan, tapi perbaikan dari tim backend belum tersedia/belum diverifikasi ulang.
-- **-** — bukan bug (status Pass), jadi kolom ini tidak relevan.
+- **Status Pass** Tidak ada bug sama sekali (perfect).
