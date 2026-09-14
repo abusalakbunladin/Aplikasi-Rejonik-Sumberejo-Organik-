@@ -57,6 +57,18 @@ def konfirmasi_order(
     if not order:
         raise HTTPException(status_code=404, detail="Pesanan tidak ditemukan")
 
+    if order.status_konfirmasi != "menunggu":
+        raise HTTPException(
+            status_code=400,
+            detail=f"Pesanan ini sudah berstatus '{order.status_konfirmasi}', tidak bisa dikonfirmasi/ditolak ulang",
+        )
+
+    if data.status_konfirmasi == "ditolak":
+        for item in order.items:
+            varian = db.query(ProdukVarian).filter(ProdukVarian.id == item.produk_varian_id).first()
+            if varian:
+                varian.stok += item.jumlah
+
     order.status_konfirmasi = data.status_konfirmasi
     order.ongkir = data.ongkir
     db.commit()
