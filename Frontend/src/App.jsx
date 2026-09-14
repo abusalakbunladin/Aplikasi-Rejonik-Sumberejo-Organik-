@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { hover, motion, useInView } from "motion/react";
+import { animateEffectSubject, hover, motion, useInView } from "motion/react";
 import { animate, stagger, set } from "animejs";
 
 
@@ -953,20 +953,7 @@ function Advantages() {
                   </motion.div>
 
                   <div className="w-full h-full p-5">
-                    <motion.div
-                      variants={{
-                        rest: {x: -190},
-                        hover: {x: 0}
-                      }}
-                      transition={{
-                        duration: 0.6,
-                        ease: 'easeInOut',
-                        type: 'spring',
-                        stiffness: 100,
-                        damping: 10
-                      }}
-                      className="flex items-center gap-5 mb-5"
-                    >
+                    <div className="flex items-center gap-5 mb-5">
                       <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
                         <img
                           src="/img/hinabobok2.png"
@@ -978,28 +965,16 @@ function Advantages() {
                       <h3 className="font-extrabold text-accentThrd">
                         Hina Bobok
                       </h3>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                      variants={{
-                        rest: {y: 100},
-                        hover: {y: 0}
-                      }}
-                      transition={{
-                        duration: 0.7,
-                        ease: 'easeInOut',
-                        type: 'spring',
-                        stiffness: 100,
-                        damping: 12
-                      }}
-                    >
+                    <div>
                       <p className="font-medium text-slate-500 text-xs">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Reiciendis vitae deserunt beatae soluta quo autem natus
                         odio ipsum ut expedita error labore corporis pariatur
                         vel nemo, ab necessitatibus iste modi.
                       </p>
-                    </motion.div>
+                    </div>
                   </div>
                 </motion.div>
 
@@ -1083,20 +1058,7 @@ function Advantages() {
                   </motion.div>
 
                   <div className="w-full h-full p-5">
-                    <motion.div
-                      variants={{
-                        rest: {x: -190},
-                        hover: {x: 0}
-                      }}
-                      transition={{
-                        duration: 0.6,
-                        ease: 'easeInOut',
-                        type: 'spring',
-                        stiffness: 100,
-                        damping: 10
-                      }}
-                      className="flex items-center gap-5 mb-5"
-                    >
+                    <div className="flex items-center gap-5 mb-5">
                       <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
                         <img
                           src="/img/hinabobok2.png"
@@ -1108,28 +1070,16 @@ function Advantages() {
                       <h3 className="font-extrabold text-accentThrd">
                         Hina Bobok
                       </h3>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                      variants={{
-                        rest: {y: 100},
-                        hover: {y: 0}
-                      }}
-                      transition={{
-                        duration: 0.7,
-                        ease: 'easeInOut',
-                        type: 'spring',
-                        stiffness: 100,
-                        damping: 12
-                      }}
-                    >
+                    <div>
                       <p className="font-medium text-slate-500 text-xs">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Reiciendis vitae deserunt beatae soluta quo autem natus
                         odio ipsum ut expedita error labore corporis pariatur
                         vel nemo, ab necessitatibus iste modi.
                       </p>
-                    </motion.div>
+                    </div>
                   </div>
                 </motion.div>
 
@@ -1213,20 +1163,7 @@ function Advantages() {
                   </motion.div>
 
                   <div className="w-full h-full p-5">
-                    <motion.div
-                      variants={{
-                        rest: {x: -190},
-                        hover: {x: 0}
-                      }}
-                      transition={{
-                        duration: 0.6,
-                        ease: 'easeInOut',
-                        type: 'spring',
-                        stiffness: 100,
-                        damping: 10
-                      }}
-                      className="flex items-center gap-5 mb-5"
-                    >
+                    <div className="flex items-center gap-5 mb-5">
                       <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
                         <img
                           src="/img/hinabobok2.png"
@@ -1238,28 +1175,16 @@ function Advantages() {
                       <h3 className="font-extrabold text-accentThrd">
                         Hina Bobok
                       </h3>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                      variants={{
-                        rest: {y: 100},
-                        hover: {y: 0}
-                      }}
-                      transition={{
-                        duration: 0.7,
-                        ease: 'easeInOut',
-                        type: 'spring',
-                        stiffness: 100,
-                        damping: 12
-                      }}
-                    >
+                    <div>
                       <p className="font-medium text-slate-500 text-xs">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Reiciendis vitae deserunt beatae soluta quo autem natus
                         odio ipsum ut expedita error labore corporis pariatur
                         vel nemo, ab necessitatibus iste modi.
                       </p>
-                    </motion.div>
+                    </div>
                   </div>
                 </motion.div>
 
@@ -1343,20 +1268,7 @@ function Advantages() {
                   </motion.div>
 
                   <div className="w-full h-full p-5">
-                    <motion.div
-                      variants={{
-                        rest: {x: -190},
-                        hover: {x: 0}
-                      }}
-                      transition={{
-                        duration: 0.6,
-                        ease: 'easeInOut',
-                        type: 'spring',
-                        stiffness: 100,
-                        damping: 10
-                      }}
-                      className="flex items-center gap-5 mb-5"
-                    >
+                    <div className="flex items-center gap-5 mb-5">
                       <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
                         <img
                           src="/img/hinabobok2.png"
@@ -1368,28 +1280,16 @@ function Advantages() {
                       <h3 className="font-extrabold text-accentThrd">
                         Hina Bobok
                       </h3>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                      variants={{
-                        rest: {y: 100},
-                        hover: {y: 0}
-                      }}
-                      transition={{
-                        duration: 0.7,
-                        ease: 'easeInOut',
-                        type: 'spring',
-                        stiffness: 100,
-                        damping: 12
-                      }}
-                    >
+                    <div>
                       <p className="font-medium text-slate-500 text-xs">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Reiciendis vitae deserunt beatae soluta quo autem natus
                         odio ipsum ut expedita error labore corporis pariatur
                         vel nemo, ab necessitatibus iste modi.
                       </p>
-                    </motion.div>
+                    </div>
                   </div>
                 </motion.div>
 
@@ -1473,20 +1373,7 @@ function Advantages() {
                   </motion.div>
 
                   <div className="w-full h-full p-5">
-                    <motion.div
-                      variants={{
-                        rest: {x: -190},
-                        hover: {x: 0}
-                      }}
-                      transition={{
-                        duration: 0.6,
-                        ease: 'easeInOut',
-                        type: 'spring',
-                        stiffness: 100,
-                        damping: 10
-                      }}
-                      className="flex items-center gap-5 mb-5"
-                    >
+                    <div className="flex items-center gap-5 mb-5">
                       <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
                         <img
                           src="/img/hinabobok2.png"
@@ -1498,28 +1385,16 @@ function Advantages() {
                       <h3 className="font-extrabold text-accentThrd">
                         Hina Bobok
                       </h3>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                      variants={{
-                        rest: {y: 100},
-                        hover: {y: 0}
-                      }}
-                      transition={{
-                        duration: 0.7,
-                        ease: 'easeInOut',
-                        type: 'spring',
-                        stiffness: 100,
-                        damping: 12
-                      }}
-                    >
+                    <div>
                       <p className="font-medium text-slate-500 text-xs">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Reiciendis vitae deserunt beatae soluta quo autem natus
                         odio ipsum ut expedita error labore corporis pariatur
                         vel nemo, ab necessitatibus iste modi.
                       </p>
-                    </motion.div>
+                    </div>
                   </div>
                 </motion.div>
 
@@ -1603,20 +1478,7 @@ function Advantages() {
                   </motion.div>
 
                   <div className="w-full h-full p-5">
-                    <motion.div
-                      variants={{
-                        rest: {x: -190},
-                        hover: {x: 0}
-                      }}
-                      transition={{
-                        duration: 0.6,
-                        ease: 'easeInOut',
-                        type: 'spring',
-                        stiffness: 100,
-                        damping: 10
-                      }}
-                      className="flex items-center gap-5 mb-5"
-                    >
+                    <div className="flex items-center gap-5 mb-5">
                       <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
                         <img
                           src="/img/hinabobok2.png"
@@ -1628,28 +1490,16 @@ function Advantages() {
                       <h3 className="font-extrabold text-accentThrd">
                         Hina Bobok
                       </h3>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                      variants={{
-                        rest: {y: 100},
-                        hover: {y: 0}
-                      }}
-                      transition={{
-                        duration: 0.7,
-                        ease: 'easeInOut',
-                        type: 'spring',
-                        stiffness: 100,
-                        damping: 12
-                      }}
-                    >
+                    <div>
                       <p className="font-medium text-slate-500 text-xs">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Reiciendis vitae deserunt beatae soluta quo autem natus
                         odio ipsum ut expedita error labore corporis pariatur
                         vel nemo, ab necessitatibus iste modi.
                       </p>
-                    </motion.div>
+                    </div>
                   </div>
                 </motion.div>
 
@@ -1691,37 +1541,234 @@ function Advantages() {
 
 // About //
 function About() {
-  const isScrolled = useScrollTrigger("tentang", 300);
+  const sectionRef = useRef(null)
+
+  const isInView = useInView(sectionRef, {once: true, amount: 0.8})
+
+  useEffect(() => {
+    if(!sectionRef.current) return
+    if(!isInView || window.innerWidth < 1024) return
+
+      // Title //
+      animate(sectionRef.current.querySelector('.s-title'), {
+        opacity: [0, 1],
+        scaleX: [0, 1],
+        delay: 300,
+        duration: 600,
+        ease: 'outElastic(1,1)'
+      })
+
+      animate(sectionRef.current.querySelectorAll('.s-t-deco'), {
+        opacity: [0, 1],
+        scaleY: [0, 1],
+        scaleX: [2, 1],
+        delay: 600,
+        duration: 700,
+        ease: 'outElastic(1.19,0.66)'
+      })
+
+      animate(sectionRef.current.querySelector('.s-t-main'), {
+        opacity: [0, 1],
+        scaleX: [0 ,1],
+        scaleY: [1.2, 1],
+        delay: 800,
+        duration: 600,
+        ease: 'outElastic(1,1)'
+      })
+
+      animate(sectionRef.current.querySelectorAll('.s-t-m-deco'), {
+        opacity: [0, 1],
+        scaleX: [0, 1],
+        delay: 1200,
+        duration: 600,
+        ease: 'outElastic(1,1)'
+      })
+
+      animate(sectionRef.current.querySelector('.deco-p1'), {
+        x: [-100, 0],
+        delay: 1500,
+        duration: 600,
+        ease: 'outBounce'
+      })
+      animate(sectionRef.current.querySelector('.deco-p2'), {
+        x: [100, 0],
+        delay: 1500,
+        duration: 600,
+        ease: 'outBounce'
+      })
+      // Title //
+
+      // History //
+      // Title //
+      animate(sectionRef.current.querySelector('.h-title'), {
+        opacity: [0, 1],
+        scaleX: [0, 1],
+        delay: 1600,
+        duration: 600,
+        ease: 'outElastic(1,0.46)',
+
+        onComplete: () => {
+          animate(sectionRef.current.querySelector('.h-deco'), {
+            scaleX: [1, 0],
+            duration: 800,
+            ease: 'inElastic(1,0.36)',
+
+            onComplete: () => {
+              animate(sectionRef.current.querySelector('.h-t-deco'), {
+                opacity: [0, 1],
+                scaleX: [0, 1],
+                delay: 200,
+                duration: 700,
+                ease: 'outElastic(1.12,0.46)',
+
+                onComplete: () => {
+                  animate(sectionRef.current.querySelectorAll('.h-t-deco2'), {
+                    opacity: [0, 1],
+                    scaleY: [2, 1],
+                    scaleX: [0, 1],
+                    duration: 600,
+                    ease: 'outElastic(1,1)'
+                  })
+                }
+              })
+            }
+          })
+        }
+      })
+      // Title //
+
+      // Content //
+      animate(sectionRef.current.querySelector('.h-content'), {
+        opacity: [0, 1],
+        scaleY: [1.3, 1],
+        scaleX: [0, 1],
+        delay: 2800,
+        duration: 700,
+        ease: 'outElastic(1,1)',
+
+        onComplete: () => {
+          animate(sectionRef.current.querySelector('.h-p-box'), {
+            x: [0, 7],
+            y: [0, -7],
+            duration: 700,
+            ease: 'inOutElastic(1.81,0.93)'
+          })
+        }
+      })
+
+      animate(sectionRef.current.querySelector('.h-parag'), {
+        y: [190, 0],
+        delay: 4000,
+        duration: 700,
+        ease: 'outElastic(1,1)',
+
+        onComplete: () => {
+          animate(sectionRef.current.querySelectorAll('.h-c-deco1'), {
+            opacity: [0, 1],
+            scaleY: [1.5, 1],
+            scaleX: [0, 1],
+            delay: stagger(400),
+            duration: 700,
+            ease: 'outElastic(2,1.18)'
+          })
+          animate(sectionRef.current.querySelectorAll('.h-c-deco2'), {
+            opacity: [0, 1],
+            scaleY: [1.5, 1],
+            scaleX: [0, 1],
+            delay: stagger(400, {start: 700}),
+            duration: 700,
+            ease: 'outElastic(2,1.18)'
+          })
+        }
+      })
+      // Content //
+
+      // Image //
+      animate(sectionRef.current.querySelector('.swh-img'), {
+        opacity: [0, 1],
+        scaleX: [0, 1],
+        scaleY: [2, 1],
+        delay: 3000,
+        duration: 700,
+        ease: 'outElastic(1,1)',
+        
+        onComplete: () => {
+          animate(sectionRef.current.querySelectorAll('.h-image-deco1'), {
+            opacity: [0, 1],
+            scaleX: [2, 1],
+            scaleY: [0, 1],
+            duration: 700,
+            ease: 'outElastic(1,1)',
+
+            onComplete: () => {
+              animate(sectionRef.current.querySelectorAll('.h-image-deco2'), {
+                opacity: [0, 1],
+                scaleX: [2, 1],
+                scaleY: [0, 1],
+                duration: 700,
+                ease: 'outElastic(1,1)'
+              })
+            }
+          })
+          animate(sectionRef.current.querySelectorAll('.h-img-deco1'), {
+            opacity: [0, 1],
+            scaleX: [1.5, 1],
+            scaleY: [0, 1],
+            delay: stagger(300),
+            duration: 700,
+            ease: 'outElastic(2,1.78)'
+          })
+          animate(sectionRef.current.querySelectorAll('.h-img-deco2'), {
+            opacity: [0, 1],
+            scaleX: [0, 1],
+            scaleY: [2, 1],
+            delay: stagger(300, {start: 600}),
+            duration: 700,
+            ease: 'outElastic(2,1.78)'
+          })
+          animate(sectionRef.current.querySelectorAll('.h-img-deco3'), {
+            opacity: [0, 1],
+            scaleX: [1.5, 1],
+            scaleY: [0, 1],
+            delay: stagger(300, {start: 1200}),
+            duration: 700,
+            ease: 'outElastic(2,1.78)'
+          })
+        }
+      })
+      // Image //
+      // History //
+  })
 
   return (
-    <div className="about">
+    <div className="about" ref={sectionRef}>
       <section id="tentang" className="pt-36 pb-32">
         <div className="container mx-auto">
           <div className="w-full px-4">
             <div className="mx-auto mb-30 select-none">
               <div className="flex gap-3 items-center justify-center mb-3">
-                <div className="w-5 h-0.5 bg-side rounded-lg"></div>
-                <h3 className="font-light text-side text-sm lg:text-lg uppercase">
+                <div className="s-t-deco lg:opacity-0 w-5 h-0.5 bg-side rounded-lg"></div>
+                <h3 className="s-title lg:opacity-0 font-light text-side text-sm lg:text-lg uppercase">
                   About Us
                 </h3>
-                <div className="w-5 h-0.5 bg-side rounded-lg"></div>
+                <div className="s-t-deco lg:opacity-0 w-5 h-0.5 bg-side rounded-lg"></div>
               </div>
 
               <div className="flex gap-7 items-center justify-center">
                 <div className="hidden md:block">
-                  <div className="flex gap-2">
+                  <div className="s-t-m-deco deco-p1 lg:opacity-0 flex gap-2">
                     <div className="w-2.5 h-1 bg-side rounded-lg"></div>
                     <div className="w-5 h-1 bg-side rounded-lg"></div>
                     <div className="w-10 h-1 bg-side rounded-lg"></div>
                   </div>
                 </div>
 
-                <h2 className="text-center max-w-lg lg:max-w-xl font-extrabold text-quaternary text-3xl lg:text-5xl">
+                <h2 className="s-t-main lg:opacity-0 text-center max-w-lg lg:max-w-xl font-extrabold text-quaternary text-3xl lg:text-5xl">
                   Kelompok Tani Bahagia
                 </h2>
 
                 <div className="hidden md:block">
-                  <div className="flex gap-2">
+                  <div className="s-t-m-deco deco-p2 lg:opacity-0 flex gap-2">
                     <div className="w-10 h-1 bg-side rounded-lg"></div>
                     <div className="w-5 h-1 bg-side rounded-lg"></div>
                     <div className="w-2.5 h-1 bg-side rounded-lg"></div>
@@ -1730,117 +1777,74 @@ function About() {
               </div>
             </div>
 
-            <div className="flex flex-row gap-5 items-center justify-center">
+            <div className="flex flex-row gap-10 items-center justify-center">
               <div className="mx-auto">
-                <div>
-                  <h2 className="font-extrabold text-accentThrd text-3xl uppercase">
-                    Sejarah
-                  </h2>
+                <div className="h-title lg:opacity-0 w-fit relative mb-10">
+
+                  <div className="w-fit relative">
+                    <div className="h-t-deco2 lg:opacity-0 hidden lg:block w-20 h-10 bg-primary/50 rounded-sm absolute -z-1 -top-1/5 -left-1/7"/>
+
+                    <h2 className="font-extrabold text-accentThrd text-5xl uppercase">
+                      Sejarah
+                    </h2>
+
+                    <div className="h-t-deco2 lg:opacity-0 hidden lg:block w-30 h-10 bg-primary/50 rounded-sm absolute -z-1 -bottom-1/5 -right-1/7"/>
+
+                    <div className="h-t-deco lg:opacity-0 w-full h-1 bg-side rounded-full"/>
+                  </div>
+
+                  <div className="h-deco w-full h-13 top-0 bg-side rounded-sm absolute hidden lg:block"/>
                 </div>
 
-                <div className="max-w-2xl">
-                  <p className="font-medium text-slate-500 text-sm">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea,
-                    nemo incidunt qui reprehenderit atque quia accusantium animi
-                    ipsam consequuntur voluptatem fuga dolorum hic quibusdam?
-                    Omnis enim praesentium assumenda sit. Eaque cum voluptatum
-                    consequatur nemo aliquam quibusdam tempora! Delectus eum,
-                    nihil, ipsa explicabo suscipit exercitationem, fuga veniam
-                    possimus natus magni vel voluptatum quis commodi ducimus.
-                    Officia, deleniti amet. Ad temporibus iusto est pariatur
-                    magnam nihil, quod, recusandae obcaecati optio laboriosam
-                    veniam, consectetur dicta aspernatur ducimus eaque magni
-                    praesentium et consequatur? Dolorum unde maxime eveniet
-                    neque vel, itaque tempore eaque ab ex ipsam cupiditate natus
-                    quam animi vero modi est at labore!
-                  </p>
+                <div className="h-content lg:opacity-0 max-w-lg lg:max-w-2xl relative h-fit">
+                  <div className="h-c-deco1 lg:opacity-0 w-40 h-50 bg-side/50 rounded-sm absolute -z-1 -top-1/8 -left-1/7 hidden lg:block"/>
+                  <div className="h-c-deco1 lg:opacity-0 w-40 h-50 bg-accentThrd/50 rounded-sm absolute -z-2 -bottom-1/8 -right-1/12 hidden lg:block"/>
+                  <div className="h-c-deco2 lg:opacity-0 w-40 h-2 bg-side/50 rounded-sm absolute -z-1 -top-1/9 left-1/2 hidden lg:block"/>
+                  <div className="h-c-deco2 lg:opacity-0 w-40 h-2 bg-primary/50 rounded-sm absolute -z-1 -bottom-1/9 right-1/2 hidden lg:block"/>
+
+                  <div className="h-p-box bg-tertiary rounded-sm shadow-lg border-accentThrd border-2 p-3 overflow-hidden">
+                    <p className="h-parag font-medium text-quaternary text-xs lg:text-sm text-justify">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea,
+                      nemo incidunt qui reprehenderit atque quia accusantium animi
+                      ipsam consequuntur voluptatem fuga dolorum hic quibusdam?
+                      Omnis enim praesentium assumenda sit. Eaque cum voluptatum
+                      consequatur nemo aliquam quibusdam tempora! Delectus eum,
+                      nihil, ipsa explicabo suscipit exercitationem, fuga veniam
+                      possimus natus magni vel voluptatum quis commodi ducimus.
+                      Officia, deleniti amet. Ad temporibus iusto est pariatur
+                      magnam nihil, quod, recusandae obcaecati optio laboriosam
+                      veniam, consectetur dicta aspernatur ducimus eaque magni
+                      praesentium et consequatur? Dolorum unde maxime eveniet
+                      neque vel, itaque tempore eaque ab ex ipsam cupiditate natus
+                      quam animi vero modi est at labore!
+                    </p>
+                  </div>
+
+                  <div className="w-full h-full bg-primary rounded-sm absolute -z-2 top-0"/>
                 </div>
               </div>
 
               <div className="mx-auto">
                 <div className="relative">
-                  <div className="grid grid-cols-4 grid-rows-4 gap-4 h-90">
-                    <motion.div
-                      initial={{ scale: 0, opacity: 0 }}
-                      whileInView={{ scale: 1, opacity: 1 }}
-                      viewport={isScrolled}
-                      transition={{
-                        type: "spring",
-                        stiffness: 100,
-                        damping: 15,
-                        ease: "easeOut",
-                      }}
-                      className="bg-white rounded-xl overflow-hidden row-span-4 col-span-2"
-                    >
-                      <img
-                        src="/img/imagetest.jpeg"
-                        alt=""
-                        className="w-full h-full object-cover object-center"
-                      />
-                    </motion.div>
+                  <div className="swh-img lg:opacity-0 w-full max-w-2xl bg-white rounded-sm overflow-hidden row-span-4 col-span-2 select-none relative">
+                    <img
+                      src="/about/sawah.jpg"
+                      alt="Sawah"
+                      className="w-full h-full object-cover object-center"
+                    />
 
-                    <motion.div
-                      initial={{ scale: 0, opacity: 0 }}
-                      whileInView={{ scale: 1, opacity: 1 }}
-                      viewport={isScrolled}
-                      transition={{
-                        type: "spring",
-                        stiffness: 100,
-                        damping: 15,
-                        ease: "easeOut",
-                        delay: 0.1,
-                      }}
-                      className="bg-white rounded-xl overflow-hidden row-span-2 col-span-2"
-                    >
-                      <img
-                        src="/img/imagetest.jpeg"
-                        alt=""
-                        className="w-full h-full object-cover object-center"
-                      />
-                    </motion.div>
-
-                    <motion.div
-                      initial={{ scale: 0, opacity: 0 }}
-                      whileInView={{ scale: 1, opacity: 1 }}
-                      viewport={isScrolled}
-                      transition={{
-                        type: "spring",
-                        stiffness: 100,
-                        damping: 15,
-                        ease: "easeOut",
-                        delay: 0.2,
-                      }}
-                      className="bg-white rounded-xl overflow-hidden row-span-2"
-                    >
-                      <img
-                        src="/img/imagetest.jpeg"
-                        alt=""
-                        className="w-full h-full object-cover object-center"
-                      />
-                    </motion.div>
-
-                    <motion.div
-                      initial={{ scale: 0, opacity: 0 }}
-                      whileInView={{ scale: 1, opacity: 1 }}
-                      viewport={isScrolled}
-                      transition={{
-                        type: "spring",
-                        stiffness: 100,
-                        damping: 15,
-                        ease: "easeOut",
-                        delay: 0.3,
-                      }}
-                      className="bg-white rounded-xl overflow-hidden row-span-2"
-                    >
-                      <img
-                        src="/img/imagetest.jpeg"
-                        alt=""
-                        className="w-full h-full object-cover object-center"
-                      />
-                    </motion.div>
+                    <div className="h-image-deco2 lg:opacity-0 w-80 h-2 bg-white/70 rounded-full absolute z-2 top-5 left-1/5"/>
+                    <div className="h-image-deco2 lg:opacity-0 w-80 h-2 bg-white/70 rounded-full absolute z-2 bottom-5 right-1/5"/>
+                    <div className="h-image-deco1 lg:opacity-0 w-10 h-10 bg-white/70 rounded-sm absolute z-2 top-5 right-5"/>
+                    <div className="h-image-deco1 lg:opacity-0 w-10 h-10 bg-white/70 rounded-sm absolute z-2 bottom-5 left-5"/>
                   </div>
 
-                  <div className="w-full h-90 bg-linear-to-tr from-primary to-side rounded-xl absolute -z-1 top-0 scale-105 -rotate-3"></div>
+                  <div className="h-img-deco1 lg:opacity-0 w-80 h-60 bg-linear-to-tr from-primary/70 to-side/70 rounded-sm absolute -z-1 -top-1/7 -left-1/8"/>
+                  <div className="h-img-deco1 lg:opacity-0 w-20 h-20 bg-side/70 rounded-sm absolute -z-1 -top-1/9 left-1/2"/>
+                  <div className="h-img-deco2 lg:opacity-0 w-40 h-90 bg-primary/70 rounded-sm absolute -z-1 -top-1/7 -right-1/10"/>
+                  <div className="h-img-deco2 lg:opacity-0 w-80 h-70 bg-tertiary/70 rounded-sm absolute -z-1 -bottom-1/7 left-1/8"/>
+                  <div className="h-img-deco3 lg:opacity-0 w-80 h-90 bg-linear-to-tr from-side/70 to-primary/70 rounded-sm absolute -z-1 -bottom-1/9 left-1/2"/>
+                  <div className="h-img-deco3 lg:opacity-0 w-20 h-20 bg-side/70 rounded-sm absolute -z-1 -bottom-1/9 -left-1/12"/>
                 </div>
               </div>
             </div>
