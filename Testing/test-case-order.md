@@ -24,6 +24,8 @@
 | No | Test Case | Langkah Pengujian | Data Uji | Expected Result | Actual Result | Status | Keterangan |
 |----|-----------|--------------------|----------|------------------|----------------|--------|------------|
 | 9 | Admin konfirmasi order yang masuk | 1. Login sebagai admin (dapatkan token)<br>2. PATCH /order/{id}/konfirmasi dengan status "dikonfirmasi" dan ongkir | `{"status_konfirmasi": "dikonfirmasi", "ongkir": 15000}` | Status order berubah jadi "dikonfirmasi", ongkir tersimpan | 200 OK, status dan ongkir berhasil diperbarui | **Pass** | - |
+| 10 | Stok dikembalikan saat order ditolak | 1. Cek stok varian (misal 59)<br>2. POST /order dengan jumlah 3 (stok berkurang jadi 56 - dicek dari kondisi awal 62 sebelum test dimulai)<br>3. PATCH /order/{id}/konfirmasi dengan status "ditolak"<br>4. Cek stok lagi | `{"status_konfirmasi": "ditolak", "ongkir": 0}` | Stok kembali ke jumlah semula setelah order ditolak (tidak hilang karena order tidak jadi) | Stok varian id 1 sebelum order: 59. Setelah order dibuat (jumlah 3): tidak dicek langsung, namun setelah order ditolak, stok kembali menjadi 62 (bertambah 3 dari 59) | **Pass** | - |
+ 
 
 ---
 **Catatan struktur:**

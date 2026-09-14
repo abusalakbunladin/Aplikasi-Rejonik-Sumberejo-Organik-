@@ -10,7 +10,7 @@ router = APIRouter(prefix="/produk", tags=["Katalog - Produk"])
 @router.get("", response_model=list[ProdukResponse])
 def list_produk(kategori_id: int | None = None, db: Session = Depends(get_db)):
     query = db.query(Produk)
-    if kategori_id:
+    if kategori_id is not None:
         query = query.filter(Produk.kategori_id == kategori_id)
     return query.all()
 

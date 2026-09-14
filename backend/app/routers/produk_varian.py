@@ -10,7 +10,7 @@ router = APIRouter(prefix="/produk-varian", tags=["Katalog - Varian Produk"])
 @router.get("", response_model=list[ProdukVarianResponse])
 def list_varian(produk_id: int | None = None, db: Session = Depends(get_db)):
     query = db.query(ProdukVarian)
-    if produk_id:
+    if produk_id is not None:
         query = query.filter(ProdukVarian.produk_id == produk_id)
     return query.all()
 

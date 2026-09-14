@@ -36,7 +36,7 @@ class ProdukVarian(Base):
     produk = relationship("Produk", back_populates="varian")
 
 class Pemasok(Base):
-    __tablename__ = "pemasuk"
+    __tablename__ = "pemasok"
     id = Column(Integer, primary_key=True, index=True)
     nama = Column(String(150), nullable=False)
     kontak = Column(String(100), nullable=False)
@@ -45,7 +45,7 @@ class Pasokan(Base):
     __tablename__ = "pasokan"
     id = Column(Integer, primary_key=True, index=True)
     produk_varian_id = Column(Integer, ForeignKey("produk_varian.id"), nullable=False)
-    pemasok_id = Column(Integer, ForeignKey("pemasuk.id"), nullable=False)
+    pemasok_id = Column(Integer, ForeignKey("pemasok.id"), nullable=False)
     jumlah = Column(Integer, nullable=False)
     tanggal = Column(DateTime, default=lambda: datetime.now(UTC))
 
