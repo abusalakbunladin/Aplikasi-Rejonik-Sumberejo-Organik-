@@ -156,6 +156,8 @@ class OrderResponse(BaseModel):
     class Config:
         from_attributes = True
 
+class OrderCreateResponse(OrderResponse):
+    wa_link: str
 
 class PenyesuaianStokCreate(BaseModel):
     produk_varian_id: int
