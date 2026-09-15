@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { animateEffectSubject, hover, motion, useInView } from "motion/react";
 import { animate, stagger, set } from "animejs";
+import { div } from "motion/react-client";
 
 
 export default function App() {
@@ -10,6 +11,7 @@ export default function App() {
       <Product />
       <Advantages />
       <About />
+      <Sertificate />
     </div>
   );
 }
@@ -1815,7 +1817,7 @@ function About() {
                   <div className="h-c-deco2 lg:opacity-0 w-40 h-2 bg-primary/50 rounded-sm absolute -z-1 -bottom-1/9 right-1/2 hidden lg:block"/>
 
                   <div className="h-p-box bg-tertiary rounded-sm shadow-lg border-accentThrd border-2 p-3 overflow-hidden">
-                    <p className="h-parag font-medium text-quaternary text-xs lg:text-sm text-justify">
+                    <p className="h-parag font-medium text-quaternary text-xs lg:text-sm text-justify select-none">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea,
                       nemo incidunt qui reprehenderit atque quia accusantium animi
                       ipsam consequuntur voluptatem fuga dolorum hic quibusdam?
@@ -1867,3 +1869,439 @@ function About() {
   );
 }
 // About //
+
+// Sertificate //
+function Sertificate() {
+  const sectionRef = useRef(null)
+
+  const isInView = useInView(sectionRef, {once: true, amount: 0.8})
+
+  useEffect(() => {
+    if(!sectionRef.current) return
+    if(!isInView || window.innerWidth < 1024) return
+
+      // Title //
+      animate(sectionRef.current.querySelector('.s-title'), {
+        opacity: [0, 1],
+        scaleX: [0, 1],
+        delay: 300,
+        duration: 600,
+        ease: 'outElastic(1,1)'
+      })
+
+      animate(sectionRef.current.querySelectorAll('.s-t-deco'), {
+        opacity: [0, 1],
+        scaleY: [0, 1],
+        scaleX: [2, 1],
+        delay: 600,
+        duration: 700,
+        ease: 'outElastic(1.19,0.66)'
+      })
+
+      animate(sectionRef.current.querySelector('.s-t-main'), {
+        opacity: [0, 1],
+        scaleX: [0 ,1],
+        scaleY: [1.2, 1],
+        delay: 800,
+        duration: 600,
+        ease: 'outElastic(1,1)'
+      })
+
+      animate(sectionRef.current.querySelectorAll('.s-t-m-deco'), {
+        opacity: [0, 1],
+        scaleX: [0, 1],
+        delay: 1200,
+        duration: 600,
+        ease: 'outElastic(1,1)'
+      })
+
+      animate(sectionRef.current.querySelector('.deco-p1'), {
+        x: [-100, 0],
+        delay: 1500,
+        duration: 600,
+        ease: 'outBounce'
+      })
+      animate(sectionRef.current.querySelector('.deco-p2'), {
+        x: [100, 0],
+        delay: 1500,
+        duration: 600,
+        ease: 'outBounce'
+      })
+      // Title //
+  })
+
+  return (
+    <div className="sertificate" ref={sectionRef}>
+      <section id="sertifikat" className="pt-36 pb-32">
+        <div className="container mx-auto">
+          <div className="w-full px-4">
+            <div className="mx-auto mb-30 select-none">
+              <div className="flex gap-3 items-center justify-center mb-3">
+                <div className="s-t-deco lg:opacity-0 w-5 h-0.5 bg-side rounded-lg"></div>
+                <h3 className="s-title lg:opacity-0 font-light text-side text-sm lg:text-lg uppercase">
+                  Sertificate
+                </h3>
+                <div className="s-t-deco lg:opacity-0 w-5 h-0.5 bg-side rounded-lg"></div>
+              </div>
+
+              <div className="flex gap-7 items-center justify-center">
+                <div className="hidden md:block">
+                  <div className="s-t-m-deco deco-p1 lg:opacity-0 flex gap-2">
+                    <div className="w-2.5 h-1 bg-side rounded-lg"></div>
+                    <div className="w-5 h-1 bg-side rounded-lg"></div>
+                    <div className="w-10 h-1 bg-side rounded-lg"></div>
+                  </div>
+                </div>
+
+                <h2 className="s-t-main lg:opacity-0 text-center max-w-lg lg:max-w-xl font-extrabold text-quaternary text-3xl lg:text-5xl">
+                  Sertifikasi Rejonik
+                </h2>
+
+                <div className="hidden md:block">
+                  <div className="s-t-m-deco deco-p2 lg:opacity-0 flex gap-2">
+                    <div className="w-10 h-1 bg-side rounded-lg"></div>
+                    <div className="w-5 h-1 bg-side rounded-lg"></div>
+                    <div className="w-2.5 h-1 bg-side rounded-lg"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-15 justify-center">
+            <motion.div
+              initial='rest'
+              whileHover='hover'
+              animate='rest'
+              className="s-content relative"
+            >
+              <motion.div
+                variants={{
+                  rest: {x:0 ,y: 0, backgroundColor: 'rgba(0, 0, 0, 0)', scaleX: 0, scaleY: 1.5},
+                  hover: {x: 33 ,y: -33, backgroundColor: 'rgba(74, 171, 0, 0.7)', scaleX: 1, scaleY: 1}
+                }}
+                transition={{
+                  duration: 0.4,
+                  ease: 'easeInOut',
+                  type: 'spring',
+                  stiffness: 150,
+                  damping: 10
+                }}
+                className="w-25 h-25 rounded-sm select-none flex justify-center items-center absolute z-1 right-0"
+              >
+                <motion.img
+                  variants={{
+                    rest: {opacity: 0, scaleX: 0, scaleY: 1.5},
+                    hover: {opacity: 1, scaleX: 1, scaleY: 1}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 150,
+                    damping: 15
+                  }}
+                  src="/sertificate/Logo SNI.svg" alt="SNI" width='50'
+                />
+              </motion.div>
+
+              <motion.div
+                variants={{
+                  rest: {x: 0, y: 0, borderColor: 'rgba(74, 171, 0)'},
+                  hover: {x: 10, y: -10, borderColor: 'rgba(77, 46, 0)'}
+                }}
+                transition={{
+                  duration: 0.3,
+                  ease: 'easeInOut',
+                  type: 'spring',
+                  stiffness: 150,
+                  damping: 10
+                }}
+                className="w-full max-w-sm h-55 bg-tertiary rounded-sm border-accentThrd border-2 shadow-lg relative overflow-hidden"
+              >
+                <motion.div
+                  variants={{
+                    rest: {scale: 2.4},
+                    hover: {scale: 0}
+                  }}
+                  transition={{
+                    duration: 0.2,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 150,
+                    damping: 15
+                  }}
+                  className="hidden lg:flex justify-center items-center w-54 h-54 bg-side rounded-full absolute left-1/2 -translate-x-1/2"
+                >
+                  <img src="/sertificate/Logo SNI.svg" alt="SNI" width='30' />
+                </motion.div>
+
+                <div className="p-5 mx-auto flex flex-col gap-5">
+                  <div className="flex gap-5 items-center select-none">
+                    <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
+                      <img src="/sertificate/Logo SNI.svg" alt="SNI" width='30' />
+                    </div>
+
+                    <h3 className="font-bold text-accentThrd text-xl">SNI</h3>
+                  </div>
+
+                  <div className="">
+                    <p className="font-medium text-quaternary text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut ipsam aspernatur ex alias sequi. Ab recusandae reiciendis eveniet. Repudiandae, laboriosam.</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                variants={{
+                  rest: {x: 5, y: -5, backgroundColor: 'rgba(0, 0, 0, 0)', scaleX: 0, scaleY: 1.5},
+                  hover: {x: -16, y: 16, backgroundColor: 'rgba(74, 171, 0, 0.8)', scaleX: 1, scaleY: 1}
+                }}
+                transition={{
+                  duration: 0.4,
+                  ease: 'easeInOut',
+                  type: 'spring',
+                  stiffness: 150,
+                  damping: 10
+                }}
+                className="rounded-sm p-1 px-2 absolute z-1 bottom-0"
+              >
+                <motion.p
+                  variants={{
+                    rest: {opacity: 0},
+                    hover: {opacity: 1}
+                  }}
+                  className="font-bold text-white text-3xl uppercase italic"
+                >
+                  Certified
+                </motion.p>
+              </motion.div>
+
+              <div className="w-full h-full bg-primary rounded-sm absolute -z-1 top-0"/>
+            </motion.div>
+
+            <motion.div
+              initial='rest'
+              whileHover='hover'
+              animate='rest'
+              className="s-content relative"
+            >
+              <motion.div
+                variants={{
+                  rest: {x:0 ,y: 0, backgroundColor: 'rgba(0, 0, 0, 0)', scaleX: 0, scaleY: 1.5},
+                  hover: {x: 33 ,y: -33, backgroundColor: 'rgba(74, 171, 0, 0.7)', scaleX: 1, scaleY: 1}
+                }}
+                transition={{
+                  duration: 0.4,
+                  ease: 'easeInOut',
+                  type: 'spring',
+                  stiffness: 150,
+                  damping: 10
+                }}
+                className="w-25 h-25 rounded-sm select-none flex justify-center items-center absolute z-1 right-0"
+              >
+                <motion.img
+                  variants={{
+                    rest: {opacity: 0, scaleX: 0, scaleY: 1.5},
+                    hover: {opacity: 1, scaleX: 1, scaleY: 1}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 150,
+                    damping: 15
+                  }}
+                  src="/sertificate/Logo SNI.svg" alt="Halal" width='50'
+                />
+              </motion.div>
+
+              <motion.div
+                variants={{
+                  rest: {x: 0, y: 0, borderColor: 'rgba(74, 171, 0)'},
+                  hover: {x: 10, y: -10, borderColor: 'rgba(77, 46, 0)'}
+                }}
+                transition={{
+                  duration: 0.3,
+                  ease: 'easeInOut',
+                  type: 'spring',
+                  stiffness: 150,
+                  damping: 10
+                }}
+                className="w-full max-w-sm h-55 bg-tertiary rounded-sm border-accentThrd border-2 shadow-lg relative overflow-hidden"
+              >
+                <motion.div
+                  variants={{
+                    rest: {scale: 2.4},
+                    hover: {scale: 0}
+                  }}
+                  transition={{
+                    duration: 0.2,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 150,
+                    damping: 15
+                  }}
+                  className="hidden lg:flex justify-center items-center w-54 h-54 bg-side rounded-full absolute left-1/2 -translate-x-1/2"
+                >
+                  <img src="/sertificate/Logo SNI.svg" alt="Halal" width='30' />
+                </motion.div>
+
+                <div className="p-5 mx-auto flex flex-col gap-5">
+                  <div className="flex gap-5 items-center select-none">
+                    <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
+                      <img src="/sertificate/Logo SNI.svg" alt="Halal" width='30' />
+                    </div>
+
+                    <h3 className="font-bold text-accentThrd text-xl">SNI</h3>
+                  </div>
+
+                  <div className="">
+                    <p className="font-medium text-quaternary text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut ipsam aspernatur ex alias sequi. Ab recusandae reiciendis eveniet. Repudiandae, laboriosam.</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                variants={{
+                  rest: {x: 5, y: -5, backgroundColor: 'rgba(0, 0, 0, 0)', scaleX: 0, scaleY: 1.5},
+                  hover: {x: -16, y: 16, backgroundColor: 'rgba(74, 171, 0, 0.8)', scaleX: 1, scaleY: 1}
+                }}
+                transition={{
+                  duration: 0.4,
+                  ease: 'easeInOut',
+                  type: 'spring',
+                  stiffness: 150,
+                  damping: 10
+                }}
+                className="rounded-sm p-1 px-2 absolute z-1 bottom-0"
+              >
+                <motion.p
+                  variants={{
+                    rest: {opacity: 0},
+                    hover: {opacity: 1}
+                  }}
+                  className="font-bold text-white text-3xl uppercase italic"
+                >
+                  Certified
+                </motion.p>
+              </motion.div>
+
+              <div className="w-full h-full bg-primary rounded-sm absolute -z-1 top-0"/>
+            </motion.div>
+
+            <motion.div
+              initial='rest'
+              whileHover='hover'
+              animate='rest'
+              className="s-content relative"
+            >
+              <motion.div
+                variants={{
+                  rest: {x:0 ,y: 0, backgroundColor: 'rgba(0, 0, 0, 0)', scaleX: 0, scaleY: 1.5},
+                  hover: {x: 33 ,y: -33, backgroundColor: 'rgba(74, 171, 0, 0.7)', scaleX: 1, scaleY: 1}
+                }}
+                transition={{
+                  duration: 0.4,
+                  ease: 'easeInOut',
+                  type: 'spring',
+                  stiffness: 150,
+                  damping: 10
+                }}
+                className="w-25 h-25 rounded-sm select-none flex justify-center items-center absolute z-1 right-0"
+              >
+                <motion.img
+                  variants={{
+                    rest: {opacity: 0, scaleX: 0, scaleY: 1.5},
+                    hover: {opacity: 1, scaleX: 1, scaleY: 1}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 150,
+                    damping: 15
+                  }}
+                  src="/sertificate/Logo SNI.svg" alt="SNI" width='50'
+                />
+              </motion.div>
+
+              <motion.div
+                variants={{
+                  rest: {x: 0, y: 0, borderColor: 'rgba(74, 171, 0)'},
+                  hover: {x: 10, y: -10, borderColor: 'rgba(77, 46, 0)'}
+                }}
+                transition={{
+                  duration: 0.3,
+                  ease: 'easeInOut',
+                  type: 'spring',
+                  stiffness: 150,
+                  damping: 10
+                }}
+                className="w-full max-w-sm h-55 bg-tertiary rounded-sm border-accentThrd border-2 shadow-lg relative overflow-hidden"
+              >
+                <motion.div
+                  variants={{
+                    rest: {scale: 2.4},
+                    hover: {scale: 0}
+                  }}
+                  transition={{
+                    duration: 0.2,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 150,
+                    damping: 15
+                  }}
+                  className="hidden lg:flex justify-center items-center w-54 h-54 bg-side rounded-full absolute left-1/2 -translate-x-1/2"
+                >
+                  <img src="/sertificate/Logo SNI.svg" alt="SNI" width='30' />
+                </motion.div>
+
+                <div className="p-5 mx-auto flex flex-col gap-5">
+                  <div className="flex gap-5 items-center select-none">
+                    <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
+                      <img src="/sertificate/Logo SNI.svg" alt="SNI" width='30' />
+                    </div>
+
+                    <h3 className="font-bold text-accentThrd text-xl">SNI</h3>
+                  </div>
+
+                  <div className="">
+                    <p className="font-medium text-quaternary text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut ipsam aspernatur ex alias sequi. Ab recusandae reiciendis eveniet. Repudiandae, laboriosam.</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                variants={{
+                  rest: {x: 5, y: -5, backgroundColor: 'rgba(0, 0, 0, 0)', scaleX: 0, scaleY: 1.5},
+                  hover: {x: -16, y: 16, backgroundColor: 'rgba(74, 171, 0, 0.8)', scaleX: 1, scaleY: 1}
+                }}
+                transition={{
+                  duration: 0.4,
+                  ease: 'easeInOut',
+                  type: 'spring',
+                  stiffness: 150,
+                  damping: 10
+                }}
+                className="rounded-sm p-1 px-2 absolute z-1 bottom-0"
+              >
+                <motion.p
+                  variants={{
+                    rest: {opacity: 0},
+                    hover: {opacity: 1}
+                  }}
+                  className="font-bold text-white text-3xl uppercase italic"
+                >
+                  Certified
+                </motion.p>
+              </motion.div>
+
+              <div className="w-full h-full bg-primary rounded-sm absolute -z-1 top-0"/>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+// Sertificate //
