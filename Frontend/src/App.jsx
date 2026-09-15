@@ -1657,7 +1657,7 @@ function About() {
       })
 
       animate(sectionRef.current.querySelector('.h-parag'), {
-        y: [190, 0],
+        y: [250, 0],
         delay: 4000,
         duration: 700,
         ease: 'outElastic(1,1)',
@@ -1745,7 +1745,7 @@ function About() {
       <section id="tentang" className="pt-36 pb-32">
         <div className="container mx-auto">
           <div className="w-full px-4">
-            <div className="mx-auto mb-30 select-none">
+            <div className="mx-auto mb-10 lg:mb-30 select-none">
               <div className="flex gap-3 items-center justify-center mb-3">
                 <div className="s-t-deco lg:opacity-0 w-5 h-0.5 bg-side rounded-lg"></div>
                 <h3 className="s-title lg:opacity-0 font-light text-side text-sm lg:text-lg uppercase">
@@ -1777,14 +1777,26 @@ function About() {
               </div>
             </div>
 
-            <div className="flex flex-row gap-10 items-center justify-center">
+            <div className="flex flex-col lg:flex-row gap-10 items-center justify-center">
               <div className="mx-auto">
-                <div className="h-title lg:opacity-0 w-fit relative mb-10">
+                <div className="w-fit h-fit mx-auto relative lg:hidden">
+                  <div className="overflow-hidden max-w-md rounded-sm mb-5 translate-x-2 -translate-y-2">
+                    <img
+                      src="/about/sawah.jpg" 
+                      alt="Sawah"
+                      className="object-center object-cover"
+                    />
+                  </div>
+
+                  <div className="w-full h-full bg-primary rounded-sm absolute -z-1 top-0"/>
+                </div>
+
+                <div className="h-title lg:opacity-0 w-fit relative mb-5 lg:mb-10">
 
                   <div className="w-fit relative">
                     <div className="h-t-deco2 lg:opacity-0 hidden lg:block w-20 h-10 bg-primary/50 rounded-sm absolute -z-1 -top-1/5 -left-1/7"/>
 
-                    <h2 className="font-extrabold text-accentThrd text-5xl uppercase">
+                    <h2 className="font-extrabold text-accentThrd text-2xl lg:text-5xl uppercase">
                       Sejarah
                     </h2>
 
@@ -1824,7 +1836,7 @@ function About() {
                 </div>
               </div>
 
-              <div className="mx-auto">
+              <div className="mx-auto hidden lg:block">
                 <div className="relative">
                   <div className="swh-img lg:opacity-0 w-full max-w-2xl bg-white rounded-sm overflow-hidden row-span-4 col-span-2 select-none relative">
                     <img
