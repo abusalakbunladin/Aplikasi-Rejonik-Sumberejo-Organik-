@@ -1,7 +1,6 @@
-import { useState, useEffect, useRef } from "react";
-import { animateEffectSubject, hover, motion, useInView } from "motion/react";
-import { animate, stagger, set } from "animejs";
-import { div } from "motion/react-client";
+import { useEffect, useRef } from "react";
+import { motion, useInView } from "motion/react";
+import { animate, stagger } from "animejs";
 
 
 export default function App() {
@@ -12,37 +11,10 @@ export default function App() {
       <Advantages />
       <About />
       <Sertificate />
+      <Review />
+      <Order />
     </div>
   );
-}
-
-function useScrollTrigger(elementId, offset = 500) {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.innerWidth < 1024) return;
-
-      const trigger = document.getElementById(elementId);
-
-      if (trigger) {
-        const rect = trigger.getBoundingClientRect();
-        setIsScrolled(rect.top < window.innerHeight - offset);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleScroll);
-
-    handleScroll();
-
-    return () => {
-      window.addEventListener("scroll", handleScroll);
-      window.addEventListener("resize", handleScroll);
-    };
-  }, [elementId, offset]);
-
-  return isScrolled;
 }
 
 // Hero //
@@ -149,7 +121,7 @@ function Hero() {
 
   return (
     <div className="hero" ref={heroRef}>
-      <section id="home" className="pt-90 pb-30 bg-green-900 relative overflow-hidden">
+      <section id="home" className="pt-90 pb-30 bg-primary relative overflow-hidden">
         <div className="container mx-auto relative z-2">
           <div className="w-full px-4">
             <div className="flex flex-col lg:flex-row lg:gap-10 xl:gap-30 lg:items-end lg:justify-center md:mt-35 lg:mt-40">
@@ -172,7 +144,7 @@ function Hero() {
                       </div>
                     </div>
 
-                    <div className="h-main-deco w-150 h-55 bg-linear-to-tr from-primary/30 to-side/30 rounded-sm absolute -z-1 top-0 -translate-y-14 -translate-x-30 xl:-translate-y-10 xl:-translate-x-10 scale-70 xl:scale-100 hidden lg:block"></div>
+                    <div className="h-main-deco w-150 h-55 bg-side/30 rounded-sm absolute -z-1 top-0 -translate-y-14 -translate-x-30 xl:-translate-y-10 xl:-translate-x-10 scale-70 xl:scale-100 hidden lg:block"></div>
 
                     <div className="h-t-deco2 w-50 h-30 bg-white/20 rounded-sm absolute -z-2 right-0 scale-70 xl:scale-100 hidden lg:block"></div>
                   </div>
@@ -439,7 +411,7 @@ function Product() {
               <div className="flex gap-3 items-center justify-center mb-3">
                 <div className="s-t-deco lg:opacity-0 w-5 h-0.5 bg-side rounded-lg"></div>
                 <h3 className="s-title lg:opacity-0 font-light text-side text-sm lg:text-lg uppercase">
-                  Product
+                  Products
                 </h3>
                 <div className="s-t-deco lg:opacity-0 w-5 h-0.5 bg-side rounded-lg"></div>
               </div>
@@ -892,7 +864,7 @@ function Advantages() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center select-none">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 justify-items-center select-none">
               <motion.div
                 initial='rest'
                 whileHover='hover'
@@ -901,22 +873,29 @@ function Advantages() {
               >
                 <motion.div
                   variants={{
-                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0},
-                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36}
+                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0, scaleX: 0, scaleY: 1.5},
+                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36, scaleX: 1, scaleY: 1}
                   }}
                   transition={{
                     duration: 0.3,
                     ease: 'easeInOut',
                     type: 'spring',
-                    stiffness: 100,
-                    damping: 10
+                    stiffness: 150,
+                    damping: 15
                   }}
                   className="w-30 h-30 rounded-sm right-0 hidden lg:flex items-center justify-center absolute z-2 lg:scale-70 xl:scale-100"
                 >
                   <motion.img
                     variants={{
-                      rest: {opacity: 0},
-                      hover: {opacity: 1}
+                      rest: {opacity: 0, scaleX: 0, scaleY: 1.5},
+                      hover: {opacity: 1, scaleX: 1, scaleY: 1}
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: 'easeInOut',
+                      type: 'spring',
+                      stiffness: 150,
+                      damping: 15
                     }}
                     src="/img/hinabobok2.png"
                     alt="Organik"
@@ -982,14 +961,14 @@ function Advantages() {
 
                 <motion.div
                   variants={{
-                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)'},
-                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)'}
+                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)', scaleX: 0, scaleY: 1.5},
+                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)', scaleX: 1, scaleY: 1}
                   }}
                   transition={{
                     duration: 0.3,
                     ease: 'easeInOut',
                     type: 'spring',
-                    stiffness: 100,
+                    stiffness: 150,
                     damping: 10
                   }}
                   className="w-40 h-10 rounded-sm absolute z-2 hidden lg:block"
@@ -1006,22 +985,29 @@ function Advantages() {
               >
                 <motion.div
                   variants={{
-                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0},
-                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36}
+                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0, scaleX: 0, scaleY: 1.5},
+                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36, scaleX: 1, scaleY: 1}
                   }}
                   transition={{
                     duration: 0.3,
                     ease: 'easeInOut',
                     type: 'spring',
-                    stiffness: 100,
-                    damping: 10
+                    stiffness: 150,
+                    damping: 15
                   }}
                   className="w-30 h-30 rounded-sm right-0 hidden lg:flex items-center justify-center absolute z-2 lg:scale-70 xl:scale-100"
                 >
                   <motion.img
                     variants={{
-                      rest: {opacity: 0},
-                      hover: {opacity: 1}
+                      rest: {opacity: 0, scaleX: 0, scaleY: 1.5},
+                      hover: {opacity: 1, scaleX: 1, scaleY: 1}
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: 'easeInOut',
+                      type: 'spring',
+                      stiffness: 150,
+                      damping: 15
                     }}
                     src="/img/hinabobok2.png"
                     alt="Organik"
@@ -1087,14 +1073,14 @@ function Advantages() {
 
                 <motion.div
                   variants={{
-                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)'},
-                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)'}
+                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)', scaleX: 0, scaleY: 1.5},
+                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)', scaleX: 1, scaleY: 1}
                   }}
                   transition={{
                     duration: 0.3,
                     ease: 'easeInOut',
                     type: 'spring',
-                    stiffness: 100,
+                    stiffness: 150,
                     damping: 10
                   }}
                   className="w-40 h-10 rounded-sm absolute z-2 hidden lg:block"
@@ -1111,22 +1097,29 @@ function Advantages() {
               >
                 <motion.div
                   variants={{
-                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0},
-                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36}
+                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0, scaleX: 0, scaleY: 1.5},
+                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36, scaleX: 1, scaleY: 1}
                   }}
                   transition={{
                     duration: 0.3,
                     ease: 'easeInOut',
                     type: 'spring',
-                    stiffness: 100,
-                    damping: 10
+                    stiffness: 150,
+                    damping: 15
                   }}
                   className="w-30 h-30 rounded-sm right-0 hidden lg:flex items-center justify-center absolute z-2 lg:scale-70 xl:scale-100"
                 >
                   <motion.img
                     variants={{
-                      rest: {opacity: 0},
-                      hover: {opacity: 1}
+                      rest: {opacity: 0, scaleX: 0, scaleY: 1.5},
+                      hover: {opacity: 1, scaleX: 1, scaleY: 1}
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: 'easeInOut',
+                      type: 'spring',
+                      stiffness: 150,
+                      damping: 15
                     }}
                     src="/img/hinabobok2.png"
                     alt="Organik"
@@ -1192,14 +1185,14 @@ function Advantages() {
 
                 <motion.div
                   variants={{
-                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)'},
-                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)'}
+                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)', scaleX: 0, scaleY: 1.5},
+                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)', scaleX: 1, scaleY: 1}
                   }}
                   transition={{
                     duration: 0.3,
                     ease: 'easeInOut',
                     type: 'spring',
-                    stiffness: 100,
+                    stiffness: 150,
                     damping: 10
                   }}
                   className="w-40 h-10 rounded-sm absolute z-2 hidden lg:block"
@@ -1216,22 +1209,29 @@ function Advantages() {
               >
                 <motion.div
                   variants={{
-                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0},
-                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36}
+                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0, scaleX: 0, scaleY: 1.5},
+                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36, scaleX: 1, scaleY: 1}
                   }}
                   transition={{
                     duration: 0.3,
                     ease: 'easeInOut',
                     type: 'spring',
-                    stiffness: 100,
-                    damping: 10
+                    stiffness: 150,
+                    damping: 15
                   }}
                   className="w-30 h-30 rounded-sm right-0 hidden lg:flex items-center justify-center absolute z-2 lg:scale-70 xl:scale-100"
                 >
                   <motion.img
                     variants={{
-                      rest: {opacity: 0},
-                      hover: {opacity: 1}
+                      rest: {opacity: 0, scaleX: 0, scaleY: 1.5},
+                      hover: {opacity: 1, scaleX: 1, scaleY: 1}
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: 'easeInOut',
+                      type: 'spring',
+                      stiffness: 150,
+                      damping: 15
                     }}
                     src="/img/hinabobok2.png"
                     alt="Organik"
@@ -1297,14 +1297,14 @@ function Advantages() {
 
                 <motion.div
                   variants={{
-                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)'},
-                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)'}
+                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)', scaleX: 0, scaleY: 1.5},
+                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)', scaleX: 1, scaleY: 1}
                   }}
                   transition={{
                     duration: 0.3,
                     ease: 'easeInOut',
                     type: 'spring',
-                    stiffness: 100,
+                    stiffness: 150,
                     damping: 10
                   }}
                   className="w-40 h-10 rounded-sm absolute z-2 hidden lg:block"
@@ -1321,22 +1321,29 @@ function Advantages() {
               >
                 <motion.div
                   variants={{
-                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0},
-                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36}
+                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0, scaleX: 0, scaleY: 1.5},
+                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36, scaleX: 1, scaleY: 1}
                   }}
                   transition={{
                     duration: 0.3,
                     ease: 'easeInOut',
                     type: 'spring',
-                    stiffness: 100,
-                    damping: 10
+                    stiffness: 150,
+                    damping: 15
                   }}
                   className="w-30 h-30 rounded-sm right-0 hidden lg:flex items-center justify-center absolute z-2 lg:scale-70 xl:scale-100"
                 >
                   <motion.img
                     variants={{
-                      rest: {opacity: 0},
-                      hover: {opacity: 1}
+                      rest: {opacity: 0, scaleX: 0, scaleY: 1.5},
+                      hover: {opacity: 1, scaleX: 1, scaleY: 1}
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: 'easeInOut',
+                      type: 'spring',
+                      stiffness: 150,
+                      damping: 15
                     }}
                     src="/img/hinabobok2.png"
                     alt="Organik"
@@ -1402,14 +1409,14 @@ function Advantages() {
 
                 <motion.div
                   variants={{
-                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)'},
-                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)'}
+                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)', scaleX: 0, scaleY: 1.5},
+                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)', scaleX: 1, scaleY: 1}
                   }}
                   transition={{
                     duration: 0.3,
                     ease: 'easeInOut',
                     type: 'spring',
-                    stiffness: 100,
+                    stiffness: 150,
                     damping: 10
                   }}
                   className="w-40 h-10 rounded-sm absolute z-2 hidden lg:block"
@@ -1426,22 +1433,29 @@ function Advantages() {
               >
                 <motion.div
                   variants={{
-                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0},
-                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36}
+                    rest: {backgroundColor: 'rgba(0, 0, 0, 0)', x: 0, y: 0, scaleX: 0, scaleY: 1.5},
+                    hover: {backgroundColor: 'rgba(74, 171, 0, 0.5)', x: 36, y: -36, scaleX: 1, scaleY: 1}
                   }}
                   transition={{
                     duration: 0.3,
                     ease: 'easeInOut',
                     type: 'spring',
-                    stiffness: 100,
-                    damping: 10
+                    stiffness: 150,
+                    damping: 15
                   }}
                   className="w-30 h-30 rounded-sm right-0 hidden lg:flex items-center justify-center absolute z-2 lg:scale-70 xl:scale-100"
                 >
                   <motion.img
                     variants={{
-                      rest: {opacity: 0},
-                      hover: {opacity: 1}
+                      rest: {opacity: 0, scaleX: 0, scaleY: 1.5},
+                      hover: {opacity: 1, scaleX: 1, scaleY: 1}
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: 'easeInOut',
+                      type: 'spring',
+                      stiffness: 150,
+                      damping: 15
                     }}
                     src="/img/hinabobok2.png"
                     alt="Organik"
@@ -1507,14 +1521,14 @@ function Advantages() {
 
                 <motion.div
                   variants={{
-                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)'},
-                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)'}
+                    rest: {x: 0, y: -40, backgroundColor: 'rgba(0, 0, 0, 0)', scaleX: 0, scaleY: 1.5},
+                    hover: {x: -20, y: -28, backgroundColor: 'rgba(74, 171, 0, 0.5)', scaleX: 1, scaleY: 1}
                   }}
                   transition={{
                     duration: 0.3,
                     ease: 'easeInOut',
                     type: 'spring',
-                    stiffness: 100,
+                    stiffness: 150,
                     damping: 10
                   }}
                   className="w-40 h-10 rounded-sm absolute z-2 hidden lg:block"
@@ -1928,11 +1942,22 @@ function Sertificate() {
         ease: 'outBounce'
       })
       // Title //
+
+      // Sertificate //
+      animate(sectionRef.current.querySelectorAll('.s-content'), {
+        opacity: [0, 1],
+        scaleX: [0, 1],
+        scaleY: [2, 1],
+        delay: stagger(200, {start: 1700}),
+        duration: 1500,
+        ease: 'inOutElastic(1.86,1.23)'
+      })
+      // Sertificate //
   })
 
   return (
     <div className="sertificate" ref={sectionRef}>
-      <section id="sertifikat" className="pt-36 pb-32">
+      <section id="sertifikat" className="pt-36 pb-50">
         <div className="container mx-auto">
           <div className="w-full px-4">
             <div className="mx-auto mb-30 select-none">
@@ -1968,12 +1993,12 @@ function Sertificate() {
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-15 justify-center">
+          <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-15 justify-items-center">
             <motion.div
               initial='rest'
               whileHover='hover'
               animate='rest'
-              className="s-content relative"
+              className="s-content lg:opacity-0 relative w-fit"
             >
               <motion.div
                 variants={{
@@ -1987,7 +2012,7 @@ function Sertificate() {
                   stiffness: 150,
                   damping: 10
                 }}
-                className="w-25 h-25 rounded-sm select-none flex justify-center items-center absolute z-1 right-0"
+                className="w-25 h-25 rounded-sm select-none hidden lg:flex justify-center items-center absolute z-1 right-0"
               >
                 <motion.img
                   variants={{
@@ -2046,7 +2071,7 @@ function Sertificate() {
                   </div>
 
                   <div className="">
-                    <p className="font-medium text-quaternary text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut ipsam aspernatur ex alias sequi. Ab recusandae reiciendis eveniet. Repudiandae, laboriosam.</p>
+                    <p className="font-medium text-quaternary text-sm lg:text-xs xl:text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut ipsam aspernatur ex alias sequi. Ab recusandae reiciendis eveniet. Repudiandae, laboriosam.</p>
                   </div>
                 </div>
               </motion.div>
@@ -2063,7 +2088,7 @@ function Sertificate() {
                   stiffness: 150,
                   damping: 10
                 }}
-                className="rounded-sm p-1 px-2 absolute z-1 bottom-0"
+                className="rounded-sm p-1 px-2 absolute z-1 bottom-0 hidden lg:block"
               >
                 <motion.p
                   variants={{
@@ -2083,7 +2108,7 @@ function Sertificate() {
               initial='rest'
               whileHover='hover'
               animate='rest'
-              className="s-content relative"
+              className="s-content lg:opacity-0 relative w-fit"
             >
               <motion.div
                 variants={{
@@ -2097,7 +2122,7 @@ function Sertificate() {
                   stiffness: 150,
                   damping: 10
                 }}
-                className="w-25 h-25 rounded-sm select-none flex justify-center items-center absolute z-1 right-0"
+                className="w-25 h-25 rounded-sm select-none hidden lg:flex justify-center items-center absolute z-1 right-0"
               >
                 <motion.img
                   variants={{
@@ -2111,7 +2136,7 @@ function Sertificate() {
                     stiffness: 150,
                     damping: 15
                   }}
-                  src="/sertificate/Logo SNI.svg" alt="Halal" width='50'
+                  src="/sertificate/Halal Indonesia Logo.png" alt="Halal" width='40'
                 />
               </motion.div>
 
@@ -2143,20 +2168,20 @@ function Sertificate() {
                   }}
                   className="hidden lg:flex justify-center items-center w-54 h-54 bg-side rounded-full absolute left-1/2 -translate-x-1/2"
                 >
-                  <img src="/sertificate/Logo SNI.svg" alt="Halal" width='30' />
+                  <img src="/sertificate/Halal Indonesia Logo.png" alt="Halal" width='30' />
                 </motion.div>
 
                 <div className="p-5 mx-auto flex flex-col gap-5">
                   <div className="flex gap-5 items-center select-none">
                     <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
-                      <img src="/sertificate/Logo SNI.svg" alt="Halal" width='30' />
+                      <img src="/sertificate/Halal Indonesia Logo.png" alt="Halal" width='20' />
                     </div>
 
-                    <h3 className="font-bold text-accentThrd text-xl">SNI</h3>
+                    <h3 className="font-bold text-accentThrd text-xl">Halal</h3>
                   </div>
 
                   <div className="">
-                    <p className="font-medium text-quaternary text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut ipsam aspernatur ex alias sequi. Ab recusandae reiciendis eveniet. Repudiandae, laboriosam.</p>
+                    <p className="font-medium text-quaternary text-sm lg:text-xs xl:text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut ipsam aspernatur ex alias sequi. Ab recusandae reiciendis eveniet. Repudiandae, laboriosam.</p>
                   </div>
                 </div>
               </motion.div>
@@ -2173,7 +2198,7 @@ function Sertificate() {
                   stiffness: 150,
                   damping: 10
                 }}
-                className="rounded-sm p-1 px-2 absolute z-1 bottom-0"
+                className="rounded-sm p-1 px-2 absolute z-1 bottom-0 hidden lg:block"
               >
                 <motion.p
                   variants={{
@@ -2193,7 +2218,7 @@ function Sertificate() {
               initial='rest'
               whileHover='hover'
               animate='rest'
-              className="s-content relative"
+              className="s-content lg:opacity-0 relative w-fit"
             >
               <motion.div
                 variants={{
@@ -2207,7 +2232,7 @@ function Sertificate() {
                   stiffness: 150,
                   damping: 10
                 }}
-                className="w-25 h-25 rounded-sm select-none flex justify-center items-center absolute z-1 right-0"
+                className="w-25 h-25 rounded-sm select-none hidden lg:flex justify-center items-center absolute z-1 right-0"
               >
                 <motion.img
                   variants={{
@@ -2221,7 +2246,7 @@ function Sertificate() {
                     stiffness: 150,
                     damping: 15
                   }}
-                  src="/sertificate/Logo SNI.svg" alt="SNI" width='50'
+                  src="/sertificate/BPOM Logo.png" alt="BPOM" width='70'
                 />
               </motion.div>
 
@@ -2253,20 +2278,20 @@ function Sertificate() {
                   }}
                   className="hidden lg:flex justify-center items-center w-54 h-54 bg-side rounded-full absolute left-1/2 -translate-x-1/2"
                 >
-                  <img src="/sertificate/Logo SNI.svg" alt="SNI" width='30' />
+                  <img src="/sertificate/BPOM Icon.png" alt="BPOM" width='40' />
                 </motion.div>
 
                 <div className="p-5 mx-auto flex flex-col gap-5">
                   <div className="flex gap-5 items-center select-none">
                     <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
-                      <img src="/sertificate/Logo SNI.svg" alt="SNI" width='30' />
+                      <img src="/sertificate/BPOM Icon.png" alt="BPOM" width='30' />
                     </div>
 
-                    <h3 className="font-bold text-accentThrd text-xl">SNI</h3>
+                    <h3 className="font-bold text-accentThrd text-xl">BPOM</h3>
                   </div>
 
                   <div className="">
-                    <p className="font-medium text-quaternary text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut ipsam aspernatur ex alias sequi. Ab recusandae reiciendis eveniet. Repudiandae, laboriosam.</p>
+                    <p className="font-medium text-quaternary text-sm lg:text-xs xl:text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut ipsam aspernatur ex alias sequi. Ab recusandae reiciendis eveniet. Repudiandae, laboriosam.</p>
                   </div>
                 </div>
               </motion.div>
@@ -2283,7 +2308,117 @@ function Sertificate() {
                   stiffness: 150,
                   damping: 10
                 }}
-                className="rounded-sm p-1 px-2 absolute z-1 bottom-0"
+                className="rounded-sm p-1 px-2 absolute z-1 bottom-0 hidden lg:block"
+              >
+                <motion.p
+                  variants={{
+                    rest: {opacity: 0},
+                    hover: {opacity: 1}
+                  }}
+                  className="font-bold text-white text-3xl uppercase italic"
+                >
+                  Certified
+                </motion.p>
+              </motion.div>
+
+              <div className="w-full h-full bg-primary rounded-sm absolute -z-1 top-0"/>
+            </motion.div>
+
+            <motion.div
+              initial='rest'
+              whileHover='hover'
+              animate='rest'
+              className="s-content lg:opacity-0 relative w-fit"
+            >
+              <motion.div
+                variants={{
+                  rest: {x:0 ,y: 0, backgroundColor: 'rgba(0, 0, 0, 0)', scaleX: 0, scaleY: 1.5},
+                  hover: {x: 33 ,y: -33, backgroundColor: 'rgba(74, 171, 0, 0.7)', scaleX: 1, scaleY: 1}
+                }}
+                transition={{
+                  duration: 0.4,
+                  ease: 'easeInOut',
+                  type: 'spring',
+                  stiffness: 150,
+                  damping: 10
+                }}
+                className="w-25 h-25 rounded-sm select-none hidden lg:flex justify-center items-center absolute z-1 right-0"
+              >
+                <motion.img
+                  variants={{
+                    rest: {opacity: 0, scaleX: 0, scaleY: 1.5},
+                    hover: {opacity: 1, scaleX: 1, scaleY: 1}
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 150,
+                    damping: 15
+                  }}
+                  src="/sertificate/LeSOS.png" alt="LeSOS" width='70'
+                />
+              </motion.div>
+
+              <motion.div
+                variants={{
+                  rest: {x: 0, y: 0, borderColor: 'rgba(74, 171, 0)'},
+                  hover: {x: 10, y: -10, borderColor: 'rgba(77, 46, 0)'}
+                }}
+                transition={{
+                  duration: 0.3,
+                  ease: 'easeInOut',
+                  type: 'spring',
+                  stiffness: 150,
+                  damping: 10
+                }}
+                className="w-full max-w-sm h-55 bg-tertiary rounded-sm border-accentThrd border-2 shadow-lg relative overflow-hidden"
+              >
+                <motion.div
+                  variants={{
+                    rest: {scale: 2.4},
+                    hover: {scale: 0}
+                  }}
+                  transition={{
+                    duration: 0.2,
+                    ease: 'easeInOut',
+                    type: 'spring',
+                    stiffness: 150,
+                    damping: 15
+                  }}
+                  className="hidden lg:flex justify-center items-center w-54 h-54 bg-side rounded-full absolute left-1/2 -translate-x-1/2"
+                >
+                  <img src="/sertificate/LeSOS.png" alt="LeSOS" width='50' />
+                </motion.div>
+
+                <div className="p-5 mx-auto flex flex-col gap-5">
+                  <div className="flex gap-5 items-center select-none">
+                    <div className="w-15 h-15 bg-side rounded-full flex justify-center items-center">
+                      <img src="/sertificate/LeSOS.png" alt="LeSOS" width='40' />
+                    </div>
+
+                    <h3 className="font-bold text-accentThrd text-xl">LeSOS</h3>
+                  </div>
+
+                  <div className="">
+                    <p className="font-medium text-quaternary text-sm lg:text-xs xl:text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut ipsam aspernatur ex alias sequi. Ab recusandae reiciendis eveniet. Repudiandae, laboriosam.</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                variants={{
+                  rest: {x: 5, y: -5, backgroundColor: 'rgba(0, 0, 0, 0)', scaleX: 0, scaleY: 1.5},
+                  hover: {x: -16, y: 16, backgroundColor: 'rgba(74, 171, 0, 0.8)', scaleX: 1, scaleY: 1}
+                }}
+                transition={{
+                  duration: 0.4,
+                  ease: 'easeInOut',
+                  type: 'spring',
+                  stiffness: 150,
+                  damping: 10
+                }}
+                className="rounded-sm p-1 px-2 absolute z-1 bottom-0 hidden lg:block"
               >
                 <motion.p
                   variants={{
@@ -2305,3 +2440,1474 @@ function Sertificate() {
   )
 }
 // Sertificate //
+
+// Review //
+function Review() {
+  const sectionRef = useRef(null)
+
+  const isInView = useInView(sectionRef, {once: true, amount: 0.8})
+
+  useEffect(() => {
+    if(!sectionRef.current) return
+    if(!isInView || window.innerWidth < 1024) return
+
+      // Title //
+      animate(sectionRef.current.querySelector('.s-title'), {
+        opacity: [0, 1],
+        scaleX: [0, 1],
+        delay: 300,
+        duration: 600,
+        ease: 'outElastic(1,1)'
+      })
+
+      animate(sectionRef.current.querySelectorAll('.s-t-deco'), {
+        opacity: [0, 1],
+        scaleY: [0, 1],
+        scaleX: [2, 1],
+        delay: 600,
+        duration: 700,
+        ease: 'outElastic(1.19,0.66)'
+      })
+
+      animate(sectionRef.current.querySelector('.s-t-main'), {
+        opacity: [0, 1],
+        scaleX: [0 ,1],
+        scaleY: [1.2, 1],
+        delay: 800,
+        duration: 600,
+        ease: 'outElastic(1,1)'
+      })
+
+      animate(sectionRef.current.querySelectorAll('.s-t-m-deco'), {
+        opacity: [0, 1],
+        scaleX: [0, 1],
+        delay: 1200,
+        duration: 600,
+        ease: 'outElastic(1,1)'
+      })
+
+      animate(sectionRef.current.querySelector('.deco-p1'), {
+        x: [-100, 0],
+        delay: 1500,
+        duration: 600,
+        ease: 'outBounce'
+      })
+      animate(sectionRef.current.querySelector('.deco-p2'), {
+        x: [100, 0],
+        delay: 1500,
+        duration: 600,
+        ease: 'outBounce'
+      })
+      // Title //
+
+      // Reviews //
+      animate(sectionRef.current.querySelectorAll('.r-content'), {
+        opacity: [0, 1],
+        scaleX: [0, 1],
+        scaleY: [1.5, 1],
+        delay: stagger(200, {start: 1800}),
+        duration: 600,
+        ease: 'outElastic(1.86,1.23)'
+      })
+      // Reviews //
+  })
+
+  return (
+    <div className="review" ref={sectionRef}>
+      <section id="review" className="pt-36 pb-50">
+        <div className="container mx-auto">
+          <div className="w-full px-4">
+            <div className="mx-auto mb-30 select-none">
+              <div className="flex gap-3 items-center justify-center mb-3">
+                <div className="s-t-deco lg:opacity-0 w-5 h-0.5 bg-side rounded-lg"></div>
+                <h3 className="s-title lg:opacity-0 font-light text-side text-sm lg:text-lg uppercase">
+                  Reviews
+                </h3>
+                <div className="s-t-deco lg:opacity-0 w-5 h-0.5 bg-side rounded-lg"></div>
+              </div>
+
+              <div className="flex gap-7 items-center justify-center">
+                <div className="hidden md:block">
+                  <div className="s-t-m-deco deco-p1 lg:opacity-0 flex gap-2">
+                    <div className="w-2.5 h-1 bg-side rounded-lg"></div>
+                    <div className="w-5 h-1 bg-side rounded-lg"></div>
+                    <div className="w-10 h-1 bg-side rounded-lg"></div>
+                  </div>
+                </div>
+
+                <h2 className="s-t-main lg:opacity-0 text-center max-w-xl lg:max-w-2xl font-extrabold text-quaternary text-3xl lg:text-5xl">
+                  Ulasan Pelanggan Rejonik
+                </h2>
+
+                <div className="hidden md:block">
+                  <div className="s-t-m-deco deco-p2 lg:opacity-0 flex gap-2">
+                    <div className="w-10 h-1 bg-side rounded-lg"></div>
+                    <div className="w-5 h-1 bg-side rounded-lg"></div>
+                    <div className="w-2.5 h-1 bg-side rounded-lg"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col lg:flex-row flex-wrap gap-15 items-center justify-center">
+              <motion.div
+                initial='rest'
+                whileHover='hover'
+                animate='rest'
+                className="r-content relative w-fit h-fit lg:opacity-0"
+              >
+                <motion.div
+                  variants={{
+                    rest: {
+                      x: 0,
+                      y: 0,
+                      scaleX: 0,
+                      scaleY: 1.5, 
+                      backgroundColor: 'rgba(0, 0, 0, 0)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0
+                      }
+                    },
+                    hover: {
+                      x: 34,
+                      y: -34,
+                      scaleX: 1,
+                      scaleY: 1,
+                      backgroundColor: 'rgba(74, 171, 0, 0.7)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0.95
+                      }
+                    }
+                  }}
+                  className="w-27 h-27 rounded-sm absolute z-1 right-0 hidden lg:block"
+                />
+
+                <motion.div
+                  variants={{
+                    rest: {
+                      borderColor: 'rgba(74, 171, 0)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0
+                      }
+                    },
+                    hover: {
+                      x: 10,
+                      y: -10,
+                      borderColor: 'rgba(77, 46, 0)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0.9
+                      }
+                    }
+                  }}
+                  className="w-full max-w-sm h-63 bg-tertiary rounded-sm border-2 relative overflow-hidden"
+                >
+                  <motion.div
+                    variants={{
+                      rest: {
+                        scale: 2.4,
+                        transition: {
+                          duration: 0.1,
+                          ease: 'easeOut',
+                          type: 'spring',
+                          stiffness: 150,
+                          damping: 15,
+                        }
+                      },
+                      hover: {
+                        scale: 0,
+                        transition: {
+                          duration: 0.3,
+                          ease: 'linear',
+                          delay: 0.9
+                        }
+                      }
+                    }}
+                    className="w-62 h-62 bg-side rounded-full hidden lg:flex items-center justify-center absolute left-1/2 -translate-x-1/2"
+                  >
+                    <motion.svg
+                      variants={{
+                        rest: {x: 0},
+                        hover: {x: 50}
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 15,
+                        delay: 0.3
+                      }}
+                      width="15"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M50 5
+                          L61.5 36.5
+                          L95 38
+                          L68.5 59.5
+                          L77 92
+                          L50 73
+                          L23 92
+                          L31.5 59.5
+                          L5 38
+                          L38.5 36.5
+                          Z"
+                        fill="#ffffff"
+                      />
+                    </motion.svg>
+
+                    <motion.svg
+                      variants={{
+                        rest: {x: 0},
+                        hover: {x: 33}
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 15,
+                        delay: 0
+                      }}
+                      width="25"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M50 5
+                          L61.5 36.5
+                          L95 38
+                          L68.5 59.5
+                          L77 92
+                          L50 73
+                          L23 92
+                          L31.5 59.5
+                          L5 38
+                          L38.5 36.5
+                          Z"
+                        fill="#ffffff"
+                      />
+                    </motion.svg>
+
+                    <motion.svg
+                      variants={{
+                        rest: {
+                          scale: 1,
+                          rotate: 0,
+                          transition: {
+                            duration: 0.3,
+                            ease: 'easeIn',
+                            type: 'spring',
+                            stiffness: 100,
+                            damping: 15,
+                            delay: 0.1
+                          }
+                        },
+                        hover: {
+                          scale: 2,
+                          rotate: 360,
+                          transition: {
+                            duration: 0.3,
+                            ease: 'easeIn',
+                            type: 'spring',
+                            stiffness: 100,
+                            damping: 15,
+                            delay: 0.7
+                          }
+                        }
+                      }}
+                      width="40"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M50 5
+                          L61.5 36.5
+                          L95 38
+                          L68.5 59.5
+                          L77 92
+                          L50 73
+                          L23 92
+                          L31.5 59.5
+                          L5 38
+                          L38.5 36.5
+                          Z"
+                        fill="#ffffff"
+                      />
+                    </motion.svg>
+
+                    <motion.svg
+                      variants={{
+                        rest: {x: 0},
+                        hover: {x: -33}
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 15,
+                        delay: 0
+                      }}
+                      width="25"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M50 5
+                          L61.5 36.5
+                          L95 38
+                          L68.5 59.5
+                          L77 92
+                          L50 73
+                          L23 92
+                          L31.5 59.5
+                          L5 38
+                          L38.5 36.5
+                          Z"
+                        fill="#ffffff"
+                      />
+                    </motion.svg>
+
+                    <motion.svg
+                      variants={{
+                        rest: {x: 0},
+                        hover: {x: -50}
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 15,
+                        delay: 0.3
+                      }}
+                      width="15"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M50 5
+                          L61.5 36.5
+                          L95 38
+                          L68.5 59.5
+                          L77 92
+                          L50 73
+                          L23 92
+                          L31.5 59.5
+                          L5 38
+                          L38.5 36.5
+                          Z"
+                        fill="#ffffff"
+                      />
+                    </motion.svg>
+                  </motion.div>
+
+                  <div className="p-5 mx-auto">
+                    <div className="mb-2">
+                      <div className="flex flex-row gap-5 items-center mb-3 select-none">
+                        <div className="w-15 h-15 bg-side rounded-full overflow-hidden">
+                          <img src="/review/bocchiencok.png" alt="customer" className="object-cover object-center" />
+                        </div>
+
+                        <h2 className="font-bold text-accentThrd text-lg">Bocchi Guy</h2>
+                      </div>
+
+                      <div className="flex flex-row gap-5 items-center">
+                        <div className="flex flex-row gap-0">
+                          <svg
+                            width="20"
+                            viewBox="0 0 100 100"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M50 5
+                                L61.5 36.5
+                                L95 38
+                                L68.5 59.5
+                                L77 92
+                                L50 73
+                                L23 92
+                                L31.5 59.5
+                                L5 38
+                                L38.5 36.5
+                                Z"
+                              fill="#4AAB00"
+                            />
+                          </svg>
+
+                          <svg
+                            width="20"
+                            viewBox="0 0 100 100"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M50 5
+                                L61.5 36.5
+                                L95 38
+                                L68.5 59.5
+                                L77 92
+                                L50 73
+                                L23 92
+                                L31.5 59.5
+                                L5 38
+                                L38.5 36.5
+                                Z"
+                              fill="#4AAB00"
+                            />
+                          </svg>
+
+                          <svg
+                            width="20"
+                            viewBox="0 0 100 100"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M50 5
+                                L61.5 36.5
+                                L95 38
+                                L68.5 59.5
+                                L77 92
+                                L50 73
+                                L23 92
+                                L31.5 59.5
+                                L5 38
+                                L38.5 36.5
+                                Z"
+                              fill="#4AAB00"
+                            />
+                          </svg>
+
+                          <svg
+                            width="20"
+                            viewBox="0 0 100 100"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M50 5
+                                L61.5 36.5
+                                L95 38
+                                L68.5 59.5
+                                L77 92
+                                L50 73
+                                L23 92
+                                L31.5 59.5
+                                L5 38
+                                L38.5 36.5
+                                Z"
+                              fill="#4AAB00"
+                            />
+                          </svg>
+
+                          <svg
+                            width="20"
+                            viewBox="0 0 100 100"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M50 5
+                                L61.5 36.5
+                                L95 38
+                                L68.5 59.5
+                                L77 92
+                                L50 73
+                                L23 92
+                                L31.5 59.5
+                                L5 38
+                                L38.5 36.5
+                                Z"
+                              fill="#4AAB00"
+                            />
+                          </svg>
+                        </div>
+
+                        <p className="font-medium text-accentThrd text-sm">
+                          31/02/2045
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="max-w-sm select-none">
+                      <p className="font-medium text-accentThrd text-sm">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque blanditiis porro omnis quaerat unde fugit laudantium, totam, quos placeat magnam veniam voluptatem optio et ipsum?
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  variants={{
+                    rest: {
+                      x: 5,
+                      y: -5,
+                      scaleX: 0,
+                      scaleY: 1.5, 
+                      backgroundColor: 'rgba(0, 0, 0, 0)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0
+                      }
+                    },
+                    hover: {
+                      x: -15,
+                      y: 15,
+                      scaleX: 1,
+                      scaleY: 1,
+                      backgroundColor: 'rgba(74, 171, 0, 0.7)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0.95
+                      }
+                    }
+                  }}
+                  className="w-40 h-13 rounded-sm absolute z-1 bottom-0 hidden lg:block"
+                />
+
+                <div className="w-full h-full bg-primary rounded-sm absolute -z-1 top-0"/>
+              </motion.div>
+
+              <motion.div
+                initial='rest'
+                whileHover='hover'
+                animate='rest'
+                className="r-content relative w-fit h-fit lg:opacity-0"
+              >
+                <motion.div
+                  variants={{
+                    rest: {
+                      x: 0,
+                      y: 0,
+                      scaleX: 0,
+                      scaleY: 1.5, 
+                      backgroundColor: 'rgba(0, 0, 0, 0)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0
+                      }
+                    },
+                    hover: {
+                      x: 34,
+                      y: -34,
+                      scaleX: 1,
+                      scaleY: 1,
+                      backgroundColor: 'rgba(74, 171, 0, 0.7)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0.95
+                      }
+                    }
+                  }}
+                  className="w-27 h-27 rounded-sm absolute z-1 right-0 hidden lg:block"
+                />
+
+                <motion.div
+                  variants={{
+                    rest: {
+                      borderColor: 'rgba(74, 171, 0)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0
+                      }
+                    },
+                    hover: {
+                      x: 10,
+                      y: -10,
+                      borderColor: 'rgba(77, 46, 0)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0.9
+                      }
+                    }
+                  }}
+                  className="w-full max-w-sm h-63 bg-tertiary rounded-sm border-2 relative overflow-hidden"
+                >
+                  <motion.div
+                    variants={{
+                      rest: {
+                        scale: 2.4,
+                        transition: {
+                          duration: 0.1,
+                          ease: 'easeOut',
+                          type: 'spring',
+                          stiffness: 150,
+                          damping: 15,
+                        }
+                      },
+                      hover: {
+                        scale: 0,
+                        transition: {
+                          duration: 0.3,
+                          ease: 'linear',
+                          delay: 0.9
+                        }
+                      }
+                    }}
+                    className="w-62 h-62 bg-side rounded-full hidden lg:flex items-center justify-center absolute left-1/2 -translate-x-1/2"
+                  >
+                    <motion.svg
+                      variants={{
+                        rest: {x: 0},
+                        hover: {x: 50}
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 15,
+                        delay: 0.3
+                      }}
+                      width="15"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M50 5
+                          L61.5 36.5
+                          L95 38
+                          L68.5 59.5
+                          L77 92
+                          L50 73
+                          L23 92
+                          L31.5 59.5
+                          L5 38
+                          L38.5 36.5
+                          Z"
+                        fill="#ffffff"
+                      />
+                    </motion.svg>
+
+                    <motion.svg
+                      variants={{
+                        rest: {x: 0},
+                        hover: {x: 33}
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 15,
+                        delay: 0
+                      }}
+                      width="25"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M50 5
+                          L61.5 36.5
+                          L95 38
+                          L68.5 59.5
+                          L77 92
+                          L50 73
+                          L23 92
+                          L31.5 59.5
+                          L5 38
+                          L38.5 36.5
+                          Z"
+                        fill="#ffffff"
+                      />
+                    </motion.svg>
+
+                    <motion.svg
+                      variants={{
+                        rest: {
+                          scale: 1,
+                          rotate: 0,
+                          transition: {
+                            duration: 0.3,
+                            ease: 'easeIn',
+                            type: 'spring',
+                            stiffness: 100,
+                            damping: 15,
+                            delay: 0.1
+                          }
+                        },
+                        hover: {
+                          scale: 2,
+                          rotate: 360,
+                          transition: {
+                            duration: 0.3,
+                            ease: 'easeIn',
+                            type: 'spring',
+                            stiffness: 100,
+                            damping: 15,
+                            delay: 0.7
+                          }
+                        }
+                      }}
+                      width="40"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M50 5
+                          L61.5 36.5
+                          L95 38
+                          L68.5 59.5
+                          L77 92
+                          L50 73
+                          L23 92
+                          L31.5 59.5
+                          L5 38
+                          L38.5 36.5
+                          Z"
+                        fill="#ffffff"
+                      />
+                    </motion.svg>
+
+                    <motion.svg
+                      variants={{
+                        rest: {x: 0},
+                        hover: {x: -33}
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 15,
+                        delay: 0
+                      }}
+                      width="25"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M50 5
+                          L61.5 36.5
+                          L95 38
+                          L68.5 59.5
+                          L77 92
+                          L50 73
+                          L23 92
+                          L31.5 59.5
+                          L5 38
+                          L38.5 36.5
+                          Z"
+                        fill="#ffffff"
+                      />
+                    </motion.svg>
+
+                    <motion.svg
+                      variants={{
+                        rest: {x: 0},
+                        hover: {x: -50}
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 15,
+                        delay: 0.3
+                      }}
+                      width="15"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M50 5
+                          L61.5 36.5
+                          L95 38
+                          L68.5 59.5
+                          L77 92
+                          L50 73
+                          L23 92
+                          L31.5 59.5
+                          L5 38
+                          L38.5 36.5
+                          Z"
+                        fill="#ffffff"
+                      />
+                    </motion.svg>
+                  </motion.div>
+
+                  <div className="p-5 mx-auto">
+                    <div className="mb-2">
+                      <div className="flex flex-row gap-5 items-center mb-3 select-none">
+                        <div className="w-15 h-15 bg-side rounded-full overflow-hidden">
+                          <img src="/review/bocchiencok.png" alt="customer" className="object-cover object-center" />
+                        </div>
+
+                        <h2 className="font-bold text-accentThrd text-lg">Bocchi Guy</h2>
+                      </div>
+
+                      <div className="flex flex-row gap-5 items-center">
+                        <div className="flex flex-row gap-0">
+                          <svg
+                            width="20"
+                            viewBox="0 0 100 100"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M50 5
+                                L61.5 36.5
+                                L95 38
+                                L68.5 59.5
+                                L77 92
+                                L50 73
+                                L23 92
+                                L31.5 59.5
+                                L5 38
+                                L38.5 36.5
+                                Z"
+                              fill="#4AAB00"
+                            />
+                          </svg>
+
+                          <svg
+                            width="20"
+                            viewBox="0 0 100 100"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M50 5
+                                L61.5 36.5
+                                L95 38
+                                L68.5 59.5
+                                L77 92
+                                L50 73
+                                L23 92
+                                L31.5 59.5
+                                L5 38
+                                L38.5 36.5
+                                Z"
+                              fill="#4AAB00"
+                            />
+                          </svg>
+
+                          <svg
+                            width="20"
+                            viewBox="0 0 100 100"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M50 5
+                                L61.5 36.5
+                                L95 38
+                                L68.5 59.5
+                                L77 92
+                                L50 73
+                                L23 92
+                                L31.5 59.5
+                                L5 38
+                                L38.5 36.5
+                                Z"
+                              fill="#4AAB00"
+                            />
+                          </svg>
+
+                          <svg
+                            width="20"
+                            viewBox="0 0 100 100"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M50 5
+                                L61.5 36.5
+                                L95 38
+                                L68.5 59.5
+                                L77 92
+                                L50 73
+                                L23 92
+                                L31.5 59.5
+                                L5 38
+                                L38.5 36.5
+                                Z"
+                              fill="#4AAB00"
+                            />
+                          </svg>
+
+                          <svg
+                            width="20"
+                            viewBox="0 0 100 100"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M50 5
+                                L61.5 36.5
+                                L95 38
+                                L68.5 59.5
+                                L77 92
+                                L50 73
+                                L23 92
+                                L31.5 59.5
+                                L5 38
+                                L38.5 36.5
+                                Z"
+                              fill="#4AAB00"
+                            />
+                          </svg>
+                        </div>
+
+                        <p className="font-medium text-accentThrd text-sm">
+                          31/02/2045
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="max-w-sm select-none">
+                      <p className="font-medium text-accentThrd text-sm">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque blanditiis porro omnis quaerat unde fugit laudantium, totam, quos placeat magnam veniam voluptatem optio et ipsum?
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  variants={{
+                    rest: {
+                      x: 5,
+                      y: -5,
+                      scaleX: 0,
+                      scaleY: 1.5, 
+                      backgroundColor: 'rgba(0, 0, 0, 0)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0
+                      }
+                    },
+                    hover: {
+                      x: -15,
+                      y: 15,
+                      scaleX: 1,
+                      scaleY: 1,
+                      backgroundColor: 'rgba(74, 171, 0, 0.7)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0.95
+                      }
+                    }
+                  }}
+                  className="w-40 h-13 rounded-sm absolute z-1 bottom-0 hidden lg:block"
+                />
+
+                <div className="w-full h-full bg-primary rounded-sm absolute -z-1 top-0"/>
+              </motion.div>
+
+              <motion.div
+                initial='rest'
+                whileHover='hover'
+                animate='rest'
+                className="r-content relative w-fit h-fit lg:opacity-0"
+              >
+                <motion.div
+                  variants={{
+                    rest: {
+                      x: 0,
+                      y: 0,
+                      scaleX: 0,
+                      scaleY: 1.5, 
+                      backgroundColor: 'rgba(0, 0, 0, 0)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0
+                      }
+                    },
+                    hover: {
+                      x: 34,
+                      y: -34,
+                      scaleX: 1,
+                      scaleY: 1,
+                      backgroundColor: 'rgba(74, 171, 0, 0.7)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0.95
+                      }
+                    }
+                  }}
+                  className="w-27 h-27 rounded-sm absolute z-1 right-0 hidden lg:block"
+                />
+
+                <motion.div
+                  variants={{
+                    rest: {
+                      borderColor: 'rgba(74, 171, 0)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0
+                      }
+                    },
+                    hover: {
+                      x: 10,
+                      y: -10,
+                      borderColor: 'rgba(77, 46, 0)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0.9
+                      }
+                    }
+                  }}
+                  className="w-full max-w-sm h-63 bg-tertiary rounded-sm border-2 relative overflow-hidden"
+                >
+                  <motion.div
+                    variants={{
+                      rest: {
+                        scale: 2.4,
+                        transition: {
+                          duration: 0.1,
+                          ease: 'easeOut',
+                          type: 'spring',
+                          stiffness: 150,
+                          damping: 15,
+                        }
+                      },
+                      hover: {
+                        scale: 0,
+                        transition: {
+                          duration: 0.3,
+                          ease: 'linear',
+                          delay: 0.9
+                        }
+                      }
+                    }}
+                    className="w-62 h-62 bg-side rounded-full hidden lg:flex items-center justify-center absolute left-1/2 -translate-x-1/2"
+                  >
+                    <motion.svg
+                      variants={{
+                        rest: {x: 0},
+                        hover: {x: 50}
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 15,
+                        delay: 0.3
+                      }}
+                      width="15"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M50 5
+                          L61.5 36.5
+                          L95 38
+                          L68.5 59.5
+                          L77 92
+                          L50 73
+                          L23 92
+                          L31.5 59.5
+                          L5 38
+                          L38.5 36.5
+                          Z"
+                        fill="#ffffff"
+                      />
+                    </motion.svg>
+
+                    <motion.svg
+                      variants={{
+                        rest: {x: 0},
+                        hover: {x: 33}
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 15,
+                        delay: 0
+                      }}
+                      width="25"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M50 5
+                          L61.5 36.5
+                          L95 38
+                          L68.5 59.5
+                          L77 92
+                          L50 73
+                          L23 92
+                          L31.5 59.5
+                          L5 38
+                          L38.5 36.5
+                          Z"
+                        fill="#ffffff"
+                      />
+                    </motion.svg>
+
+                    <motion.svg
+                      variants={{
+                        rest: {
+                          scale: 1,
+                          rotate: 0,
+                          transition: {
+                            duration: 0.3,
+                            ease: 'easeIn',
+                            type: 'spring',
+                            stiffness: 100,
+                            damping: 15,
+                            delay: 0.1
+                          }
+                        },
+                        hover: {
+                          scale: 2,
+                          rotate: 360,
+                          transition: {
+                            duration: 0.3,
+                            ease: 'easeIn',
+                            type: 'spring',
+                            stiffness: 100,
+                            damping: 15,
+                            delay: 0.7
+                          }
+                        }
+                      }}
+                      width="40"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M50 5
+                          L61.5 36.5
+                          L95 38
+                          L68.5 59.5
+                          L77 92
+                          L50 73
+                          L23 92
+                          L31.5 59.5
+                          L5 38
+                          L38.5 36.5
+                          Z"
+                        fill="#ffffff"
+                      />
+                    </motion.svg>
+
+                    <motion.svg
+                      variants={{
+                        rest: {x: 0},
+                        hover: {x: -33}
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 15,
+                        delay: 0
+                      }}
+                      width="25"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M50 5
+                          L61.5 36.5
+                          L95 38
+                          L68.5 59.5
+                          L77 92
+                          L50 73
+                          L23 92
+                          L31.5 59.5
+                          L5 38
+                          L38.5 36.5
+                          Z"
+                        fill="#ffffff"
+                      />
+                    </motion.svg>
+
+                    <motion.svg
+                      variants={{
+                        rest: {x: 0},
+                        hover: {x: -50}
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: 'easeInOut',
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 15,
+                        delay: 0.3
+                      }}
+                      width="15"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M50 5
+                          L61.5 36.5
+                          L95 38
+                          L68.5 59.5
+                          L77 92
+                          L50 73
+                          L23 92
+                          L31.5 59.5
+                          L5 38
+                          L38.5 36.5
+                          Z"
+                        fill="#ffffff"
+                      />
+                    </motion.svg>
+                  </motion.div>
+
+                  <div className="p-5 mx-auto">
+                    <div className="mb-2">
+                      <div className="flex flex-row gap-5 items-center mb-3 select-none">
+                        <div className="w-15 h-15 bg-side rounded-full overflow-hidden">
+                          <img src="/review/bocchiencok.png" alt="customer" className="object-cover object-center" />
+                        </div>
+
+                        <h2 className="font-bold text-accentThrd text-lg">Bocchi Guy</h2>
+                      </div>
+
+                      <div className="flex flex-row gap-5 items-center">
+                        <div className="flex flex-row gap-0">
+                          <svg
+                            width="20"
+                            viewBox="0 0 100 100"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M50 5
+                                L61.5 36.5
+                                L95 38
+                                L68.5 59.5
+                                L77 92
+                                L50 73
+                                L23 92
+                                L31.5 59.5
+                                L5 38
+                                L38.5 36.5
+                                Z"
+                              fill="#4AAB00"
+                            />
+                          </svg>
+
+                          <svg
+                            width="20"
+                            viewBox="0 0 100 100"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M50 5
+                                L61.5 36.5
+                                L95 38
+                                L68.5 59.5
+                                L77 92
+                                L50 73
+                                L23 92
+                                L31.5 59.5
+                                L5 38
+                                L38.5 36.5
+                                Z"
+                              fill="#4AAB00"
+                            />
+                          </svg>
+
+                          <svg
+                            width="20"
+                            viewBox="0 0 100 100"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M50 5
+                                L61.5 36.5
+                                L95 38
+                                L68.5 59.5
+                                L77 92
+                                L50 73
+                                L23 92
+                                L31.5 59.5
+                                L5 38
+                                L38.5 36.5
+                                Z"
+                              fill="#4AAB00"
+                            />
+                          </svg>
+
+                          <svg
+                            width="20"
+                            viewBox="0 0 100 100"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M50 5
+                                L61.5 36.5
+                                L95 38
+                                L68.5 59.5
+                                L77 92
+                                L50 73
+                                L23 92
+                                L31.5 59.5
+                                L5 38
+                                L38.5 36.5
+                                Z"
+                              fill="#4AAB00"
+                            />
+                          </svg>
+
+                          <svg
+                            width="20"
+                            viewBox="0 0 100 100"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M50 5
+                                L61.5 36.5
+                                L95 38
+                                L68.5 59.5
+                                L77 92
+                                L50 73
+                                L23 92
+                                L31.5 59.5
+                                L5 38
+                                L38.5 36.5
+                                Z"
+                              fill="#4AAB00"
+                            />
+                          </svg>
+                        </div>
+
+                        <p className="font-medium text-accentThrd text-sm">
+                          31/02/2045
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="max-w-sm select-none">
+                      <p className="font-medium text-accentThrd text-sm">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque blanditiis porro omnis quaerat unde fugit laudantium, totam, quos placeat magnam veniam voluptatem optio et ipsum?
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  variants={{
+                    rest: {
+                      x: 5,
+                      y: -5,
+                      scaleX: 0,
+                      scaleY: 1.5, 
+                      backgroundColor: 'rgba(0, 0, 0, 0)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0
+                      }
+                    },
+                    hover: {
+                      x: -15,
+                      y: 15,
+                      scaleX: 1,
+                      scaleY: 1,
+                      backgroundColor: 'rgba(74, 171, 0, 0.7)',
+                      transition: {
+                        duration: 0.3,
+                        ease: 'easeOut',
+                        type: 'spring',
+                        stiffness: 150,
+                        damping: 10,
+                        delay: 0.95
+                      }
+                    }
+                  }}
+                  className="w-40 h-13 rounded-sm absolute z-1 bottom-0 hidden lg:block"
+                />
+
+                <div className="w-full h-full bg-primary rounded-sm absolute -z-1 top-0"/>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+// Review //
+
+// Order //
+function Order() {
+
+  return (
+    <div className="order">
+      <section id="pesan" className="pt-36 pb-36 bg-linear-to-r from-primary to-side">
+        <div className="container mx-auto">
+          <div className="w-full px-4">
+            <div className="">
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+// Order //
