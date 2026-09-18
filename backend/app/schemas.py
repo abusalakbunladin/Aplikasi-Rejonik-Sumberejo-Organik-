@@ -79,19 +79,69 @@ class PemasokResponse(BaseModel):
         from_attributes = True
 
 
-class PasokanCreate(BaseModel):
-    produk_varian_id: int
+class PenerimaanCreate(BaseModel):
     pemasok_id: int
-    jumlah: int = Field(..., gt=0, description="Jumlah pasokan harus lebih dari 0")
+    produk_id: int = Field(..., description="Produk jadi yang akan dihasilkan dari bahan baku ini")
+    berat_kg: float = Field(..., gt=0, description="Berat bahan baku yang diterima, dalam kg")
+    harga_per_kg: Optional[int] = Field(None, ge=0, description="Harga beli per kg, opsional")
+    catatan: Optional[str] = None
 
-class PasokanResponse(BaseModel):
+class PenerimaanMutuUpdate(BaseModel):
+    status_mutu: Literal["lolos", "retur"]
+    catatan: Optional[str] = None
+
+class PenerimaanResponse(BaseModel):
     id: int
-    produk_varian_id: int
     pemasok_id: int
-    jumlah: int
+    produk_id: int
+    berat_kg: float
+    harga_per_kg: Optional[int]
+    status_mutu: str
+    catatan: Optional[str]
     tanggal: datetime
+    berat_sudah_digiling: float
+    berat_sisa_kg: float
     class Config:
         from_attributes = True
+
+
+class PenggilinganCreate(BaseModel):
+    penerimaan_id: int
+    berat_masuk_kg: float = Field(..., gt=0, description="Berat bahan baku yang digiling, dalam kg")
+    berat_hasil_kg: float = Field(..., gt=0, description="Berat hasil giling, dalam kg")
+
+class PenggilinganResponse(BaseModel):
+    id: int
+    penerimaan_id: int
+    berat_masuk_kg: float
+    berat_hasil_kg: float
+    tanggal: datetime
+    susut_kg: float
+    rendemen: float
+    class Config:
+        from_attributes = True
+
+
+class PengemasanCreate(BaseModel):
+    produk_varian_id: int
+    jumlah_pcs: int = Field(..., gt=0, description="Jumlah kemasan yang dihasilkan")
+
+class PengemasanResponse(BaseModel):
+    id: int
+    produk_varian_id: int
+    jumlah_pcs: int
+    tanggal: datetime
+    berat_terpakai_kg: float
+    class Config:
+        from_attributes = True
+
+
+class HasilGilingResponse(BaseModel):
+    produk_id: int
+    nama_produk: str
+    total_digiling_kg: float
+    sudah_dikemas_kg: float
+    sisa_kg: float
 
 
 class OrderItemCreate(BaseModel):

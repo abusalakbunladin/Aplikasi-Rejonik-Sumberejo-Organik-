@@ -2,7 +2,7 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import auth, kategori, produk, produk_varian, pemasok, pasokan, order, laporan, penyesuaian_stok
+from app.routers import auth, kategori, produk, produk_varian, pemasok, produksi, order, laporan, penyesuaian_stok
 
 app = FastAPI(title="Rejonik - Main")
 
@@ -22,7 +22,10 @@ app.include_router(kategori.router)
 app.include_router(produk.router)
 app.include_router(produk_varian.router)
 app.include_router(pemasok.router)
-app.include_router(pasokan.router)
+app.include_router(produksi.penerimaan_router)
+app.include_router(produksi.penggilingan_router)
+app.include_router(produksi.hasil_giling_router)
+app.include_router(produksi.pengemasan_router)
 app.include_router(order.router)
 app.include_router(laporan.router)
 app.include_router(penyesuaian_stok.router)

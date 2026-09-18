@@ -22,7 +22,7 @@ import sys, os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from app.database import Base
-from app.models import User, Kategori, Produk, Pemasok, Pasokan, Order, OrderItem
+from app.models import User, Kategori, Produk, Pemasok, Order, OrderItem
 
 database_url = os.getenv("DATABASE_URL", config.get_main_option("sqlalchemy.url"))
 config.set_main_option("sqlalchemy.url", database_url)
