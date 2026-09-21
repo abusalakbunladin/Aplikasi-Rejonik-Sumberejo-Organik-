@@ -1,11 +1,13 @@
 import { useEffect, useRef } from "react";
 import { motion, useInView } from "motion/react";
 import { animate, stagger } from "animejs";
+import Navbar from "./components/navbar.jsx";
 
 
-export default function App() {
+export default function Home() {
   return (
     <div className="app">
+      <Navbar />
       <Hero />
       <Product />
       <Advantages />
@@ -287,7 +289,7 @@ function Product() {
 
   useEffect(() => {
     if(!sectionRef.current) return
-    if (!isInView || window.innerWidth < 1024) return
+    if(!isInView || window.innerWidth < 1024) return
 
     // Title //
     animate(sectionRef.current.querySelector('.s-title'), {
@@ -4024,7 +4026,7 @@ function Footer() {
 
   return (
     <div className="footer">
-      <footer id="footer" className="pt-30 pb-5 bg-[#1A3800]">
+      <footer id="footer" className="pt-30 bg-[#1A3800]">
         <div className="w-full px-5 lg:px-20">
           <div className="flex flex-col mb-30">
             <div className="mb-10 select-none">
