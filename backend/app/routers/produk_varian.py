@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.deps import get_db, get_current_user
-from app.models import Produk, ProdukVarian
+from app.models import Produk, ProdukVarian, OrderItem, Pengemasan, PenyesuaianStok
 from app.schemas import ProdukVarianCreate, ProdukVarianResponse
 
 router = APIRouter(prefix="/produk-varian", tags=["Katalog - Varian Produk"])
@@ -41,6 +41,28 @@ def delete_varian(varian_id: int, db: Session = Depends(get_db), current_user: s
     varian = db.query(ProdukVarian).filter(ProdukVarian.id == varian_id).first()
     if not varian:
         raise HTTPException(status_code=404, detail="Varian tidak ditemukan")
+
+    jumlah_order = db.query(OrderItem).filter(OrderItem.produk_varian_id == varian_id).count()
+    if jumlah_order > 0:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Varian ini sudah dipakai di {jumlah_order} item order, tidak bisa dihapus",
+        )
+
+    jumlah_kemasan = db.query(Pengemasan).filter(Pengemasan.produk_varian_id == varian_id).count()
+    if jumlah_kemasan > 0:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Varian ini sudah dipakai di {jumlah_kemasan} data pengemasan, tidak bisa dihapus",
+        )
+
+    jumlah_penyesuaian = db.query(PenyesuaianStok).filter(PenyesuaianStok.produk_varian_id == varian_id).count()
+    if jumlah_penyesuaian > 0:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Varian ini sudah dipakai di {jumlah_penyesuaian} penyesuaian stok, tidak bisa dihapus",
+        )
+
     db.delete(varian)
     db.commit()
     return {"pesan": "Varian berhasil dihapus"}

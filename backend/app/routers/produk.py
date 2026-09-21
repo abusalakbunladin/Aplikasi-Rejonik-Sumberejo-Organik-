@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.deps import get_db, get_current_user
-from app.models import Produk, Kategori
+from app.models import Produk, Kategori, ProdukVarian, PenerimaanBahanBaku
 from app.schemas import ProdukCreate, ProdukResponse
 
 router = APIRouter(prefix="/produk", tags=["Katalog - Produk"])
@@ -53,6 +53,21 @@ def delete_produk(produk_id: int, db: Session = Depends(get_db), current_user: s
     produk = db.query(Produk).filter(Produk.id == produk_id).first()
     if not produk:
         raise HTTPException(status_code=404, detail="Produk tidak ditemukan")
+
+    jumlah_varian = db.query(ProdukVarian).filter(ProdukVarian.produk_id == produk_id).count()
+    if jumlah_varian > 0:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Produk masih punya {jumlah_varian} varian, hapus variannya dulu sebelum hapus produk",
+        )
+
+    jumlah_penerimaan = db.query(PenerimaanBahanBaku).filter(PenerimaanBahanBaku.produk_id == produk_id).count()
+    if jumlah_penerimaan > 0:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Produk masih punya {jumlah_penerimaan} catatan penerimaan bahan baku, tidak bisa dihapus",
+        )
+
     db.delete(produk)
     db.commit()
     return {"pesan": "Produk berhasil dihapus"}

@@ -9,7 +9,13 @@ from app.models import User
 
 load_dotenv()
 
-SECRET_KEY = os.getenv("SECRET_KEY", "rejonik_app")
+SECRET_KEY = os.getenv("SECRET_KEY")
+if not SECRET_KEY:
+    raise RuntimeError(
+        "SECRET_KEY belum di-set. Isi SECRET_KEY di file .env dulu sebelum "
+        "menjalankan aplikasi ini (dipakai buat sign JWT token login, jangan "
+        "sampai kosong atau pakai nilai default yang gampang ditebak)."
+    )
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
