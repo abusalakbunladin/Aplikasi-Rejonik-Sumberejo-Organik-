@@ -23,7 +23,8 @@ from app.schemas import (
 )
 
 TOLERANSI = 1e-6
-
+RENDEMEN_MIN = 0.45
+RENDEMEN_MAX = 0.80
 
 def get_sisa_hasil_giling(db: Session, produk_id: int) -> float:
     total_hasil = (
@@ -125,6 +126,26 @@ def create_penggilingan(
         raise HTTPException(
             status_code=400,
             detail=f"Bahan baku yang tersisa tinggal {penerimaan.berat_sisa_kg} kg",
+        )
+
+    rendemen = data.berat_hasil_kg / data.berat_masuk_kg if data.berat_masuk_kg else 0
+    if rendemen > RENDEMEN_MAX:
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                f"Rendemen {rendemen:.0%} kelihatannya kurang wajar (maksimal sekitar "
+                f"{RENDEMEN_MAX:.0%}) — gabah pasti kehilangan sekam & dedak saat digiling. "
+                f"Cek lagi berat masuk/hasilnya, siapa tahu salah ketik."
+            ),
+        )
+    if rendemen < RENDEMEN_MIN:
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                f"Rendemen cuma {rendemen:.0%}, kelihatannya terlalu rendah (biasanya "
+                f"minimal sekitar {RENDEMEN_MIN:.0%}). Cek lagi berat masuk/hasilnya, "
+                f"siapa tahu salah ketik."
+            ),
         )
 
     giling = Penggilingan(**data.model_dump())
