@@ -23,5 +23,7 @@ section {
 }
 
 @layer components {
-
+    .hamburg-line {
+        @apply w-7.5 h-0.5 block rounded-full
+    }
 }
