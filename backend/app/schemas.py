@@ -179,9 +179,10 @@ class OrderCreate(BaseModel):
 
     @field_validator("no_telepon")
     @classmethod
-    def no_telepon_harus_angka(cls, v: str) -> str:
-        if not re.fullmatch(r"\+?\d{9,15}", v):
-            raise ValueError("Nomor telepon harus berupa angka (boleh diawali +), 9-15 digit, tanpa spasi atau tanda baca")
+    def no_telepon_harus_nomor_indonesia(cls, v: str) -> str:
+        v = v.replace(" ", "").replace("-", "")
+        if not re.fullmatch(r"(\+62|62|0)8[1-9][0-9]{6,10}", v):
+            raise ValueError("Nomor HP/WA harus nomor Indonesia yang valid, contoh: 081234567890 atau +6281234567890")
         return v
 
 class OrderKonfirmasiUpdate(BaseModel):
@@ -248,5 +249,6 @@ class LaporanStokRendah(BaseModel):
     nama: str
     berat: float
     stok: int
+    status: Literal["habis", "rendah"]
     class Config:
         from_attributes = True
