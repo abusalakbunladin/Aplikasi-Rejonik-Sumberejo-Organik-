@@ -2,6 +2,10 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
+  const handleNavClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="footer">
       <footer id="footer" className="bg-[#1A3800] pt-30">
@@ -247,87 +251,93 @@ export default function Footer() {
                 <div className="flex flex-col gap-2 text-white">
                   <ul>
                     <li>
-                      <motion.a
-                        initial={{
-                          color: "#ffffff",
-                        }}
-                        whileHover={{
-                          color: "#4AAB00",
-                        }}
-                        href="#home"
-                      >
-                        Beranda
-                      </motion.a>
+                      <Link to="/" onClick={handleNavClick} >
+                        <motion.span
+                          initial={{
+                            color: "#ffffff",
+                          }}
+                          whileHover={{
+                            color: "#4AAB00",
+                          }}
+                        >
+                          Beranda
+                        </motion.span>
+                      </Link>
                     </li>
 
                     <li>
-                      <motion.a
-                        initial={{
-                          color: "#ffffff",
-                        }}
-                        whileHover={{
-                          color: "#4AAB00",
-                        }}
-                        href="#home"
-                      >
-                        Produk
-                      </motion.a>
+                      <Link to="/produk" onClick={handleNavClick} >
+                        <motion.span
+                          initial={{
+                            color: "#ffffff",
+                          }}
+                          whileHover={{
+                            color: "#4AAB00",
+                          }}
+                        >
+                          Produk
+                        </motion.span>
+                      </Link>
                     </li>
 
                     <li>
-                      <motion.a
-                        initial={{
-                          color: "#ffffff",
-                        }}
-                        whileHover={{
-                          color: "#4AAB00",
-                        }}
-                        href="#home"
-                      >
-                        Keunggulan
-                      </motion.a>
+                      <Link to="/keunggulan" onClick={handleNavClick} >
+                        <motion.span
+                          initial={{
+                            color: "#ffffff",
+                          }}
+                          whileHover={{
+                            color: "#4AAB00",
+                          }}
+                        >
+                          Keunggulan
+                        </motion.span>
+                      </Link>
                     </li>
 
                     <li>
-                      <motion.a
-                        initial={{
-                          color: "#ffffff",
-                        }}
-                        whileHover={{
-                          color: "#4AAB00",
-                        }}
-                        href="#home"
-                      >
-                        Tentang Kami
-                      </motion.a>
+                      <Link to="/tentang" onClick={handleNavClick} >
+                        <motion.span
+                          initial={{
+                            color: "#ffffff",
+                          }}
+                          whileHover={{
+                            color: "#4AAB00",
+                          }}
+                        >
+                          Tentang Kami
+                        </motion.span>
+                      </Link>
                     </li>
 
                     <li>
-                      <motion.a
-                        initial={{
-                          color: "#ffffff",
-                        }}
-                        whileHover={{
-                          color: "#4AAB00",
-                        }}
-                        href="#home"
-                      >
-                        Sertifikat
-                      </motion.a>
+                      <Link to="/sertifikat" onClick={handleNavClick} >
+                        <motion.span
+                          initial={{
+                            color: "#ffffff",
+                          }}
+                          whileHover={{
+                            color: "#4AAB00",
+                          }}
+                        >
+                          Sertifikat
+                        </motion.span>
+                      </Link>
                     </li>
 
                     <li>
-                      <motion.a
-                        initial={{
-                          color: "#ffffff",
-                        }}
-                        whileHover={{
-                          color: "#4AAB00",
-                        }}
-                        href="#home"
-                      >
-                        Review
-                      </motion.a>
+                      <Link to="/review" onClick={handleNavClick} >
+                        <motion.span
+                          initial={{
+                            color: "#ffffff",
+                          }}
+                          whileHover={{
+                            color: "#4AAB00",
+                          }}
+                        >
+                          Review
+                        </motion.span>
+                      </Link>
                     </li>
                   </ul>
                 </div>

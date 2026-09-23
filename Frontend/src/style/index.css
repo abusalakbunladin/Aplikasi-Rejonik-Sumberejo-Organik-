@@ -5,6 +5,18 @@ section {
     font-family: Inter;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+th, td {
+    @apply p-5
+}
+
+tr {
+    @apply outline outline-quaternary
+}
+
 @theme {
     --color-primary: #1B5200;
     --color-secondary: #0F7D00;
