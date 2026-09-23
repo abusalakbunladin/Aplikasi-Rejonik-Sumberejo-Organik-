@@ -13,6 +13,9 @@ def list_kategori(db: Session = Depends(get_db)):
 
 @router.post("", response_model=KategoriResponse)
 def create_kategori(data: KategoriCreate, db: Session = Depends(get_db), current_user: str = Depends(get_current_user)):
+    sudah_ada = db.query(Kategori).filter(Kategori.nama == data.nama).first()
+    if sudah_ada:
+        raise HTTPException(status_code=400, detail=f"Kategori '{data.nama}' sudah ada")
     kategori = Kategori(**data.model_dump())
     db.add(kategori)
     db.commit()
