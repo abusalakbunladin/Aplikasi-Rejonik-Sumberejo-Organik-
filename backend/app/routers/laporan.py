@@ -27,8 +27,12 @@ def laporan_penjualan(db: Session = Depends(get_db), current_user: str = Depends
     )
 
 @router.get("/stok-rendah", response_model=list[LaporanStokRendah])
-def laporan_stok_rendah(batas: int = Query(5, description="Batas stok dianggap rendah"), db: Session = Depends(get_db), current_user: str = Depends(get_current_user)):
-    return (
+def laporan_stok_rendah(
+    batas: int = Query(5, ge=0, description="Batas stok dianggap rendah"),
+    db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user),
+):
+    hasil = (
         db.query(
             ProdukVarian.id.label("id"),
             Produk.nama.label("nama"),
@@ -39,3 +43,7 @@ def laporan_stok_rendah(batas: int = Query(5, description="Batas stok dianggap r
         .filter(ProdukVarian.stok <= batas)
         .all()
     )
+    return [
+        {**row._mapping, "status": "habis" if row.stok <= 0 else "rendah"}
+        for row in hasil
+    ]
