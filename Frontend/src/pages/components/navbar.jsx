@@ -44,13 +44,12 @@ export default function Navbar() {
         animate={isOpen ? "open" : isScrolled ? "scrolled" : "closed"}
         variants={{
           closed: {
-            backgroundColor: "rgb(255, 255, 255, 0.1)",
             borderColor: "rgb(255, 255, 255, 0.3)",
           },
           open: { backgroundColor: "#FFF9E3", borderColor: "#4D2E00" },
           scrolled: { backgroundColor: "#FFF9E3", borderColor: "#4D2E00" },
         }}
-        className="nav fixed z-1000 flex h-fit w-full items-center justify-center border-b-2 border-white/50 p-2 shadow-lg backdrop-blur-xl"
+        className="nav fixed z-1000 flex h-fit w-full items-center justify-center border-b-2 border-white/50 bg-white/20 p-2 shadow-lg backdrop-blur-xl"
       >
         <div className="container mx-auto">
           <div className="relative flex items-center justify-between px-4">
@@ -75,9 +74,10 @@ export default function Navbar() {
                     onClick={handleNavClick}
                   >
                     <motion.span
+                      className={`transition-color duration-200 ${isScrolled ? 'text-primary' : 'text-white'}`}
                       variants={{
-                        closed: { color: isActive ? "#4AAB00" : "#ffffff" },
-                        scrolled: { color: isActive ? "#1B5200" : "#1B5200" },
+                        closed: { color: isActive ? "#4AAB00" : "" },
+                        scrolled: { color: isActive ? "#1B5200" : "" },
                       }}
                       whileHover={{
                         color: "#4AAB00",

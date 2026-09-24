@@ -17,6 +17,10 @@ tr {
     @apply outline outline-quaternary
 }
 
+td {
+    @apply outline outline-quaternary lg:outline-0
+}
+
 @theme {
     --color-primary: #1B5200;
     --color-secondary: #0F7D00;

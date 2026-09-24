@@ -4,6 +4,7 @@ import { animate, stagger } from "animejs";
 import { Link } from "react-router-dom";
 import Navbar from "./components/navbar.jsx";
 import Footer from "./components/footer.jsx";
+import Order from "./components/order-section.jsx";
 
 export default function Product() {
   return (
@@ -13,6 +14,7 @@ export default function Product() {
       <Guide />
       <Catalogue />
       <Nutrition />
+      <Order />
       <Footer />
     </div>
   );
@@ -89,17 +91,17 @@ function Hero() {
               <div className="relative z-2 flex flex-col">
                 <div className="flex flex-col gap-5">
                   <div className="h-sertify w-fit rounded-full bg-white/20 p-0.5 px-3 outline-2 outline-white select-none">
-                    <h3 className="text-sm font-medium text-white uppercase">
+                    <h3 className="text-xs font-medium text-white uppercase lg:text-sm">
                       100% Tersertifikasi Organik Indonesia
                     </h3>
                   </div>
 
                   <div className="flex flex-col gap-5">
-                    <div className="flex gap-2">
-                      <div className="t-deco h-full w-1 rounded-full bg-side" />
+                    <div className="flex gap-2 items-center">
+                      <div className="t-deco h-25 md:h-30 lg:h-full w-1 rounded-full bg-side" />
 
                       <div className="w-full max-w-2xl">
-                        <div className="overflow-hidden text-5xl leading-13 font-extrabold text-white">
+                        <div className="overflow-hidden text-2xl lg:leading-13 font-extrabold text-white md:text-4xl lg:text-5xl">
                           <span className="t-main block">
                             Beras Sehat Penuh Berkah
                           </span>
@@ -787,8 +789,8 @@ function Nutrition() {
               </div>
             </div>
 
-            <div className="mx-auto">
-              <table className="mx-auto table-fixed rounded-lg overflow-hidden outline-2 outline-quaternary">
+            <div className="mx-auto outline-2 outline-quaternary overflow-x-auto rounded-lg">
+              <table className="mx-auto min-w-175 table-fixed overflow-hidden rounded-lg">
                 <thead className="bg-primary text-xl font-bold text-white select-none">
                   <tr>
                     <th>Varian Beras</th>
@@ -807,7 +809,10 @@ function Nutrition() {
                     <td>Sedang</td>
                     <td className="font-bold text-accentThrd">Sedang</td>
                     <td>Sehari-hari</td>
-                    <td>Sumber energi, mudah dicerna, bebas gluten, kandungan mineral</td>
+                    <td>
+                      Sumber energi, mudah dicerna, bebas gluten, kandungan
+                      mineral
+                    </td>
                   </tr>
 
                   <tr>
@@ -816,7 +821,11 @@ function Nutrition() {
                     <td>Sangat Tinggi</td>
                     <td className="font-bold text-side">Rendah</td>
                     <td>Diet</td>
-                    <td>Kaya akan serat, antioksidan, menjaga kesehatan jantung, membantu menurunkan berat badan, mengontrol gula darah, melancarkan pencernaan, menangkal radikal bebas</td>
+                    <td>
+                      Kaya akan serat, antioksidan, menjaga kesehatan jantung,
+                      membantu menurunkan berat badan, mengontrol gula darah,
+                      melancarkan pencernaan, menangkal radikal bebas
+                    </td>
                   </tr>
 
                   <tr>
@@ -825,7 +834,10 @@ function Nutrition() {
                     <td>Sedang</td>
                     <td className="font-bold text-accentThrd">Sedang</td>
                     <td>Hidangan Spesial</td>
-                    <td>Menambah nafsu makan, sumber energi, membantu pencernaan, efek menenangkan, potensi kontrol gula darah</td>
+                    <td>
+                      Menambah nafsu makan, sumber energi, membantu pencernaan,
+                      efek menenangkan, potensi kontrol gula darah
+                    </td>
                   </tr>
                 </tbody>
               </table>
