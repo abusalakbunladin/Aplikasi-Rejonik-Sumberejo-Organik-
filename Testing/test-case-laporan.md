@@ -17,7 +17,7 @@
 
 | No | Test Case | Langkah Pengujian | Data Uji | Expected Result | Actual Result | Status | Keterangan |
 |----|-----------|--------------------|----------|------------------|----------------|--------|------------|
-| 3 | Parameter batas diisi angka negatif | 1. GET /laporan/stok-rendah?batas=-5 | `?batas=-5` | Idealnya divalidasi, atau minimal tidak menampilkan data salah | 200 OK — hasil kosong `[]`, tidak crash tapi tidak ada validasi format nilai batas | **Minor** | Perlu dikonfirmasi ke tim |
+| 3 | Parameter batas diisi angka negatif | 1. GET /laporan/stok-rendah?batas=-5 | `?batas=-5` | Idealnya divalidasi, atau minimal tidak menampilkan data salah | 200 OK — hasil kosong `[]`, tidak crash tapi tidak ada validasi format nilai batas | **Bug** | sudah di fix |
 | 4 | Parameter batas diisi huruf (bukan angka) | 1. GET /laporan/stok-rendah?batas=abc | `?batas=abc` | Sistem menolak (validasi tipe data) | 422 Unprocessable Entity | **Pass** | - |
 
 ---
@@ -51,7 +51,7 @@
 | 15 | Penggilingan dari penerimaan yang belum lolos mutu (masih "menunggu") | 1. POST /penggilingan dengan penerimaan_id berstatus "menunggu" | `{"penerimaan_id": 2, "berat_masuk_kg": 10, "berat_hasil_kg": 6}` | Sistem menolak (400) | 400 Bad Request — bahan baku harus berstatus "lolos" sebelum bisa digiling | **Pass** | - |
 | 16 | berat_hasil_kg lebih besar dari berat_masuk_kg | 1. POST /penggilingan dengan hasil > masuk | `{"penerimaan_id": 1, "berat_masuk_kg": 10, "berat_hasil_kg": 20}` | Sistem menolak (400) | 400 Bad Request — berat hasil tidak boleh melebihi berat masuk | **Pass** | - |
 | 17 | berat_masuk_kg melebihi sisa bahan baku yang tersedia | 1. POST /penggilingan dengan berat_masuk_kg > sisa | `{"penerimaan_id": 1, "berat_masuk_kg": 9999, "berat_hasil_kg": 100}` | Sistem menolak (400) | 400 Bad Request — berat masuk melebihi sisa bahan baku yang belum digiling | **Pass** | - |
-| 18 | Rendemen 100% (berat masuk = berat hasil, tanpa penyusutan) | 1. POST /penggilingan dengan berat_masuk_kg = berat_hasil_kg | `{"penerimaan_id": 1, "berat_masuk_kg": 20, "berat_hasil_kg": 20}` | Sistem menolak — secara fisik gabah digiling jadi beras pasti ada penyusutan (kulit/sekam), rendemen 100% tidak realistis | **BUG (sebelum fix):** 200 OK, sistem menerima rendemen 100% tanpa validasi batas wajar.<br>**Setelah dilaporkan & diperbaiki tim backend:** 400 Bad Request, rendemen 100% berhasil ditolak | **Bug** | Sudah di fix |
+| 18 | Rendemen 100% (berat masuk = berat hasil, tanpa penyusutan) | 1. POST /penggilingan dengan berat_masuk_kg = berat_hasil_kg | `{"penerimaan_id": 1, "berat_masuk_kg": 20, "berat_hasil_kg": 20}` | Sistem menolak — secara fisik gabah digiling jadi beras pasti ada penyusutan (kulit/sekam), rendemen 100% tidak realistis | 200 OK, sistem menerima rendemen 100% tanpa validasi batas wajar.<br>**Setelah dilaporkan & diperbaiki tim backend:** 400 Bad Request, rendemen 100% berhasil ditolak | **Bug** | Sudah di fix |
 | 19 | penerimaan_id tidak ada di database | 1. POST /penggilingan dengan penerimaan_id tidak valid | `{"penerimaan_id": 9999, "berat_masuk_kg": 10, "berat_hasil_kg": 6}` | Sistem menolak (404) | 404 Not Found — penerimaan tidak ditemukan | **Pass** | - |
 | 20 | Daftar penggilingan tampil dengan benar | 1. GET /penggilingan | - | Data yang sudah dibuat muncul di daftar | 200 OK — data penggilingan id: 1 muncul dengan rendemen 0.64 | **Pass** | - |
 
