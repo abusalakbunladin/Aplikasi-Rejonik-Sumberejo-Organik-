@@ -17,7 +17,7 @@
 
 | No | Test Case | Langkah Pengujian | Data Uji | Expected Result | Actual Result | Status | Keterangan |
 |----|-----------|--------------------|----------|------------------|----------------|--------|------------|
-| 3 | Parameter batas diisi angka negatif | 1. GET /laporan/stok-rendah?batas=-5 | `?batas=-5` | Idealnya divalidasi, atau minimal tidak menampilkan data salah | 200 OK — hasil kosong `[]`, tidak crash tapi tidak ada validasi format nilai batas | **Minor** | Perlu dikonfirmasi ke tim |
+| 3 | Parameter batas diisi angka negatif | 1. GET /laporan/stok-rendah?batas=-5 | `?batas=-5` | Idealnya divalidasi, atau minimal tidak menampilkan data salah | 200 OK — hasil kosong `[]`, tidak crash tapi tidak ada validasi format nilai batas | **Bug** | sudah di fix |
 | 4 | Parameter batas diisi huruf (bukan angka) | 1. GET /laporan/stok-rendah?batas=abc | `?batas=abc` | Sistem menolak (validasi tipe data) | 422 Unprocessable Entity | **Pass** | - |
 
 ---
