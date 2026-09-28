@@ -16,9 +16,10 @@ services:
     restart: always
     ports:
       - "8000:8000"
+    env_file:
+      - .env
     environment:
       DATABASE_URL: "mysql+pymysql://root:@db/rejonik"
-      SECRET_KEY: "${SECRET_KEY}"
     depends_on:
       - db
 
