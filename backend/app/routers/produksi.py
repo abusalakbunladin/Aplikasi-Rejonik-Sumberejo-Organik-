@@ -207,7 +207,7 @@ def create_pengemasan(
     db: Session = Depends(get_db),
     current_user: str = Depends(get_current_user),
 ):
-    varian = db.query(ProdukVarian).filter(ProdukVarian.id == data.produk_varian_id).first()
+    varian = db.query(ProdukVarian).filter(ProdukVarian.id == data.produk_varian_id).with_for_update().first()
     if not varian:
         raise HTTPException(status_code=404, detail="Varian produk tidak ditemukan")
 
