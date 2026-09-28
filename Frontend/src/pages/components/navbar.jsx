@@ -12,9 +12,9 @@ export default function Navbar() {
     { name: "Beranda", path: "/" },
     { name: "Produk", path: "/produk" },
     { name: "Keunggulan", path: "/keunggulan" },
-    { name: "Tentang Kami", path: "/tentang" },
     { name: "Sertifikat", path: "/sertifikat" },
-    { name: "Review", path: "/review" },
+    { name: "Tentang Kami", path: "/tentang" },
+    { name: "Kontak", path: "/kontak" },
   ];
   const handleNavClick = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -27,7 +27,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 800) {
+      if (window.scrollY > 700) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -49,10 +49,10 @@ export default function Navbar() {
           open: { backgroundColor: "#FFF9E3", borderColor: "#4D2E00" },
           scrolled: { backgroundColor: "#FFF9E3", borderColor: "#4D2E00" },
         }}
-        className="nav fixed z-1000 flex h-fit w-full items-center justify-center border-b-2 border-white/50 bg-white/20 p-2 shadow-lg backdrop-blur-xl"
+        className={`nav fixed z-1000 flex h-fit w-full items-center justify-center border-b-2 border-white/50 bg-white/20 p-2 backdrop-blur-xl ${isOpen ? "" : "shadow-lg"}`}
       >
         <div className="container mx-auto">
-          <div className="relative flex items-center justify-between px-4">
+          <div className="relative flex w-full items-center justify-between px-4 select-none">
             <div className={isScrolled ? "" : "grayscale"}>
               <Link to="/" onClick={handleBrandClick}>
                 <img src="/brand/brand-logo.png" alt="Brand" width="200" />
@@ -74,7 +74,7 @@ export default function Navbar() {
                     onClick={handleNavClick}
                   >
                     <motion.span
-                      className={`transition-color duration-200 ${isScrolled ? 'text-primary' : 'text-white'}`}
+                      className={`transition-color duration-200 ${isScrolled ? "text-primary" : "text-white"}`}
                       variants={{
                         closed: { color: isActive ? "#4AAB00" : "" },
                         scrolled: { color: isActive ? "#1B5200" : "" },
@@ -97,7 +97,7 @@ export default function Navbar() {
                           duration: 0.3,
                           type: "spring",
                           stiffness: 100,
-                          damping: 10
+                          damping: 10,
                         }}
                       />
                     )}
@@ -181,7 +181,7 @@ export default function Navbar() {
               y: -300,
             }}
             animate={{
-              y: 0,
+              y: 10,
             }}
             exit={{
               y: -300,
@@ -190,7 +190,7 @@ export default function Navbar() {
               duration: 0.2,
               ease: "easeOut",
             }}
-            className="fixed top-1/13 z-10 flex w-full flex-col gap-2 border-b-2 border-side bg-white p-4 font-medium shadow-lg lg:hidden"
+            className="fixed top-1/14 z-10 flex w-full flex-col gap-2 border-b-2 border-side bg-white p-4 font-medium shadow-lg select-none lg:hidden"
           >
             <Link className="w-fit" to="/" onClick={handleNavClick}>
               <motion.span
@@ -234,20 +234,6 @@ export default function Navbar() {
               </motion.span>
             </Link>
 
-            <Link className="w-fit" to="/tentang" onClick={handleNavClick}>
-              <motion.span
-                className="text-side lg:text-white"
-                whileHover={{
-                  color: "#1B5200",
-                }}
-                whileTap={{
-                  opacity: 0.8,
-                }}
-              >
-                Tentang Kami
-              </motion.span>
-            </Link>
-
             <Link className="w-fit" to="/sertifikat" onClick={handleNavClick}>
               <motion.span
                 className="text-side lg:text-white"
@@ -262,7 +248,7 @@ export default function Navbar() {
               </motion.span>
             </Link>
 
-            <Link className="w-fit" to="/review" onClick={handleNavClick}>
+            <Link className="w-fit" to="/tentang" onClick={handleNavClick}>
               <motion.span
                 className="text-side lg:text-white"
                 whileHover={{
@@ -272,7 +258,21 @@ export default function Navbar() {
                   opacity: 0.8,
                 }}
               >
-                Review
+                Tentang Kami
+              </motion.span>
+            </Link>
+
+            <Link className="w-fit" to="/kontak" onClick={handleNavClick}>
+              <motion.span
+                className="text-side lg:text-white"
+                whileHover={{
+                  color: "#1B5200",
+                }}
+                whileTap={{
+                  opacity: 0.8,
+                }}
+              >
+                Kontak
               </motion.span>
             </Link>
 

@@ -9,17 +9,6 @@ html {
     scroll-behavior: smooth;
 }
 
-th, td {
-    @apply p-5
-}
-
-tr {
-    @apply outline outline-quaternary
-}
-
-td {
-    @apply outline outline-quaternary lg:outline-0
-}
 
 @theme {
     --color-primary: #1B5200;
@@ -41,5 +30,17 @@ td {
 @layer components {
     .hamburg-line {
         @apply w-7.5 h-0.5 block rounded-full
+    }
+
+    .t-hnd {
+        @apply p-5
+    }
+
+    .t-contain {
+        @apply outline outline-quaternary
+    }
+
+    .t-content {
+        @apply outline outline-quaternary lg:outline-0
     }
 }

@@ -97,11 +97,11 @@ function Hero() {
                   </div>
 
                   <div className="flex flex-col gap-5">
-                    <div className="flex gap-2 items-center">
-                      <div className="t-deco h-25 md:h-30 lg:h-full w-1 rounded-full bg-side" />
+                    <div className="flex items-center gap-2">
+                      <div className="t-deco h-25 w-1 rounded-full bg-side md:h-30 lg:h-full" />
 
                       <div className="w-full max-w-2xl">
-                        <div className="overflow-hidden text-2xl lg:leading-13 font-extrabold text-white md:text-4xl lg:text-5xl">
+                        <div className="overflow-hidden text-2xl font-extrabold text-white md:text-4xl lg:text-5xl lg:leading-13">
                           <span className="t-main block">
                             Beras Sehat Penuh Berkah
                           </span>
@@ -166,7 +166,7 @@ function Guide() {
       <section id="panduan" className="pt-36 pb-32">
         <div className="container mx-auto">
           <div className="w-full px-4">
-            <div className="mx-auto mb-20 select-none">
+            <div className="mx-auto mb-20 flex flex-col items-center justify-center select-none">
               <div className="mb-3 flex items-center justify-center gap-3">
                 <div className="h-0.5 w-5 rounded-lg bg-side"></div>
                 <h3 className="text-sm font-light text-side uppercase">
@@ -193,7 +193,7 @@ function Guide() {
                 </div>
               </div>
 
-              <div className="mt-5 text-center text-xs lg:text-sm">
+              <div className="mt-5 max-w-lg text-center text-xs lg:text-sm">
                 <p className="text-primary">
                   Ikuti panduan berikut untuk memesan beras organik dari Rejonik
                   dengan cepat dan aman.
@@ -343,7 +343,7 @@ function Catalogue() {
       <section id="katalog" className="pt-36 pb-100">
         <div className="container mx-auto">
           <div className="w-full px-4">
-            <div className="mx-auto mb-20 select-none">
+            <div className="mx-auto mb-20 flex flex-col items-center justify-center select-none">
               <div className="mb-3 flex items-center justify-center gap-3">
                 <div className="h-0.5 w-5 rounded-lg bg-side"></div>
                 <h3 className="text-sm font-light text-side uppercase">
@@ -370,7 +370,7 @@ function Catalogue() {
                 </div>
               </div>
 
-              <div className="mt-5 text-center text-xs lg:text-sm">
+              <div className="mt-5 max-w-lg text-center text-xs lg:text-sm">
                 <p className="text-primary">
                   Pilih varian terbaik yang cocok dengan selera dan kebutuhan
                   nutrisi harian keluarga tercinta Anda.
@@ -472,6 +472,9 @@ function Catalogue() {
                           hoverBtn: {
                             color: "#FFFFFF",
                           },
+                        }}
+                        whileTap={{
+                          scaleX: 0.8,
                         }}
                         className="relative cursor-pointer overflow-hidden rounded-full bg-white p-1 px-3 ring-2 ring-accentThrd select-none"
                       >
@@ -593,6 +596,9 @@ function Catalogue() {
                             color: "#FFFFFF",
                           },
                         }}
+                        whileTap={{
+                          scaleX: 0.8,
+                        }}
                         className="relative cursor-pointer overflow-hidden rounded-full bg-white p-1 px-3 ring-2 ring-accentThrd select-none"
                       >
                         <span className="relative z-1 font-semibold">
@@ -713,6 +719,9 @@ function Catalogue() {
                             color: "#FFFFFF",
                           },
                         }}
+                        whileTap={{
+                          scaleX: 0.8,
+                        }}
                         className="relative cursor-pointer overflow-hidden rounded-full bg-white p-1 px-3 ring-2 ring-accentThrd select-none"
                       >
                         <span className="relative z-1 font-semibold">
@@ -754,7 +763,7 @@ function Nutrition() {
       <section id="nutrisi" className="pt-36 pb-32">
         <div className="container mx-auto">
           <div className="w-full px-4">
-            <div className="mx-auto mb-20 select-none">
+            <div className="mx-auto mb-20 flex flex-col items-center justify-center select-none">
               <div className="mb-3 flex items-center justify-center gap-3">
                 <div className="h-0.5 w-5 rounded-lg bg-side"></div>
                 <h3 className="text-sm font-light text-side uppercase">
@@ -781,7 +790,7 @@ function Nutrition() {
                 </div>
               </div>
 
-              <div className="mt-5 text-center text-xs lg:text-sm">
+              <div className="mt-5 max-w-lg text-center text-xs lg:text-sm">
                 <p className="text-primary">
                   Anda dapat melihat kandungan nutrisi dari beras yang kami
                   jual.
@@ -789,52 +798,58 @@ function Nutrition() {
               </div>
             </div>
 
-            <div className="mx-auto outline-2 outline-quaternary overflow-x-auto rounded-lg">
+            <div className="mx-auto overflow-x-auto rounded-lg outline-2 outline-quaternary">
               <table className="mx-auto min-w-175 table-fixed overflow-hidden rounded-lg">
                 <thead className="bg-primary text-xl font-bold text-white select-none">
-                  <tr>
-                    <th>Varian Beras</th>
-                    <th>Kalori (Per 100g)</th>
-                    <th>Kandungan Serat</th>
-                    <th>Indeks Glikemik (GI)</th>
-                    <th>Saran Penggunaan</th>
-                    <th>Manfaat</th>
+                  <tr className="t-contain">
+                    <th className="t-hnd">Varian Beras</th>
+                    <th className="t-hnd">Kalori (Per 100g)</th>
+                    <th className="t-hnd">Kandungan Serat</th>
+                    <th className="t-hnd">Indeks Glikemik (GI)</th>
+                    <th className="t-hnd">Saran Penggunaan</th>
+                    <th className="t-hnd">Manfaat</th>
                   </tr>
                 </thead>
 
                 <tbody className="font-medium text-quaternary">
-                  <tr>
-                    <td>Beras Original</td>
-                    <td>180 kkal</td>
-                    <td>Sedang</td>
-                    <td className="font-bold text-accentThrd">Sedang</td>
-                    <td>Sehari-hari</td>
-                    <td>
+                  <tr className="t-contain">
+                    <td className="t-hnd t-content">Beras Original</td>
+                    <td className="t-hnd t-content">180 kkal</td>
+                    <td className="t-hnd t-content">Sedang</td>
+                    <td className="t-hnd t-content font-bold text-accentThrd">
+                      Sedang
+                    </td>
+                    <td className="t-hnd t-content">Sehari-hari</td>
+                    <td className="t-hnd t-content">
                       Sumber energi, mudah dicerna, bebas gluten, kandungan
                       mineral
                     </td>
                   </tr>
 
-                  <tr>
-                    <td>Beras Merah</td>
-                    <td>110 kkal</td>
-                    <td>Sangat Tinggi</td>
-                    <td className="font-bold text-side">Rendah</td>
-                    <td>Diet</td>
-                    <td>
+                  <tr className="t-contain">
+                    <td className="t-hnd t-content">Beras Merah</td>
+                    <td className="t-hnd t-content">110 kkal</td>
+                    <td className="t-hnd t-content">Sangat Tinggi</td>
+                    <td className="t-hnd t-content font-bold text-side">
+                      Rendah
+                    </td>
+                    <td className="t-hnd t-content">Diet</td>
+                    <td className="t-hnd t-content">
                       Kaya akan serat, antioksidan, menjaga kesehatan jantung,
                       membantu menurunkan berat badan, mengontrol gula darah,
                       melancarkan pencernaan, menangkal radikal bebas
                     </td>
                   </tr>
 
-                  <tr>
-                    <td>Beras Aromatik</td>
-                    <td>175 kkal</td>
-                    <td>Sedang</td>
-                    <td className="font-bold text-accentThrd">Sedang</td>
-                    <td>Hidangan Spesial</td>
-                    <td>
+                  <tr className="t-contain">
+                    <td className="t-hnd t-content">Beras Aromatik</td>
+                    <td className="t-hnd t-content">175 kkal</td>
+                    <td className="t-hnd t-content">Sedang</td>
+                    <td className="t-hnd t-content font-bold text-accentThrd">
+                      Sedang
+                    </td>
+                    <td className="t-hnd t-content">Hidangan Spesial</td>
+                    <td className="t-hnd t-content">
                       Menambah nafsu makan, sumber energi, membantu pencernaan,
                       efek menenangkan, potensi kontrol gula darah
                     </td>

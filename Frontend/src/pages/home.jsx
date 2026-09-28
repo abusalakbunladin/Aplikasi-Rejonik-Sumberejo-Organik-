@@ -13,7 +13,7 @@ export default function Home() {
       <Product />
       <Advantages />
       <About />
-      <Sertificate />
+      <Certificate />
       <Review />
       <Order />
       <Footer />
@@ -126,7 +126,7 @@ function Hero() {
     <div className="hero" ref={heroRef}>
       <section
         id="home"
-        className="relative overflow-hidden bg-primary pt-90 pb-30"
+        className="relative overflow-hidden bg-primary pt-90 pb-10 md:pb-30"
       >
         <div className="relative z-2 container mx-auto">
           <div className="w-full px-4">
@@ -2021,8 +2021,8 @@ function About() {
 }
 // About //
 
-// Sertificate //
-function Sertificate() {
+// Certificate //
+function Certificate() {
   const sectionRef = useRef(null);
 
   const isInView = useInView(sectionRef, { once: true, amount: 0.8 });
@@ -2080,7 +2080,7 @@ function Sertificate() {
     });
     // Title //
 
-    // Sertificate //
+    // Certificate //
     animate(sectionRef.current.querySelectorAll(".s-content"), {
       opacity: [0, 1],
       scaleX: [0, 1],
@@ -2089,11 +2089,11 @@ function Sertificate() {
       duration: 1500,
       ease: "inOutElastic(1.86,1.23)",
     });
-    // Sertificate //
+    // Certificate //
   });
 
   return (
-    <div className="sertificate" ref={sectionRef}>
+    <div className="certificate" ref={sectionRef}>
       <section id="sertifikat" className="pt-36 pb-50">
         <div className="container mx-auto">
           <div className="w-full px-4">
@@ -2101,7 +2101,7 @@ function Sertificate() {
               <div className="mb-3 flex items-center justify-center gap-3">
                 <div className="s-t-deco h-0.5 w-5 rounded-lg bg-side lg:opacity-0"></div>
                 <h3 className="s-title text-sm font-light text-side uppercase lg:text-lg lg:opacity-0">
-                  Sertificate
+                  Certificate
                 </h3>
                 <div className="s-t-deco h-0.5 w-5 rounded-lg bg-side lg:opacity-0"></div>
               </div>
@@ -2175,7 +2175,7 @@ function Sertificate() {
                     stiffness: 150,
                     damping: 15,
                   }}
-                  src="/sertificate/Logo SNI.svg"
+                  src="/certificate/Logo SNI.svg"
                   alt="SNI"
                   width="50"
                 />
@@ -2209,14 +2209,14 @@ function Sertificate() {
                   }}
                   className="absolute left-1/2 hidden h-54 w-54 -translate-x-1/2 items-center justify-center rounded-full bg-side lg:flex"
                 >
-                  <img src="/sertificate/Logo SNI.svg" alt="SNI" width="30" />
+                  <img src="/certificate/Logo SNI.svg" alt="SNI" width="30" />
                 </motion.div>
 
                 <div className="mx-auto flex flex-col gap-5 p-5">
                   <div className="flex items-center gap-5 select-none">
                     <div className="flex h-15 w-15 items-center justify-center rounded-full bg-side">
                       <img
-                        src="/sertificate/Logo SNI.svg"
+                        src="/certificate/Logo SNI.svg"
                         alt="SNI"
                         width="30"
                       />
@@ -2319,7 +2319,7 @@ function Sertificate() {
                     stiffness: 150,
                     damping: 15,
                   }}
-                  src="/sertificate/Halal Indonesia Logo.png"
+                  src="/certificate/Halal Indonesia Logo.png"
                   alt="Halal"
                   width="40"
                 />
@@ -2354,7 +2354,7 @@ function Sertificate() {
                   className="absolute left-1/2 hidden h-54 w-54 -translate-x-1/2 items-center justify-center rounded-full bg-side lg:flex"
                 >
                   <img
-                    src="/sertificate/Halal Indonesia Logo.png"
+                    src="/certificate/Halal Indonesia Logo.png"
                     alt="Halal"
                     width="30"
                   />
@@ -2364,7 +2364,7 @@ function Sertificate() {
                   <div className="flex items-center gap-5 select-none">
                     <div className="flex h-15 w-15 items-center justify-center rounded-full bg-side">
                       <img
-                        src="/sertificate/Halal Indonesia Logo.png"
+                        src="/certificate/Halal Indonesia Logo.png"
                         alt="Halal"
                         width="20"
                       />
@@ -2467,7 +2467,7 @@ function Sertificate() {
                     stiffness: 150,
                     damping: 15,
                   }}
-                  src="/sertificate/BPOM Logo.png"
+                  src="/certificate/BPOM Logo.png"
                   alt="BPOM"
                   width="70"
                 />
@@ -2501,14 +2501,14 @@ function Sertificate() {
                   }}
                   className="absolute left-1/2 hidden h-54 w-54 -translate-x-1/2 items-center justify-center rounded-full bg-side lg:flex"
                 >
-                  <img src="/sertificate/BPOM Icon.png" alt="BPOM" width="40" />
+                  <img src="/certificate/BPOM Icon.png" alt="BPOM" width="40" />
                 </motion.div>
 
                 <div className="mx-auto flex flex-col gap-5 p-5">
                   <div className="flex items-center gap-5 select-none">
                     <div className="flex h-15 w-15 items-center justify-center rounded-full bg-side">
                       <img
-                        src="/sertificate/BPOM Icon.png"
+                        src="/certificate/BPOM Icon.png"
                         alt="BPOM"
                         width="30"
                       />
@@ -2611,7 +2611,7 @@ function Sertificate() {
                     stiffness: 150,
                     damping: 15,
                   }}
-                  src="/sertificate/LeSOS.png"
+                  src="/certificate/LeSOS.png"
                   alt="LeSOS"
                   width="70"
                 />
@@ -2645,14 +2645,14 @@ function Sertificate() {
                   }}
                   className="absolute left-1/2 hidden h-54 w-54 -translate-x-1/2 items-center justify-center rounded-full bg-side lg:flex"
                 >
-                  <img src="/sertificate/LeSOS.png" alt="LeSOS" width="50" />
+                  <img src="/certificate/LeSOS.png" alt="LeSOS" width="50" />
                 </motion.div>
 
                 <div className="mx-auto flex flex-col gap-5 p-5">
                   <div className="flex items-center gap-5 select-none">
                     <div className="flex h-15 w-15 items-center justify-center rounded-full bg-side">
                       <img
-                        src="/sertificate/LeSOS.png"
+                        src="/certificate/LeSOS.png"
                         alt="LeSOS"
                         width="40"
                       />
@@ -2716,7 +2716,7 @@ function Sertificate() {
     </div>
   );
 }
-// Sertificate //
+// Certificate //
 
 // Review //
 function Review() {

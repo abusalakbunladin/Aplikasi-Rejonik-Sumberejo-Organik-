@@ -106,7 +106,7 @@ function Hero() {
     <div className="hero" ref={heroRef}>
       <section
         id="home"
-        className="bg-[url(/brand/sawah-senjah.png)] bg-cover bg-center bg-no-repeat pt-90 pb-30"
+        className="bg-[url(/brand/sawah-senjah.png)] bg-cover bg-center bg-no-repeat pt-90 pb-40"
       >
         <div className="container mx-auto">
           <div className="w-full px-4">
