@@ -1,4 +1,6 @@
+import logging
 import os
+import re
 from urllib.parse import quote
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -10,7 +12,17 @@ from app.schemas import OrderCreate, OrderCreateResponse, OrderKonfirmasiUpdate,
 
 router = APIRouter(prefix="/order", tags=["Order"])
 
-ADMIN_WA_NUMBER = os.getenv("ADMIN_WA_NUMBER", "")
+logger = logging.getLogger(__name__)
+
+def _nomor_wa_admin() -> str | None:
+    angka = re.sub(r"\D", "", os.getenv("ADMIN_WA_NUMBER", ""))
+    if angka.startswith("0"):
+        angka = "62" + angka[1:]
+    elif angka.startswith("8"):
+        angka = "62" + angka
+    if not re.fullmatch(r"62\d{8,13}", angka):
+        return None
+    return angka
 
 
 def _format_rupiah(angka: int) -> str:
@@ -85,8 +97,13 @@ def create_order(data: OrderCreate, db: Session = Depends(get_db)):
     db.refresh(order)
 
     pesan = _buat_pesan_wa(order, daftar_item_pesan)
-    order.wa_link = f"https://wa.me/{ADMIN_WA_NUMBER}?text={quote(pesan)}"
-
+    nomor_admin = _nomor_wa_admin()
+    if nomor_admin:
+        order.wa_link = f"https://wa.me/{nomor_admin}?text={quote(pesan)}"
+    else:
+        logger.warning("ADMIN_WA_NUMBER kosong/tidak valid di .env, link WhatsApp tidak dibuat")
+        order.wa_link = None
+        
     return order
 
 

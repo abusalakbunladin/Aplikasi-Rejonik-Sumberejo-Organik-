@@ -208,7 +208,7 @@ class OrderResponse(BaseModel):
         from_attributes = True
 
 class OrderCreateResponse(OrderResponse):
-    wa_link: str
+    wa_link: Optional[str] = None
 
 class PenyesuaianStokCreate(BaseModel):
     produk_varian_id: int
