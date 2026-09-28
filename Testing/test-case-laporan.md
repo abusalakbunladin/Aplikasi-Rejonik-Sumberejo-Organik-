@@ -70,6 +70,7 @@
 | 24 | produk_varian_id tidak ada di database | 1. POST /pengemasan dengan produk_varian_id tidak valid | `{"produk_varian_id": 9999, "jumlah_pcs": 1}` | Sistem menolak (404) | 404 Not Found — varian produk tidak ditemukan | **Pass** | - |
 | 25 | jumlah_pcs 0 atau negatif | 1. POST /pengemasan dengan jumlah_pcs = 0 | `{"produk_varian_id": 1, "jumlah_pcs": 0}` | Sistem menolak (422) | 422 Unprocessable Entity — jumlah_pcs harus lebih besar dari 0 | **Pass** | - |
 | 26 | Verifikasi stok bertambah & daftar pengemasan tampil benar | 1. GET /pengemasan (cek No. 22 muncul)<br>2. GET /produk-varian (cek stok varian id 1 bertambah sesuai No. 22) | - | Data pengemasan muncul, stok varian terupdate sesuai jumlah yang dikemas | 200 OK — data pengemasan No. 22 muncul di daftar, stok varian id 1 terkonfirmasi bertambah 6 sesuai jumlah yang dikemas | **Pass** | - |
+| 27 | Catatan penerimaan melebihi batas panjang kolom (256 karakter) | 1. Login sebagai admin<br>2. POST /penerimaan dengan catatan 256 karakter | `{"pemasok_id": 1, "produk_id": 4, "berat_kg": 5, "catatan": "A x 256"}` | Sistem menolak (422), karena kolom database maksimal 255 karakter | [isi] — tidak ditolak dengan 422 (skema tidak punya max_length) | **Bug** | Belum di fix |
 
 ---
 **Catatan struktur:**
