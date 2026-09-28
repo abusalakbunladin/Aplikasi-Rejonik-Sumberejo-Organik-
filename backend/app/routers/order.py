@@ -48,6 +48,9 @@ def list_orders(db: Session = Depends(get_db), current_user=Depends(get_current_
 
 @router.post("", response_model=OrderCreateResponse)
 def create_order(data: OrderCreate, db: Session = Depends(get_db)):
+    ids_varian = sorted({item.produk_varian_id for item in data.items})
+    db.query(ProdukVarian).filter(ProdukVarian.id.in_(ids_varian)).order_by(ProdukVarian.id).with_for_update().all()
+
     order = Order(
         nama_pembeli=data.nama_pembeli,
         no_telepon=data.no_telepon,
@@ -94,7 +97,7 @@ def konfirmasi_order(
     db: Session = Depends(get_db),
     current_user=Depends(get_current_user),
 ):
-    order = db.query(Order).options(joinedload(Order.items)).filter(Order.id == order_id).first()
+    order = db.query(Order).filter(Order.id == order_id).with_for_update().first()
     if not order:
         raise HTTPException(status_code=404, detail="Pesanan tidak ditemukan")
 
@@ -106,7 +109,7 @@ def konfirmasi_order(
 
     if data.status_konfirmasi == "ditolak":
         for item in order.items:
-            varian = db.query(ProdukVarian).filter(ProdukVarian.id == item.produk_varian_id).first()
+            varian = db.query(ProdukVarian).filter(ProdukVarian.id == item.produk_varian_id).with_for_update().first()
             if varian:
                 varian.stok += item.jumlah
 

@@ -13,7 +13,7 @@ def list_penyesuaian(db: Session = Depends(get_db), current_user: str = Depends(
 
 @router.post("", response_model=PenyesuaianStokResponse)
 def create_penyesuaian(data: PenyesuaianStokCreate, db: Session = Depends(get_db), current_user: str = Depends(get_current_user)):
-    varian = db.query(ProdukVarian).filter(ProdukVarian.id == data.produk_varian_id).first()
+    varian = db.query(ProdukVarian).filter(ProdukVarian.id == data.produk_varian_id).with_for_update().first()
     if not varian:
         raise HTTPException(status_code=404, detail="Varian produk tidak ditemukan")
     if varian.stok < data.jumlah:
