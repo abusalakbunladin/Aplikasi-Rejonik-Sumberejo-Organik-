@@ -27,7 +27,7 @@ def create_varian(data: ProdukVarianCreate, db: Session = Depends(get_db), curre
 
 @router.put("/{varian_id}", response_model=ProdukVarianResponse)
 def update_varian(varian_id: int, data: ProdukVarianCreate, db: Session = Depends(get_db), current_user: str = Depends(get_current_user)):
-    varian = db.query(ProdukVarian).filter(ProdukVarian.id == varian_id).first()
+    varian = db.query(ProdukVarian).filter(ProdukVarian.id == varian_id).with_for_update().first()
     if not varian:
         raise HTTPException(status_code=404, detail="Varian tidak ditemukan")
     for field, value in data.model_dump().items():

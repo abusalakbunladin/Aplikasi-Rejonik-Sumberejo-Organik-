@@ -211,6 +211,8 @@ def create_pengemasan(
     if not varian:
         raise HTTPException(status_code=404, detail="Varian produk tidak ditemukan")
 
+    db.query(Produk).filter(Produk.id == varian.produk_id).with_for_update().first()
+    
     berat_dibutuhkan = data.jumlah_pcs * varian.berat
     sisa = get_sisa_hasil_giling(db, varian.produk_id)
     if berat_dibutuhkan > sisa + TOLERANSI:
