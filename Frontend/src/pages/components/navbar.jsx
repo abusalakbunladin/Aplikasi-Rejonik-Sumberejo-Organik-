@@ -74,7 +74,7 @@ export default function Navbar() {
                     onClick={handleNavClick}
                   >
                     <motion.span
-                      className={`transition-color duration-200 ${isScrolled ? "text-primary" : "text-white"}`}
+                      className={`text-shadow-lg transition-color duration-200 ${isScrolled ? "text-primary" : "text-white"}`}
                       variants={{
                         closed: { color: isActive ? "#4AAB00" : "" },
                         scrolled: { color: isActive ? "#1B5200" : "" },
