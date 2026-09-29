@@ -1,8 +1,14 @@
 import re
-from datetime import datetime
-from typing import Literal, Optional
-from pydantic import BaseModel, Field, field_validator
+from datetime import datetime, timezone
+from typing import Annotated, Literal, Optional
+from pydantic import BaseModel,BeforeValidator, Field, field_validator
 
+def _tandai_utc(v):
+    if isinstance(v, datetime) and v.tzinfo is None:
+        return v.replace(tzinfo=timezone.utc)
+    return v
+
+WaktuUTC = Annotated[datetime, BeforeValidator(_tandai_utc)]
 
 class KategoriCreate(BaseModel):
     nama: str = Field(..., min_length=1, description="Nama kategori tidak boleh kosong")
@@ -98,7 +104,7 @@ class PenerimaanResponse(BaseModel):
     harga_per_kg: Optional[int]
     status_mutu: str
     catatan: Optional[str]
-    tanggal: datetime
+    tanggal: WaktuUTC
     berat_sudah_digiling: float
     berat_sisa_kg: float
     class Config:
@@ -115,7 +121,7 @@ class PenggilinganResponse(BaseModel):
     penerimaan_id: int
     berat_masuk_kg: float
     berat_hasil_kg: float
-    tanggal: datetime
+    tanggal: WaktuUTC
     susut_kg: float
     rendemen: float
     class Config:
@@ -130,7 +136,7 @@ class PengemasanResponse(BaseModel):
     id: int
     produk_varian_id: int
     jumlah_pcs: int
-    tanggal: datetime
+    tanggal: WaktuUTC
     berat_terpakai_kg: float
     class Config:
         from_attributes = True
@@ -199,7 +205,7 @@ class OrderResponse(BaseModel):
     kode_pos: Optional[str]
     nama_jalan: Optional[str]
     detail_lainnya: Optional[str]
-    tanggal: datetime
+    tanggal: WaktuUTC
     total: int
     status_konfirmasi: str
     ongkir: int
@@ -230,7 +236,7 @@ class PenyesuaianStokResponse(BaseModel):
     jumlah: int
     alasan: str
     keterangan: Optional[str]
-    tanggal: datetime
+    tanggal: WaktuUTC
     class Config:
         from_attributes = True
 
