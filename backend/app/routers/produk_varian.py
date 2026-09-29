@@ -1,3 +1,5 @@
+import math
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -7,6 +9,16 @@ from app.schemas import ProdukVarianCreate, ProdukVarianResponse
 
 router = APIRouter(prefix="/produk-varian", tags=["Katalog - Varian Produk"])
 
+def _cek_varian_kembar(db: Session, produk_id: int, berat: float, kecuali_id: int | None = None):
+    for lain in db.query(ProdukVarian).filter(ProdukVarian.produk_id == produk_id).all():
+        if lain.id != kecuali_id and math.isclose(lain.berat, berat, rel_tol=1e-6):
+            raise HTTPException(status_code=400, detail=f"Produk ini sudah punya varian {berat} kg")
+
+def _cek_varian_kembar(db: Session, produk_id: int, berat: float, kecuali_id: int | None = None):
+    for lain in db.query(ProdukVarian).filter(ProdukVarian.produk_id == produk_id).all():
+        if lain.id != kecuali_id and math.isclose(lain.berat, berat, rel_tol=1e-6):
+            raise HTTPException(status_code=400, detail=f"Produk ini sudah punya varian {berat} kg")
+        
 @router.get("", response_model=list[ProdukVarianResponse])
 def list_varian(produk_id: int | None = None, db: Session = Depends(get_db)):
     query = db.query(ProdukVarian)
@@ -19,6 +31,7 @@ def create_varian(data: ProdukVarianCreate, db: Session = Depends(get_db), curre
     produk = db.query(Produk).filter(Produk.id == data.produk_id).first()
     if not produk:
         raise HTTPException(status_code=404, detail="Produk tidak ditemukan")
+    _cek_varian_kembar(db, data.produk_id, data.berat)
     varian = ProdukVarian(**data.model_dump())
     db.add(varian)
     db.commit()
@@ -30,6 +43,25 @@ def update_varian(varian_id: int, data: ProdukVarianCreate, db: Session = Depend
     varian = db.query(ProdukVarian).filter(ProdukVarian.id == varian_id).with_for_update().first()
     if not varian:
         raise HTTPException(status_code=404, detail="Varian tidak ditemukan")
+    
+    produk_berubah = data.produk_id != varian.produk_id
+    berat_berubah = not math.isclose(data.berat, varian.berat, rel_tol=1e-6)
+
+    if produk_berubah and not db.query(Produk).filter(Produk.id == data.produk_id).first():
+        raise HTTPException(status_code=404, detail=f"Produk id {data.produk_id} tidak ditemukan")
+
+    if produk_berubah or berat_berubah:
+        dipakai = (
+            db.query(OrderItem).filter(OrderItem.produk_varian_id == varian_id).count()
+            + db.query(Pengemasan).filter(Pengemasan.produk_varian_id == varian_id).count()
+        )
+        if dipakai > 0:
+            raise HTTPException(
+                status_code=400,
+                detail="Berat/produk varian tidak bisa diubah karena sudah dipakai di order atau pengemasan. "
+                       "Buat varian baru dengan berat yang diinginkan.",
+            )
+        _cek_varian_kembar(db, data.produk_id, data.berat, kecuali_id=varian_id)
     for field, value in data.model_dump().items():
         setattr(varian, field, value)
     db.commit()

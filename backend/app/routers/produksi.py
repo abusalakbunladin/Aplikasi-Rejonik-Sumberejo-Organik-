@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import func
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 
 from app.deps import get_db, get_current_user
 from app.models import (
@@ -44,11 +44,14 @@ def get_sisa_hasil_giling(db: Session, produk_id: int) -> float:
 
 penerimaan_router = APIRouter(prefix="/penerimaan", tags=["Produksi - Penerimaan bahan baku"])
 
-
 @penerimaan_router.get("", response_model=list[PenerimaanResponse])
 def list_penerimaan(db: Session = Depends(get_db), current_user: str = Depends(get_current_user)):
-    return db.query(PenerimaanBahanBaku).order_by(PenerimaanBahanBaku.tanggal.desc()).all()
-
+    return (
+    db.query(PenerimaanBahanBaku)
+    .options(selectinload(PenerimaanBahanBaku.penggilingan))
+    .order_by(PenerimaanBahanBaku.tanggal.desc())
+    .all()
+)
 
 @penerimaan_router.post("", response_model=PenerimaanResponse)
 def create_penerimaan(
@@ -75,7 +78,7 @@ def update_mutu(
     db: Session = Depends(get_db),
     current_user: str = Depends(get_current_user),
 ):
-    penerimaan = db.query(PenerimaanBahanBaku).filter(PenerimaanBahanBaku.id == penerimaan_id).first()
+    penerimaan = db.query(PenerimaanBahanBaku).filter(PenerimaanBahanBaku.id == penerimaan_id).with_for_update().first()
     if not penerimaan:
         raise HTTPException(status_code=404, detail="Penerimaan tidak ditemukan")
     if penerimaan.penggilingan:
@@ -198,7 +201,7 @@ pengemasan_router = APIRouter(prefix="/pengemasan", tags=["Produksi - Pengemasan
 
 @pengemasan_router.get("", response_model=list[PengemasanResponse])
 def list_pengemasan(db: Session = Depends(get_db), current_user: str = Depends(get_current_user)):
-    return db.query(Pengemasan).order_by(Pengemasan.tanggal.desc()).all()
+    return db.query(Pengemasan).options(selectinload(Pengemasan.varian)).order_by(Pengemasan.tanggal.desc()).all()
 
 
 @pengemasan_router.post("", response_model=PengemasanResponse)
