@@ -65,6 +65,9 @@
 |----|-----------|--------------------|----------|------------------|----------------|--------|------------|
 | 9 | Admin konfirmasi order yang masuk | 1. Login sebagai admin (dapatkan token)<br>2. PATCH /order/{id}/konfirmasi dengan status "dikonfirmasi" dan ongkir | `{"status_konfirmasi": "dikonfirmasi", "ongkir": 15000}` | Status order berubah jadi "dikonfirmasi", ongkir tersimpan | 200 OK, status dan ongkir berhasil diperbarui | **Pass** | - |
 | 10 | Stok dikembalikan saat order ditolak | 1. Cek stok varian (misal 59)<br>2. POST /order dengan jumlah 3 (stok berkurang jadi 56 - dicek dari kondisi awal 62 sebelum test dimulai)<br>3. PATCH /order/{id}/konfirmasi dengan status "ditolak"<br>4. Cek stok lagi | `{"status_konfirmasi": "ditolak", "ongkir": 0}` | Stok kembali ke jumlah semula setelah order ditolak (tidak hilang karena order tidak jadi) | Stok varian id 1 sebelum order: 59. Setelah order dibuat (jumlah 3): tidak dicek langsung, namun setelah order ditolak, stok kembali menjadi 62 (bertambah 3 dari 59) | **Pass** | - |
+| 11 | Order dengan kode_pos berisi huruf (bukan angka) | 1. POST /order tanpa Bearer Token<br>2. Isi kode_pos dengan huruf | `"kode_pos": "abcde"` (field lain valid) | Sistem menolak (422), kode pos harus berupa angka | 200 OK — order tersimpan dengan kode_pos "abcde", tidak ada validasi format kode pos | **Bug** | Belum di fix |
+| 12 | Order dengan nama_pembeli melebihi batas panjang kolom (101 karakter) | 1. POST /order tanpa Bearer Token<br>2. Isi nama_pembeli dengan 101 karakter | `"nama_pembeli": "A x 101"` (field lain valid) | Sistem menolak (422), karena kolom database maksimal 100 karakter | [isi] — tidak ditolak dengan 422 (skema tidak punya max_length) | **Bug** | Belum di fix |
+
 
 ---
 **Catatan struktur:**

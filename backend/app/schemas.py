@@ -1,8 +1,14 @@
 import re
-from datetime import datetime
-from typing import Literal, Optional
-from pydantic import BaseModel, Field, field_validator
+from datetime import datetime, timezone
+from typing import Annotated, Literal, Optional
+from pydantic import BaseModel,BeforeValidator, ConfigDict, Field, field_validator
 
+def _tandai_utc(v):
+    if isinstance(v, datetime) and v.tzinfo is None:
+        return v.replace(tzinfo=timezone.utc)
+    return v
+
+WaktuUTC = Annotated[datetime, BeforeValidator(_tandai_utc)]
 
 class KategoriCreate(BaseModel):
     nama: str = Field(..., min_length=1, description="Nama kategori tidak boleh kosong")
@@ -18,8 +24,7 @@ class KategoriCreate(BaseModel):
 class KategoriResponse(BaseModel):
     id: int
     nama: str
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class ProdukVarianCreate(BaseModel):
@@ -34,8 +39,7 @@ class ProdukVarianResponse(BaseModel):
     berat: float
     harga: int
     stok: int
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class ProdukCreate(BaseModel):
@@ -55,8 +59,7 @@ class ProdukResponse(BaseModel):
     nama: str
     kategori_id: Optional[int]
     varian: list[ProdukVarianResponse] = []
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class PemasokCreate(BaseModel):
@@ -75,8 +78,7 @@ class PemasokResponse(BaseModel):
     id: int
     nama: str
     kontak: str
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class PenerimaanCreate(BaseModel):
@@ -98,11 +100,10 @@ class PenerimaanResponse(BaseModel):
     harga_per_kg: Optional[int]
     status_mutu: str
     catatan: Optional[str]
-    tanggal: datetime
+    tanggal: WaktuUTC
     berat_sudah_digiling: float
     berat_sisa_kg: float
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class PenggilinganCreate(BaseModel):
@@ -115,11 +116,10 @@ class PenggilinganResponse(BaseModel):
     penerimaan_id: int
     berat_masuk_kg: float
     berat_hasil_kg: float
-    tanggal: datetime
+    tanggal: WaktuUTC
     susut_kg: float
     rendemen: float
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class PengemasanCreate(BaseModel):
@@ -130,10 +130,9 @@ class PengemasanResponse(BaseModel):
     id: int
     produk_varian_id: int
     jumlah_pcs: int
-    tanggal: datetime
+    tanggal: WaktuUTC
     berat_terpakai_kg: float
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class HasilGilingResponse(BaseModel):
@@ -153,8 +152,7 @@ class OrderItemResponse(BaseModel):
     produk_varian_id: int
     jumlah: int
     harga_saat_itu: int
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 class OrderCreate(BaseModel):
     nama_pembeli: str = Field(..., min_length=1, description="Nama pembeli tidak boleh kosong")
@@ -199,16 +197,15 @@ class OrderResponse(BaseModel):
     kode_pos: Optional[str]
     nama_jalan: Optional[str]
     detail_lainnya: Optional[str]
-    tanggal: datetime
+    tanggal: WaktuUTC
     total: int
     status_konfirmasi: str
     ongkir: int
     items: list[OrderItemResponse]
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 class OrderCreateResponse(OrderResponse):
-    wa_link: str
+    wa_link: Optional[str] = None
 
 class PenyesuaianStokCreate(BaseModel):
     produk_varian_id: int
@@ -230,9 +227,8 @@ class PenyesuaianStokResponse(BaseModel):
     jumlah: int
     alasan: str
     keterangan: Optional[str]
-    tanggal: datetime
-    class Config:
-        from_attributes = True
+    tanggal: WaktuUTC
+    model_config = ConfigDict(from_attributes=True)
 
 
 class LaporanPenjualanItem(BaseModel):
@@ -241,8 +237,7 @@ class LaporanPenjualanItem(BaseModel):
     berat: float
     total_terjual: int
     total_pendapatan: int
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 class LaporanStokRendah(BaseModel):
     id: int
@@ -250,5 +245,4 @@ class LaporanStokRendah(BaseModel):
     berat: float
     stok: int
     status: Literal["habis", "rendah"]
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

@@ -106,7 +106,7 @@ def create_penggilingan(
     db: Session = Depends(get_db),
     current_user: str = Depends(get_current_user),
 ):
-    penerimaan = db.query(PenerimaanBahanBaku).filter(PenerimaanBahanBaku.id == data.penerimaan_id).first()
+    penerimaan = db.query(PenerimaanBahanBaku).filter(PenerimaanBahanBaku.id == data.penerimaan_id).with_for_update().first()
     if not penerimaan:
         raise HTTPException(status_code=404, detail=f"Penerimaan id {data.penerimaan_id} tidak ditemukan")
 
@@ -210,6 +210,8 @@ def create_pengemasan(
     varian = db.query(ProdukVarian).filter(ProdukVarian.id == data.produk_varian_id).with_for_update().first()
     if not varian:
         raise HTTPException(status_code=404, detail="Varian produk tidak ditemukan")
+
+    db.query(Produk).filter(Produk.id == varian.produk_id).with_for_update().first()
 
     berat_dibutuhkan = data.jumlah_pcs * varian.berat
     sisa = get_sisa_hasil_giling(db, varian.produk_id)
