@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { animate, stagger } from "animejs";
-import { Link } from "react-router-dom";
+import { animate } from "animejs";
 import Navbar from "./components/navbar.jsx";
 import Footer from "./components/footer.jsx";
 import Order from "./components/order-section.jsx";
-import { title } from "motion/react-client";
 
 export default function Certificate() {
   return (
@@ -607,7 +605,7 @@ function Content() {
                 return (
                   <div key={cert.id} className="relative h-fit w-fit">
                     <div
-                      className={`h-105 w-80 translate-x-3 -translate-y-3 rounded-sm border-2 bg-tertiary p-5 ${
+                      className={`w-80 translate-x-3 -translate-y-3 rounded-sm border-2 bg-tertiary p-5 ${
                         isActive
                           ? "border-side ring-2 ring-side"
                           : "border-accentThrd"
@@ -631,37 +629,6 @@ function Content() {
                         </div>
 
                         <div className="h-0.5 w-full rounded-full bg-quaternary" />
-
-                        <div className="w-full">
-                          <table className="mx-auto w-full table-fixed overflow-hidden rounded-md bg-white outline-2 outline-primary select-none">
-                            <tbody className="text-[10px] font-semibold">
-                              <tr className="outline-1 outline-primary">
-                                <td className="p-2 px-5 text-accentThrd">
-                                  Nomor Sertifikat
-                                </td>
-                                <td className="p-2 px-5 font-normal text-quaternary">
-                                  {cert.noCert}
-                                </td>
-                              </tr>
-                              <tr className="outline-1 outline-primary">
-                                <td className="p-2 px-5 text-accentThrd">
-                                  Berlaku Hingga
-                                </td>
-                                <td className="p-2 px-5 font-normal text-quaternary">
-                                  {cert.expired}
-                                </td>
-                              </tr>
-                              <tr className="outline-1 outline-primary">
-                                <td className="p-2 px-5 text-accentThrd">
-                                  Nomor Sertifikat
-                                </td>
-                                <td className="p-2 px-5 font-normal text-quaternary">
-                                  ORG-2026-001928
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
 
                         <button
                           type="button"
@@ -718,7 +685,10 @@ function Content() {
               })}
             </div>
 
-            <div className="mb-10 flex items-center justify-center gap-5 text-center select-none 2xl:hidden">
+            <div
+              id="detail-sertifikat"
+              className="mb-10 flex items-center justify-center gap-5 text-center select-none 2xl:hidden"
+            >
               <div className="hidden h-0.5 w-full rounded-full bg-quaternary lg:block" />
               <div className="w-full max-w-sm">
                 <h2 className="text-3xl font-bold text-quaternary">
@@ -728,7 +698,7 @@ function Content() {
               <div className="hidden h-0.5 w-full rounded-full bg-quaternary lg:block" />
             </div>
 
-            <div className="flex flex-row items-center justify-center gap-5">
+            <div className="flex flex-row items-center justify-center gap-20">
               <div className="hidden grid-cols-2 justify-items-center gap-10 2xl:grid">
                 {certificatesData.map((cert) => {
                   const isActive = selectedCert.id === cert.id;
@@ -737,8 +707,8 @@ function Content() {
                       <div
                         className={`h w-80 rounded-sm border-2 bg-tertiary p-5 transition-all ${
                           isActive
-                            ? "border-side ring-2 ring-side scale-105 translate-x-0 translate-y-0"
-                            : "border-accentThrd translate-x-3 -translate-y-3"
+                            ? "translate-x-0 translate-y-0 scale-105 border-side ring-2 ring-side"
+                            : "translate-x-3 -translate-y-3 border-accentThrd"
                         }`}
                       >
                         <div className="flex flex-col items-center justify-center gap-6">
@@ -815,139 +785,146 @@ function Content() {
                 })}
               </div>
 
-              <div className="mx-auto flex overflow-x-auto rounded-sm outline-2 outline-accentThrd lg:w-fit">
-                <div className="mx-auto h-fit max-w-3xl">
-                  <div className="h-170 w-full rounded-sm bg-tertiary p-5">
-                    <div className="flex flex-col items-center justify-center gap-3">
-                      <div className="flex w-full items-center gap-5">
-                        <div className="flex h-30 w-30 items-center justify-center rounded-full bg-side/40 outline-2 outline-accentThrd">
-                          <div className="flex h-15 w-15 items-center justify-center rounded-full bg-side">
-                            <svg
-                              width="100"
-                              height="100"
-                              viewBox="0 0 100 100"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M30 52 L45 67 L72 35"
-                                stroke="white"
-                                stroke-width="8"
-                                fill="none"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              />
-                            </svg>
+              <div className="relative h-fit w-fit">
+                <div className="mx-auto flex overflow-x-auto rounded-sm outline-2 outline-accentThrd lg:w-fit translate-x-3 -translate-y-3">
+                  <div className="mx-auto h-fit max-w-3xl">
+                    <div className="h-170 w-full rounded-sm bg-tertiary p-5">
+                      <div className="flex flex-col items-center justify-center gap-3">
+                        <div className="flex w-full items-center gap-5">
+                          <div className="flex h-30 w-30 items-center justify-center rounded-full bg-side/40 outline-2 outline-accentThrd">
+                            <div className="flex h-15 w-15 items-center justify-center rounded-full bg-side">
+                              <svg
+                                width="100"
+                                height="100"
+                                viewBox="0 0 100 100"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M30 52 L45 67 L72 35"
+                                  stroke="white"
+                                  stroke-width="8"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+
+                          <div className="flex flex-col justify-center select-none">
+                            <h4 className="text-sm text-side uppercase">
+                              Original Certificate
+                            </h4>
+                            <div className="flex w-fit flex-col">
+                              <h3 className="text-4xl font-bold text-accentThrd">
+                                {selectedCert.title}
+                              </h3>
+
+                              <div className="h-1 w-full rounded-full bg-side" />
+                            </div>
                           </div>
                         </div>
 
-                        <div className="flex flex-col justify-center select-none">
-                          <h4 className="text-sm text-side uppercase">
-                            Original Certificate
-                          </h4>
-                          <div className="flex w-fit flex-col">
-                            <h3 className="text-4xl font-bold text-accentThrd">
-                              {selectedCert.title}
-                            </h3>
+                        <div className="flex w-full justify-center gap-5">
+                          <div className="w-full">
+                            <table className="w-full table-fixed overflow-hidden rounded-md bg-white outline-2 outline-primary select-none">
+                              <tbody className="text-xs">
+                                <tr className="outline outline-primary">
+                                  <td className="p-2 px-5 font-bold text-accentThrd">
+                                    Nomor Sertifikat
+                                  </td>
+                                  <td className="p-2 px-5 text-quaternary">
+                                    {selectedCert.noCert}
+                                  </td>
+                                </tr>
+                                <tr className="outline outline-primary">
+                                  <td className="p-2 px-5 font-bold text-accentThrd">
+                                    Lembaga
+                                  </td>
+                                  <td className="p-2 px-5 text-quaternary">
+                                    {selectedCert.lembaga}
+                                  </td>
+                                </tr>
+                                <tr className="outline outline-primary">
+                                  <td className="p-2 px-5 font-bold text-accentThrd">
+                                    Status
+                                  </td>
+                                  <td className="flex items-center gap-2 p-2 px-5 text-side">
+                                    <div className="h-2 w-2 rounded-full bg-side" />
 
-                            <div className="h-1 w-full rounded-full bg-side" />
+                                    <span>{selectedCert.status}</span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
+                          <div className="w-full">
+                            <table className="w-full table-fixed overflow-hidden rounded-md bg-white outline-2 outline-primary select-none">
+                              <tbody className="text-xs">
+                                <tr className="outline outline-primary">
+                                  <td className="p-2 px-5 font-bold text-accentThrd">
+                                    Berlaku Hingga
+                                  </td>
+                                  <td className="p-2 px-5 text-quaternary">
+                                    {selectedCert.expired}
+                                  </td>
+                                </tr>
+                                <tr className="outline outline-primary">
+                                  <td className="p-2 px-5 font-bold text-accentThrd">
+                                    Kategori
+                                  </td>
+                                  <td className="p-2 px-5 text-quaternary">
+                                    {selectedCert.kategori}
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
                           </div>
                         </div>
-                      </div>
 
-                      <div className="flex w-full justify-center gap-5">
-                        <div className="w-full">
-                          <table className="w-full table-fixed overflow-hidden rounded-md bg-white outline-2 outline-primary select-none">
-                            <tbody className="text-xs">
-                              <tr className="outline outline-primary">
-                                <td className="p-2 px-5 font-bold text-accentThrd">
-                                  Nomor Sertifikat
-                                </td>
-                                <td className="p-2 px-5 text-quaternary">
-                                  {selectedCert.noCert}
-                                </td>
-                              </tr>
-                              <tr className="outline outline-primary">
-                                <td className="p-2 px-5 font-bold text-accentThrd">
-                                  Lembaga
-                                </td>
-                                <td className="p-2 px-5 text-quaternary">
-                                  {selectedCert.lembaga}
-                                </td>
-                              </tr>
-                              <tr className="outline outline-primary">
-                                <td className="p-2 px-5 font-bold text-accentThrd">
-                                  Status
-                                </td>
-                                <td className="flex items-center gap-2 p-2 px-5 text-side">
-                                  <div className="h-2 w-2 rounded-full bg-side" />
+                        <div className="flex w-full justify-center gap-10 rounded-md bg-white p-5 outline-2 outline-primary">
+                          <div className="h-80 w-80 overflow-hidden rounded-md bg-tertiary p-2 outline-2 outline-accentThrd select-none">
+                            <img
+                              src="/img/imagetest.jpeg"
+                              alt="Sertifikat"
+                              className="rounded-md"
+                            />
+                          </div>
+                          <div className="flex h-fit w-80 flex-col gap-5 overflow-hidden rounded-md bg-tertiary p-4 outline-2 outline-accentThrd select-none">
+                            <span className="font-bold text-accentThrd">
+                              Download Dokumen
+                            </span>
 
-                                  <span>{selectedCert.status}</span>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-
-                        <div className="w-full">
-                          <table className="w-full table-fixed overflow-hidden rounded-md bg-white outline-2 outline-primary select-none">
-                            <tbody className="text-xs">
-                              <tr className="outline outline-primary">
-                                <td className="p-2 px-5 font-bold text-accentThrd">
-                                  Berlaku Hingga
-                                </td>
-                                <td className="p-2 px-5 text-quaternary">
-                                  {selectedCert.expired}
-                                </td>
-                              </tr>
-                              <tr className="outline outline-primary">
-                                <td className="p-2 px-5 font-bold text-accentThrd">
-                                  Kategori
-                                </td>
-                                <td className="p-2 px-5 text-quaternary">
-                                  {selectedCert.kategori}
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-
-                      <div className="flex w-full justify-center gap-10 rounded-md bg-white p-5 outline-2 outline-primary">
-                        <div className="h-80 w-80 overflow-hidden rounded-md bg-tertiary p-2 outline-2 outline-accentThrd select-none">
-                          <img
-                            src="/img/imagetest.jpeg"
-                            alt="Sertifikat"
-                            className="rounded-md"
-                          />
-                        </div>
-                        <div className="flex h-fit w-80 flex-col gap-5 overflow-hidden rounded-md bg-tertiary p-4 outline-2 outline-accentThrd select-none">
-                          <span className="font-bold text-accentThrd">
-                            Download Dokumen
-                          </span>
-
-                          <a href="" className="w-full">
-                            <motion.button
-                              initial={{
-                                color: "#FFFFFF",
-                                backgroundColor: "#4AAB00",
-                              }}
-                              whileHover={{
-                                color: "#4AAB00",
-                                backgroundColor: "#FFFFFF",
-                              }}
-                              whileTap={{
-                                opacity: 0.8,
-                              }}
-                              className="w-full rounded-full p-2 outline outline-side"
+                            <a
+                              href={selectedCert.downloadUrl}
+                              className="w-full"
                             >
-                              Unduh
-                            </motion.button>
-                          </a>
+                              <motion.button
+                                initial={{
+                                  color: "#FFFFFF",
+                                  backgroundColor: "#4AAB00",
+                                }}
+                                whileHover={{
+                                  color: "#4AAB00",
+                                  backgroundColor: "#FFFFFF",
+                                }}
+                                whileTap={{
+                                  opacity: 0.8,
+                                }}
+                                className="w-full rounded-full p-2 outline outline-side"
+                              >
+                                Unduh
+                              </motion.button>
+                            </a>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+
+                <div className="absolute top-0 -z-1 h-full w-full rounded-sm bg-primary" />
               </div>
             </div>
           </div>
