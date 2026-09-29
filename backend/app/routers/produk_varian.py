@@ -13,11 +13,6 @@ def _cek_varian_kembar(db: Session, produk_id: int, berat: float, kecuali_id: in
     for lain in db.query(ProdukVarian).filter(ProdukVarian.produk_id == produk_id).all():
         if lain.id != kecuali_id and math.isclose(lain.berat, berat, rel_tol=1e-6):
             raise HTTPException(status_code=400, detail=f"Produk ini sudah punya varian {berat} kg")
-
-def _cek_varian_kembar(db: Session, produk_id: int, berat: float, kecuali_id: int | None = None):
-    for lain in db.query(ProdukVarian).filter(ProdukVarian.produk_id == produk_id).all():
-        if lain.id != kecuali_id and math.isclose(lain.berat, berat, rel_tol=1e-6):
-            raise HTTPException(status_code=400, detail=f"Produk ini sudah punya varian {berat} kg")
         
 @router.get("", response_model=list[ProdukVarianResponse])
 def list_varian(produk_id: int | None = None, db: Session = Depends(get_db)):
