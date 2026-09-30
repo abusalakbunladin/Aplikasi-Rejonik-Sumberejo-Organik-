@@ -8,6 +8,9 @@ export default function Navbar() {
 
   const location = useLocation();
 
+  const lightBgPages = ["/kontak", "/tentang"];
+  const isLightBg = lightBgPages.includes(location.pathname);
+
   const navItems = [
     { name: "Beranda", path: "/" },
     { name: "Produk", path: "/produk" },
@@ -74,7 +77,7 @@ export default function Navbar() {
                     onClick={handleNavClick}
                   >
                     <motion.span
-                      className={`text-shadow-lg transition-color duration-200 ${isScrolled ? "text-primary" : "text-white"}`}
+                      className={`transition-color duration-200 text-shadow-lg ${isScrolled ? "text-primary" : isLightBg ? "text-quaternary" : "text-white"}`}
                       variants={{
                         closed: { color: isActive ? "#4AAB00" : "" },
                         scrolled: { color: isActive ? "#1B5200" : "" },
@@ -95,9 +98,6 @@ export default function Navbar() {
                         className={`-bottom-1 mx-auto mt-1 h-0.5 w-4 rounded-full ${isScrolled ? "bg-primary" : "bg-side"}`}
                         transition={{
                           duration: 0.3,
-                          type: "spring",
-                          stiffness: 100,
-                          damping: 10,
                         }}
                       />
                     )}
@@ -112,7 +112,7 @@ export default function Navbar() {
                   animate={isScrolled ? "scrolled" : "closed"}
                   whileHover="hover"
                   variants={{
-                    closed: { borderColor: "#ffffff", color: "#ffffff" },
+                    closed: { borderColor: "#FFFFFF", color: "#FFFFFF" },
                     scrolled: { borderColor: "#4AAB00", color: "#4AAB00" },
                     hover: {
                       borderColor: isScrolled ? "#4AAB00" : "#4AAB00",
