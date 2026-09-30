@@ -219,7 +219,7 @@ export default function Navbar() {
               duration: 0.2,
               ease: "easeOut",
             }}
-            className="fixed top-1/14 z-10 flex w-full flex-col gap-2 border-b-2 border-side bg-white p-4 font-medium shadow-lg select-none lg:hidden"
+            className="fixed top-1/16 z-10 flex w-full flex-col gap-2 border-b-2 border-side bg-white p-4 font-medium shadow-lg select-none lg:hidden pt-9"
           >
             <Link className="w-fit" to="/" onClick={handleNavClick}>
               <motion.span

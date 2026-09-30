@@ -201,7 +201,7 @@ function Guide() {
               </div>
             </div>
 
-            <div className="mt-20 flex flex-wrap items-center justify-center 2xl:flex-row 2xl:flex-nowrap 2xl:gap-1">
+            <div className="mt-20 flex flex-wrap items-center justify-center gap-1 2xl:flex-row 2xl:flex-nowrap 2xl:gap-1">
               <div className="w-full lg:w-1/2 2xl:w-fit">
                 <div className="mx-auto my-5 flex h-50 max-w-xl flex-col gap-5 rounded-sm bg-tertiary p-7 outline-2 outline-accentThrd 2xl:mx-0 2xl:bg-transparent 2xl:outline-0">
                   <div className="flex items-center gap-5">
@@ -330,7 +330,7 @@ function Catalogue() {
 
   useEffect(() => {
     const checkScreen = () => {
-      setIsLg(window.innerWidth >= 1024);
+      setIsLg(window.innerWidth >= 1280);
     };
 
     checkScreen();
@@ -378,10 +378,10 @@ function Catalogue() {
               </div>
             </div>
 
-            <div className="flex flex-col items-center justify-center gap-80 lg:flex-row lg:gap-10">
+            <div className="flex flex-col items-center justify-center gap-80 xl:flex-row xl:gap-10">
               <div className="relative">
                 <motion.div
-                  className="absolute -translate-x-1/2 overflow-hidden rounded-sm bg-tertiary outline-2 outline-accentThrd lg:right-0"
+                  className="absolute -translate-x-1/2 overflow-hidden rounded-sm bg-tertiary outline-2 outline-accentThrd xl:right-0"
                   initial="rest"
                   whileHover={isLg ? "hover" : "rest"}
                   animate="rest"
@@ -627,7 +627,7 @@ function Catalogue() {
 
               <div className="relative">
                 <motion.div
-                  className="absolute -translate-x-1/2 overflow-hidden rounded-sm bg-tertiary outline-2 outline-accentThrd lg:translate-x-1/2"
+                  className="absolute -translate-x-1/2 overflow-hidden rounded-sm bg-tertiary outline-2 outline-accentThrd xl:translate-x-1/2"
                   initial="rest"
                   whileHover={isLg ? "hover" : "rest"}
                   animate="rest"
