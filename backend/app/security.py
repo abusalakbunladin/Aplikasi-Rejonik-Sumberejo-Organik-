@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from datetime import datetime, timedelta, UTC
-from jose import jwt, JWTError
+import jwt
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 
@@ -44,5 +44,5 @@ def create_access_token(data: dict):
 def verify_token(token: str):
     try:
         return jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-    except JWTError:
+    except jwt.PyJWTError:
         return None

@@ -57,7 +57,7 @@ def update_varian(varian_id: int, data: ProdukVarianCreate, db: Session = Depend
                        "Buat varian baru dengan berat yang diinginkan.",
             )
         _cek_varian_kembar(db, data.produk_id, data.berat, kecuali_id=varian_id)
-    for field, value in data.model_dump().items():
+    for field, value in data.model_dump(exclude={"stok"}).items():
         setattr(varian, field, value)
     db.commit()
     db.refresh(varian)

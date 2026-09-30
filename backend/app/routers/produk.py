@@ -27,6 +27,8 @@ def create_produk(data: ProdukCreate, db: Session = Depends(get_db), current_use
         kategori = db.query(Kategori).filter(Kategori.id == data.kategori_id).first()
         if not kategori:
             raise HTTPException(status_code=404, detail=f"Kategori id {data.kategori_id} tidak ditemukan")
+    if db.query(Produk).filter(Produk.nama == data.nama).first():
+        raise HTTPException(status_code=400, detail=f"Produk dengan nama '{data.nama}' sudah ada")
     produk = Produk(**data.model_dump())
     db.add(produk)
     db.commit()
@@ -42,6 +44,8 @@ def update_produk(produk_id: int, data: ProdukCreate, db: Session = Depends(get_
         kategori = db.query(Kategori).filter(Kategori.id == data.kategori_id).first()
         if not kategori:
             raise HTTPException(status_code=404, detail=f"Kategori id {data.kategori_id} tidak ditemukan")
+    if db.query(Produk).filter(Produk.nama == data.nama, Produk.id != produk_id).first():
+        raise HTTPException(status_code=400, detail=f"Produk dengan nama '{data.nama}' sudah ada")
     for field, value in data.model_dump().items():
         setattr(produk, field, value)
     db.commit()
