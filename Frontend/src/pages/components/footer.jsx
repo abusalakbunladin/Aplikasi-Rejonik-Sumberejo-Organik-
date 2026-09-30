@@ -6,6 +6,10 @@ export default function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handleFootClick = () => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  };
+
   return (
     <div className="footer">
       <footer id="footer" className="bg-[#1A3800] pt-30">
@@ -251,7 +255,7 @@ export default function Footer() {
                 <div className="flex flex-col gap-2 text-white">
                   <ul>
                     <li>
-                      <Link to="/" onClick={handleNavClick} >
+                      <Link to="/" onClick={handleNavClick}>
                         <motion.span
                           initial={{
                             color: "#ffffff",
@@ -266,7 +270,7 @@ export default function Footer() {
                     </li>
 
                     <li>
-                      <Link to="/produk" onClick={handleNavClick} >
+                      <Link to="/produk" onClick={handleNavClick}>
                         <motion.span
                           initial={{
                             color: "#ffffff",
@@ -281,7 +285,7 @@ export default function Footer() {
                     </li>
 
                     <li>
-                      <Link to="/keunggulan" onClick={handleNavClick} >
+                      <Link to="/keunggulan" onClick={handleNavClick}>
                         <motion.span
                           initial={{
                             color: "#ffffff",
@@ -296,7 +300,7 @@ export default function Footer() {
                     </li>
 
                     <li>
-                      <Link to="/tentang" onClick={handleNavClick} >
+                      <Link to="/tentang" onClick={handleNavClick}>
                         <motion.span
                           initial={{
                             color: "#ffffff",
@@ -311,7 +315,7 @@ export default function Footer() {
                     </li>
 
                     <li>
-                      <Link to="/sertifikat" onClick={handleNavClick} >
+                      <Link to="/sertifikat" onClick={handleNavClick}>
                         <motion.span
                           initial={{
                             color: "#ffffff",
@@ -326,7 +330,7 @@ export default function Footer() {
                     </li>
 
                     <li>
-                      <Link to="/review" onClick={handleNavClick} >
+                      <Link to="/review" onClick={handleNavClick}>
                         <motion.span
                           initial={{
                             color: "#ffffff",
@@ -352,9 +356,7 @@ export default function Footer() {
               </div>
 
               <div className="flex flex-row justify-center gap-10">
-                <Link
-                  to="/FAQ"
-                >
+                <Link to="/FAQ" onClick={handleFootClick}>
                   <motion.button
                     initial={{
                       scale: 1,
@@ -376,7 +378,7 @@ export default function Footer() {
                       duration: 0.3,
                       ease: "easeInOut",
                     }}
-                    className="flex items-center gap-2 rounded-full p-2 px-4 text-lg font-semibold ring-2 scale-70 lg:scale-100"
+                    className="flex scale-70 items-center gap-2 rounded-full p-2 px-4 text-lg font-semibold ring-2 lg:scale-100"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -436,9 +438,7 @@ export default function Footer() {
                   </motion.button>
                 </Link>
 
-                <Link
-                  to="/Help"
-                >
+                <Link to="/kontak" onClick={handleNavClick}>
                   <motion.button
                     initial={{
                       scale: 1,
@@ -460,7 +460,7 @@ export default function Footer() {
                       duration: 0.3,
                       ease: "easeInOut",
                     }}
-                    className="flex items-center gap-2 rounded-full p-2 px-4 text-lg font-semibold ring-2 scale-70 lg:scale-100"
+                    className="flex scale-70 items-center gap-2 rounded-full p-2 px-4 text-lg font-semibold ring-2 lg:scale-100"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

@@ -84,7 +84,7 @@ function Hero() {
 
       <section
         id="hero"
-        className="bg-[url(/contact/Telepon_Merah.png)] bg-cover bg-center pt-90 pb-40"
+        className="bg-[url(/contact/Telepon_Merah.png)] bg-cover bg-right lg:bg-center pt-90 pb-40"
       >
         <div className="container mx-auto">
           <div className="w-full px-4">

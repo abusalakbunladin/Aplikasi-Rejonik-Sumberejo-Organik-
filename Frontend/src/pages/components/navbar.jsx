@@ -8,8 +8,11 @@ export default function Navbar() {
 
   const location = useLocation();
 
-  const lightBgPages = ["/kontak", "/tentang"];
+  const lightBgPages = ["/kontak", "/tentang", "/FAQ"];
   const isLightBg = lightBgPages.includes(location.pathname);
+
+  const lightBtnPages = ["/FAQ"];
+  const isLightBackGrnd = lightBtnPages.includes(location.pathname);
 
   const navItems = [
     { name: "Beranda", path: "/" },
@@ -47,16 +50,22 @@ export default function Navbar() {
         animate={isOpen ? "open" : isScrolled ? "scrolled" : "closed"}
         variants={{
           closed: {
-            borderColor: "rgb(255, 255, 255, 0.3)",
+            borderColor: isLightBackGrnd
+              ? "#4D2E00"
+              : "rgb(255, 255, 255, 0.3)",
           },
           open: { backgroundColor: "#FFF9E3", borderColor: "#4D2E00" },
           scrolled: { backgroundColor: "#FFF9E3", borderColor: "#4D2E00" },
         }}
-        className={`nav fixed z-1000 flex h-fit w-full items-center justify-center border-b-2 border-white/50 bg-white/20 p-2 backdrop-blur-xl ${isOpen ? "" : "shadow-lg"}`}
+        className={`nav fixed z-1000 flex h-fit w-full items-center justify-center border-b-2 p-2 backdrop-blur-xl ${isOpen ? "" : "shadow-lg"} ${
+          isLightBackGrnd ? "bg-[#FFF9E3]" : "bg-white/20"
+        }`}
       >
         <div className="container mx-auto">
           <div className="relative flex w-full items-center justify-between px-4 select-none">
-            <div className={isScrolled ? "" : "grayscale"}>
+            <div
+              className={isScrolled ? "" : isLightBackGrnd ? "" : "grayscale"}
+            >
               <Link to="/" onClick={handleBrandClick}>
                 <img src="/brand/brand-logo.png" alt="Brand" width="200" />
               </Link>
@@ -79,7 +88,13 @@ export default function Navbar() {
                     <motion.span
                       className={`transition-color duration-200 text-shadow-lg ${isScrolled ? "text-primary" : isLightBg ? "text-quaternary" : "text-white"}`}
                       variants={{
-                        closed: { color: isActive ? "#4AAB00" : "" },
+                        closed: {
+                          color: isActive
+                            ? "#4AAB00"
+                            : isLightBackGrnd
+                              ? "#1B5200"
+                              : "",
+                        },
                         scrolled: { color: isActive ? "#1B5200" : "" },
                       }}
                       whileHover={{
@@ -112,11 +127,14 @@ export default function Navbar() {
                   animate={isScrolled ? "scrolled" : "closed"}
                   whileHover="hover"
                   variants={{
-                    closed: { borderColor: "#FFFFFF", color: "#FFFFFF" },
+                    closed: {
+                      borderColor: isLightBackGrnd ? "#4AAB00" : "#FFFFFF",
+                      color: isLightBackGrnd ? "#4AAB00" : "#FFFFFF",
+                    },
                     scrolled: { borderColor: "#4AAB00", color: "#4AAB00" },
                     hover: {
                       borderColor: isScrolled ? "#4AAB00" : "#4AAB00",
-                      color: isScrolled ? "#ffffff" : "#4AAB00",
+                      color: isScrolled ? "#FFFFFF" : isLightBackGrnd ? "#FFFFFF" : "#4AAB00",
                     },
                   }}
                 >
@@ -124,7 +142,12 @@ export default function Navbar() {
                   <motion.div
                     className="absolute top-0 left-1/2 -z-1 h-9 w-9 -translate-x-1/2 rounded-full"
                     variants={{
-                      closed: { backgroundColor: "#ffffff", scale: 0 },
+                      closed: {
+                        backgroundColor: isLightBackGrnd
+                          ? "#4AAB00"
+                          : "#FFFFFF",
+                        scale: 0,
+                      },
                       scrolled: { backgroundColor: "#4AAB00", scale: 0 },
                       hover: { scale: 3.4 },
                     }}
@@ -148,7 +171,9 @@ export default function Navbar() {
                     open: { rotate: 45, y: 10, backgroundColor: "#4AAB00" },
                     scrolled: { backgroundColor: "#4D2E00" },
                   }}
-                  className="hamburg-line bg-white"
+                  className={`hamburg-line ${
+                    isLightBackGrnd ? "bg-quaternary" : "bg-white"
+                  }`}
                 ></motion.span>
 
                 <motion.span
@@ -157,7 +182,9 @@ export default function Navbar() {
                     open: { scaleX: 0 },
                     scrolled: { backgroundColor: "#4D2E00" },
                   }}
-                  className="hamburg-line bg-white"
+                  className={`hamburg-line ${
+                    isLightBackGrnd ? "bg-quaternary" : "bg-white"
+                  }`}
                 ></motion.span>
 
                 <motion.span
@@ -166,7 +193,9 @@ export default function Navbar() {
                     open: { rotate: -45, y: -10, backgroundColor: "#4AAB00" },
                     scrolled: { backgroundColor: "#4D2E00" },
                   }}
-                  className="hamburg-line bg-white"
+                  className={`hamburg-line ${
+                    isLightBackGrnd ? "bg-quaternary" : "bg-white"
+                  }`}
                 ></motion.span>
               </motion.button>
             </div>

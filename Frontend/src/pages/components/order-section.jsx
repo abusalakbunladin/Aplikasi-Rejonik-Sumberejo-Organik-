@@ -3,6 +3,10 @@ import { motion } from "motion/react";
 
 // Order //
 export default function Order() {
+  const handleOrdClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="order">
       <section
@@ -33,7 +37,7 @@ export default function Order() {
                 </p>
 
                 <div className="flex flex-row gap-5">
-                  <Link to="/">
+                  <Link to="/" onClick={handleOrdClick}>
                     <motion.button
                       initial={{
                         scale: 1,

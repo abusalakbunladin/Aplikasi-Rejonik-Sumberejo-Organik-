@@ -287,7 +287,7 @@ function Product() {
 
   const sectionRef = useRef(null);
 
-  const isInView = useInView(sectionRef, { once: true, amount: 0.8 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.75 });
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -639,7 +639,7 @@ function Advantages() {
 
   const sectionRef = useRef(null);
 
-  const isInView = useInView(sectionRef, { once: true, amount: 0.8 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.75 });
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -1696,7 +1696,7 @@ function Advantages() {
 function About() {
   const sectionRef = useRef(null);
 
-  const isInView = useInView(sectionRef, { once: true, amount: 0.8 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.75 });
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -2025,7 +2025,7 @@ function About() {
 function Certificate() {
   const sectionRef = useRef(null);
 
-  const isInView = useInView(sectionRef, { once: true, amount: 0.8 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.75 });
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -2722,7 +2722,7 @@ function Certificate() {
 function Review() {
   const sectionRef = useRef(null);
 
-  const isInView = useInView(sectionRef, { once: true, amount: 0.8 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.5 });
 
   useEffect(() => {
     if (!sectionRef.current) return;
