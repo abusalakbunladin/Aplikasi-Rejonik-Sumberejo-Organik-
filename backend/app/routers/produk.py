@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 
 from app.deps import get_db, get_current_user
 from app.models import Produk, Kategori, ProdukVarian, PenerimaanBahanBaku
@@ -9,7 +9,7 @@ router = APIRouter(prefix="/produk", tags=["Katalog - Produk"])
 
 @router.get("", response_model=list[ProdukResponse])
 def list_produk(kategori_id: int | None = None, db: Session = Depends(get_db)):
-    query = db.query(Produk)
+    query = db.query(Produk).options(selectinload(Produk.varian))
     if kategori_id is not None:
         query = query.filter(Produk.kategori_id == kategori_id)
     return query.all()
