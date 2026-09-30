@@ -1,12 +1,33 @@
+import asyncio
+import contextlib
 import os
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
+from app.kedaluwarsa import loop_kedaluwarsa
 from app.routers import auth, kategori, produk, produk_varian, pemasok, produksi, order, laporan, penyesuaian_stok
 
-app = FastAPI(title="Rejonik - Main")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    tugas = asyncio.create_task(loop_kedaluwarsa())
+    yield
+    tugas.cancel()
+    with contextlib.suppress(asyncio.CancelledError):
+        await tugas
+
+_produksi = os.getenv("APP_ENV", "development").lower() == "production"
+
+app = FastAPI(
+    title="Rejonik - Main",
+    lifespan=lifespan,
+    docs_url=None if _produksi else "/docs",
+    redoc_url=None if _produksi else "/redoc",
+    openapi_url=None if _produksi else "/openapi.json",
+)
 
 @app.exception_handler(RequestValidationError)
 async def validation_error_handler(request: Request, exc: RequestValidationError):
