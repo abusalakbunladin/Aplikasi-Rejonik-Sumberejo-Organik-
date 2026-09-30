@@ -7,6 +7,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session, joinedload
 
 from app.deps import get_db, get_current_user
+from app.captcha import wajib_captcha
 from app.rate_limit import batasi_order
 from app.models import ProdukVarian, Order, OrderItem
 from app.schemas import OrderCreate, OrderCreateResponse, OrderKonfirmasiUpdate, OrderResponse
@@ -59,7 +60,7 @@ def list_orders(db: Session = Depends(get_db), current_user=Depends(get_current_
     return db.query(Order).options(joinedload(Order.items)).order_by(Order.tanggal.desc()).all()
 
 
-@router.post("", response_model=OrderCreateResponse, dependencies=[Depends(batasi_order)])
+@router.post("", response_model=OrderCreateResponse, dependencies=[Depends(batasi_order), Depends(wajib_captcha)])
 def create_order(data: OrderCreate, db: Session = Depends(get_db)):
     ids_varian = sorted({item.produk_varian_id for item in data.items})
     db.query(ProdukVarian).filter(ProdukVarian.id.in_(ids_varian)).order_by(ProdukVarian.id).with_for_update().all()
