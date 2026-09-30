@@ -1,0 +1,3 @@
+| No | Test Case | Langkah Pengujian | Data Uji | Expected Result | Actual Result | Status | Keterangan / Alasan Bug |
+| :-: | :--- | :--- | :--- | :--- | :--- | :-: | :--- |
+| 1 | Verifikasi tampilan section utama pada resolusi HD | 1. Buka `http://localhost:5173/`<br>2. Set viewport 1366x768 (atau zoom 150%)<br>3. Scroll ke section Produk, Keunggulan, Ulasan | `Viewport: 1366x768`<br>`URL: /` | Semua kartu dan konten di bawah judul muncul dengan jelas (`opacity: 1`) | Hanya judul yang tampil, konten di bawahnya kosong/transparan | **Fail** | **Bug Animasi Scroll:** `useInView` ngeset `amount: 0.8` (butuh 80% section terlihat). Karena padding besar (`pt-36 pb-60`), syarat 80% tidak pernah tercapai di layar 768px, jadi elemen tertahan di `opacity: 0`. |
