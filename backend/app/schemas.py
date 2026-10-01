@@ -50,6 +50,14 @@ class ProdukCreate(BaseModel):
     deskripsi: Optional[str] = Field(None, max_length=5000, description="Deskripsi produk, opsional")
     gambar_id: Optional[int] = Field(None, description="ID dari POST /media, opsional")
 
+    @field_validator("nama")
+    @classmethod
+    def nama_tidak_boleh_kosong(cls, v: str) -> str:
+        v = v.strip()
+        if not v:
+            raise ValueError("Nama produk tidak boleh kosong atau hanya berisi spasi")
+        return v
+    
     @field_validator("deskripsi")
     @classmethod
     def deskripsi_kosong_jadi_none(cls, v: Optional[str]) -> Optional[str]:
