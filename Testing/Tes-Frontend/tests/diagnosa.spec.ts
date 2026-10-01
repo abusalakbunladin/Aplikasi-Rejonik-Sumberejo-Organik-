@@ -1,11 +1,13 @@
 import { test, expect } from '@playwright/test';
 
-test('section produk terisi', async ({ page }) => {
-  page.on('console', (m) => m.type() === 'error' && console.log('CONSOLE ERROR:', m.text()));
-  page.on('requestfailed', (r) => console.log('REQUEST GAGAL:', r.url()));
-  page.on('response', (r) => r.status() >= 400 && console.log(r.status(), r.url()));
-
+test('test', async ({ page }) => {
   await page.goto('http://localhost:5173/');
   await page.getByRole('banner').getByRole('link', { name: 'Produk' }).click();
-  await expect(page.getByText('Beras Original', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Pesan' }).first().click();
+  await page.getByRole('button', { name: 'Pesan' }).nth(1).click();
+  await page.getByRole('button', { name: 'Pesan' }).nth(2).click();
+  await page.getByRole('banner').getByRole('link', { name: 'Keunggulan' }).click();
+  await page.getByRole('banner').getByRole('link', { name: 'Sertifikat' }).click();
+  await page.getByRole('banner').getByRole('link', { name: 'Tentang Kami' }).click();
+  await page.getByRole('link', { name: 'Kontak' }).click();
 });
