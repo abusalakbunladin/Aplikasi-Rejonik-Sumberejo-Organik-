@@ -2,7 +2,7 @@
 **Proyek:** Aplikasi Rejonik Sumberejo Organik
 **Area:** Order (Public - buat order, Admin - konfirmasi order)
 **Tester:** -
-**Terakhir diupdate:** 16 September 2026
+**Terakhir diupdate:** 01 Oktober 2026
 
 ---
 

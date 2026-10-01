@@ -2,7 +2,7 @@
 **Proyek:** Aplikasi Rejonik Sumberejo Organik
 **Area:** Validasi Data Produk & Stok
 **Tester:** -
-**Terakhir diupdate:** 8 September 2026
+**Terakhir diupdate:** 01 Oktober 2026
 
 ---
 
