@@ -1,7 +1,7 @@
 import re
 from datetime import datetime, timezone
 from typing import Annotated, Literal, Optional
-from pydantic import BaseModel,BeforeValidator, ConfigDict, Field, field_validator
+from pydantic import BaseModel, model_validator, BeforeValidator, ConfigDict, Field, field_validator
 
 def _tandai_utc(v):
     if isinstance(v, datetime) and v.tzinfo is None:
@@ -47,22 +47,76 @@ class ProdukVarianResponse(BaseModel):
 class ProdukCreate(BaseModel):
     nama: str = Field(..., min_length=1, max_length=100, description="Nama produk tidak boleh kosong")
     kategori_id: Optional[int] = None
+    deskripsi: Optional[str] = Field(None, max_length=5000, description="Deskripsi produk, opsional")
+    gambar_id: Optional[int] = Field(None, description="ID dari POST /media, opsional")
 
-    @field_validator("nama")
+    @field_validator("deskripsi")
     @classmethod
-    def nama_tidak_boleh_kosong(cls, v: str) -> str:
-        v = v.strip()
-        if not v:
-            raise ValueError("Nama produk tidak boleh kosong atau hanya berisi spasi")
-        return v
+    def deskripsi_kosong_jadi_none(cls, v: Optional[str]) -> Optional[str]:
+        if v is None:
+            return None
+        return v.strip() or None
 
 class ProdukResponse(BaseModel):
     id: int
     nama: str
     kategori_id: Optional[int]
+    deskripsi: Optional[str] = None
+    gambar_id: Optional[int] = None
+    gambar_url: Optional[str] = None
+    gambar_alt: Optional[str] = None
     varian: list[ProdukVarianResponse] = []
     model_config = ConfigDict(from_attributes=True)
 
+class MediaResponse(BaseModel):
+    id: int
+    nama_asli: Optional[str]
+    mime: str
+    ukuran_byte: int
+    alt_text: Optional[str]
+    tanggal: WaktuUTC
+    url: str
+    model_config = ConfigDict(from_attributes=True)
+
+
+HalamanSitus = Literal["home", "produk", "keunggulan", "sertifikasi", "tentang", "kontak", "faq"]
+
+class KontenCreate(BaseModel):
+    halaman: HalamanSitus
+    bagian: str = Field(..., min_length=1, max_length=50, pattern=r"^[a-z0-9_]+$", description="Nama bagian di halaman, huruf kecil/angka/underscore, misal: hero, proses_produksi")
+    urutan: int = Field(0, ge=0, le=10_000, description="Urutan tampil dalam satu bagian, kecil tampil duluan")
+    judul: Optional[str] = Field(None, max_length=150)
+    subjudul: Optional[str] = Field(None, max_length=150)
+    deskripsi: Optional[str] = Field(None, max_length=5000)
+    gambar_id: Optional[int] = Field(None, description="ID dari POST /media, opsional")
+    aktif: bool = True
+
+    @field_validator("judul", "subjudul", "deskripsi")
+    @classmethod
+    def kosong_jadi_none(cls, v: Optional[str]) -> Optional[str]:
+        if v is None:
+            return None
+        return v.strip() or None
+
+    @model_validator(mode="after")
+    def minimal_satu_isi(self):
+        if self.judul is None and self.subjudul is None and self.deskripsi is None and self.gambar_id is None:
+            raise ValueError("Isi minimal salah satu: judul, subjudul, deskripsi, atau gambar_id")
+        return self
+
+class KontenResponse(BaseModel):
+    id: int
+    halaman: str
+    bagian: str
+    urutan: int
+    judul: Optional[str]
+    subjudul: Optional[str]
+    deskripsi: Optional[str]
+    gambar_id: Optional[int]
+    gambar_url: Optional[str]
+    gambar_alt: Optional[str]
+    aktif: bool
+    model_config = ConfigDict(from_attributes=True)
 
 class PemasokCreate(BaseModel):
     nama: str = Field(..., min_length=1, max_length=100, description="Nama pemasok tidak boleh kosong")

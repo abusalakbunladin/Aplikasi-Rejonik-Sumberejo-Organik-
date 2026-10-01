@@ -44,6 +44,4 @@ def _angka_env(nama: str, bawaan: int) -> int:
         return bawaan
 
 batasi_order = BatasPermintaan(maks=_angka_env("RATE_LIMIT_ORDER_MAKS", 10), detik=60)
-batasi_login = BatasPermintaan(maks=_angka_env("RATE_LIMIT_LOGIN_MAKS", 10), detik=60)
-
-            
+batasi_login = BatasPermintaan(maks=_angka_env("RATE_LIMIT_LOGIN_MAKS", 10), detik=60)         

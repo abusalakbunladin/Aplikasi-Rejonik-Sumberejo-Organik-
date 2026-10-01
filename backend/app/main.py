@@ -7,9 +7,11 @@ from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.kedaluwarsa import loop_kedaluwarsa
-from app.routers import auth, kategori, produk, produk_varian, pemasok, produksi, order, laporan, penyesuaian_stok
+from app.routers import auth, kategori, produk, produk_varian, pemasok, produksi, order, laporan, penyesuaian_stok, media, konten
+from app.storage import UPLOAD_DIR
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -45,6 +47,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
+
 app.include_router(auth.router)
 app.include_router(kategori.router)
 app.include_router(produk.router)
@@ -57,3 +62,5 @@ app.include_router(produksi.pengemasan_router)
 app.include_router(order.router)
 app.include_router(laporan.router)
 app.include_router(penyesuaian_stok.router)
+app.include_router(media.router)
+app.include_router(konten.router)

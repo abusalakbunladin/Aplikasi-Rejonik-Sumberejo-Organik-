@@ -1,7 +1,8 @@
 from datetime import datetime, UTC
-from sqlalchemy import Column, Integer, String, Float, ForeignKey, DateTime
+from sqlalchemy import Boolean, Column, Integer, String, Float, ForeignKey, DateTime, Index, Text
 from sqlalchemy.orm import relationship
 from app.database import Base
+from app.storage import url_media
 
 class User(Base):
     __tablename__ = "users"
@@ -16,14 +17,65 @@ class Kategori(Base):
 
     produk = relationship("Produk", back_populates="kategori")
 
+class Media(Base):
+    """File gambar yang diupload admin. File aslinya ada di disk (UPLOAD_DIR), di sini cuma metadata."""
+    __tablename__ = "media"
+    id = Column(Integer, primary_key=True, index=True)
+    nama_file = Column(String(100), unique=True, nullable=False)
+    nama_asli = Column(String(255), nullable=True)
+    mime = Column(String(50), nullable=False)
+    ukuran_byte = Column(Integer, nullable=False)
+    alt_text = Column(String(255), nullable=True)
+    tanggal = Column(DateTime, default=lambda: datetime.now(UTC))
+
+    @property
+    def url(self) -> str:
+        return url_media(self.nama_file)
+
+class KontenSitus(Base):
+    __tablename__ = "konten_situs"
+    id = Column(Integer, primary_key=True, index=True)
+    halaman = Column(String(30), nullable=False)
+    bagian = Column(String(50), nullable=False)
+    urutan = Column(Integer, nullable=False, default=0, server_default="0")
+    judul = Column(String(150), nullable=True)
+    subjudul = Column(String(150), nullable=True)
+    deskripsi = Column(Text, nullable=True)
+    gambar_id = Column(Integer, ForeignKey("media.id"), nullable=True)
+    aktif = Column(Boolean, nullable=False, default=True, server_default="1")
+
+    gambar = relationship("Media")
+
+    __table_args__ = (Index("ix_konten_situs_halaman_bagian", "halaman", "bagian"),)
+
+    @property
+    def gambar_url(self) -> str | None:
+        return self.gambar.url if self.gambar else None
+
+    @property
+    def gambar_alt(self) -> str | None:
+        return self.gambar.alt_text if self.gambar else None
+
 class Produk(Base):
     __tablename__ = "produk"
     id = Column(Integer, primary_key=True, index=True)
     nama = Column(String(150), nullable=False)
     kategori_id = Column(Integer, ForeignKey("kategori.id"), nullable=True)
+    deskripsi = Column(Text, nullable=True)
+    gambar_id = Column(Integer, ForeignKey("media.id"), nullable=True)
 
     kategori = relationship("Kategori", back_populates="produk")
     varian = relationship("ProdukVarian", back_populates="produk", cascade="all, delete-orphan")
+    gambar = relationship("Media")
+
+    @property
+    def gambar_url(self) -> str | None:
+        return self.gambar.url if self.gambar else None
+
+    @property
+    def gambar_alt(self) -> str | None:
+        return self.gambar.alt_text if self.gambar else None
+
 
 class ProdukVarian(Base):
     __tablename__ = "produk_varian"

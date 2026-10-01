@@ -25,6 +25,8 @@ services:
       - .env
     environment:
       DATABASE_URL: "mysql+pymysql://root:${DB_ROOT_PASSWORD}@db/rejonik"
+    volumes:
+      - uploads_data:/code/uploads
     depends_on:
       db:
         condition: service_healthy
@@ -32,3 +34,4 @@ services:
 
 volumes:
   mysql_data:
+  uploads_data:
