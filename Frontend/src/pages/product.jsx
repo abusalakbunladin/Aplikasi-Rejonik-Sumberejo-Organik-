@@ -161,6 +161,10 @@ function Hero() {
 
 // Guide //
 function Guide() {
+  const guideWrapper = "w-fit 2xl:w-fit h-fit relative";
+  const guideCard =
+    "mx-auto flex max-w-xl flex-col gap-5 rounded-sm bg-tertiary p-7 outline-2 outline-accentThrd 2xl:mx-0 2xl:bg-transparent 2xl:outline-0 translate-x-3 -translate-y-3 2xl:translate-x-0 2xl:translate-y-0";
+
   return (
     <div className="guide">
       <section id="panduan" className="pt-36 pb-32">
@@ -201,9 +205,9 @@ function Guide() {
               </div>
             </div>
 
-            <div className="mt-20 flex flex-wrap items-center justify-center gap-1 2xl:flex-row 2xl:flex-nowrap 2xl:gap-1">
-              <div className="w-full lg:w-1/2 2xl:w-fit">
-                <div className="mx-auto my-5 flex h-50 max-w-xl flex-col gap-5 rounded-sm bg-tertiary p-7 outline-2 outline-accentThrd 2xl:mx-0 2xl:bg-transparent 2xl:outline-0">
+            <div className="mt-20 flex flex-wrap items-center justify-center gap-7 2xl:flex-row 2xl:flex-nowrap 2xl:gap-1">
+              <div className={`${guideWrapper}`}>
+                <div className={`${guideCard}`}>
                   <div className="flex items-center gap-5">
                     <div className="flex h-15 w-15 items-center justify-center rounded-full bg-side select-none">
                       <span className="text-3xl font-bold text-white">1</span>
@@ -227,12 +231,14 @@ function Guide() {
                     </p>
                   </div>
                 </div>
+
+                <div className="absolute top-0 -z-1 h-full w-full rounded-sm bg-primary 2xl:hidden" />
               </div>
 
               <div className="hidden h-40 w-1 rounded-full bg-accentThrd 2xl:block" />
 
-              <div className="w-full lg:w-1/2 2xl:w-fit">
-                <div className="mx-auto my-5 flex h-50 max-w-xl flex-col gap-5 rounded-sm bg-tertiary p-7 outline-2 outline-accentThrd 2xl:mx-0 2xl:bg-transparent 2xl:outline-0">
+              <div className={`${guideWrapper}`}>
+                <div className={`${guideCard}`}>
                   <div className="flex items-center gap-5">
                     <div className="flex h-15 w-15 items-center justify-center rounded-full bg-side select-none">
                       <span className="text-3xl font-bold text-white">2</span>
@@ -256,12 +262,14 @@ function Guide() {
                     </p>
                   </div>
                 </div>
+
+                <div className="absolute top-0 -z-1 h-full w-full rounded-sm bg-primary 2xl:hidden" />
               </div>
 
               <div className="hidden h-40 w-1 rounded-full bg-accentThrd 2xl:block" />
 
-              <div className="w-full lg:w-1/2 2xl:w-fit">
-                <div className="mx-auto my-5 flex h-50 max-w-xl flex-col gap-5 rounded-sm bg-tertiary p-7 outline-2 outline-accentThrd 2xl:mx-0 2xl:bg-transparent 2xl:outline-0">
+              <div className={`${guideWrapper}`}>
+                <div className={`${guideCard}`}>
                   <div className="flex items-center gap-5">
                     <div className="flex h-15 w-15 items-center justify-center rounded-full bg-side select-none">
                       <span className="text-3xl font-bold text-white">3</span>
@@ -285,12 +293,14 @@ function Guide() {
                     </p>
                   </div>
                 </div>
+
+                <div className="absolute top-0 -z-1 h-full w-full rounded-sm bg-primary 2xl:hidden" />
               </div>
 
               <div className="hidden h-40 w-1 rounded-full bg-accentThrd 2xl:block" />
 
-              <div className="w-full lg:w-1/2 2xl:w-fit">
-                <div className="mx-auto my-5 flex h-50 max-w-xl flex-col gap-5 rounded-sm bg-tertiary p-7 outline-2 outline-accentThrd 2xl:mx-0 2xl:bg-transparent 2xl:outline-0">
+              <div className={`${guideWrapper}`}>
+                <div className={`${guideCard}`}>
                   <div className="flex items-center gap-5">
                     <div className="flex h-15 w-15 items-center justify-center rounded-full bg-side select-none">
                       <span className="text-3xl font-bold text-white">4</span>
@@ -314,6 +324,8 @@ function Guide() {
                     </p>
                   </div>
                 </div>
+
+                <div className="absolute top-0 -z-1 h-full w-full rounded-sm bg-primary 2xl:hidden" />
               </div>
             </div>
           </div>
@@ -326,21 +338,9 @@ function Guide() {
 
 // Catalogue //
 function Catalogue() {
-  const [isLg, setIsLg] = useState(false);
-
-  useEffect(() => {
-    const checkScreen = () => {
-      setIsLg(window.innerWidth >= 1280);
-    };
-
-    checkScreen();
-    window.addEventListener("resize", checkScreen);
-    return () => window.removeEventListener("resize", checkScreen);
-  }, []);
-
   return (
     <div className="catalogue">
-      <section id="katalog" className="pt-36 pb-100">
+      <section id="katalog" className="pt-36 pb-36">
         <div className="container mx-auto">
           <div className="w-full px-4">
             <div className="mx-auto mb-20 flex flex-col items-center justify-center select-none">
@@ -378,374 +378,275 @@ function Catalogue() {
               </div>
             </div>
 
-            <div className="flex flex-col items-center justify-center gap-80 xl:flex-row xl:gap-10">
-              <div className="relative">
-                <motion.div
-                  className="absolute -translate-x-1/2 overflow-hidden rounded-sm bg-tertiary outline-2 outline-accentThrd xl:right-0"
-                  initial="rest"
-                  whileHover={isLg ? "hover" : "rest"}
-                  animate="rest"
-                  variants={
-                    isLg
-                      ? {
-                          rest: {
-                            height: "220px",
-                            padding: "0px",
-                          },
-                          hover: {
-                            height: "300px",
-                            padding: "10px",
-                          },
-                        }
-                      : {
-                          rest: {
-                            height: "300px",
-                            padding: "10px",
-                          },
-                        }
-                  }
-                  transition={{
-                    duration: 0.4,
-                    type: "spring",
-                    stiffness: 150,
-                    damping: 15,
-                  }}
-                >
-                  <motion.div
-                    variants={
-                      isLg
-                        ? {
-                            rest: {
-                              borderRadius: "0px",
-                            },
-                            hover: {
-                              borderRadius: "4px",
-                            },
-                          }
-                        : {
-                            rest: {
-                              borderRadius: "4px",
-                            },
-                          }
-                    }
-                    className="relative mb-3 h-55 w-80 overflow-hidden outline-2 outline-accentThrd select-none"
-                  >
-                    <div className="absolute mt-2 ml-2 flex flex-row gap-2">
-                      <div className="flex items-center rounded-full bg-primary p-0.5 px-3">
-                        <span className="text-sm font-medium text-white">
-                          Organik
-                        </span>
-                      </div>
+            <div className="flex flex-col items-center justify-center gap-7 xl:flex-row">
+              <div className="relative h-fit w-full max-w-xs">
+                <div className="translate-x-3 -translate-y-3 rounded-sm border-2 border-accentThrd bg-tertiary p-4">
+                  <div className="flex flex-col items-center justify-center gap-5">
+                    <div className="relative h-40 w-full overflow-hidden rounded-sm bg-[url(/product/Original.png)] bg-cover bg-center outline-2 outline-accentThrd">
+                      <div className="absolute m-2 flex items-center gap-2 select-none">
+                        <div className="flex items-center rounded-full bg-primary p-1 px-3">
+                          <span className="text-xs font-medium text-white">
+                            Organik
+                          </span>
+                        </div>
 
-                      <div className="flex items-center rounded-full bg-side p-0.5 px-3">
-                        <span className="text-sm font-medium text-white">
-                          Tersedia
-                        </span>
+                        <div className="flex items-center rounded-full bg-side p-1 px-3">
+                          <span className="text-xs font-medium text-white">
+                            Tersedia
+                          </span>
+                        </div>
                       </div>
                     </div>
 
-                    <img
-                      src="/product/Original.png"
-                      alt="Original"
-                      className="object-cover object-center"
-                    />
-                  </motion.div>
-
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="flex flex-col gap-1 select-none">
-                      <h4 className="text-xl font-bold text-side text-shadow-lg">
-                        Beras Original
-                      </h4>
-
-                      <p className="text-sm font-medium text-slate-500">1 Kg</p>
-                    </div>
-
-                    <Link>
-                      <motion.button
-                        initial="restBtn"
-                        whileHover="hoverBtn"
-                        animate="restBtn"
-                        variants={{
-                          restBtn: {
-                            color: "#4D2E00",
-                          },
-                          hoverBtn: {
-                            color: "#FFFFFF",
-                          },
-                        }}
-                        whileTap={{
-                          scaleX: 0.8,
-                        }}
-                        className="relative cursor-pointer overflow-hidden rounded-full bg-white p-1 px-3 ring-2 ring-accentThrd select-none"
-                      >
-                        <span className="relative z-1 font-semibold">
-                          Pesan
+                    <div className="flex w-full flex-col items-start justify-center gap-2 select-none">
+                      <div className="w-full space-y-2">
+                        <span className="text-xl font-bold text-side">
+                          Beras Original
                         </span>
 
-                        <motion.div
-                          className="absolute top-0 left-1/2 h-8 w-8 -translate-x-1/2 rounded-full bg-accentThrd"
-                          variants={{
-                            restBtn: {
-                              scale: 0,
-                            },
-                            hoverBtn: {
-                              scale: 2.4,
-                            },
-                          }}
-                          transition={{
-                            duration: 0.1,
-                          }}
-                        />
-                      </motion.button>
-                    </Link>
+                        <span className="block text-xs font-medium text-quaternary">
+                          1 Kg
+                        </span>
+                      </div>
+
+                      <div className="flex w-full flex-row items-center justify-between">
+                        <div className="text-lg font-bold text-accentThrd">
+                          <span>Rp. XX.XXX</span>
+                        </div>
+
+                        <Link>
+                          <button className="group h-fit w-fit cursor-pointer">
+                            <motion.div
+                              className="relative overflow-hidden rounded-full border-2 border-primary bg-white p-1 px-3"
+                              initial="rest"
+                              whileHover="hover"
+                              animate="rest"
+                              whileTap="tap"
+                              variants={{
+                                rest: {
+                                  scale: 1,
+                                },
+                                hover: {
+                                  scale: 1.1,
+                                },
+                              }}
+                              transition={{
+                                duration: 0.1,
+                                type: "spring",
+                                stiffness: 100,
+                                damping: 10,
+                              }}
+                            >
+                              <span className="relative z-1 font-bold text-primary group-hover:text-white group-active:text-primary">
+                                Pesan
+                              </span>
+
+                              <motion.div
+                                variants={{
+                                  rest: {
+                                    scale: 0,
+                                  },
+                                  hover: {
+                                    scale: 2.4,
+                                  },
+                                  tap: {
+                                    scale: 0,
+                                  },
+                                }}
+                                transition={{
+                                  duration: 0.1,
+                                }}
+                                className="absolute top-0 left-1/2 h-8 w-8 -translate-x-1/2 rounded-full bg-primary"
+                              />
+                            </motion.div>
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                </motion.div>
+                </div>
+
+                <div className="absolute top-0 -z-1 h-full w-full rounded-sm bg-primary" />
               </div>
 
-              <div className="relative">
-                <motion.div
-                  className="absolute -translate-x-1/2 overflow-hidden rounded-sm bg-tertiary outline-2 outline-accentThrd"
-                  initial="rest"
-                  whileHover={isLg ? "hover" : "rest"}
-                  animate="rest"
-                  variants={
-                    isLg
-                      ? {
-                          rest: {
-                            height: "220px",
-                            padding: "0px",
-                          },
-                          hover: {
-                            height: "300px",
-                            padding: "10px",
-                          },
-                        }
-                      : {
-                          rest: {
-                            height: "300px",
-                            padding: "10px",
-                          },
-                        }
-                  }
-                  transition={{
-                    duration: 0.4,
-                    type: "spring",
-                    stiffness: 150,
-                    damping: 15,
-                  }}
-                >
-                  <motion.div
-                    variants={
-                      isLg
-                        ? {
-                            rest: {
-                              borderRadius: "0px",
-                            },
-                            hover: {
-                              borderRadius: "4px",
-                            },
-                          }
-                        : {
-                            rest: {
-                              borderRadius: "4px",
-                            },
-                          }
-                    }
-                    className="relative mb-3 h-55 w-80 overflow-hidden outline-2 outline-accentThrd select-none"
-                  >
-                    <div className="absolute mt-2 ml-2 flex flex-row gap-2">
-                      <div className="flex items-center rounded-full bg-fuchsia-400 p-0.5 px-3">
-                        <span className="text-sm font-medium text-white">
-                          Organik
-                        </span>
-                      </div>
+              <div className="relative h-fit w-full max-w-xs">
+                <div className="translate-x-3 -translate-y-3 rounded-sm border-2 border-accentThrd bg-tertiary p-4">
+                  <div className="flex flex-col items-center justify-center gap-5">
+                    <div className="relative h-40 w-full overflow-hidden rounded-sm bg-[url(/product/Aromatik.png)] bg-cover bg-center outline-2 outline-accentThrd">
+                      <div className="absolute m-2 flex items-center gap-2 select-none">
+                        <div className="flex items-center rounded-full bg-fuchsia-400 p-1 px-3">
+                          <span className="text-xs font-medium text-white">
+                            Organik
+                          </span>
+                        </div>
 
-                      <div className="flex items-center rounded-full bg-red-500 p-0.5 px-3">
-                        <span className="text-sm font-medium text-white">
-                          Stok Terbatas
-                        </span>
+                        <div className="flex items-center rounded-full bg-red-500 p-1 px-3">
+                          <span className="text-xs font-medium text-white">
+                            Stok Terbatas
+                          </span>
+                        </div>
                       </div>
                     </div>
 
-                    <img
-                      src="/product/Aromatik.png"
-                      alt="Original"
-                      className="object-cover object-center"
-                    />
-                  </motion.div>
-
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="flex flex-col gap-1 select-none">
-                      <h4 className="text-xl font-bold text-fuchsia-400 text-shadow-lg">
-                        Beras Aromatik
-                      </h4>
-
-                      <p className="text-sm font-medium text-slate-500">1 Kg</p>
-                    </div>
-
-                    <Link>
-                      <motion.button
-                        initial="restBtn"
-                        whileHover="hoverBtn"
-                        animate="restBtn"
-                        variants={{
-                          restBtn: {
-                            color: "#4D2E00",
-                          },
-                          hoverBtn: {
-                            color: "#FFFFFF",
-                          },
-                        }}
-                        whileTap={{
-                          scaleX: 0.8,
-                        }}
-                        className="relative cursor-pointer overflow-hidden rounded-full bg-white p-1 px-3 ring-2 ring-accentThrd select-none"
-                      >
-                        <span className="relative z-1 font-semibold">
-                          Pesan
+                    <div className="flex w-full flex-col items-start justify-center gap-2 select-none">
+                      <div className="w-full space-y-2">
+                        <span className="text-xl font-bold text-fuchsia-400">
+                          Beras Aromatik
                         </span>
 
-                        <motion.div
-                          className="absolute top-0 left-1/2 h-8 w-8 -translate-x-1/2 rounded-full bg-accentThrd"
-                          variants={{
-                            restBtn: {
-                              scale: 0,
-                            },
-                            hoverBtn: {
-                              scale: 2.4,
-                            },
-                          }}
-                          transition={{
-                            duration: 0.1,
-                          }}
-                        />
-                      </motion.button>
-                    </Link>
+                        <span className="block text-xs font-medium text-quaternary">
+                          1 Kg
+                        </span>
+                      </div>
+
+                      <div className="flex w-full flex-row items-center justify-between">
+                        <div className="text-lg font-bold text-accentThrd">
+                          <span>Rp. XX.XXX</span>
+                        </div>
+
+                        <Link>
+                          <button className="group h-fit w-fit cursor-pointer">
+                            <motion.div
+                              className="relative overflow-hidden rounded-full border-2 border-primary bg-white p-1 px-3"
+                              initial="rest"
+                              whileHover="hover"
+                              animate="rest"
+                              whileTap="tap"
+                              variants={{
+                                rest: {
+                                  scale: 1,
+                                },
+                                hover: {
+                                  scale: 1.1,
+                                },
+                              }}
+                              transition={{
+                                duration: 0.1,
+                                type: "spring",
+                                stiffness: 100,
+                                damping: 10,
+                              }}
+                            >
+                              <span className="relative z-1 font-bold text-primary group-hover:text-white group-active:text-primary">
+                                Pesan
+                              </span>
+
+                              <motion.div
+                                variants={{
+                                  rest: {
+                                    scale: 0,
+                                  },
+                                  hover: {
+                                    scale: 2.4,
+                                  },
+                                  tap: {
+                                    scale: 0,
+                                  },
+                                }}
+                                transition={{
+                                  duration: 0.1,
+                                }}
+                                className="absolute top-0 left-1/2 h-8 w-8 -translate-x-1/2 rounded-full bg-primary"
+                              />
+                            </motion.div>
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                </motion.div>
+                </div>
+
+                <div className="absolute top-0 -z-1 h-full w-full rounded-sm bg-primary" />
               </div>
 
-              <div className="relative">
-                <motion.div
-                  className="absolute -translate-x-1/2 overflow-hidden rounded-sm bg-tertiary outline-2 outline-accentThrd xl:translate-x-1/2"
-                  initial="rest"
-                  whileHover={isLg ? "hover" : "rest"}
-                  animate="rest"
-                  variants={
-                    isLg
-                      ? {
-                          rest: {
-                            height: "220px",
-                            padding: "0px",
-                          },
-                          hover: {
-                            height: "300px",
-                            padding: "10px",
-                          },
-                        }
-                      : {
-                          rest: {
-                            height: "300px",
-                            padding: "10px",
-                          },
-                        }
-                  }
-                  transition={{
-                    duration: 0.4,
-                    type: "spring",
-                    stiffness: 150,
-                    damping: 15,
-                  }}
-                >
-                  <motion.div
-                    variants={
-                      isLg
-                        ? {
-                            rest: {
-                              borderRadius: "0px",
-                            },
-                            hover: {
-                              borderRadius: "4px",
-                            },
-                          }
-                        : {
-                            rest: {
-                              borderRadius: "4px",
-                            },
-                          }
-                    }
-                    className="relative mb-3 h-55 w-80 overflow-hidden outline-2 outline-accentThrd select-none"
-                  >
-                    <div className="absolute mt-2 ml-2 flex flex-row gap-2">
-                      <div className="flex items-center rounded-full bg-[#691500] p-0.5 px-3">
-                        <span className="text-sm font-medium text-white">
-                          Organik
-                        </span>
-                      </div>
+              <div className="relative h-fit w-full max-w-xs">
+                <div className="translate-x-3 -translate-y-3 rounded-sm border-2 border-accentThrd bg-tertiary p-4">
+                  <div className="flex flex-col items-center justify-center gap-5">
+                    <div className="relative h-40 w-full overflow-hidden rounded-sm bg-[url(/product/Merah.png)] bg-cover bg-center outline-2 outline-accentThrd">
+                      <div className="absolute m-2 flex items-center gap-2 select-none">
+                        <div className="flex items-center rounded-full bg-[#691500] p-1 px-3">
+                          <span className="text-xs font-medium text-white">
+                            Organik
+                          </span>
+                        </div>
 
-                      <div className="flex items-center rounded-full bg-side p-0.5 px-3">
-                        <span className="text-sm font-medium text-white">
-                          Tersedia
-                        </span>
+                        <div className="flex items-center rounded-full bg-side p-1 px-3">
+                          <span className="text-xs font-medium text-white">
+                            Tersedia
+                          </span>
+                        </div>
                       </div>
                     </div>
 
-                    <img
-                      src="/product/Merah.png"
-                      alt="Original"
-                      className="object-cover object-center"
-                    />
-                  </motion.div>
-
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="flex flex-col gap-1 select-none">
-                      <h4 className="text-xl font-bold text-[#691500] text-shadow-lg">
-                        Beras Merah
-                      </h4>
-
-                      <p className="text-sm font-medium text-slate-500">1 Kg</p>
-                    </div>
-
-                    <Link>
-                      <motion.button
-                        initial="restBtn"
-                        whileHover="hoverBtn"
-                        animate="restBtn"
-                        variants={{
-                          restBtn: {
-                            color: "#4D2E00",
-                          },
-                          hoverBtn: {
-                            color: "#FFFFFF",
-                          },
-                        }}
-                        whileTap={{
-                          scaleX: 0.8,
-                        }}
-                        className="relative cursor-pointer overflow-hidden rounded-full bg-white p-1 px-3 ring-2 ring-accentThrd select-none"
-                      >
-                        <span className="relative z-1 font-semibold">
-                          Pesan
+                    <div className="flex w-full flex-col items-start justify-center gap-2 select-none">
+                      <div className="w-full space-y-2">
+                        <span className="text-xl font-bold text-[#691500]">
+                          Beras Merah
                         </span>
 
-                        <motion.div
-                          className="absolute top-0 left-1/2 h-8 w-8 -translate-x-1/2 rounded-full bg-accentThrd"
-                          variants={{
-                            restBtn: {
-                              scale: 0,
-                            },
-                            hoverBtn: {
-                              scale: 2.4,
-                            },
-                          }}
-                          transition={{
-                            duration: 0.1,
-                          }}
-                        />
-                      </motion.button>
-                    </Link>
+                        <span className="block text-xs font-medium text-quaternary">
+                          1 Kg
+                        </span>
+                      </div>
+
+                      <div className="flex w-full flex-row items-center justify-between">
+                        <div className="text-lg font-bold text-accentThrd">
+                          <span>Rp. XX.XXX</span>
+                        </div>
+
+                        <Link>
+                          <button className="group h-fit w-fit cursor-pointer">
+                            <motion.div
+                              className="relative overflow-hidden rounded-full border-2 border-primary bg-white p-1 px-3"
+                              initial="rest"
+                              whileHover="hover"
+                              animate="rest"
+                              whileTap="tap"
+                              variants={{
+                                rest: {
+                                  scale: 1,
+                                },
+                                hover: {
+                                  scale: 1.1,
+                                },
+                              }}
+                              transition={{
+                                duration: 0.1,
+                                type: "spring",
+                                stiffness: 100,
+                                damping: 10,
+                              }}
+                            >
+                              <span className="relative z-1 font-bold text-primary group-hover:text-white group-active:text-primary">
+                                Pesan
+                              </span>
+
+                              <motion.div
+                                variants={{
+                                  rest: {
+                                    scale: 0,
+                                  },
+                                  hover: {
+                                    scale: 2.4,
+                                  },
+                                  tap: {
+                                    scale: 0,
+                                  },
+                                }}
+                                transition={{
+                                  duration: 0.1,
+                                }}
+                                className="absolute top-0 left-1/2 h-8 w-8 -translate-x-1/2 rounded-full bg-primary"
+                              />
+                            </motion.div>
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                </motion.div>
+                </div>
+
+                <div className="absolute top-0 -z-1 h-full w-full rounded-sm bg-primary" />
               </div>
             </div>
           </div>
@@ -798,64 +699,68 @@ function Nutrition() {
               </div>
             </div>
 
-            <div className="mx-auto overflow-x-auto rounded-lg outline-2 outline-quaternary">
-              <table className="mx-auto min-w-175 table-fixed overflow-hidden rounded-lg">
-                <thead className="bg-primary text-xl font-bold text-white select-none">
-                  <tr className="t-contain">
-                    <th className="t-hnd">Varian Beras</th>
-                    <th className="t-hnd">Kalori (Per 100g)</th>
-                    <th className="t-hnd">Kandungan Serat</th>
-                    <th className="t-hnd">Indeks Glikemik (GI)</th>
-                    <th className="t-hnd">Saran Penggunaan</th>
-                    <th className="t-hnd">Manfaat</th>
-                  </tr>
-                </thead>
+            <div className="mx-auto h-fit relative">
+              <div className="overflow-x-auto rounded-sm outline-2 outline-accentThrd translate-x-2 -translate-y-2 lg:translate-x-3 lg:-translate-y-3">
+                <table className="mx-auto min-w-175 table-fixed overflow-hidden bg-tertiary">
+                  <thead className="bg-side text-xl font-bold text-white select-none">
+                    <tr className="t-contain">
+                      <th className="t-hnd">Varian Beras</th>
+                      <th className="t-hnd">Kalori (Per 100g)</th>
+                      <th className="t-hnd">Kandungan Serat</th>
+                      <th className="t-hnd">Indeks Glikemik (GI)</th>
+                      <th className="t-hnd">Saran Penggunaan</th>
+                      <th className="t-hnd">Manfaat</th>
+                    </tr>
+                  </thead>
 
-                <tbody className="font-medium text-quaternary">
-                  <tr className="t-contain">
-                    <td className="t-hnd t-content">Beras Original</td>
-                    <td className="t-hnd t-content">180 kkal</td>
-                    <td className="t-hnd t-content">Sedang</td>
-                    <td className="t-hnd t-content font-bold text-accentThrd">
-                      Sedang
-                    </td>
-                    <td className="t-hnd t-content">Sehari-hari</td>
-                    <td className="t-hnd t-content">
-                      Sumber energi, mudah dicerna, bebas gluten, kandungan
-                      mineral
-                    </td>
-                  </tr>
+                  <tbody className="font-medium text-quaternary">
+                    <tr className="t-contain">
+                      <td className="t-hnd t-content">Beras Original</td>
+                      <td className="t-hnd t-content">180 kkal</td>
+                      <td className="t-hnd t-content">Sedang</td>
+                      <td className="t-hnd t-content font-bold text-accentThrd">
+                        Sedang
+                      </td>
+                      <td className="t-hnd t-content">Sehari-hari</td>
+                      <td className="t-hnd t-content">
+                        Sumber energi, mudah dicerna, bebas gluten, kandungan
+                        mineral
+                      </td>
+                    </tr>
 
-                  <tr className="t-contain">
-                    <td className="t-hnd t-content">Beras Merah</td>
-                    <td className="t-hnd t-content">110 kkal</td>
-                    <td className="t-hnd t-content">Sangat Tinggi</td>
-                    <td className="t-hnd t-content font-bold text-side">
-                      Rendah
-                    </td>
-                    <td className="t-hnd t-content">Diet</td>
-                    <td className="t-hnd t-content">
-                      Kaya akan serat, antioksidan, menjaga kesehatan jantung,
-                      membantu menurunkan berat badan, mengontrol gula darah,
-                      melancarkan pencernaan, menangkal radikal bebas
-                    </td>
-                  </tr>
+                    <tr className="t-contain">
+                      <td className="t-hnd t-content">Beras Merah</td>
+                      <td className="t-hnd t-content">110 kkal</td>
+                      <td className="t-hnd t-content">Sangat Tinggi</td>
+                      <td className="t-hnd t-content font-bold text-primary">
+                        Rendah
+                      </td>
+                      <td className="t-hnd t-content">Diet</td>
+                      <td className="t-hnd t-content">
+                        Kaya akan serat, antioksidan, menjaga kesehatan jantung,
+                        membantu menurunkan berat badan, mengontrol gula darah,
+                        melancarkan pencernaan, menangkal radikal bebas
+                      </td>
+                    </tr>
 
-                  <tr className="t-contain">
-                    <td className="t-hnd t-content">Beras Aromatik</td>
-                    <td className="t-hnd t-content">175 kkal</td>
-                    <td className="t-hnd t-content">Sedang</td>
-                    <td className="t-hnd t-content font-bold text-accentThrd">
-                      Sedang
-                    </td>
-                    <td className="t-hnd t-content">Hidangan Spesial</td>
-                    <td className="t-hnd t-content">
-                      Menambah nafsu makan, sumber energi, membantu pencernaan,
-                      efek menenangkan, potensi kontrol gula darah
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                    <tr className="t-contain">
+                      <td className="t-hnd t-content">Beras Aromatik</td>
+                      <td className="t-hnd t-content">175 kkal</td>
+                      <td className="t-hnd t-content">Sedang</td>
+                      <td className="t-hnd t-content font-bold text-accentThrd">
+                        Sedang
+                      </td>
+                      <td className="t-hnd t-content">Hidangan Spesial</td>
+                      <td className="t-hnd t-content">
+                        Menambah nafsu makan, sumber energi, membantu
+                        pencernaan, efek menenangkan, potensi kontrol gula darah
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="w-full h-full absolute bg-primary rounded-sm -z-1 top-0" />
             </div>
           </div>
         </div>

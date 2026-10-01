@@ -1,7 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { motion } from "motion/react";
+import { useEffect, useRef } from "react";
 import { animate, stagger } from "animejs";
-import { Link } from "react-router-dom";
 import Navbar from "./components/navbar.jsx";
 import Footer from "./components/footer.jsx";
 import Order from "./components/order-section.jsx";
@@ -200,9 +198,13 @@ function Attribute() {
 
 // Advantages //
 function Content() {
+  const advanCard =
+    "h-fit w-full max-w-2xl rounded-sm border-2 border-accentThrd bg-tertiary p-5 translate-x-3 -translate-y-3";
+  const advanWrapper = "relative w-fit h-fit";
+
   return (
     <div className="advantages">
-      <section id="keunggulan" className="pt-36 mb-32 xl:mb-0">
+      <section id="keunggulan" className="mb-32 pt-36 xl:mb-0">
         <div className="container mx-auto">
           <div className="w-full px-4">
             <div className="mx-auto mb-20 select-none">
@@ -232,172 +234,199 @@ function Content() {
               </div>
             </div>
 
-            <div className="flex flex-col items-center justify-center gap-5 xl:hidden">
-              <div className="h-fit w-full max-w-2xl rounded-sm border-2 border-accentThrd bg-tertiary p-5">
-                <div className="flex flex-col md:flex-row items-center justify-center gap-5">
-                  <div className="h-50 w-full md:w-50 rounded-sm bg-[url(/advantages/img/Asli-Organik.png)] bg-cover bg-center" />
+            <div className="flex flex-col items-center justify-center gap-7 xl:hidden">
+              <div className={`${advanWrapper}`}>
+                <div className={`${advanCard}`}>
+                  <div className="flex flex-col items-center justify-center gap-5 md:flex-row">
+                    <div className="h-50 w-full rounded-sm bg-[url(/advantages/img/Asli-Organik.png)] bg-cover bg-center md:w-50" />
 
-                  <div className="flex flex-col gap-5">
-                    <div className="flex w-fit flex-col items-center justify-center gap-1">
-                      <h2 className="text-2xl font-bold text-quaternary select-none">
-                        100% Organik
-                      </h2>
+                    <div className="flex flex-col gap-5">
+                      <div className="flex w-fit flex-col items-center justify-center gap-1">
+                        <h2 className="text-2xl font-bold text-quaternary select-none">
+                          100% Organik
+                        </h2>
 
-                      <div className="h-1 w-full rounded-full bg-side" />
-                    </div>
+                        <div className="h-1 w-full rounded-full bg-side" />
+                      </div>
 
-                    <div className="max-w-full md:max-w-sm text-xs font-medium text-slate-500">
-                      <p>
-                        Beras kami diproduksi dari varietas unggul yang ditanam
-                        sepenuhnya dengan pupuk alami tanpa campuran bahan
-                        kimia. Mengandung serat alami serta kaebohidrat kompleks
-                        yang dicerna secara berkala, membantu menjaga tingkat
-                        gula darah tetap stabil, melancarkan pencernaan, dan
-                        memberikan energi berkelanjutan tanpa efek lemas.
-                      </p>
+                      <div className="max-w-full text-xs font-medium text-slate-500 md:max-w-sm">
+                        <p>
+                          Beras kami diproduksi dari varietas unggul yang
+                          ditanam sepenuhnya dengan pupuk alami tanpa campuran
+                          bahan kimia. Mengandung serat alami serta kaebohidrat
+                          kompleks yang dicerna secara berkala, membantu menjaga
+                          tingkat gula darah tetap stabil, melancarkan
+                          pencernaan, dan memberikan energi berkelanjutan tanpa
+                          efek lemas.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
+
+                <div className="absolute bg-primary w-full h-full rounded-sm -z-1 top-0" />
               </div>
 
-              <div className="h-fit w-full max-w-2xl rounded-sm border-2 border-accentThrd bg-tertiary p-5">
-                <div className="flex flex-col md:flex-row items-center justify-center gap-5">
-                  <div className="h-50 w-full md:w-50 rounded-sm bg-[url(/advantages/img/Tanpa-Pestisida-Kimia.png)] bg-cover bg-center" />
+              <div className={`${advanWrapper}`}>
+                <div className={`${advanCard}`}>
+                  <div className="flex flex-col items-center justify-center gap-5 md:flex-row">
+                    <div className="h-50 w-full rounded-sm bg-[url(/advantages/img/Tanpa-Pestisida-Kimia.png)] bg-cover bg-center md:w-50" />
 
-                  <div className="flex flex-col gap-5">
-                    <div className="flex w-fit flex-col items-center justify-center gap-1">
-                      <h2 className="text-2xl font-bold text-quaternary select-none">
-                        Tanpa Pestisida Kimia
-                      </h2>
+                    <div className="flex flex-col gap-5">
+                      <div className="flex w-fit flex-col items-center justify-center gap-1">
+                        <h2 className="text-2xl font-bold text-quaternary select-none">
+                          Tanpa Pestisida Kimia
+                        </h2>
 
-                      <div className="h-1 w-full rounded-full bg-side" />
-                    </div>
+                        <div className="h-1 w-full rounded-full bg-side" />
+                      </div>
 
-                    <div className="max-w-full md:max-w-sm text-xs font-medium text-slate-500">
-                      <p>
-                        Setiap bulir dibudidayakan tanpa menyentuh pestisida,
-                        herbisida, dan bahan kimia berbahaya. Kami mengandalkan
-                        ekosistem hayati dan metode alami untuk mengendalikan
-                        hama. Hasilnya adalah beras murni yang aman dikonsumsi
-                        seluruh anggota keluarga, sekaligus menjaga kesuburan
-                        tanah dan lingkungan sekitar.
-                      </p>
+                      <div className="max-w-full text-xs font-medium text-slate-500 md:max-w-sm">
+                        <p>
+                          Setiap bulir dibudidayakan tanpa menyentuh pestisida,
+                          herbisida, dan bahan kimia berbahaya. Kami
+                          mengandalkan ekosistem hayati dan metode alami untuk
+                          mengendalikan hama. Hasilnya adalah beras murni yang
+                          aman dikonsumsi seluruh anggota keluarga, sekaligus
+                          menjaga kesuburan tanah dan lingkungan sekitar.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
+
+                <div className="absolute bg-primary w-full h-full rounded-sm -z-1 top-0" />
               </div>
 
-              <div className="h-fit w-full max-w-2xl rounded-sm border-2 border-accentThrd bg-tertiary p-5">
-                <div className="flex flex-col md:flex-row items-center justify-center gap-5">
-                  <div className="h-50 w-full md:w-50 rounded-sm bg-[url(/advantages/img/Kemasan-Higienis.png)] bg-cover bg-center" />
+              <div className={`${advanWrapper}`}>
+                <div className={`${advanCard}`}>
+                  <div className="flex flex-col items-center justify-center gap-5 md:flex-row">
+                    <div className="h-50 w-full rounded-sm bg-[url(/advantages/img/Kemasan-Higienis.png)] bg-cover bg-center md:w-50" />
 
-                  <div className="flex flex-col gap-5">
-                    <div className="flex w-fit flex-col items-center justify-center gap-1">
-                      <h2 className="text-2xl font-bold text-quaternary select-none">
-                        Kemasan Higienis
-                      </h2>
+                    <div className="flex flex-col gap-5">
+                      <div className="flex w-fit flex-col items-center justify-center gap-1">
+                        <h2 className="text-2xl font-bold text-quaternary select-none">
+                          Kemasan Higienis
+                        </h2>
 
-                      <div className="h-1 w-full rounded-full bg-side" />
-                    </div>
+                        <div className="h-1 w-full rounded-full bg-side" />
+                      </div>
 
-                    <div className="max-w-full md:max-w-sm text-xs font-medium text-slate-500">
-                      <p>
-                        Beras dikemas menggunakan teknologi vacuum sealing
-                        terkini yang menjaga kesegaran, aroma, dan kelembapan
-                        beras secara optimal. Proses pengemasan dilakukan secara
-                        steril tanpa sentuhan tangan langsung, memastikan produk
-                        beras bebas debu, kutu, maupun kontaminasi luar hingga
-                        sampai ke dapur Anda.
-                      </p>
+                      <div className="max-w-full text-xs font-medium text-slate-500 md:max-w-sm">
+                        <p>
+                          Beras dikemas menggunakan teknologi vacuum sealing
+                          terkini yang menjaga kesegaran, aroma, dan kelembapan
+                          beras secara optimal. Proses pengemasan dilakukan
+                          secara steril tanpa sentuhan tangan langsung,
+                          memastikan produk beras bebas debu, kutu, maupun
+                          kontaminasi luar hingga sampai ke dapur Anda.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
+
+                <div className="absolute bg-primary w-full h-full rounded-sm -z-1 top-0" />
               </div>
 
-              <div className="h-fit w-full max-w-2xl rounded-sm border-2 border-accentThrd bg-tertiary p-5">
-                <div className="flex flex-col md:flex-row items-center justify-center gap-5">
-                  <div className="h-50 w-full md:w-50 rounded-sm bg-[url(/advantages/img/Langsung-dari-Petani.png)] bg-cover bg-center" />
+              <div className={`${advanWrapper}`}>
+                <div className={`${advanCard}`}>
+                  <div className="flex flex-col items-center justify-center gap-5 md:flex-row">
+                    <div className="h-50 w-full rounded-sm bg-[url(/advantages/img/Langsung-dari-Petani.png)] bg-cover bg-center md:w-50" />
 
-                  <div className="flex flex-col gap-5">
-                    <div className="flex w-fit flex-col items-center justify-center gap-1">
-                      <h2 className="text-2xl font-bold text-quaternary select-none">
-                        Langsung dari Petani
-                      </h2>
+                    <div className="flex flex-col gap-5">
+                      <div className="flex w-fit flex-col items-center justify-center gap-1">
+                        <h2 className="text-2xl font-bold text-quaternary select-none">
+                          Langsung dari Petani
+                        </h2>
 
-                      <div className="h-1 w-full rounded-full bg-side" />
-                    </div>
+                        <div className="h-1 w-full rounded-full bg-side" />
+                      </div>
 
-                    <div className="max-w-full md:max-w-sm text-xs font-medium text-slate-500">
-                      <p>
-                        Kami bekerja sama langsung dengan kelompok petani lokal
-                        Sumberejo melalui jalur distribusi yang transparan dan
-                        adil. Tanpa keterlibatan tengkulakatau rantai perantara
-                        yang panjang, kami memastikan petani mendapatkan
-                        apresiasi harga yang layak sekaligus menjamin Anda
-                        menerima beras segar hasil panen terbaru.
-                      </p>
+                      <div className="max-w-full text-xs font-medium text-slate-500 md:max-w-sm">
+                        <p>
+                          Kami bekerja sama langsung dengan kelompok petani
+                          lokal Sumberejo melalui jalur distribusi yang
+                          transparan dan adil. Tanpa keterlibatan tengkulakatau
+                          rantai perantara yang panjang, kami memastikan petani
+                          mendapatkan apresiasi harga yang layak sekaligus
+                          menjamin Anda menerima beras segar hasil panen
+                          terbaru.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
+
+                <div className="absolute bg-primary w-full h-full rounded-sm -z-1 top-0" />
               </div>
 
-              <div className="h-fit w-full max-w-2xl rounded-sm border-2 border-accentThrd bg-tertiary p-5">
-                <div className="flex flex-col md:flex-row items-center justify-center gap-5">
-                  <div className="h-50 w-full md:w-50 rounded-sm bg-[url(/advantages/img/Harga-Terjangkau.png)] bg-cover bg-center" />
+              <div className={`${advanWrapper}`}>
+                <div className={`${advanCard}`}>
+                  <div className="flex flex-col items-center justify-center gap-5 md:flex-row">
+                    <div className="h-50 w-full rounded-sm bg-[url(/advantages/img/Harga-Terjangkau.png)] bg-cover bg-center md:w-50" />
 
-                  <div className="flex flex-col gap-5">
-                    <div className="flex w-fit flex-col items-center justify-center gap-1">
-                      <h2 className="text-2xl font-bold text-quaternary select-none">
-                        Harga Terjangkau
-                      </h2>
+                    <div className="flex flex-col gap-5">
+                      <div className="flex w-fit flex-col items-center justify-center gap-1">
+                        <h2 className="text-2xl font-bold text-quaternary select-none">
+                          Harga Terjangkau
+                        </h2>
 
-                      <div className="h-1 w-full rounded-full bg-side" />
-                    </div>
+                        <div className="h-1 w-full rounded-full bg-side" />
+                      </div>
 
-                    <div className="max-w-full md:max-w-sm text-xs font-medium text-slate-500">
-                      <p>
-                        Kami percaya bahwa gaya hidup sehat dan konsumsi makanan
-                        organik berkualitas harus dapat diakses oleh semua
-                        lapisan masyarakat. Dengan memotong rantai distribusi
-                        berlebih dan mnegoptimalkan pengelolaan koperasi, kami
-                        mampu menghadirkan beras organik premium dengan harga
-                        yang bersahabat.
-                      </p>
+                      <div className="max-w-full text-xs font-medium text-slate-500 md:max-w-sm">
+                        <p>
+                          Kami percaya bahwa gaya hidup sehat dan konsumsi
+                          makanan organik berkualitas harus dapat diakses oleh
+                          semua lapisan masyarakat. Dengan memotong rantai
+                          distribusi berlebih dan mnegoptimalkan pengelolaan
+                          koperasi, kami mampu menghadirkan beras organik
+                          premium dengan harga yang bersahabat.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
+
+                <div className="absolute bg-primary w-full h-full rounded-sm -z-1 top-0" />
               </div>
 
-              <div className="h-fit w-full max-w-2xl rounded-sm border-2 border-accentThrd bg-tertiary p-5">
-                <div className="flex flex-col md:flex-row items-center justify-center gap-5">
-                  <div className="h-50 w-full md:w-50 rounded-sm bg-[url(/advantages/img/Pengiriman-Cepat.png)] bg-cover bg-center" />
+              <div className={`${advanWrapper}`}>
+                <div className={`${advanCard}`}>
+                  <div className="flex flex-col items-center justify-center gap-5 md:flex-row">
+                    <div className="h-50 w-full rounded-sm bg-[url(/advantages/img/Pengiriman-Cepat.png)] bg-cover bg-center md:w-50" />
 
-                  <div className="flex flex-col gap-5">
-                    <div className="flex w-fit flex-col items-center justify-center gap-1">
-                      <h2 className="text-2xl font-bold text-quaternary select-none">
-                        Pengiriman Cepat
-                      </h2>
+                    <div className="flex flex-col gap-5">
+                      <div className="flex w-fit flex-col items-center justify-center gap-1">
+                        <h2 className="text-2xl font-bold text-quaternary select-none">
+                          Pengiriman Cepat
+                        </h2>
 
-                      <div className="h-1 w-full rounded-full bg-side" />
-                    </div>
+                        <div className="h-1 w-full rounded-full bg-side" />
+                      </div>
 
-                    <div className="max-w-full md:max-w-sm text-xs font-medium text-slate-500">
-                      <p>
-                        Sistem logistik dan perdagangan kami terintegrasi untuk
-                        memastikan pesanan Anda diproses dengan sigap. Beras
-                        dikemas rapi dan dikirimkan secara aman menggunakan
-                        layanan ekspedisi terpercaya, memastikan pasokan beras
-                        segar keluarga Anda tiba tepat waktu tanpa kendala.
-                      </p>
+                      <div className="max-w-full text-xs font-medium text-slate-500 md:max-w-sm">
+                        <p>
+                          Sistem logistik dan perdagangan kami terintegrasi
+                          untuk memastikan pesanan Anda diproses dengan sigap.
+                          Beras dikemas rapi dan dikirimkan secara aman
+                          menggunakan layanan ekspedisi terpercaya, memastikan
+                          pasokan beras segar keluarga Anda tiba tepat waktu
+                          tanpa kendala.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
+
+                <div className="absolute bg-primary w-full h-full rounded-sm -z-1 top-0" />
               </div>
             </div>
           </div>
         </div>
 
-        <div className="hidden xl:flex flex-col">
+        <div className="hidden flex-col xl:flex">
           <div className="relative flex flex-row-reverse items-center justify-between overflow-hidden bg-linear-to-l from-secondary/50 from-20% to-white/0 to-50% p-10 px-20">
             <div className="absolute left-1/2 -z-1 flex h-80 w-80 -translate-x-1/2 scale-150 items-center justify-center rounded-full bg-side opacity-40 select-none">
               <img src="/advantages/Organik.svg" alt="Organik" width="220" />
@@ -421,7 +450,7 @@ function Content() {
               </div>
 
               <div className="relative h-fit w-fit">
-                <div className="relative z-1 max-w-xl 2xl:max-w-2xl translate-x-3 -translate-y-3 rounded-sm bg-tertiary p-3 outline-2 outline-accentThrd">
+                <div className="relative z-1 max-w-xl translate-x-3 -translate-y-3 rounded-sm bg-tertiary p-3 outline-2 outline-accentThrd 2xl:max-w-2xl">
                   <p className="text-sm leading-6 text-quaternary">
                     Beras kami diproduksi dari varietas unggul yang ditanam
                     sepenuhnya dengan pupuk alami tanpa campuran bahan kimia.
@@ -464,7 +493,7 @@ function Content() {
               </div>
 
               <div className="relative h-fit w-fit">
-                <div className="relative z-1 max-w-xl 2xl:max-w-2xl translate-x-3 -translate-y-3 rounded-sm bg-tertiary p-3 outline-2 outline-accentThrd">
+                <div className="relative z-1 max-w-xl translate-x-3 -translate-y-3 rounded-sm bg-tertiary p-3 outline-2 outline-accentThrd 2xl:max-w-2xl">
                   <p className="text-sm leading-6 text-quaternary">
                     Setiap bulir dibudidayakan tanpa menyentuh pestisida,
                     herbisida, dan bahan kimia berbahaya. Kami mengandalkan
@@ -485,7 +514,7 @@ function Content() {
               <img src="/advantages/Higienis.png" alt="Higienis" width="220" />
             </div>
 
-            <div className="flex h-120 w-120 overflow-hidden rounded-md bg-side select-none items-center justify-center">
+            <div className="flex h-120 w-120 items-center justify-center overflow-hidden rounded-md bg-side select-none">
               <img
                 src="/advantages/img/Kemasan-Higienis.png"
                 alt="Higienis"
@@ -503,7 +532,7 @@ function Content() {
               </div>
 
               <div className="relative h-fit w-fit">
-                <div className="relative z-1 max-w-xl 2xl:max-w-2xl translate-x-3 -translate-y-3 rounded-sm bg-tertiary p-3 outline-2 outline-accentThrd">
+                <div className="relative z-1 max-w-xl translate-x-3 -translate-y-3 rounded-sm bg-tertiary p-3 outline-2 outline-accentThrd 2xl:max-w-2xl">
                   <p className="text-sm leading-6 text-quaternary">
                     Beras dikemas menggunakan teknologi vacuum sealing terkini
                     yang menjaga kesegaran, aroma, dan kelembapan beras secara
@@ -546,7 +575,7 @@ function Content() {
               </div>
 
               <div className="relative h-fit w-fit">
-                <div className="relative z-1 max-w-xl 2xl:max-w-2xl translate-x-3 -translate-y-3 rounded-sm bg-tertiary p-3 outline-2 outline-accentThrd">
+                <div className="relative z-1 max-w-xl translate-x-3 -translate-y-3 rounded-sm bg-tertiary p-3 outline-2 outline-accentThrd 2xl:max-w-2xl">
                   <p className="text-sm leading-6 text-quaternary">
                     Kami bekerja sama langsung dengan kelompok petani lokal
                     Sumberejo melalui jalur distribusi yang transparan dan adil.
@@ -589,7 +618,7 @@ function Content() {
               </div>
 
               <div className="relative h-fit w-fit">
-                <div className="relative z-1 max-w-xl 2xl:max-w-2xl translate-x-3 -translate-y-3 rounded-sm bg-tertiary p-3 outline-2 outline-accentThrd">
+                <div className="relative z-1 max-w-xl translate-x-3 -translate-y-3 rounded-sm bg-tertiary p-3 outline-2 outline-accentThrd 2xl:max-w-2xl">
                   <p className="text-sm leading-6 text-quaternary">
                     Kami percaya bahwa gaya hidup sehat dan konsumsi makanan
                     organik berkualitas harus dapat diakses oleh semua lapisan
@@ -631,7 +660,7 @@ function Content() {
               </div>
 
               <div className="relative h-fit w-fit">
-                <div className="relative z-1 max-w-xl 2xl:max-w-2xl translate-x-3 -translate-y-3 rounded-sm bg-tertiary p-3 outline-2 outline-accentThrd">
+                <div className="relative z-1 max-w-xl translate-x-3 -translate-y-3 rounded-sm bg-tertiary p-3 outline-2 outline-accentThrd 2xl:max-w-2xl">
                   <p className="text-sm leading-6 text-quaternary">
                     Sistem logistik dan perdagangan kami terintegrasi untuk
                     memastikan pesanan Anda diproses dengan sigap. Beras dikemas

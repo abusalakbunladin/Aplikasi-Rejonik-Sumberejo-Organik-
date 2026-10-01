@@ -37,10 +37,10 @@ html {
     }
 
     .t-contain {
-        @apply outline outline-quaternary
+        @apply outline outline-accentThrd
     }
 
     .t-content {
-        @apply outline outline-quaternary lg:outline-0
+        @apply outline outline-accentThrd lg:outline-0
     }
 }

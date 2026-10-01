@@ -328,21 +328,6 @@ export default function Footer() {
                         </motion.span>
                       </Link>
                     </li>
-
-                    <li>
-                      <Link to="/review" onClick={handleNavClick}>
-                        <motion.span
-                          initial={{
-                            color: "#ffffff",
-                          }}
-                          whileHover={{
-                            color: "#4AAB00",
-                          }}
-                        >
-                          Review
-                        </motion.span>
-                      </Link>
-                    </li>
                   </ul>
                 </div>
               </div>
@@ -355,7 +340,7 @@ export default function Footer() {
                 <div className="h-1 w-full rounded-full bg-linear-to-r from-white from-30% to-side to-40%" />
               </div>
 
-              <div className="flex flex-row justify-center gap-10">
+              <div className="flex flex-row items-center justify-center gap-3">
                 <Link to="/FAQ" onClick={handleFootClick}>
                   <motion.button
                     initial={{
@@ -434,7 +419,8 @@ export default function Footer() {
                         FAQ
                       </text>
                     </svg>
-                    Frequently Asked Questions
+                    <span className="hidden sm:block">Frequently Asked Questions</span>
+                    <span className="sm:hidden">FAQ</span>
                   </motion.button>
                 </Link>
 
@@ -488,7 +474,8 @@ export default function Footer() {
 
                       <circle cx="250" cy="330" r="18" fill="currentColor" />
                     </svg>
-                    Help Support
+                    <span className="hidden sm:block">Help Support</span>
+                    <span className="sm:hidden">Help</span>
                   </motion.button>
                 </Link>
               </div>

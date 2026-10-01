@@ -499,7 +499,7 @@ function Content() {
       lembaga: "LSO-ORGANIK Indonesia",
       kategori: "Produk Pertanian Organik",
       status: "Terverifikasi",
-      image: "/img/imagetest.jpeg",
+      image: "/img/imagetest.jpg.jpeg",
       downloadUrl: "#",
     },
     {
@@ -527,7 +527,7 @@ function Content() {
       lembaga: "SUCOFINDO",
       kategori: "Sistem Manajemen Mutu",
       status: "Terverifikasi",
-      image: "/img/imagetest.jpeg",
+      image: "/img/imagetest.jpg.jpeg",
       downloadUrl: "#",
     },
     {
@@ -785,10 +785,10 @@ function Content() {
                 })}
               </div>
 
-              <div className="relative h-fit w-fit">
-                <div className="mx-auto flex overflow-x-auto rounded-sm outline-2 outline-accentThrd lg:w-fit translate-x-3 -translate-y-3">
+              <div className="relative mx-auto h-fit w-full max-w-3xl">
+                <div className="overflow-x-auto rounded-sm outline-2 outline-accentThrd lg:w-fit translate-x-3 -translate-y-3">
                   <div className="mx-auto h-fit max-w-3xl">
-                    <div className="h-170 w-full rounded-sm bg-tertiary p-5">
+                    <div className="h-170 min-w-165.5 w-full rounded-sm bg-tertiary p-5">
                       <div className="flex flex-col items-center justify-center gap-3">
                         <div className="flex w-full items-center gap-5">
                           <div className="flex h-30 w-30 items-center justify-center rounded-full bg-side/40 outline-2 outline-accentThrd">
@@ -884,9 +884,9 @@ function Content() {
                         </div>
 
                         <div className="flex w-full justify-center gap-10 rounded-md bg-white p-5 outline-2 outline-primary">
-                          <div className="h-80 w-80 overflow-hidden rounded-md bg-tertiary p-2 outline-2 outline-accentThrd select-none">
+                          <div className="h-fit w-80 overflow-hidden rounded-md bg-tertiary p-2 outline-2 outline-accentThrd select-none">
                             <img
-                              src="/img/imagetest.jpeg"
+                              src={selectedCert.image}
                               alt="Sertifikat"
                               className="rounded-md"
                             />

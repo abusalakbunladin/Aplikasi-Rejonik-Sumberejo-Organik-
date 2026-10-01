@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
 import { animate, stagger } from "animejs";
 import Navbar from "./components/navbar.jsx";
@@ -283,7 +283,8 @@ function Hero() {
 // Product //
 function Product() {
   const proCard =
-    "max-w-sm mx-auto lg:mx-0 bg-tertiary border-accentThrd border-2 rounded-xl shadow-xl p-4 relative z-6 lg:max-w-none";
+    "max-w-sm bg-tertiary border-accentThrd border-2 rounded-sm p-4 lg:max-w-none translate-x-3 -translate-y-3 lg:translate-x-0 lg:translate-y-0";
+  const proWrapper = "relative h-fit w-fit lg:opacity-0 z-7";
 
   const sectionRef = useRef(null);
 
@@ -442,177 +443,201 @@ function Product() {
               </div>
             </div>
 
-            <div className="mx-auto flex flex-col justify-center gap-8 lg:flex-row lg:gap-5">
+            <div className="mx-auto flex flex-col items-center justify-center gap-8 lg:flex-row lg:gap-5">
               <div className="deco2 absolute top-1/7 left-1/9 z-5 hidden h-60 w-50 rounded-sm bg-tertiary/70 lg:opacity-0 xl:block"></div>
 
               <div className="deco1 absolute top-1/6 right-1/8 z-5 hidden h-60 w-60 rounded-sm bg-primary/70 lg:opacity-0 xl:block"></div>
 
-              <div id="pro1" className={`procard lg:opacity-0 ${proCard}`}>
-                <img
-                  src="/product/beras.jpg"
-                  alt="Beras Original"
-                  className="mb-5 h-60 w-full rounded-lg object-cover outline-2 outline-accentThrd select-none lg:h-56 lg:w-56 xl:h-70 xl:w-70"
-                />
+              <div className={`procard ${proWrapper}`}>
+                <div id="pro1" className={`${proCard}`}>
+                  <img
+                    src="/product/Original.png"
+                    alt="Beras Original"
+                    className="mb-5 h-60 w-full rounded-sm object-cover outline-2 outline-accentThrd select-none lg:h-56 lg:w-56 xl:h-70 xl:w-70"
+                  />
 
-                <h3 className="text-xl font-extrabold text-side text-shadow-lg">
-                  Beras Original
-                </h3>
-                <p className="mb-1 text-xs font-medium text-accentThrd">1 kg</p>
+                  <h3 className="text-xl font-extrabold text-side text-shadow-lg">
+                    Beras Original
+                  </h3>
+                  <p className="mb-1 text-xs font-medium text-accentThrd">
+                    1 kg
+                  </p>
 
-                <div className="flex justify-between">
-                  <p className="text-xl font-bold text-accentThrd">Rp 35.250</p>
+                  <div className="flex justify-between">
+                    <p className="text-xl font-bold text-accentThrd">
+                      Rp 35.250
+                    </p>
 
-                  <motion.a
-                    initial="rest"
-                    whileHover="hover"
-                    whileTap="tap"
-                    animate="rest"
-                    href="#"
-                    className="group"
-                  >
-                    <motion.button
-                      variants={{
-                        rest: { scale: 1 },
-                        hover: { scale: 1.1 },
-                      }}
-                      transition={{
-                        duration: 0.3,
-                        ease: "easeInOut",
-                        type: "spring",
-                        stiffness: 100,
-                        damping: 10,
-                      }}
-                      className="relative cursor-pointer overflow-hidden rounded-full bg-white p-1 px-4 font-medium text-accentThrd ring-2 ring-accentThrd select-none group-hover:text-white group-active:text-side group-active:ring-side"
+                    <motion.a
+                      initial="rest"
+                      whileHover="hover"
+                      whileTap="tap"
+                      animate="rest"
+                      href="#"
+                      className="group"
                     >
-                      <span className="relative z-1">Pesan</span>
-
-                      <motion.div
+                      <motion.button
                         variants={{
-                          rest: { scale: 0 },
-                          hover: { scale: 2.7 },
-                          tap: { scale: 0 },
+                          rest: { scale: 1 },
+                          hover: { scale: 1.1 },
                         }}
                         transition={{
-                          duration: 0.1,
+                          duration: 0.3,
                           ease: "easeInOut",
+                          type: "spring",
+                          stiffness: 100,
+                          damping: 10,
                         }}
-                        className="absolute h-8 w-8 translate-x-2 -translate-y-7 rounded-full bg-accentThrd"
-                      />
-                    </motion.button>
-                  </motion.a>
+                        className="relative cursor-pointer overflow-hidden rounded-full bg-white p-1 px-4 font-medium text-accentThrd ring-2 ring-accentThrd select-none group-hover:text-white group-active:text-side group-active:ring-side"
+                      >
+                        <span className="relative z-1">Pesan</span>
+
+                        <motion.div
+                          variants={{
+                            rest: { scale: 0 },
+                            hover: { scale: 2.7 },
+                            tap: { scale: 0 },
+                          }}
+                          transition={{
+                            duration: 0.1,
+                            ease: "easeInOut",
+                          }}
+                          className="absolute h-8 w-8 translate-x-2 -translate-y-7 rounded-full bg-accentThrd"
+                        />
+                      </motion.button>
+                    </motion.a>
+                  </div>
                 </div>
+
+                <div className="absolute top-0 -z-1 h-full w-full rounded-sm bg-primary lg:hidden" />
               </div>
 
-              <div id="pro2" className={`procard lg:opacity-0 ${proCard}`}>
-                <img
-                  src="/product/beras-aromatik.jpg"
-                  alt="Beras Aromatik"
-                  className="mb-5 h-60 w-full rounded-lg object-cover outline-2 outline-accentThrd select-none lg:h-56 lg:w-56 xl:h-70 xl:w-70"
-                />
+              <div className={`procard ${proWrapper}`}>
+                <div id="pro2" className={`${proCard}`}>
+                  <img
+                    src="/product/Aromatik.png"
+                    alt="Beras Aromatik"
+                    className="mb-5 h-60 w-full rounded-lg object-cover outline-2 outline-accentThrd select-none lg:h-56 lg:w-56 xl:h-70 xl:w-70"
+                  />
 
-                <h3 className="text-xl font-extrabold text-fuchsia-400 text-shadow-lg">
-                  Beras Aromatik
-                </h3>
-                <p className="mb-1 text-xs font-medium text-accentThrd">1 kg</p>
+                  <h3 className="text-xl font-extrabold text-fuchsia-400 text-shadow-lg">
+                    Beras Aromatik
+                  </h3>
+                  <p className="mb-1 text-xs font-medium text-accentThrd">
+                    1 kg
+                  </p>
 
-                <div className="flex justify-between">
-                  <p className="text-xl font-bold text-accentThrd">Rp 35.250</p>
+                  <div className="flex justify-between">
+                    <p className="text-xl font-bold text-accentThrd">
+                      Rp 35.250
+                    </p>
 
-                  <motion.a
-                    initial="rest"
-                    whileHover="hover"
-                    whileTap="tap"
-                    animate="rest"
-                    href="#"
-                    className="group"
-                  >
-                    <motion.button
-                      variants={{
-                        rest: { scale: 1 },
-                        hover: { scale: 1.1 },
-                      }}
-                      transition={{
-                        duration: 0.3,
-                        ease: "easeInOut",
-                        type: "spring",
-                        stiffness: 100,
-                        damping: 10,
-                      }}
-                      className="relative cursor-pointer overflow-hidden rounded-full bg-white p-1 px-4 font-medium text-accentThrd ring-2 ring-accentThrd select-none group-hover:text-white group-active:text-side group-active:ring-side"
+                    <motion.a
+                      initial="rest"
+                      whileHover="hover"
+                      whileTap="tap"
+                      animate="rest"
+                      href="#"
+                      className="group"
                     >
-                      <span className="relative z-1">Pesan</span>
-
-                      <motion.div
+                      <motion.button
                         variants={{
-                          rest: { scale: 0 },
-                          hover: { scale: 2.7 },
-                          tap: { scale: 0 },
+                          rest: { scale: 1 },
+                          hover: { scale: 1.1 },
                         }}
                         transition={{
-                          duration: 0.1,
+                          duration: 0.3,
                           ease: "easeInOut",
+                          type: "spring",
+                          stiffness: 100,
+                          damping: 10,
                         }}
-                        className="absolute h-8 w-8 translate-x-2 -translate-y-7 rounded-full bg-accentThrd"
-                      />
-                    </motion.button>
-                  </motion.a>
+                        className="relative cursor-pointer overflow-hidden rounded-full bg-white p-1 px-4 font-medium text-accentThrd ring-2 ring-accentThrd select-none group-hover:text-white group-active:text-side group-active:ring-side"
+                      >
+                        <span className="relative z-1">Pesan</span>
+
+                        <motion.div
+                          variants={{
+                            rest: { scale: 0 },
+                            hover: { scale: 2.7 },
+                            tap: { scale: 0 },
+                          }}
+                          transition={{
+                            duration: 0.1,
+                            ease: "easeInOut",
+                          }}
+                          className="absolute h-8 w-8 translate-x-2 -translate-y-7 rounded-full bg-accentThrd"
+                        />
+                      </motion.button>
+                    </motion.a>
+                  </div>
                 </div>
+
+                <div className="absolute top-0 -z-1 h-full w-full rounded-sm bg-primary lg:hidden" />
               </div>
 
-              <div id="pro3" className={`procard lg:opacity-0 ${proCard}`}>
-                <img
-                  src="/product/beras-merah.jpg"
-                  alt="Beras Merah"
-                  className="mb-5 h-60 w-full rounded-lg object-cover outline-2 outline-accentThrd select-none lg:h-56 lg:w-56 xl:h-70 xl:w-70"
-                />
+              <div className={`procard ${proWrapper}`}>
+                <div id="pro3" className={`${proCard}`}>
+                  <img
+                    src="/product/Merah.png"
+                    alt="Beras Merah"
+                    className="mb-5 h-60 w-full rounded-sm object-cover outline-2 outline-accentThrd select-none lg:h-56 lg:w-56 xl:h-70 xl:w-70"
+                  />
 
-                <h3 className="text-xl font-extrabold text-[#691500] text-shadow-lg">
-                  Beras Merah
-                </h3>
-                <p className="mb-1 text-xs font-medium text-accentThrd">1 kg</p>
+                  <h3 className="text-xl font-extrabold text-[#691500] text-shadow-lg">
+                    Beras Merah
+                  </h3>
+                  <p className="mb-1 text-xs font-medium text-accentThrd">
+                    1 kg
+                  </p>
 
-                <div className="flex justify-between">
-                  <p className="text-xl font-bold text-accentThrd">Rp 35.250</p>
+                  <div className="flex justify-between">
+                    <p className="text-xl font-bold text-accentThrd">
+                      Rp 35.250
+                    </p>
 
-                  <motion.a
-                    initial="rest"
-                    whileHover="hover"
-                    whileTap="tap"
-                    animate="rest"
-                    href="#"
-                    className="group"
-                  >
-                    <motion.button
-                      variants={{
-                        rest: { scale: 1 },
-                        hover: { scale: 1.1 },
-                      }}
-                      transition={{
-                        duration: 0.3,
-                        ease: "easeInOut",
-                        type: "spring",
-                        stiffness: 100,
-                        damping: 10,
-                      }}
-                      className="relative cursor-pointer overflow-hidden rounded-full bg-white p-1 px-4 font-medium text-accentThrd ring-2 ring-accentThrd select-none group-hover:text-white group-active:text-side group-active:ring-side"
+                    <motion.a
+                      initial="rest"
+                      whileHover="hover"
+                      whileTap="tap"
+                      animate="rest"
+                      href="#"
+                      className="group"
                     >
-                      <span className="relative z-1">Pesan</span>
-
-                      <motion.div
+                      <motion.button
                         variants={{
-                          rest: { scale: 0 },
-                          hover: { scale: 2.7 },
-                          tap: { scale: 0 },
+                          rest: { scale: 1 },
+                          hover: { scale: 1.1 },
                         }}
                         transition={{
-                          duration: 0.1,
+                          duration: 0.3,
                           ease: "easeInOut",
+                          type: "spring",
+                          stiffness: 100,
+                          damping: 10,
                         }}
-                        className="absolute h-8 w-8 translate-x-2 -translate-y-7 rounded-full bg-accentThrd"
-                      />
-                    </motion.button>
-                  </motion.a>
+                        className="relative cursor-pointer overflow-hidden rounded-full bg-white p-1 px-4 font-medium text-accentThrd ring-2 ring-accentThrd select-none group-hover:text-white group-active:text-side group-active:ring-side"
+                      >
+                        <span className="relative z-1">Pesan</span>
+
+                        <motion.div
+                          variants={{
+                            rest: { scale: 0 },
+                            hover: { scale: 2.7 },
+                            tap: { scale: 0 },
+                          }}
+                          transition={{
+                            duration: 0.1,
+                            ease: "easeInOut",
+                          }}
+                          className="absolute h-8 w-8 translate-x-2 -translate-y-7 rounded-full bg-accentThrd"
+                        />
+                      </motion.button>
+                    </motion.a>
+                  </div>
                 </div>
+
+                <div className="absolute top-0 -z-1 h-full w-full rounded-sm bg-primary lg:hidden" />
               </div>
 
               <div className="deco2 absolute right-1/7 -bottom-1/4 z-5 hidden h-50 w-50 rounded-sm bg-tertiary/70 lg:opacity-0 xl:block"></div>
@@ -634,8 +659,17 @@ function Product() {
 
 // Advantages //
 function Advantages() {
+  const [isLg, setIsLg] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsLg(window.innerWidth >= 1024);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const advanCard =
-    "w-full max-w-sm h-50 bg-tertiary rounded-sm border-2 shadow-lg relative overflow-hidden";
+    "w-full max-w-sm h-50 bg-tertiary rounded-sm border-2 relative overflow-hidden translate-x-3 -translate-y-3 lg:translate-x-0 lg:translate-y-0";
 
   const sectionRef = useRef(null);
 
@@ -854,7 +888,7 @@ function Advantages() {
             <div className="grid grid-cols-1 justify-items-center gap-10 select-none lg:grid-cols-2 xl:grid-cols-3">
               <motion.div
                 initial="rest"
-                whileHover="hover"
+                whileHover={isLg ? "hover" : "rest"}
                 animate="rest"
                 className="advan-anim group relative lg:opacity-0"
               >
@@ -904,8 +938,12 @@ function Advantages() {
 
                 <motion.div
                   variants={{
-                    rest: { x: 0, y: 0, borderColor: "rgba(74, 171, 0)" },
-                    hover: { x: 15, y: -15, borderColor: "rgba(77, 46, 0)" },
+                    rest: {
+                      x: 0,
+                      y: 0,
+                      borderColor: isLg ? "#4AAB00" : "#4D2E00",
+                    },
+                    hover: { x: 15, y: -15, borderColor: "#4D2E00" },
                   }}
                   transition={{
                     duration: 0.3,
@@ -930,7 +968,11 @@ function Advantages() {
                     }}
                     className="absolute top-1/2 left-1/2 z-2 hidden h-49 w-49 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-side lg:flex"
                   >
-                    <img src="/advantages/Organik.svg" alt="Organik" width="50" />
+                    <img
+                      src="/advantages/Organik.svg"
+                      alt="Organik"
+                      width="50"
+                    />
                   </motion.div>
 
                   <div className="h-full w-full p-5">
@@ -991,7 +1033,7 @@ function Advantages() {
 
               <motion.div
                 initial="rest"
-                whileHover="hover"
+                whileHover={isLg ? "hover" : "rest"}
                 animate="rest"
                 className="advan-anim group relative lg:opacity-0"
               >
@@ -1041,8 +1083,12 @@ function Advantages() {
 
                 <motion.div
                   variants={{
-                    rest: { x: 0, y: 0, borderColor: "rgba(74, 171, 0)" },
-                    hover: { x: 15, y: -15, borderColor: "rgba(77, 46, 0)" },
+                    rest: {
+                      x: 0,
+                      y: 0,
+                      borderColor: isLg ? "#4AAB00" : "#4D2E00",
+                    },
+                    hover: { x: 15, y: -15, borderColor: "#4D2E00" },
                   }}
                   transition={{
                     duration: 0.3,
@@ -1067,7 +1113,11 @@ function Advantages() {
                     }}
                     className="absolute top-1/2 left-1/2 z-2 hidden h-49 w-49 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-side lg:flex"
                   >
-                    <img src="/advantages/Bebas-kimia.svg" alt="Tanpa Kimia" width="50" />
+                    <img
+                      src="/advantages/Bebas-kimia.svg"
+                      alt="Tanpa Kimia"
+                      width="50"
+                    />
                   </motion.div>
 
                   <div className="h-full w-full p-5">
@@ -1128,7 +1178,7 @@ function Advantages() {
 
               <motion.div
                 initial="rest"
-                whileHover="hover"
+                whileHover={isLg ? "hover" : "rest"}
                 animate="rest"
                 className="advan-anim group relative lg:opacity-0"
               >
@@ -1178,8 +1228,12 @@ function Advantages() {
 
                 <motion.div
                   variants={{
-                    rest: { x: 0, y: 0, borderColor: "rgba(74, 171, 0)" },
-                    hover: { x: 15, y: -15, borderColor: "rgba(77, 46, 0)" },
+                    rest: {
+                      x: 0,
+                      y: 0,
+                      borderColor: isLg ? "#4AAB00" : "#4D2E00",
+                    },
+                    hover: { x: 15, y: -15, borderColor: "#4D2E00" },
                   }}
                   transition={{
                     duration: 0.3,
@@ -1204,7 +1258,11 @@ function Advantages() {
                     }}
                     className="absolute top-1/2 left-1/2 z-2 hidden h-49 w-49 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-side lg:flex"
                   >
-                    <img src="/advantages/Higienis.png" alt="Higienis" width="50" />
+                    <img
+                      src="/advantages/Higienis.png"
+                      alt="Higienis"
+                      width="50"
+                    />
                   </motion.div>
 
                   <div className="h-full w-full p-5">
@@ -1265,7 +1323,7 @@ function Advantages() {
 
               <motion.div
                 initial="rest"
-                whileHover="hover"
+                whileHover={isLg ? "hover" : "rest"}
                 animate="rest"
                 className="advan-anim group relative lg:opacity-0"
               >
@@ -1315,8 +1373,12 @@ function Advantages() {
 
                 <motion.div
                   variants={{
-                    rest: { x: 0, y: 0, borderColor: "rgba(74, 171, 0)" },
-                    hover: { x: 15, y: -15, borderColor: "rgba(77, 46, 0)" },
+                    rest: {
+                      x: 0,
+                      y: 0,
+                      borderColor: isLg ? "#4AAB00" : "#4D2E00",
+                    },
+                    hover: { x: 15, y: -15, borderColor: "#4D2E00" },
                   }}
                   transition={{
                     duration: 0.3,
@@ -1341,7 +1403,11 @@ function Advantages() {
                     }}
                     className="absolute top-1/2 left-1/2 z-2 hidden h-49 w-49 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-side lg:flex"
                   >
-                    <img src="/advantages/Dari-Petani.svg" alt="Petani" width="50" />
+                    <img
+                      src="/advantages/Dari-Petani.svg"
+                      alt="Petani"
+                      width="50"
+                    />
                   </motion.div>
 
                   <div className="h-full w-full p-5">
@@ -1402,7 +1468,7 @@ function Advantages() {
 
               <motion.div
                 initial="rest"
-                whileHover="hover"
+                whileHover={isLg ? "hover" : "rest"}
                 animate="rest"
                 className="advan-anim group relative lg:opacity-0"
               >
@@ -1452,8 +1518,12 @@ function Advantages() {
 
                 <motion.div
                   variants={{
-                    rest: { x: 0, y: 0, borderColor: "rgba(74, 171, 0)" },
-                    hover: { x: 15, y: -15, borderColor: "rgba(77, 46, 0)" },
+                    rest: {
+                      x: 0,
+                      y: 0,
+                      borderColor: isLg ? "#4AAB00" : "#4D2E00",
+                    },
+                    hover: { x: 15, y: -15, borderColor: "#4D2E00" },
                   }}
                   transition={{
                     duration: 0.3,
@@ -1478,7 +1548,11 @@ function Advantages() {
                     }}
                     className="absolute top-1/2 left-1/2 z-2 hidden h-49 w-49 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-side lg:flex"
                   >
-                    <img src="/advantages/Terjangkau.svg" alt="Terjangkau" width="50" />
+                    <img
+                      src="/advantages/Terjangkau.svg"
+                      alt="Terjangkau"
+                      width="50"
+                    />
                   </motion.div>
 
                   <div className="h-full w-full p-5">
@@ -1539,7 +1613,7 @@ function Advantages() {
 
               <motion.div
                 initial="rest"
-                whileHover="hover"
+                whileHover={isLg ? "hover" : "rest"}
                 animate="rest"
                 className="advan-anim group relative lg:opacity-0"
               >
@@ -1589,8 +1663,12 @@ function Advantages() {
 
                 <motion.div
                   variants={{
-                    rest: { x: 0, y: 0, borderColor: "rgba(74, 171, 0)" },
-                    hover: { x: 15, y: -15, borderColor: "rgba(77, 46, 0)" },
+                    rest: {
+                      x: 0,
+                      y: 0,
+                      borderColor: isLg ? "#4AAB00" : "#4D2E00",
+                    },
+                    hover: { x: 15, y: -15, borderColor: "#4D2E00" },
                   }}
                   transition={{
                     duration: 0.3,
@@ -1615,7 +1693,11 @@ function Advantages() {
                     }}
                     className="absolute top-1/2 left-1/2 z-2 hidden h-49 w-49 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-side lg:flex"
                   >
-                    <img src="/advantages/Pengiriman-Cepat.svg" alt="Pengiriman" width="50" />
+                    <img
+                      src="/advantages/Pengiriman-Cepat.svg"
+                      alt="Pengiriman"
+                      width="50"
+                    />
                   </motion.div>
 
                   <div className="h-full w-full p-5">
@@ -1933,7 +2015,7 @@ function About() {
             <div className="flex flex-col items-center justify-center gap-10 lg:flex-row">
               <div className="mx-auto">
                 <div className="relative mx-auto h-fit w-fit lg:hidden">
-                  <div className="mb-5 max-w-md translate-x-2 -translate-y-2 overflow-hidden rounded-sm">
+                  <div className="mb-5 max-w-md translate-x-3 -translate-y-3 overflow-hidden rounded-sm border-2 border-side">
                     <img
                       src="/about/sawah.jpg"
                       alt="Sawah"
@@ -1961,12 +2043,12 @@ function About() {
                 </div>
 
                 <div className="h-content relative h-fit max-w-lg lg:max-w-2xl lg:opacity-0">
-                  <div className="h-c-deco1 scale-60 xl:scale-100 absolute -top-1/8 -left-1/13 -z-1 hidden h-50 w-40 rounded-sm bg-side/50 lg:block lg:opacity-0" />
-                  <div className="h-c-deco1 scale-60 xl:scale-100 absolute -right-1/12 -bottom-1/8 -z-2 hidden h-50 w-40 rounded-sm bg-accentThrd/50 lg:block lg:opacity-0" />
-                  <div className="h-c-deco2 scale-60 xl:scale-100 absolute -top-1/9 left-1/2 -z-1 hidden h-2 w-40 rounded-sm bg-side/50 lg:block lg:opacity-0" />
-                  <div className="h-c-deco2 scale-60 xl:scale-100 absolute right-1/2 -bottom-1/9 -z-1 hidden h-2 w-40 rounded-sm bg-primary/50 lg:block lg:opacity-0" />
+                  <div className="h-c-deco1 absolute -top-1/8 -left-1/13 -z-1 hidden h-50 w-40 scale-60 rounded-sm bg-side/50 lg:block lg:opacity-0 xl:scale-100" />
+                  <div className="h-c-deco1 absolute -right-1/12 -bottom-1/8 -z-2 hidden h-50 w-40 scale-60 rounded-sm bg-accentThrd/50 lg:block lg:opacity-0 xl:scale-100" />
+                  <div className="h-c-deco2 absolute -top-1/9 left-1/2 -z-1 hidden h-2 w-40 scale-60 rounded-sm bg-side/50 lg:block lg:opacity-0 xl:scale-100" />
+                  <div className="h-c-deco2 absolute right-1/2 -bottom-1/9 -z-1 hidden h-2 w-40 scale-60 rounded-sm bg-primary/50 lg:block lg:opacity-0 xl:scale-100" />
 
-                  <div className="h-p-box overflow-hidden rounded-sm border-2 border-accentThrd bg-tertiary p-3 shadow-lg">
+                  <div className="h-p-box translate-x-1 -translate-y-1 overflow-hidden rounded-sm border-2 border-accentThrd bg-tertiary p-3 shadow-lg lg:translate-x-0 lg:translate-y-0">
                     <p className="h-parag text-justify text-xs font-medium text-quaternary select-none lg:text-sm">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Ea, nemo incidunt qui reprehenderit atque quia accusantium
@@ -2005,11 +2087,11 @@ function About() {
                   </div>
 
                   <div className="h-img-deco1 absolute -top-1/7 -left-1/8 -z-1 h-60 w-80 rounded-sm bg-linear-to-tr from-primary/70 to-side/70 lg:opacity-0" />
-                  <div className="h-img-deco1 scale-60 xl:scale-100 absolute -top-1/9 left-1/2 -z-1 h-20 w-20 rounded-sm bg-side/70 lg:opacity-0" />
-                  <div className="h-img-deco2 scale-60 xl:scale-100 absolute -top-1/7 -right-1/15 -z-1 h-90 w-40 rounded-sm bg-primary/70 lg:opacity-0" />
-                  <div className="h-img-deco2 scale-60 xl:scale-100 absolute -bottom-1/7 left-1/8 -z-1 h-70 w-80 rounded-sm bg-tertiary/70 lg:opacity-0" />
-                  <div className="h-img-deco3 scale-60 xl:scale-100 absolute -bottom-1/9 left-1/3 -z-1 h-90 w-80 rounded-sm bg-linear-to-tr from-side/70 to-primary/70 lg:opacity-0" />
-                  <div className="h-img-deco3 scale-60 xl:scale-100 absolute -bottom-1/9 -left-1/12 -z-1 h-20 w-20 rounded-sm bg-side/70 lg:opacity-0" />
+                  <div className="h-img-deco1 absolute -top-1/9 left-1/2 -z-1 h-20 w-20 scale-60 rounded-sm bg-side/70 lg:opacity-0 xl:scale-100" />
+                  <div className="h-img-deco2 absolute -top-1/7 -right-1/15 -z-1 h-90 w-40 scale-60 rounded-sm bg-primary/70 lg:opacity-0 xl:scale-100" />
+                  <div className="h-img-deco2 absolute -bottom-1/7 left-1/8 -z-1 h-70 w-80 scale-60 rounded-sm bg-tertiary/70 lg:opacity-0 xl:scale-100" />
+                  <div className="h-img-deco3 absolute -bottom-1/9 left-1/3 -z-1 h-90 w-80 scale-60 rounded-sm bg-linear-to-tr from-side/70 to-primary/70 lg:opacity-0 xl:scale-100" />
+                  <div className="h-img-deco3 absolute -bottom-1/9 -left-1/12 -z-1 h-20 w-20 scale-60 rounded-sm bg-side/70 lg:opacity-0 xl:scale-100" />
                 </div>
               </div>
             </div>
@@ -2023,6 +2105,18 @@ function About() {
 
 // Certificate //
 function Certificate() {
+  const [isLg, setIsLg] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsLg(window.innerWidth >= 1024);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const certCard =
+    "relative h-55 w-full max-w-sm overflow-hidden rounded-sm border-2 border-accentThrd bg-tertiary shadow-lg translate-x-3 -translate-y-3 lg:translate-x-0 lg:translate-y-0";
+
   const sectionRef = useRef(null);
 
   const isInView = useInView(sectionRef, { once: true, amount: 0.75 });
@@ -2133,7 +2227,7 @@ function Certificate() {
           <div className="grid justify-items-center gap-15 lg:grid-cols-2 xl:grid-cols-4">
             <motion.div
               initial="rest"
-              whileHover="hover"
+              whileHover={isLg ? "hover" : "rest"}
               animate="rest"
               className="s-content relative w-fit lg:opacity-0"
             >
@@ -2183,8 +2277,12 @@ function Certificate() {
 
               <motion.div
                 variants={{
-                  rest: { x: 0, y: 0, borderColor: "rgba(74, 171, 0)" },
-                  hover: { x: 10, y: -10, borderColor: "rgba(77, 46, 0)" },
+                  rest: {
+                    x: 0,
+                    y: 0,
+                    borderColor: isLg ? "#4AAB00" : "#4D2E00",
+                  },
+                  hover: { x: 10, y: -10, borderColor: "#4D2E00" },
                 }}
                 transition={{
                   duration: 0.3,
@@ -2193,7 +2291,7 @@ function Certificate() {
                   stiffness: 150,
                   damping: 10,
                 }}
-                className="relative h-55 w-full max-w-sm overflow-hidden rounded-sm border-2 border-accentThrd bg-tertiary shadow-lg"
+                className={`${certCard}`}
               >
                 <motion.div
                   variants={{
@@ -2277,7 +2375,7 @@ function Certificate() {
 
             <motion.div
               initial="rest"
-              whileHover="hover"
+              whileHover={isLg ? "hover" : "rest"}
               animate="rest"
               className="s-content relative w-fit lg:opacity-0"
             >
@@ -2327,8 +2425,12 @@ function Certificate() {
 
               <motion.div
                 variants={{
-                  rest: { x: 0, y: 0, borderColor: "rgba(74, 171, 0)" },
-                  hover: { x: 10, y: -10, borderColor: "rgba(77, 46, 0)" },
+                  rest: {
+                    x: 0,
+                    y: 0,
+                    borderColor: isLg ? "#4AAB00" : "#4D2E00",
+                  },
+                  hover: { x: 10, y: -10, borderColor: "#4D2E00" },
                 }}
                 transition={{
                   duration: 0.3,
@@ -2337,7 +2439,7 @@ function Certificate() {
                   stiffness: 150,
                   damping: 10,
                 }}
-                className="relative h-55 w-full max-w-sm overflow-hidden rounded-sm border-2 border-accentThrd bg-tertiary shadow-lg"
+                className={`${certCard}`}
               >
                 <motion.div
                   variants={{
@@ -2425,7 +2527,7 @@ function Certificate() {
 
             <motion.div
               initial="rest"
-              whileHover="hover"
+              whileHover={isLg ? "hover" : "rest"}
               animate="rest"
               className="s-content relative w-fit lg:opacity-0"
             >
@@ -2475,8 +2577,12 @@ function Certificate() {
 
               <motion.div
                 variants={{
-                  rest: { x: 0, y: 0, borderColor: "rgba(74, 171, 0)" },
-                  hover: { x: 10, y: -10, borderColor: "rgba(77, 46, 0)" },
+                  rest: {
+                    x: 0,
+                    y: 0,
+                    borderColor: isLg ? "#4AAB00" : "#4D2E00",
+                  },
+                  hover: { x: 10, y: -10, borderColor: "#4D2E00" },
                 }}
                 transition={{
                   duration: 0.3,
@@ -2485,7 +2591,7 @@ function Certificate() {
                   stiffness: 150,
                   damping: 10,
                 }}
-                className="relative h-55 w-full max-w-sm overflow-hidden rounded-sm border-2 border-accentThrd bg-tertiary shadow-lg"
+                className={`${certCard}`}
               >
                 <motion.div
                   variants={{
@@ -2569,7 +2675,7 @@ function Certificate() {
 
             <motion.div
               initial="rest"
-              whileHover="hover"
+              whileHover={isLg ? "hover" : "rest"}
               animate="rest"
               className="s-content relative w-fit lg:opacity-0"
             >
@@ -2619,8 +2725,12 @@ function Certificate() {
 
               <motion.div
                 variants={{
-                  rest: { x: 0, y: 0, borderColor: "rgba(74, 171, 0)" },
-                  hover: { x: 10, y: -10, borderColor: "rgba(77, 46, 0)" },
+                  rest: {
+                    x: 0,
+                    y: 0,
+                    borderColor: isLg ? "#4AAB00" : "#4D2E00",
+                  },
+                  hover: { x: 10, y: -10, borderColor: "#4D2E00" },
                 }}
                 transition={{
                   duration: 0.3,
@@ -2629,7 +2739,7 @@ function Certificate() {
                   stiffness: 150,
                   damping: 10,
                 }}
-                className="relative h-55 w-full max-w-sm overflow-hidden rounded-sm border-2 border-accentThrd bg-tertiary shadow-lg"
+                className={`${certCard}`}
               >
                 <motion.div
                   variants={{
@@ -2720,6 +2830,18 @@ function Certificate() {
 
 // Review //
 function Review() {
+  const [isLg, setIsLg] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsLg(window.innerWidth >= 1024);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const revCard =
+    "relative h-63 w-full max-w-sm overflow-hidden rounded-sm border-2 bg-tertiary translate-x-3 -translate-y-3 lg:translate-x-0 lg:translate-y-0";
+
   const sectionRef = useRef(null);
 
   const isInView = useInView(sectionRef, { once: true, amount: 0.5 });
@@ -2829,7 +2951,7 @@ function Review() {
             <div className="flex flex-col flex-wrap items-center justify-center gap-15 lg:flex-row">
               <motion.div
                 initial="rest"
-                whileHover="hover"
+                whileHover={isLg ? "hover" : "rest"}
                 animate="rest"
                 className="r-content relative h-fit w-fit lg:opacity-0"
               >
@@ -2872,7 +2994,7 @@ function Review() {
                 <motion.div
                   variants={{
                     rest: {
-                      borderColor: "rgba(74, 171, 0)",
+                      borderColor: isLg ? "#4AAB00" : "#4D2E00",
                       transition: {
                         duration: 0.3,
                         ease: "easeInOut",
@@ -2885,7 +3007,7 @@ function Review() {
                     hover: {
                       x: 10,
                       y: -10,
-                      borderColor: "rgba(77, 46, 0)",
+                      borderColor: "#4D2E00",
                       transition: {
                         duration: 0.3,
                         ease: "easeInOut",
@@ -2896,7 +3018,7 @@ function Review() {
                       },
                     },
                   }}
-                  className="relative h-63 w-full max-w-sm overflow-hidden rounded-sm border-2 bg-tertiary"
+                  className={`${revCard}`}
                 >
                   <motion.div
                     variants={{
@@ -3283,7 +3405,7 @@ function Review() {
 
               <motion.div
                 initial="rest"
-                whileHover="hover"
+                whileHover={isLg ? "hover" : "rest"}
                 animate="rest"
                 className="r-content relative h-fit w-fit lg:opacity-0"
               >
@@ -3326,7 +3448,7 @@ function Review() {
                 <motion.div
                   variants={{
                     rest: {
-                      borderColor: "rgba(74, 171, 0)",
+                      borderColor: isLg ? "#4AAB00" : "#4D2E00",
                       transition: {
                         duration: 0.3,
                         ease: "easeInOut",
@@ -3339,7 +3461,7 @@ function Review() {
                     hover: {
                       x: 10,
                       y: -10,
-                      borderColor: "rgba(77, 46, 0)",
+                      borderColor: "#4D2E00",
                       transition: {
                         duration: 0.3,
                         ease: "easeInOut",
@@ -3350,7 +3472,7 @@ function Review() {
                       },
                     },
                   }}
-                  className="relative h-63 w-full max-w-sm overflow-hidden rounded-sm border-2 bg-tertiary"
+                  className={`${revCard}`}
                 >
                   <motion.div
                     variants={{
@@ -3737,7 +3859,7 @@ function Review() {
 
               <motion.div
                 initial="rest"
-                whileHover="hover"
+                whileHover={isLg ? "hover" : "rest"}
                 animate="rest"
                 className="r-content relative h-fit w-fit lg:opacity-0"
               >
@@ -3780,7 +3902,7 @@ function Review() {
                 <motion.div
                   variants={{
                     rest: {
-                      borderColor: "rgba(74, 171, 0)",
+                      borderColor: isLg ? "#4AAB00" : "#4D2E00",
                       transition: {
                         duration: 0.3,
                         ease: "easeInOut",
@@ -3793,7 +3915,7 @@ function Review() {
                     hover: {
                       x: 10,
                       y: -10,
-                      borderColor: "rgba(77, 46, 0)",
+                      borderColor: "#4D2E00",
                       transition: {
                         duration: 0.3,
                         ease: "easeInOut",
@@ -3804,7 +3926,7 @@ function Review() {
                       },
                     },
                   }}
-                  className="relative h-63 w-full max-w-sm overflow-hidden rounded-sm border-2 bg-tertiary"
+                  className={`${revCard}`}
                 >
                   <motion.div
                     variants={{
