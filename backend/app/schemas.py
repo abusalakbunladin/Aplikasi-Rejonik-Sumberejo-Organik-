@@ -11,6 +11,11 @@ def _tandai_utc(v):
 WaktuUTC = Annotated[datetime, BeforeValidator(_tandai_utc)]
 
 INT_MAX = 2_147_483_647
+MAKS_HARGA = 10_000_000
+MAKS_STOK = 1_000_000
+MAKS_JUMLAH_ORDER = 1_000
+MAKS_ITEM_ORDER = 50
+MAKS_ONGKIR = 10_000_000
 
 class KategoriCreate(BaseModel):
     nama: str = Field(..., min_length=1, max_length=75, description="Nama kategori tidak boleh kosong")
@@ -32,8 +37,8 @@ class KategoriResponse(BaseModel):
 class ProdukVarianCreate(BaseModel):
     produk_id: int
     berat: float = Field(..., gt=0, le=1000, allow_inf_nan=False, description="Berat dalam kg, misal 1.0, 2.5, 5.0")
-    harga: int = Field(..., gt=0, le=INT_MAX, description="Harga harus lebih dari 0")
-    stok: int = Field(0, ge=0, le=INT_MAX, description="Stok tidak boleh negatif")
+    harga: int = Field(..., gt=0, le=MAKS_HARGA, description="Harga harus lebih dari 0")
+    stok: int = Field(0, ge=0, le=MAKS_STOK, description="Stok tidak boleh negatif")
 
 class ProdukVarianResponse(BaseModel):
     id: int
@@ -209,7 +214,7 @@ class HasilGilingResponse(BaseModel):
 
 class OrderItemCreate(BaseModel):
     produk_varian_id: int
-    jumlah: int = Field(..., gt=0, le=INT_MAX, description="Jumlah order harus lebih dari 0")
+    jumlah: int = Field(..., gt=0, le=MAKS_JUMLAH_ORDER, description="Jumlah order harus lebih dari 0")
 
 class OrderItemResponse(BaseModel):
     id: int
@@ -229,7 +234,7 @@ class OrderCreate(BaseModel):
     nama_jalan: str = Field(..., min_length=1, max_length=255)
     detail_lainnya: Optional[str] = Field(None, max_length=255, description="Opsional, misal patokan/blok/no rumah")
 
-    items: list[OrderItemCreate] = Field(..., min_length=1, description="Order harus punya minimal 1 item")
+    items: list[OrderItemCreate] = Field(..., min_length=1, max_length=MAKS_ITEM_ORDER,description="Order harus punya minimal 1 item")
 
     @field_validator("nama_pembeli", "no_telepon", "provinsi", "kota", "kecamatan", "kode_pos", "nama_jalan")
     @classmethod
@@ -263,7 +268,7 @@ class OrderCreate(BaseModel):
 
 class OrderKonfirmasiUpdate(BaseModel):
     status_konfirmasi: Literal["dikonfirmasi", "ditolak"]
-    ongkir: int = Field(0, ge=0, description="Ongkos kirim, isi 0 kalau pembeli ambil sendiri")
+    ongkir: int = Field(0, ge=0, le=MAKS_ONGKIR, description="Ongkos kirim, isi 0 kalau pembeli ambil sendiri")
 
 class OrderResponse(BaseModel):
     id: int

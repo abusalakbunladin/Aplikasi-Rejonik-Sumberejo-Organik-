@@ -10,7 +10,7 @@ from app.deps import get_db, get_current_user
 from app.captcha import wajib_captcha
 from app.rate_limit import batasi_order
 from app.models import ProdukVarian, Order, OrderItem
-from app.schemas import OrderCreate, OrderCreateResponse, OrderKonfirmasiUpdate, OrderResponse
+from app.schemas import INT_MAX, OrderCreate, OrderCreateResponse, OrderKonfirmasiUpdate, OrderResponse
 
 router = APIRouter(prefix="/order", tags=["Order"])
 
@@ -93,7 +93,8 @@ def create_order(data: OrderCreate, db: Session = Depends(get_db)):
         db.add(OrderItem(order_id=order.id, produk_varian_id=varian.id, jumlah=item.jumlah, harga_saat_itu=varian.harga))
 
         daftar_item_pesan.append(f"- {varian.produk.nama} ({varian.berat}kg) x{item.jumlah} = {_format_rupiah(subtotal)}")
-
+    if total > INT_MAX:
+        raise HTTPException(status_code=400, detail="Total pesanan terlalu besar, kurangi jumlah atau pecah jadi beberapa pesanan")
     order.total = total
     db.commit()
     db.refresh(order)
